@@ -95,7 +95,7 @@ const sendMail = async( writer , writerPass , sendTo, subject, text, html ) =>{
         html  : html,
     });
 
-    console.log(mail); 
+    return mail; 
 };
 
 /*

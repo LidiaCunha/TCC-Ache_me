@@ -12,7 +12,10 @@ module.exports = {
     },
 /* INSERT */
     store  : async( req , res ) => {
-        const { name, mail , CPF , password } = req.body;
+
+        const { name, mail , CPF , telephone , password , cep , bairro , street , number } = req.body;
+        
+        const { firebaseUrl } = req.file ? req.file : "";
 
         const ExistUser = await Users.findOne({ where: { [Op.or] : [ {cpf:CPF} , {mail:mail} ] } });
 
@@ -22,7 +25,7 @@ module.exports = {
 
         const cryptPassword = await crypt.hash(password,10);
 
-        const user = await Users.create( { name , mail , cpf:CPF , password:cryptPassword } );
+        const user = await Users.create( { name , mail , cpf:CPF , telephone , password:cryptPassword , photo:firebaseUrl , cep , bairro , street , number } );
 
         const token = jwt.sign( {alunoId: user.id} , "TCC_SENAI" )
 
@@ -31,7 +34,10 @@ module.exports = {
 /* UPDATE */
     update : async( req , res ) => {
         const { userId } = req.params;
-        const { name, mail , CPF , password } = req.body;
+
+        const {  name, mail , CPF , telephone , password , cep , bairro , street , number } = req.body;
+
+        const { firebaseUrl } = req.file ? req.file : "";
 
         const cryptPassword = await crypt.hash(password,10);
 
@@ -40,7 +46,7 @@ module.exports = {
         if(ExistUser && crypt.compare(password, ExistUser.password ) )
             return res.status(401).send({"error":"you need to change something to update your account"});
         
-        const userUpdated = await Users.update({ name, mail , cpf:CPF , password:cryptPassword ,updatedAt:null }, { where: { id: userId } });
+        const userUpdated = await Users.update({name , mail , cpf:CPF , telephone , password:cryptPassword , photo:firebaseUrl , cep , bairro , street , number , updatedAt:null }, { where: { id: userId } });
         
         if( !userUpdated )
             return res.status(401).send({"error":"something is wrong with your user id"});

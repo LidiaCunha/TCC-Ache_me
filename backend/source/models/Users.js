@@ -7,8 +7,14 @@ class Users extends Model {
 			name     : DataTypes.STRING,
 			mail     : DataTypes.STRING,
 			cpf      : DataTypes.STRING,
-            password : DataTypes.STRING,
-		},{
+			telephone: DataTypes.STRING,
+			password : DataTypes.STRING,
+			cep      : DataTypes.STRING,
+			bairro   : DataTypes.STRING,
+			street   : DataTypes.STRING,
+			number   : DataTypes.STRING,
+			photo	 : DataTypes.STRING,
+ 		},{
 			sequelize,
 		})
     }
