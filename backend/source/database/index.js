@@ -4,16 +4,23 @@ const dbConfig = require('../config/config');
 // criando a conexão com banco pelo sequelize passando o objeto de conexão criado 
 const conection  = new Squelize(dbConfig);
 // AQUI DEVESE IMPORTAR OS MODELS
-const Users = require('../models/Users')
-
+const Users = require('../models/Users');
+const States = require('../models/States');
+const City = require('../models/City');
+const WhereLive = require('../models/WhereLive');
 // AQUI DEVESE INICIAR AS MODELS
 
-Users.init(conection)
+States.init(conection);
+City.init(conection);
+WhereLive.init(conection);
+Users.init(conection);
 
 // AQUI DEVESE FAZER AS ASSOCIAÇÕES(RELACIONAMENTO) ENTRE AS MODELS
 
-//exemplo:  Model.associate(conection.models)
-
+States.associete(conection.models);
+City.associete(conection.models);
+WhereLive.associete(conection.models);
+Users.associete(conection.models);
 
 // exportando a conexçao
 module.exports = conection; 
