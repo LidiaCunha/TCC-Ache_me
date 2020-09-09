@@ -4,7 +4,7 @@
 
 ### Publicas
 
-- #### POST em 3001/newUser
+- #### POST em 3001/newUser.
 
 ```javascript 
 import axios from 'axios';
