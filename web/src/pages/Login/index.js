@@ -15,7 +15,10 @@ const FormRegister = (props) => {
 		cep: "",
 		bairro: "",
 		street: "",
-		number: "",
+        number: "",
+        city:"",
+        state:"",
+        complement:""
     });
 
     const handlerInput = (e) => {
@@ -67,6 +70,18 @@ const FormRegister = (props) => {
                 <label>Número</label>
                 <input type="text" id="number" value={userRegister.number} onChange={handlerInput} placeholder="Insira o número da sua casa" required />
             </InputGroup>
+            <InputGroup>
+                <label>Cidade</label>
+                <input type="text" id="city" value={userRegister.city} onChange={handlerInput} placeholder="Sua cidade aparecerá aqui" required />
+            </InputGroup>
+            <InputGroup>
+                <label>Estado</label>
+                <input type="text" id="state" value={userRegister.state} onChange={handlerInput} placeholder="Seu Estado aparecerá aqui" required />
+            </InputGroup>
+            <InputGroup>
+                <label>Complemento</label>
+                <input type="text" id="complement" value={userRegister.complement} onChange={handlerInput} placeholder="Insira o complemento (opcional)" required />
+            </InputGroup>
             <Button type="submit">Registrar-se</Button>
             <Button type="button">Já tenho cadastro</Button>
          </Form>
@@ -78,6 +93,11 @@ const FormLogin = (props) => {
 
     const [userLogin, setUserLogin] = useState({
         mail: "",
+        password: "",
+    });
+
+    const [userLogin, setUserLogin] = useState({
+        telephone: "",
         password: "",
     });
 
