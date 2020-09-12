@@ -9,10 +9,37 @@ const WhereLive = require('../models/WhereLive');
 
 module.exports = {
 /* SELECT */
-    index  : async( req , res ) => {
+    index  : async( req, res ) => {
         const users = await Users.findAll();
+        
+        let AllUsers = [];
+        
+        users.forEach(async (user) =>{
+           
+            const whereLive = await WhereLive.findByPk(user.dataValues.where_live_id);
+            const state = await States.findByPk(whereLive.dataValues.state_id,{raw:true});
+            const city = await City.findByPk(whereLive.dataValues.city_id,{raw:true});
 
-        return res.status(201).send(users);
+            const thisUser = 
+                {   
+                    
+                    ...user.dataValues, 
+                    where_live: {
+                        ...whereLive.dataValues,
+                        state   : state.name_of_state,
+                        city    : city.name_of_city,
+                    }
+                    
+                    
+                };
+
+            AllUsers[AllUsers.length] = thisUser;
+
+            if(AllUsers.length == users.length)
+                return res.status(201).send(AllUsers);    
+        });
+        
+        //return res.status(201).send(users);
     },
     login : async( req , res ) => {
         const { mail , telephone , password } = req.body;
@@ -121,6 +148,54 @@ module.exports = {
             return res.status(401).send({"error":"something is wrong with your user id"});
         
         return res.status(201).send({"sucess":"the user was updated sucefuly!"});
+    },
+    updateFieldOfUsers: async( req , res ) => {
+        const {userId} = req.params;
+
+        const { field, contentOfField } = req.body;
+
+        const thisUser = await Users.findByPk(userId);
+        
+        if( thisUser && thisUser.dataValues[field] != contentOfField ){
+            
+            const string = `{
+                "${field}" : "${contentOfField}"
+            }`;
+            
+            const userWithFieldUpdated = await Users.update( JSON.parse(string) , { where: { id : userId } } );
+            
+            if( userWithFieldUpdated )
+                return res.status(201).send(userWithFieldUpdated);
+            
+        }
+        
+        return res.status(422).send({"error": "this user does not exists or the data is equal the lasted"});
+        
+    },
+    updateFieldFromWhereUserLive: async( req, res) => {
+        const {userId} = req.params;
+
+        const { field, contentOfField } = req.body;
+
+        const thisUser = await Users.findByPk(userId);
+        
+        const whereUserLive = await WhereLive.findByPk(thisUser.dataValues.where_live_id);
+
+        if( whereUserLive && whereUserLive.dataValues[field] != contentOfField ){
+            
+            const string = `{
+                "${field}" : "${contentOfField}"
+            }`;
+            
+            const userWithFieldFromWhereLiveUpdated = await WhereLive.update( JSON.parse(string) , { where: { id : whereUserLive.id } } );
+            
+            if( userWithFieldFromWhereLiveUpdated )
+                return res.status(201).send(userWithFieldFromWhereLiveUpdated);
+            
+        }
+        
+        return res.status(422).send({"error": "this user does not exists or the data is equal the lasted"});
+    
     },
 /* DELETE */
     delete : async( req , res ) => {
