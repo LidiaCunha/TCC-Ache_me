@@ -1,6 +1,15 @@
 import {useHistory} from "react-router-dom";
+
+import {
+    Container,
+    Form,
+    InputGroup,
+    Button
+} from "./styles";
+
 import React, { useState } from "react";
 import { api } from "../../services/api";
+import { signIn } from '../../services/security';
 
 const FormRegister = (props) => {
     
@@ -88,9 +97,22 @@ const FormLogin = (props) => {
     const enter = async (e) => {
         e.preventDefault();
 
-        const retorno = await api.post("/users", userLogin);
+        try {
 
-        return history.push("/home");
+            const retorno = await api.post("/users", userLogin);
+            
+            if (retorno.status === 201) {
+
+                signIn(retorno.data);
+                window.alert("sucess");
+
+                return history.push("/home");
+            }
+
+        } catch (error) {
+            window.alert("error");
+        }
+
     };
     return(
         <Form onSubmit={enter}>
