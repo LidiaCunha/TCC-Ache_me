@@ -36,9 +36,19 @@ const FormRegister = (props) => {
     const register = async (e) => {
         e.preventDefault();
 
-        const retorno = await api.post("/newUser", userRegister);
+        try {
+            const retorno = await api.post("/newUser", userRegister);
 
-        return history.push("/home");
+            if(retorno.status === 201) {
+                signIn(retorno.data);
+                window.alert("sucesso");
+                return history.push("/home");
+            }
+        } catch (error) {
+            console.log(error);
+            window.alert(error.response.data.erro);
+        }
+
     }
 
     return(
@@ -124,12 +134,13 @@ const FormLogin = (props) => {
             if (retorno.status === 201) {
 
                 signIn(retorno.data);
-                window.alert("sucess");
+                window.alert("sucesso");
 
                 return history.push("/home");
             }
 
         } catch (error) {
+            console.log(error);
             window.alert("error");
         }
 
