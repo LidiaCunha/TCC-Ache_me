@@ -8,12 +8,20 @@ const Users = require('../models/Users');
 const States = require('../models/States');
 const City = require('../models/City');
 const WhereLive = require('../models/WhereLive');
+const LostedPost = require('../models/LostedPost');
+const Comment = require('../models/Comment');
+const Genre = require('../models/Genre');
+const Features = require('../models/Features');
 // AQUI DEVESE INICIAR AS MODELS
 
 States.init(conection);
 City.init(conection);
 WhereLive.init(conection);
 Users.init(conection);
+LostedPost.init(conection);
+Comment.init(conection);
+Genre.init(conection);
+Features.init(conection);
 
 // AQUI DEVESE FAZER AS ASSOCIAÇÕES(RELACIONAMENTO) ENTRE AS MODELS
 
@@ -21,6 +29,10 @@ States.associete(conection.models);
 City.associete(conection.models);
 WhereLive.associete(conection.models);
 Users.associete(conection.models);
+LostedPost.associete(conection.models);
+Comment.associete(conection.models);
+Genre.associete(conection.models);
+Features.associete(conection.models);
 
 // exportando a conexçao
 module.exports = conection; 

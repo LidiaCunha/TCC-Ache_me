@@ -20,6 +20,7 @@ class Users extends Model {
     /* RELACIONAMENTOS SÂO DECLARADOS AQUI */
 	static associete( MODELS ){
 		this.belongsTo( MODELS.WhereLive , {foreignKey:"where_live_id"} );
+		this.hasMany( MODELS.LostedPost , {foreignKey:"id_user"});
     }
 }
 module.exports = Users; 
