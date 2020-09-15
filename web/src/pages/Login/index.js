@@ -1,6 +1,6 @@
 import React from "react";
-import foto from "../../assets/imagemLogin.jpg";
-import logo from "../../assets/logo.png";
+import foto from "../../assets/Login/imagemLogin.jpg";
+import logo from "../../assets/Login/logo.png";
 
 import { 
   Container,
