@@ -24,7 +24,7 @@ export const ContainerInfo = styled.div`
 `;
 
 export const ContainerMenu = styled.div`
-height: 120px;
+    height: 120px;
     width: 100%;
     padding-left: 90px;
     box-sizing: border-box;
@@ -39,7 +39,7 @@ height: 120px;
 `;
 
 export const ContainerText = styled.div`
-height: 100%;
+    height: 100%;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -61,7 +61,7 @@ height: 100%;
 `;
 
 export const ConfigInput = styled.div`
-height: 500px;
+    height: 500px;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -72,19 +72,19 @@ height: 500px;
 `;
 
 export const ContainerInput = styled.div`
-height: 100%;
-    width: 260px;
+    height: 100%;
+    width: 260px; 
     float: left;
     padding-right: 30px;
 
 > label{
-  font-size: 1.2em;
+    font-size: 1.2em;
     color: #fff;
     font-family: arial;
 }
 
 > input{
-  height: 50px;
+    height: 50px;
     width: 100%;
     border: none;
     outline: none;
@@ -98,7 +98,7 @@ height: 100%;
 `;
 
 export const ContainerInputSpace = styled.div`
-height: 100%;
+    height: 100%;
     width: 260px;
     float: left;
     padding-right: 30px;
@@ -106,7 +106,7 @@ height: 100%;
 `;
 
 export const Footer = styled.div`
-height: 140px;
+    height: 140px;
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -118,18 +118,18 @@ height: 140px;
 
     > input{
       height: 55px;
-    width: 260px;
-    border-radius: 10px;
-    background: #E64F4A;
-    cursor: pointer;
-    font-size: 1.3em;
-    color: #fff;
-    border: none;
+      width: 260px;
+      border-radius: 10px;
+      background: #E64F4A;
+      cursor: pointer;
+      font-size: 1.3em;
+      color: #fff;
+      border: none;
     }
 `;
 
 export const ContainerFoto = styled.div`
-height: 100%;
+    height: 100%;
     width: auto;
     display: flex;
     justify-content: center;
@@ -138,25 +138,25 @@ height: 100%;
 
     > label{
       height: 70px;
-    width: 70px;
-    background: #E64F4A;
-    border-radius: 50%;
-    margin-right: 10px;
-    padding: 15px;
-    box-sizing: border-box;
-    overflow: hidden;
-    cursor: pointer;
+      width: 70px;
+      background: #E64F4A;
+      border-radius: 50%;
+      margin-right: 10px;
+      padding: 15px;
+      box-sizing: border-box;
+      overflow: hidden;
+      cursor: pointer;
 
     > img{
       height: 100%;
-    width: 100%;
+      width: 100%;
     }
     }
 
     > p{
       font-size: 1em;
-    color: #fff;
-    font-family: arial;
+      color: #fff;
+      font-family: arial;
     }
 `;
 
