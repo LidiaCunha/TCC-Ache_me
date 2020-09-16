@@ -12,6 +12,9 @@ const LostedPost = require('../models/LostedPost');
 const Comment = require('../models/Comment');
 const Genre = require('../models/Genre');
 const Features = require('../models/Features');
+const FeatureOfPost = require('../models/FeatureOfPost');
+const HealthProblems = require('../models/HealthProblems');
+const HealthProblemsOfPost = require('../models/HealthProblemsOfPost');
 // AQUI DEVESE INICIAR AS MODELS
 
 States.init(conection);
@@ -22,6 +25,9 @@ LostedPost.init(conection);
 Comment.init(conection);
 Genre.init(conection);
 Features.init(conection);
+FeatureOfPost.init(conection);
+HealthProblems.init(conection);
+HealthProblemsOfPost.init(conection);
 
 // AQUI DEVESE FAZER AS ASSOCIAÇÕES(RELACIONAMENTO) ENTRE AS MODELS
 
@@ -33,6 +39,9 @@ LostedPost.associete(conection.models);
 Comment.associete(conection.models);
 Genre.associete(conection.models);
 Features.associete(conection.models);
+FeatureOfPost.associete(conection.models);
+HealthProblems.associete(conection.models);
+HealthProblemsOfPost.associete(conection.models);
 
 // exportando a conexçao
 module.exports = conection; 

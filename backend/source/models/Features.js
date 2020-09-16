@@ -5,7 +5,7 @@ class Features extends Model {
         super.init({ feature  :  DataTypes.STRING  },{ sequelize, tableName:"features" })
     }
     static associete( MODELS ){
-        this.belongsToMany(MODELS.LostedPost, { through: 'feature_from_losted' });
+        this.belongsToMany(MODELS.LostedPost,  {through: "FeaturesOfPost"});
     }
 }
 

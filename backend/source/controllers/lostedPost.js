@@ -1,26 +1,60 @@
 const LostedPost = require('../models/LostedPost');
 const Genre = require('../models/Genre');
+const FeatureOfPost = require('../models/FeatureOfPost');
+const Features = require('../models/Features');
+
 const { Op } = require('sequelize');
 const moment = require('moment');
 
 module.exports = {
     index  : async( req, res) => {
         const posts = await LostedPost.findAll();
+        
+        const AllPosts = [];
 
-        return res.status(200).send(posts);
+        const takeFeatures = async(post) =>{
+            const featuresOfPost = await FeatureOfPost.findAll({where: {losted_id:post.dataValues.id}});
+            
+            let thisPost;
+
+            let featuresCreateds = [];
+
+            for (i=0;i<featuresOfPost.length;i++){
+
+                const fet = await Features.findByPk(featuresOfPost[i].dataValues.feature_id)
+            
+                featuresCreateds[featuresCreateds.length]=fet.dataValues;
+                
+                if (featuresCreateds.length == featuresOfPost.length){
+                    thisPost = {...post.dataValues, features: featuresCreateds };
+                }               
+            }
+            
+            return thisPost;
+        };
+
+        posts.forEach( async post => {
+            const thisPost = await takeFeatures(post);
+            thisPost ? AllPosts[AllPosts.length]=thisPost : AllPosts[AllPosts.length]=post; 
+            
+            if ( posts.length == AllPosts.length ){
+                return res.status(200).send(AllPosts);
+            }
+        });
+
     },
     store  : async( req, res) => {
         const  id_user  = req.userId;
 
-        const { name, description, borned_at, name_of_genre } = req.body;
+        const { name, description, borned_at, name_of_genre , feature } = req.body;
 
-        const { firebaseUrl } = req.file;
+        const { firebaseUrl } = req.file ? req.file : "";
 
         if ( !(name && description && borned_at && firebaseUrl) ) {
             return res.status(401).send({"error":"you need to pass all arguments"})
         }
     
-        const gengeAlreadyExists = await Genre.findOne({genre:name_of_genre});
+        const gengeAlreadyExists = await Genre.findOne({where:{genre:name_of_genre}});
 
         let genre_id = '';
         if ( gengeAlreadyExists ){
@@ -41,8 +75,26 @@ module.exports = {
         if ( !Post ){
             return res.status(401).send({"error":"sequelize died"})
         }
+        
+        const featureExists = await Features.findOne({where:{feature}});
+        if ( featureExists ){
+            await FeatureOfPost.create({feature_id:featureExists.dataValues.id ,losted_id:Post.dataValues.id })
+        }else{
+            const featureCreated = await Features.create({feature});
+            await FeatureOfPost.create({feature_id:featureCreated.dataValues.id ,losted_id:Post.dataValues.id })
+        }
+ 
+        const featuresOfPost = await FeatureOfPost.findAll({where: {losted_id:Post.dataValues.id}});
+        
+        let featuresCreateds = [];
+        featuresOfPost.forEach( async feature => {
+            const fet = await Features.findByPk(feature.dataValues.feature_id)
+            featuresCreateds[featuresCreateds.length]=fet.dataValues;
 
-        return res.status(201).send(Post);
+            if (featuresCreateds.length == featuresOfPost.length){
+                return res.status(201).send({...Post.dataValues, features: featuresCreateds });
+            }
+        });
     },
     update : async( req, res) => {
         const { idPost } = req.params;

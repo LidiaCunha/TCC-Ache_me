@@ -6,6 +6,8 @@ const Citys = require('./controllers/city');
 const States = require('./controllers/state');
 const LostedPost = require('./controllers/LostedPost');
 const Comment = require('./controllers/comment')
+const Features = require('./controllers/features');
+const FeaturesOfPost = require('./controllers/featuresPost');
 
 const middleware = require('./middlewares/autorization');
 const validMail = require('./validation/sendMailOnCreate/index');
@@ -47,5 +49,13 @@ routes.get('/posts/:idPost/comments',Comment.index);
 routes.post('/posts/:idPost/comments', Comment.store);
 routes.put('/posts/:idPost/comments/:idComment',Comment.update);
 routes.delete('/posts/:idPost/comments/:idComment',Comment.delete);
+
+routes.post('/feature', Features.store);
+routes.get('/feature', Features.index);
+routes.put('/feature/:FeatureId', Features.update)
+routes.delete('/feature/:FeatureId', Features.delete)
+
+routes.post('/features/post/:PostId', FeaturesOfPost.strore);
+routes.get('/features/post/:PostId', FeaturesOfPost.index);
 
 module.exports = routes;
