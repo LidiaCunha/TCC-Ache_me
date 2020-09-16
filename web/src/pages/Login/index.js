@@ -1,20 +1,30 @@
 import {useHistory} from "react-router-dom";
 
-import foto from "../../assets/imagemLogin.jpg";
+import backgroundLogin from "../../assets/imagemLogin.jpg";
+import backgroundRegister from "../../assets/imagemCadastro.jpg";
+import camera from "../../assets/cameraCadastro.png";
 import logo from "../../assets/logo.png";
 
 import { 
     Container,
     ContainerInfo,
-    ContainerMenu,
     ContainerItensMenu,
-    ContainerText,
     ContainerTextMenor,
-    ConfigInput,
 
-    Form,
-    InputGroup,
-    Button,
+    /*Login*/
+    LoginContainerMenu,
+    LoginContainerText,
+    LoginConfigInput,
+
+    /*Cadastro*/
+    CadastroContainerMenu,
+    CadastroContainerText,
+    CadastroConfigInput,
+    ContainerInput,
+    ContainerInputSpace,
+    Footer,
+    ContainerFoto,
+
   } from "./styles";
 
 import React, { useState } from "react";
@@ -37,13 +47,13 @@ const FormRegister = (props) => {
         number: "",
         city:"",
         state:"",
-        complement:""
+        complement:"",
     });
 
-    const handlerInput = (e) => {
-        setUserRegister({...userRegister, [e.target.id]: e.target.value});
-    };
     const register = async (e) => {
+
+        window.alert("teste");
+
         e.preventDefault();
 
         try {
@@ -53,69 +63,95 @@ const FormRegister = (props) => {
                 signIn(retorno.data);
                 window.alert("sucesso");
                 return history.push("/home");
-            }
+            };
         } catch (error) {
             console.log(error);
-            window.alert(error);
-        }
+            window.alert("error");
+        };
 
-    }
+    };
+
+    const handlerInput = (e) => {
+        setUserRegister({...userRegister, [e.target.id]: e.target.value});
+    };
 
     return(
-        <Form onSubmit={register}>
-            <InputGroup>
-                <label>Nome</label>
-                <input type="text" id="name" value={userRegister.name} onChange={handlerInput} placeholder="Insira seu nome" required />
-            </InputGroup>
-            <InputGroup>
-                <label>Email</label>
-                <input type="email" id="mail" value={userRegister.mail} onChange={handlerInput} placeholder="Insira seu email" required />
-            </InputGroup>
-            <InputGroup>
-                <label>Senha</label>
-                <input type="password" id="password" value={userRegister.password} onChange={handlerInput} placeholder="Insira sua senha" required />
-            </InputGroup>
-            <InputGroup>
-                <label>CPF</label>
-                <input type="text" id="cpf" value={userRegister.cpf} onChange={handlerInput} placeholder="Insira seu CPF" required />
-            </InputGroup>
-            <InputGroup>
-                <label>Telefone</label>
-                <input type="text" id="telephone" value={userRegister.telephone} onChange={handlerInput} placeholder="Insira seu telefone" required />
-            </InputGroup>
-            <InputGroup>
-                <label>CEP</label>
-                <input type="text" id="cep" value={userRegister.cep} onChange={handlerInput} placeholder="Insira seu CEP" required />
-            </InputGroup>
-            <InputGroup>
-                <label>Bairro</label>
-                <input type="text" id="bairro" value={userRegister.bairro} onChange={handlerInput} placeholder="Seu bairro aparecerá aqui" required />
-            </InputGroup>
-            <InputGroup>
-                <label>Rua</label>
-                <input type="text" id="street" value={userRegister.street} onChange={handlerInput} placeholder="Sua rua aparecerá aqui" required />
-            </InputGroup>
-            <InputGroup>
-                <label>Número</label>
-                <input type="text" id="number" value={userRegister.number} onChange={handlerInput} placeholder="Insira o número da sua casa" required />
-            </InputGroup>
-            <InputGroup>
-                <label>Cidade</label>
-                <input type="text" id="city" value={userRegister.city} onChange={handlerInput} placeholder="Sua cidade aparecerá aqui" required />
-            </InputGroup>
-            <InputGroup>
-                <label>Estado</label>
-                <input type="text" id="state" value={userRegister.state} onChange={handlerInput} placeholder="Seu Estado aparecerá aqui" required />
-            </InputGroup>
-            <InputGroup>
-                <label>Complemento</label>
-                <input type="text" id="complement" value={userRegister.complement} onChange={handlerInput} placeholder="Insira o complemento (opcional)"/>
-            </InputGroup>
-            <Button type="submit">Registrar-se</Button>
-            <Button type="button" onClick={() => {
-                props.showForm("login");
-            }}>Já tenho cadastro</Button>
-         </Form>
+        <Container onSubmit={register}>
+        <img src={backgroundRegister} alt="área de cadastro"/>
+
+        <ContainerInfo >
+          <CadastroContainerMenu>
+              <img src={logo} alt="logo"/>
+              
+              <CadastroContainerText>
+                <h1>Seja Um membro Achem.me e faça <br/> parte de reencontros.</h1>
+              </CadastroContainerText>
+          </CadastroContainerMenu>
+
+          <CadastroConfigInput>
+
+              <ContainerInput>
+                  <label>Nome</label>
+                  <input type="text" id="name" value={userRegister.name} onChange={handlerInput} placeholder="Insira seu nome" required />
+                              
+                  <label>CPF</label>
+                  <input type="text" id="cpf" value={userRegister.cpf} onChange={handlerInput} placeholder="Insira seu CPF" required />
+                              
+                  <label>Algume te indicou o Ache.me?</label>
+                  <input type="text" placeholder="insira o úsuario"/>
+              </ContainerInput>
+
+              <ContainerInputSpace>
+                  <ContainerInput>
+                      <label>E-mail</label>
+                      <input type="email" id="mail" value={userRegister.mail} onChange={handlerInput} placeholder="Insira seu email" required />
+                                  
+                      <label>Telefone</label>
+                      <input type="text" id="telephone" value={userRegister.telephone} onChange={handlerInput} placeholder="Insira seu telefone" required />
+                                  
+                      <label>Senha</label>
+                      <input type="password" id="password" value={userRegister.password} onChange={handlerInput} placeholder="Insira sua senha" required />
+                    </ContainerInput>
+              </ContainerInputSpace>
+              
+                  <ContainerInput>
+                      <label>Cep</label>
+                      <input type="text" id="cep" value={userRegister.cep} onChange={handlerInput} placeholder="Insira seu CEP" required />
+                                
+                      <label>Bairro</label>
+                      <input type="text" id="bairro" value={userRegister.bairro} onChange={handlerInput} placeholder="Seu bairro aparecerá aqui" required />
+                                
+                      <label>Estado</label>
+                      <input type="text" id="state" value={userRegister.state} onChange={handlerInput} placeholder="Seu Estado aparecerá aqui" required />
+                  </ContainerInput>
+            
+              <ContainerInput>
+                  <label>Rua</label>
+                  <input type="text" id="street" value={userRegister.street} onChange={handlerInput} placeholder="Sua rua aparecerá aqui" required />
+                            
+                  <label>Cidade</label>
+                  <input type="text" id="city" value={userRegister.city} onChange={handlerInput} placeholder="Sua cidade aparecerá aqui" required />
+              </ContainerInput>
+
+          </CadastroConfigInput>
+
+          <Footer>
+            <ContainerFoto>
+                <input type="file" id="file" hidden/>
+                <label htmlFor="file">
+                    <img src={camera} alt="camera"/>
+                </label>
+                <p>Escolha sua foto</p>                
+            </ContainerFoto>
+            <ContainerFoto>
+                <input type="button" value="Ja tenho Cadastro" onClick={() => {props.showForm("login")}}/>
+                <input type="submit" value="Cadastrar-se"/>
+            </ContainerFoto>
+          </Footer>
+
+        </ContainerInfo>
+
+      </Container>
     );
 };
 
@@ -133,10 +169,11 @@ const FormLogin = (props) => {
     };
 
     const enter = async (e) => {
+
         e.preventDefault();
 
         try {
-
+            console.log(userLogin);
             const retorno = await api.post("/users", userLogin);
             
             if (retorno.status === 201) {
@@ -155,9 +192,9 @@ const FormLogin = (props) => {
     };
     return(
         <Container onSubmit={enter}>
-            <img src={foto} alt="area de login"/>
+            <img src={backgroundLogin} alt="area de login"/>
             <ContainerInfo>
-                <ContainerMenu>
+                <LoginContainerMenu>
                 <img src={logo} alt="logo"/>
 
                 <ContainerItensMenu>
@@ -169,23 +206,23 @@ const FormLogin = (props) => {
                         <li>Área Informativa</li>
                     </ul>
                 </ContainerItensMenu>
-                </ContainerMenu>
+                </LoginContainerMenu>
 
-                <ContainerText>
+                <LoginContainerText>
                     <h1>Bem-Vindo novamente! Que bom que</h1>
                     <h1>Voltou, sua ajuda é muito importante.</h1>
-                </ContainerText>
+                </LoginContainerText>
 
                 <ContainerTextMenor>
                     <h2>Colabore com essa busca, ajude famílias a encontrarem seus entes queridos, é</h2>
                     <h2>simples, rápido e gratificante ajudar alguém.</h2>
                 </ContainerTextMenor>
 
-                <ConfigInput>
+                <LoginConfigInput>
                     <input type="email" id="mail" value={userLogin.mail} onChange={handlerInput} placeholder="E-mail" required />
                     <input type="password" id="password" value={userLogin.password} onChange={handlerInput} placeholder="senha" required />
                     <input type="submit" value="Entrar"/>
-                </ConfigInput>
+                </LoginConfigInput>
                 
             </ContainerInfo>
         </Container>
