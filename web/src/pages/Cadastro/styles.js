@@ -115,20 +115,9 @@ export const Footer = styled.div`
     padding-left: 100px;
     padding-right: 100px;
     box-sizing: border-box;
-
-    > input{
-      height: 55px;
-      width: 260px;
-      border-radius: 10px;
-      background: #E64F4A;
-      cursor: pointer;
-      font-size: 1.3em;
-      color: #fff;
-      border: none;
-    }
 `;
 
-export const ContainerFoto = styled.div`
+export const ContainerFotoInput = styled.div`
     height: 100%;
     width: auto;
     display: flex;
@@ -157,6 +146,20 @@ export const ContainerFoto = styled.div`
       font-size: 1em;
       color: #fff;
       font-family: arial;
+    }
+
+    > input{
+      height: 55px;
+      width: 250px;
+      border-radius: 10px;
+      background: #E64F4A;
+      cursor: pointer;
+      font-size: 1.3em;
+      color: #fff;
+      border: none;
+      outline: none;
+      margin-left: 10px;
+      margin-right: 10px;
     }
 `;
 

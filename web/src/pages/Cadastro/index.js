@@ -12,7 +12,7 @@ import {
   ContainerInput,
   ContainerInputSpace,
   Footer,
-  ContainerFoto
+  ContainerFotoInput
   
 } from "./styles";
 
@@ -81,14 +81,19 @@ const Cadastro = () => {
           </ConfigInput>
 
           <Footer>
-            <ContainerFoto>
+            <ContainerFotoInput>
                 <input type="file" id="file" hidden/>
                 <label for="file">
                     <img src={camera} alt="camera"/>
                 </label>
                 <p>Escolha sua foto</p>                
-            </ContainerFoto>
-            <input type="submit" value="Cadastrar-se"/>
+            </ContainerFotoInput>
+
+            <ContainerFotoInput>
+                <input type="submit" value="Logar"/>
+                <p>OU</p>
+                <input type="submit" value="Cadastrar-se"/>
+            </ContainerFotoInput>
           </Footer>
 
         </ContainerInfo>

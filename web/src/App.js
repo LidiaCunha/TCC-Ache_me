@@ -9,9 +9,7 @@ import { GlobalStyle } from "./styles/GlobalStyles";
 function App() {
   return (
     <>
-      <Card_email/>
-
-      
+      <Cadastro/>
       <GlobalStyle />
     </>
   );
