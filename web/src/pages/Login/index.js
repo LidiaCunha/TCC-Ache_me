@@ -1,11 +1,21 @@
 import {useHistory} from "react-router-dom";
 
-import {
+import foto from "../../assets/imagemLogin.jpg";
+import logo from "../../assets/logo.png";
+
+import { 
     Container,
+    ContainerInfo,
+    ContainerMenu,
+    ContainerItensMenu,
+    ContainerText,
+    ContainerTextMenor,
+    ConfigInput,
+
     Form,
     InputGroup,
-    Button
-} from "./styles";
+    Button,
+  } from "./styles";
 
 import React, { useState } from "react";
 import { api } from "../../services/api";
@@ -46,7 +56,7 @@ const FormRegister = (props) => {
             }
         } catch (error) {
             console.log(error);
-            window.alert(error.response.data.erro);
+            window.alert(error);
         }
 
     }
@@ -99,10 +109,12 @@ const FormRegister = (props) => {
             </InputGroup>
             <InputGroup>
                 <label>Complemento</label>
-                <input type="text" id="complement" value={userRegister.complement} onChange={handlerInput} placeholder="Insira o complemento (opcional)" required />
+                <input type="text" id="complement" value={userRegister.complement} onChange={handlerInput} placeholder="Insira o complemento (opcional)"/>
             </InputGroup>
             <Button type="submit">Registrar-se</Button>
-            <Button type="button">Já tenho cadastro</Button>
+            <Button type="button" onClick={() => {
+                props.showForm("login");
+            }}>Já tenho cadastro</Button>
          </Form>
     );
 };
@@ -112,10 +124,6 @@ const FormLogin = (props) => {
 
     const [userLogin, setUserLogin] = useState({
         mail: "",
-        password: "",
-    });
-
-    const [userLogin, setUserLogin] = useState({
         telephone: "",
         password: "",
     });
@@ -146,20 +154,41 @@ const FormLogin = (props) => {
 
     };
     return(
-        <Form onSubmit={enter}>
-            <InputGroup>
-                <label>Email</label>
-                <input type="email" id="mail" value={userLogin.mail} onChange={handlerInput} placeholder="Insira seu email" required />
-            </InputGroup>
-            <InputGroup>
-                <label>Senha</label>
-                <input type="password" id="password" value={userLogin.password} onChange={handlerInput} placeholder="Insira sua senha" required />
-            </InputGroup>
-            <Button type="submit">Entrar</Button>
-            <Button type="button" onClick={() => {
-                props.showForm("registrar");
-            }}>Registrar-se</Button>
-         </Form>
+        <Container onSubmit={enter}>
+            <img src={foto} alt="area de login"/>
+            <ContainerInfo>
+                <ContainerMenu>
+                <img src={logo} alt="logo"/>
+
+                <ContainerItensMenu>
+                    <ul>
+                        <li onClick={() => {
+                        props.showForm("registrar");
+                        }}>Cadastrar-se</li>
+                        <li>Sobre</li>
+                        <li>Área Informativa</li>
+                    </ul>
+                </ContainerItensMenu>
+                </ContainerMenu>
+
+                <ContainerText>
+                    <h1>Bem-Vindo novamente! Que bom que</h1>
+                    <h1>Voltou, sua ajuda é muito importante.</h1>
+                </ContainerText>
+
+                <ContainerTextMenor>
+                    <h2>Colabore com essa busca, ajude famílias a encontrarem seus entes queridos, é</h2>
+                    <h2>simples, rápido e gratificante ajudar alguém.</h2>
+                </ContainerTextMenor>
+
+                <ConfigInput>
+                    <input type="email" id="mail" value={userLogin.mail} onChange={handlerInput} placeholder="E-mail" required />
+                    <input type="password" id="password" value={userLogin.password} onChange={handlerInput} placeholder="senha" required />
+                    <input type="submit" value="Entrar"/>
+                </ConfigInput>
+                
+            </ContainerInfo>
+        </Container>
     );
 };
 
@@ -170,7 +199,7 @@ const Login = () => {
     return (
         <>
             <Container>
-                {showForm === "login" ? (<FormLogin mostrarForm={setShowForm} />) : (<FormRegister showForm={setShowForm}/>)};
+                {showForm === "login" ? (<FormLogin showForm={setShowForm} />) : (<FormRegister showForm={setShowForm}/>)};
             </Container>
         </>
     )
