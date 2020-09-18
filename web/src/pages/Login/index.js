@@ -32,7 +32,7 @@ const Login = () => {
 
               <ContainerText>
                 <h1>Bem-Vindo novamente! Que bom que</h1>
-                <h1>Voltou, sua ajuda é muito importante.</h1>
+                <h1>voltou, sua ajuda é muito importante.</h1>
               </ContainerText>
 
               <ContainerTextMenor>
