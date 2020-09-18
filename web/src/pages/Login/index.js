@@ -41,7 +41,7 @@ const Login = () => {
               </ContainerTextMenor>
 
               <ConfigInput>
-                <input type="email" placeholder="E-mail"/>
+                <input type="email" placeholder="E-mail ou Telefone"/>
                 <input type="password" placeholder="Senha"/>
                 <input type="submit" value="Entrar"/>
               </ConfigInput>
