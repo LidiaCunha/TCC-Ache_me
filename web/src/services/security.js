@@ -13,10 +13,10 @@ export const signOut = () => {
     api.defaults.headers.common['Authorization'] = undefined;
 }
 
-export const getAluno = () => {
-    const {user} = JSON.parse(localStorage.getItem(TOKEN_USER));
+export const getUsers = () => {
+    const {users} = JSON.parse(localStorage.getItem(TOKEN_USER));
 
-    return user;
+    return users;
 }
 
 export const isSignedIn = () => {

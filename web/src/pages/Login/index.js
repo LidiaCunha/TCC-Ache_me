@@ -27,8 +27,8 @@ import {
 
   } from "./styles";
 
-import React, { useState } from "react";
-import { api } from "../../services/api";
+import React, { useState, useRef } from "react";
+import { api } from '../../services/api';
 import { signIn } from '../../services/security';
 
 const FormRegister = (props) => {
@@ -38,7 +38,7 @@ const FormRegister = (props) => {
     const [userRegister, setUserRegister] = useState({
         name: "",
         mail: "",
-        cpf: "",
+        CPF: "",
         telephone: "",
 		password : "",
 		cep: "",
@@ -50,29 +50,68 @@ const FormRegister = (props) => {
         complement:"",
     });
 
-    const register = async (e) => {
+    const imgRef = useRef();
 
-        window.alert("teste");
+    const [image, setImage] = useState(null);
+
+    const register = async (e) => {
 
         e.preventDefault();
 
-        try {
-            const retorno = await api.post("/newUser", userRegister);
+        const data = new FormData();
 
-            if(retorno.status === 201) {
+        data.append("name", userRegister.name);
+        data.append("mail", userRegister.mail);
+        data.append("CPF", userRegister.CPF);
+        data.append("telephone", userRegister.telephone);
+        data.append("password", userRegister.password);
+        data.append("cep", userRegister.cep);
+        data.append("bairro", userRegister.bairro);
+        data.append("street", userRegister.street);
+        data.append("number", userRegister.number);
+        data.append("city", userRegister.city);
+        data.append("state", userRegister.state);
+        data.append("complement", userRegister.complement);
+        data.append("photo", image);
+
+        try {
+            const retorno = await api.post("/newUser", data, {
+                headers: {
+                    "Content-type": `multipart/form-data`,
+                }
+            });
+            
+            if (retorno.status === 201) {
+
                 signIn(retorno.data);
-                window.alert("sucesso");
+
                 return history.push("/home");
             };
-        } catch (error) {
-            console.log(error);
-            window.alert("error");
-        };
+
+        } catch (erro) {
+            console.log(erro);
+            window.alert(erro);
+            // if(erro.response){
+            //     return window.alert(erro.response.data.erro);
+            // }
+            
+            // window.alert("Ops, algo deu errado, tente novamente mais tarde.");
+        }
 
     };
 
     const handlerInput = (e) => {
         setUserRegister({...userRegister, [e.target.id]: e.target.value});
+    };
+
+    const handlerImage = (e) => {
+        // if (e.target.files[0]) {
+        //     imgRef.current.src = URL.createObjectURL(e.target.files[0])
+        //     imgRef.current.style.display = "block"
+        // }else {
+        //     imgRef.current.src = "";
+        // }
+        setImage(e.target.files[0]);
     };
 
     return(
@@ -95,7 +134,7 @@ const FormRegister = (props) => {
                   <input type="text" id="name" value={userRegister.name} onChange={handlerInput} placeholder="Insira seu nome" required />
                               
                   <label>CPF</label>
-                  <input type="text" id="cpf" value={userRegister.cpf} onChange={handlerInput} placeholder="Insira seu CPF" required />
+                  <input type="text" id="CPF" value={userRegister.CPF} onChange={handlerInput} placeholder="Insira seu CPF" required />
                               
                   <label>Algume te indicou o Ache.me?</label>
                   <input type="text" placeholder="insira o úsuario"/>
@@ -137,11 +176,11 @@ const FormRegister = (props) => {
 
           <Footer>
             <ContainerFoto>
-                <input type="file" id="file" hidden/>
+                <input type="file" id="file" onChange={handlerImage} hidden/>
                 <label htmlFor="file">
-                    <img src={camera} alt="camera"/>
+                    <img src={camera} alt="camera" ref={imgRef}/>    
                 </label>
-                <p>Escolha sua foto</p>                
+                <p>Escolha sua foto</p>      
             </ContainerFoto>
             <ContainerFoto>
                 <input type="button" value="Ja tenho Cadastro" onClick={() => {props.showForm("login")}}/>
@@ -160,7 +199,6 @@ const FormLogin = (props) => {
 
     const [userLogin, setUserLogin] = useState({
         mail: "",
-        telephone: "",
         password: "",
     });
 
@@ -173,20 +211,21 @@ const FormLogin = (props) => {
         e.preventDefault();
 
         try {
-            console.log(userLogin);
             const retorno = await api.post("/users", userLogin);
             
             if (retorno.status === 201) {
 
                 signIn(retorno.data);
-                window.alert("sucesso");
 
                 return history.push("/home");
-            }
+            };
 
-        } catch (error) {
-            console.log(error);
-            window.alert("error");
+        } catch (erro) {
+            if(erro.response){
+                return window.alert(erro.response.data.erro);
+            }
+            
+            window.alert("Ops, algo deu errado, tente novamente mais tarde.");
         }
 
     };
@@ -219,7 +258,7 @@ const FormLogin = (props) => {
                 </ContainerTextMenor>
 
                 <LoginConfigInput>
-                    <input type="email" id="mail" value={userLogin.mail} onChange={handlerInput} placeholder="E-mail" required />
+                    <input type="text" id="mail" value={userLogin.mail} onChange={handlerInput} placeholder="E-mail ou telefone" required/>
                     <input type="password" id="password" value={userLogin.password} onChange={handlerInput} placeholder="senha" required />
                     <input type="submit" value="Entrar"/>
                 </LoginConfigInput>
