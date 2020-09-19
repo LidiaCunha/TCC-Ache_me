@@ -4,7 +4,7 @@ module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable('health_problems_of_post', { 
       id: {type:Sequelize.INTEGER , autoIncrement : true , primaryKey:true},
-      id_health_problem:  { type: Sequelize.INTEGER, allowNull: false, 
+      health_problem_id:  { type: Sequelize.INTEGER, allowNull: false, 
         references:{
           model:"health_problems",
           key:"id"
@@ -12,7 +12,7 @@ module.exports = {
         OnUpdate:"CASCADE",
         OnDelete:"CASCADE",
       },
-      id_losted : { type: Sequelize.INTEGER, allowNull: false, 
+      losted_post_id : { type: Sequelize.INTEGER, allowNull: false, 
         references:{ 
           model:"losted_post",
           key:"id"

@@ -3,10 +3,11 @@ const { Model , DataTypes } = require("sequelize");
 class HealthProblems extends Model {
     static init( sequelize ){
         super.init({ 
-            health_problem     :  DataTypes.STRING,
+            problem     :  DataTypes.STRING,
         },{ 
             sequelize,
-            tableName:"health_problems" 
+            tableName:"health_problems",
+            timestamps: false 
         })
     }
     static associete( MODELS ){

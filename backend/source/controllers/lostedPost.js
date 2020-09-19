@@ -2,6 +2,8 @@ const LostedPost = require('../models/LostedPost');
 const Genre = require('../models/Genre');
 const FeatureOfPost = require('../models/FeatureOfPost');
 const Features = require('../models/Features');
+const HealthProblems  = require('../models/HealthProblems');
+const HealthProblemsOfPost = require('../models/HealthProblemsOfPost');
 
 const { Op } = require('sequelize');
 const moment = require('moment');
@@ -12,30 +14,49 @@ module.exports = {
         
         const AllPosts = [];
 
-        const takeFeatures = async(post) =>{
-            const featuresOfPost = await FeatureOfPost.findAll({where: {losted_id:post.dataValues.id}});
+        const takeFeatures = async( post ) => {
+            const featuresOfPost = await FeatureOfPost.findAll({where: {losted_id:post.id}});
             
             let thisPost;
 
             let featuresCreateds = [];
 
-            for (i=0;i<featuresOfPost.length;i++){
-
-                const fet = await Features.findByPk(featuresOfPost[i].dataValues.feature_id)
+            for ( feature of featuresOfPost ){
+                const fet = await Features.findByPk(feature.dataValues.feature_id)
             
                 featuresCreateds[featuresCreateds.length]=fet.dataValues;
-                
-                if (featuresCreateds.length == featuresOfPost.length){
-                    thisPost = {...post.dataValues, features: featuresCreateds };
-                }               
-            }
             
+                if (featuresCreateds.length == featuresOfPost.length){
+                    thisPost = {...post, features: featuresCreateds };
+                }
+            }
+            return thisPost;
+        };
+
+        const takeHealthProblems = async( post ) => {
+            const healthProblemsOfPost = await HealthProblemsOfPost.findAll({where:{LostedPostId: post.id}});
+            let HealthProblemsArr =[];
+            let thisPost;
+            for ( problem of healthProblemsOfPost ){
+               
+                const thisProblem = await HealthProblems.findByPk(problem.dataValues.HealthProblemId);
+
+                HealthProblemsArr[HealthProblemsArr.length]=thisProblem.dataValues;
+
+                if( healthProblemsOfPost.length == HealthProblemsArr.length ){
+                    thisPost = {...post, HealthProblem: HealthProblemsArr};
+                }
+            }
             return thisPost;
         };
 
         posts.forEach( async post => {
-            const thisPost = await takeFeatures(post);
-            thisPost ? AllPosts[AllPosts.length]=thisPost : AllPosts[AllPosts.length]=post; 
+            const postWithFeatures = await takeFeatures(post.dataValues);
+            const postWithProblems = await takeHealthProblems(postWithFeatures ? postWithFeatures : post.dataValues);
+            
+            postWithProblems ?
+                AllPosts [ AllPosts.length ] = postWithProblems : 
+                    AllPosts [ AllPosts.length ] = ( postWithFeatures ? postWithFeatures : post.dataValues ); 
             
             if ( posts.length == AllPosts.length ){
                 return res.status(200).send(AllPosts);
@@ -43,10 +64,132 @@ module.exports = {
         });
 
     },
+    show   : async( req, res) => {
+        const { PostId } = req.params;
+
+        const post = await LostedPost.findByPk(PostId);
+        
+        const takeFeatures = async( post ) => {
+            const featuresOfPost = await FeatureOfPost.findAll({where: {losted_id:post.id}});
+            
+            let thisPost;
+
+            let featuresCreateds = [];
+
+            for ( feature of featuresOfPost ){
+                const fet = await Features.findByPk(feature.dataValues.feature_id)
+            
+                featuresCreateds[featuresCreateds.length]=fet.dataValues;
+            
+                if (featuresCreateds.length == featuresOfPost.length){
+                    thisPost = {...post, features: featuresCreateds };
+                }
+            }
+            return thisPost;
+        };
+
+        const takeHealthProblems = async( post ) => {
+            const healthProblemsOfPost = await HealthProblemsOfPost.findAll({where:{LostedPostId: post.id}});
+            let HealthProblemsArr =[];
+            let thisPost;
+            for ( problem of healthProblemsOfPost ){
+               
+                const thisProblem = await HealthProblems.findByPk(problem.dataValues.HealthProblemId);
+
+                HealthProblemsArr[HealthProblemsArr.length]=thisProblem.dataValues;
+
+                if( healthProblemsOfPost.length == HealthProblemsArr.length ){
+                    thisPost = {...post, HealthProblem: HealthProblemsArr};
+                }
+            }
+            return thisPost;
+        };
+
+        const postWithFeatures = await takeFeatures(post.dataValues);
+        const postWithProblems = await takeHealthProblems(postWithFeatures ? postWithFeatures : post.dataValues);
+            
+        const completePost = postWithProblems ? postWithProblems : ( postWithFeatures ? postWithFeatures : post.dataValues ); 
+        
+        return res.status(200).send(completePost);
+        
+    },
+    filterByGenre : async( req , res , next) => {
+        const { G } = req.query;
+
+        const genreBD = G && await Genre.findOne({where:{genre:G}});
+        
+        if ( !genreBD )  return next();
+        
+        const PostsWithGenreFiltred = await LostedPost.findAll({where:{genre_id:genreBD.dataValues.id}});
+
+        if ( !PostsWithGenreFiltred ) return next();
+        
+        req.body.filtredPosts = PostsWithGenreFiltred;
+
+        return next();
+    },
+    filterByFeatures : async( req , res , next) => {
+        const { F } = req.query;
+        
+        if(!F) return next();
+
+        var AllPostsWithFeatures = [];
+
+        for ( f of F ) {
+            const feature = f && await Features.findOne({where:{feature:f}});
+        
+            const featuresOnPost = feature && await FeatureOfPost.findAll({where:{feature_id:feature.dataValues.id}});
+
+            for ( featureOnPost of featuresOnPost ) {
+                if( req.body.filtredPosts ){
+                    for( post of req.body.filtredPosts ){
+                        if( post.dataValues.id == featureOnPost.dataValues.losted_id ){
+                            AllPostsWithFeatures[AllPostsWithFeatures.length]=post.dataValues;
+                        }
+                    }
+                }else{
+                    AllPostsWithFeatures[AllPostsWithFeatures.length]=await LostedPost.findByPk(featureOnPost.dataValues.losted_id);
+                }
+            }
+        }
+            
+        req.body.filtredPosts = AllPostsWithFeatures;
+
+        return next();
+    },
+    filterByProblems : async( req , res , next ) => {
+        const { H } = req.query;
+
+        if(!H) return next();
+
+        var AllPostsWithFeatures = [];
+
+        for ( h of H ) {
+
+            const problem = h && await  HealthProblems.findOne({where:{problem:h}});
+
+            const problemsOnPost = problem && await HealthProblemsOfPost.findAll({where:{LostedPostId:problem.dataValues.id}});
+
+            for ( problemOnPost of problemsOnPost ) {
+                if( req.body.filtredPosts ){
+                    for( post of req.body.filtredPosts ){
+                        if( post.dataValues.id == problemOnPost.dataValues.losted_id ){
+                            AllPostsWithFeatures[AllPostsWithFeatures.length]=post.dataValues;
+                        }
+                    }
+                }else{
+                    AllPostsWithFeatures[AllPostsWithFeatures.length]=await LostedPost.findByPk(featureOnPost.dataValues.losted_id);
+                }
+            }
+        }
+            
+        req.body.filtredPosts = AllPostsWithFeatures;
+        return res.send(req.body.filtredPosts)
+    },
     store  : async( req, res) => {
         const  id_user  = req.userId;
 
-        const { name, description, borned_at, name_of_genre , feature } = req.body;
+        const { name, description, borned_at, name_of_genre } = req.body;
 
         const { firebaseUrl } = req.file ? req.file : "";
 
@@ -76,32 +219,14 @@ module.exports = {
             return res.status(401).send({"error":"sequelize died"})
         }
         
-        const featureExists = await Features.findOne({where:{feature}});
-        if ( featureExists ){
-            await FeatureOfPost.create({feature_id:featureExists.dataValues.id ,losted_id:Post.dataValues.id })
-        }else{
-            const featureCreated = await Features.create({feature});
-            await FeatureOfPost.create({feature_id:featureCreated.dataValues.id ,losted_id:Post.dataValues.id })
-        }
- 
-        const featuresOfPost = await FeatureOfPost.findAll({where: {losted_id:Post.dataValues.id}});
-        
-        let featuresCreateds = [];
-        featuresOfPost.forEach( async feature => {
-            const fet = await Features.findByPk(feature.dataValues.feature_id)
-            featuresCreateds[featuresCreateds.length]=fet.dataValues;
-
-            if (featuresCreateds.length == featuresOfPost.length){
-                return res.status(201).send({...Post.dataValues, features: featuresCreateds });
-            }
-        });
+        return res.status(201).send({...Post.dataValues, features: featuresCreateds });   
     },
     update : async( req, res) => {
         const { idPost } = req.params;
         
         const  id_user  = req.userId;
 
-        const { name, description, borned_at } = req.body;
+        const { name, description, borned_at, name_of_genre } = req.body;
 
         const { firebaseUrl } = req.file ? req.file : "";
 

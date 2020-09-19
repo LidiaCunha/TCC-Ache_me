@@ -8,6 +8,8 @@ const LostedPost = require('./controllers/LostedPost');
 const Comment = require('./controllers/comment')
 const Features = require('./controllers/features');
 const FeaturesOfPost = require('./controllers/featuresPost');
+const HealthProblems = require('./controllers/healthProblems');
+const HealthProblemsOfPost = require('./controllers/healthProblemsOfPost');
 
 const middleware = require('./middlewares/autorization');
 const validMail = require('./validation/sendMailOnCreate/index');
@@ -41,6 +43,8 @@ routes.get('/state', States.index);
 routes.delete('/state/:stateId', States.delete);
 
 routes.get('/posts', LostedPost.index);
+routes.get('/posts/filterby/', LostedPost.filterByGenre , LostedPost.filterByFeatures , LostedPost.filterByProblems )
+routes.get('/posts/:PostId', LostedPost.show);
 routes.post('/posts', Multer.single("photo"), imageUpload , LostedPost.store);
 routes.delete('/posts/:idPost', LostedPost.delete);
 routes.put('/posts/:idPost', Multer.single("photo") , imageUpload , LostedPost.update);
@@ -57,5 +61,13 @@ routes.delete('/feature/:FeatureId', Features.delete)
 
 routes.post('/features/post/:PostId', FeaturesOfPost.strore);
 routes.get('/features/post/:PostId', FeaturesOfPost.index);
+
+routes.post('/healthProblems', HealthProblems.store);
+routes.get('/healthProblems', HealthProblems.index);
+routes.delete('/healthProblems', HealthProblems.delete);
+routes.put('/healthProblems', HealthProblems.update);
+
+routes.get('/healthProblems/post/:PostId', HealthProblemsOfPost.index);
+routes.post('/healthProblems/post/:PostId', HealthProblemsOfPost.store);
 
 module.exports = routes;
