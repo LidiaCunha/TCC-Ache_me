@@ -1,4 +1,4 @@
-const {Op}=require("sequelize");
+const {Op} = require("sequelize");
 const crypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
@@ -15,25 +15,36 @@ module.exports = {
         return res.status(201).send(users);
     },
     login : async( req , res ) => {
-        const { mail , telephone , password } = req.body;
+        // const { mail , telephone , password } = req.body;
         
+        // if (mail){
+        //     const emailExists = mail ? await Users.findOne({ where: { [Op.or] : [  {mail:mail} ] } }) : null;
+        //     if ( emailExists  && await crypt.compare(password, emailExists.dataValues.password) ){
+        //         let token = jwt.sign( {userId: emailExists.dataValues.id} , "TCC_SENAI" );
+        //         return res.status(201).send({ "status":true , "user":{...emailExists.dataValues} , "token":token });
+        //     }
+        // }
+        // if (telephone){
+        //     const telephoneExists = telephone ? await Users.findOne({ where: {[Op.or]: [{telephone:telephone}]}}) : null;
+        //     if ( telephoneExists && await crypt.compare(password, telephoneExists.dataValues.password) ){
+        //         const token = jwt.sign( {userId: telephoneExists.dataValues.id} , "TCC_SENAI" );
+        //         return res.status(201).send({ "status":true , "user":{...telephoneExists.dataValues} , "token":token });
+        //     }
+        // }
+        
+        const {mail, password} = req.body;
+
         if (mail){
-            const emailExists = mail ? await Users.findOne({ where: { [Op.or] : [  {mail:mail} ] } }) : null;
+            const emailExists = mail ? await Users.findOne({ where: { [Op.or] : [  {mail:mail}, {telephone:mail} ] } }) : null;
             if ( emailExists  && await crypt.compare(password, emailExists.dataValues.password) ){
                 let token = jwt.sign( {userId: emailExists.dataValues.id} , "TCC_SENAI" );
                 return res.status(201).send({ "status":true , "user":{...emailExists.dataValues} , "token":token });
             }
         }
-        if (telephone){
-            const telephoneExists = telephone ? await Users.findOne({ where: {[Op.or]: [{telephone:telephone}]}}) : null;
-            if ( telephoneExists && await crypt.compare(password, telephoneExists.dataValues.password) ){
-                const token = jwt.sign( {userId: telephoneExists.dataValues.id} , "TCC_SENAI" );
-                return res.status(201).send({ "status":true , "user":{...telephoneExists.dataValues} , "token":token });
-            }
-        }
+
         
-        
-        return res.status(401).send({"unauthorized":"verify your data or create a new account if you never had accessed"});
+        // return res.status(401).send({"unauthorized":"verify your data or create a new account if you never had accessed"});
+        return res.status(401).send({erro:"verify your data or create a new account if you never had accessed"});
     },
 /* INSERT */
     store  : async( req , res ) => {
@@ -45,7 +56,7 @@ module.exports = {
         const ExistUser = await Users.findOne({ where: { [Op.or] : [ {telephone:telephone} , {mail:mail} , {cpf:CPF} ] } });
 
         if(ExistUser)
-            return res.status(401).send({"error":"this user already exists"});
+            return res.status(401).send({erro:"this user already exists"});
         
         let CityR = await City.findOne({ where: { name_of_city:city } });
         if (! CityR)

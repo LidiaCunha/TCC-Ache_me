@@ -13,9 +13,9 @@ const Multer = multer({
 	limits  : 1024*1024,
 })
 
-routes.post('/newUser', Multer.single("photo"), validMail , imageUpload , Users.store);
+// routes.post('/newUser', Multer.single("photo"), validMail , imageUpload , Users.store);
+routes.post('/newUser', Multer.single("photo"), imageUpload, Users.store);
 routes.post('/users', Users.login);
-
 
 routes.use(middleware);
 
