@@ -2,7 +2,7 @@ import {useHistory} from "react-router-dom";
 
 import backgroundLogin from "../../assets/imagemLogin.jpg";
 import backgroundRegister from "../../assets/imagemCadastro.jpg";
-import camera from "../../assets/cameraCadastro.png";
+import camera from "../../assets/camera.png";
 import logo from "../../assets/logo.png";
 
 import { 
@@ -89,13 +89,11 @@ const FormRegister = (props) => {
             };
 
         } catch (erro) {
-            console.log(erro);
-            window.alert(erro);
-            // if(erro.response){
-            //     return window.alert(erro.response.data.erro);
-            // }
+            if(erro.response){
+                return window.alert(erro.response.data.erro);
+            }
             
-            // window.alert("Ops, algo deu errado, tente novamente mais tarde.");
+            window.alert("Ops, algo deu errado, tente novamente mais tarde.");
         }
 
     };
@@ -105,12 +103,17 @@ const FormRegister = (props) => {
     };
 
     const handlerImage = (e) => {
-        // if (e.target.files[0]) {
-        //     imgRef.current.src = URL.createObjectURL(e.target.files[0])
-        //     imgRef.current.style.display = "block"
-        // }else {
-        //     imgRef.current.src = "";
-        // }
+        if (e.target.files[0]) {
+            imgRef.current.src = URL.createObjectURL(e.target.files[0])
+            imgRef.current.style.height = "100%"
+            imgRef.current.style.width = "100%"
+            imgRef.current.style.margin = "0px"
+        }else {
+            imgRef.current.src = `${camera}`;
+            imgRef.current.style.height = "70%"
+            imgRef.current.style.width = "70%"
+            imgRef.current.style.margin = "15px"
+        }
         setImage(e.target.files[0]);
     };
 
@@ -178,7 +181,7 @@ const FormRegister = (props) => {
             <ContainerFoto>
                 <input type="file" id="file" onChange={handlerImage} hidden/>
                 <label htmlFor="file">
-                    <img src={camera} alt="camera" ref={imgRef}/>    
+                    <img className="photo" src={camera} ref={imgRef} alt="user photography"/>    
                 </label>
                 <p>Escolha sua foto</p>      
             </ContainerFoto>

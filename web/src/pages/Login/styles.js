@@ -1,4 +1,4 @@
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 /* OFICIAL DESIGN*/
 
 export const Container = styled.div`
@@ -7,7 +7,7 @@ export const Container = styled.div`
     height: 100vh;
     max-height: 750px;
     border-radius: 15px;
-    background: rgba(0,0,0,.4);
+    background: rgba(0,0,0,0.4);
     overflow: hidden;
     position: relative;
 
@@ -236,24 +236,25 @@ height: 100%;
     align-items: center;
 
     > label{
-        height: 70px;
-        width: 70px;
+        height: 100px;
+        width: 100px;
         background: #E64F4A;
         border-radius: 50%;
         margin-right: 10px;
-        padding: 15px;
+        /* padding: 10px; */
         box-sizing: border-box;
         overflow: hidden;
         cursor: pointer;
-
-    > img{
-        height: 100%;
-        width: 100%;
+    
+    >.photo{
+        height: 70%;
+        width: 70%;
+        margin: 15px;
     }
     }
 
     > p{
-      font-size: 1em;
+      font-size: 1.5em;
     color: #fff;
     font-family: arial;
     }
@@ -271,78 +272,4 @@ height: 100%;
       margin-left: 10px;
       margin-right: 10px;
     }
-`;
-
-
-
-
-/* lAYOUT DE TESTE*/
-
-const fadeForm = keyframes `
-    from{
-        opacity: 0;
-    }
-    to{
-        opacity: 1;
-    }
-`
-
-export const Form = styled.form `
-
-    width: 100%;
-    max-width: 400px;
-    height: 90%;
-    max-height: 700px;
-
-    border: 1px solid var(--white);
-    border-radius: 0px 10px 10px 0px;
-    border-left: 0px;
-
-    *{
-        animation: ${fadeForm} 2s;
-    }
-
-    display: flex;
-    flex-direction: column; 
-    align-items: center;
-    justify-content: center;
-
-`;
-
-export const InputGroup = styled.div `
-
-    width: 100%;
-    margin-top: 10px;
-
-    display: flex;
-    align-items: center;
-
-    > label {
-        font-size: 15px;
-        margin: 0px 10px;
-        min-width: 65px;
-    }
-
-    > input {
-        flex: 1;
-        margin-right: 10px;    
-    }
-
-    @media (max-width: 700px) {
-        flex-direction: column;
-        align-items: flex-start;
-
-        > input {
-            width: 100%;
-            margin: 0px 10px;
-        }
-    }
-
-`;
-
-export const Button = styled.button `
-    min-width: 200px;
-    margin: 10px 10px 0px 0px;
-
-    align-self: flex-end;
 `;
