@@ -2,6 +2,7 @@ import React from "react";
 import foto from "../../assets/Cadastro/imagemCadastro.jpg";
 import camera from "../../assets/Cadastro/cameraCadastro.png";
 import logo from "../../assets/Cadastro/logo.png";
+import { Formik, Field, Form } from 'formik';
 
 import { 
   Container,
@@ -18,7 +19,24 @@ import {
 
 
 const Cadastro = () => {
-  return (
+
+  function onBlurCep(ev, setFieldValue) {
+    const {value} = ev.target;
+
+    const cep = value?.replace(/[^0-9]/g, '');
+
+    if(cep?.lenght !== 8){
+      return;
+    }
+
+    fetch(`https://viacep.com.br/ws/${cep}/json/`).then((res) => res.json()).then((data) => {
+    setFieldValue('logradouro', data.logradouro);
+    setFieldValue('bairro', data.bairro);
+    setFieldValue('cidade', data.localidade);
+    setFieldValue('uf', data.uf);});
+  };
+
+  return(
     <>
       <Container>
         <img src={foto} alt="área de cadastro"/>
@@ -33,52 +51,68 @@ const Cadastro = () => {
               </ContainerText>
           </ContainerMenu>
 
-          <ConfigInput>
+          <Formik
+            initialValues={{
+              // nome: '',
+              // cpf: '',
+              // cep: '',
+              // bairro: '',
+              // uf: '',
+              // logradouro: '',
+              // localidade: '',
+            }}
+            render={({setFieldValue}) => (
+              <Form>
+                <ConfigInput>
 
-              <ContainerInput>
-                  <label>Nome</label>
-                  <input type="text" placeholder="insira seu nome"/>
-                              
-                  <label>CPF</label>
-                  <input type="text" placeholder="insira seu CPF"/>
-                              
-                  <label>Algume te indicou o Ache.me?</label>
-                  <input type="text" placeholder="insira o úsuario"/>
-              </ContainerInput>
-
-              <ContainerInputSpace>
                   <ContainerInput>
-                      <label>E-mail</label>
-                      <input type="text" placeholder="insira seu e-mail"/>
+                      <label>Nome</label>
+                      <Field name="nome" type="text" placeholder="insira seu nome"/>
                                   
-                      <label>Telefone</label>
-                      <input type="text" placeholder="insira seu telefone"/>
+                      <label>CPF</label>
+                      <Field name="cpf" type="text" placeholder="insira seu CPF"/>
                                   
-                      <label>Senha</label>
-                      <input type="text" placeholder="insira seu senha"/>
-                    </ContainerInput>
-              </ContainerInputSpace>
-              
-                  <ContainerInput>
-                      <label>Cep</label>
-                      <input type="text" placeholder="insira seu cep"/>
-                                
-                      <label>Bairro</label>
-                      <input type="text" placeholder="insira seu bairro"/>
-                                
-                      <label>Estado</label>
-                      <input type="text" placeholder="insira seu estado"/>
+                      <label>Algume te indicou o Ache.me?</label>
+                      <input type="text" placeholder="insira o úsuario"/>
                   </ContainerInput>
-            
-              <ContainerInput>
-                  <label>Rua</label>
-                  <input type="text" placeholder="insira sua rua"/>
-                            
-                  <label>Cidade</label>
-                  <input type="text" placeholder="insira sua cidade"/>
-              </ContainerInput>
 
-          </ConfigInput>
+                  <ContainerInputSpace>
+                      <ContainerInput>
+                          <label>E-mail</label>
+                          <Field name="email" type="email" placeholder="insira seu e-mail"/>
+                                      
+                          <label>Telefone</label>
+                          <Field name="telefone" type="text" placeholder="insira seu telefone"/>
+                                      
+                          <label>Senha</label>
+                          <Field name="senha" type="text" placeholder="insira seu senha"/>
+                        </ContainerInput>
+                  </ContainerInputSpace>
+
+                      <ContainerInput>
+                          <label>Cep</label>
+                          <Field name="cep" type="text" placeholder="insira seu cep" onBlur={(ev) => onBlurCep(ev, setFieldValue)} />
+                                    
+                          <label>Bairro</label>
+                          <Field name="bairro" type="text" placeholder="insira seu bairro"/>
+                                    
+                          <label>Estado</label>
+                          <Field name="uf" type="text" placeholder="insira seu estado"/>
+                      </ContainerInput>
+
+                  <ContainerInput>
+                      <label>Rua</label>
+                      <Field name="logradouro" type="text" placeholder="insira sua rua"/>
+                                
+                      <label>Cidade</label>
+                      <Field name="localidade" type="text" placeholder="insira sua cidade"/>
+                  </ContainerInput>
+
+                </ConfigInput>
+              </Form>
+            )
+            }
+          />
 
           <Footer>
             <ContainerFotoInput>
