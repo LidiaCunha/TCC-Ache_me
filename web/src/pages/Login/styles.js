@@ -1,4 +1,5 @@
 import styled from "styled-components";
+
 /* OFICIAL DESIGN*/
 
 export const Container = styled.div`
@@ -8,6 +9,7 @@ export const Container = styled.div`
     max-height: 750px;
     border-radius: 15px;
     background: rgba(0,0,0,0.4);
+
     overflow: hidden;
     position: relative;
 
@@ -93,6 +95,7 @@ export const ContainerTextMenor = styled.div`
 `;
 
 export const LoginConfigInput = styled.div`
+
       height: 60px;
       width: 100%;
       display: flex;
