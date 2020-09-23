@@ -11,6 +11,7 @@ const FeaturesOfPost = require('./controllers/featuresPost');
 const HealthProblems = require('./controllers/healthProblems');
 const HealthProblemsOfPost = require('./controllers/healthProblemsOfPost');
 
+const filters = require('./services/filters/'); 
 const middleware = require('./middlewares/autorization');
 const validMail = require('./validation/sendMailOnCreate/index');
 const imageUpload = require('./services/firebase/firebase');
@@ -43,7 +44,7 @@ routes.get('/state', States.index);
 routes.delete('/state/:stateId', States.delete);
 
 routes.get('/posts', LostedPost.index);
-routes.get('/posts/filterby/', LostedPost.filterByGenre , LostedPost.filterByFeatures , LostedPost.filterByProblems )
+routes.get('/post/filterby/', filters.filterByGenre , filters.filterByFeatures , filters.filterByAge , filters.filterByProblems );
 routes.get('/posts/:PostId', LostedPost.show);
 routes.post('/posts', Multer.single("photo"), imageUpload , LostedPost.store);
 routes.delete('/posts/:idPost', LostedPost.delete);
@@ -56,8 +57,8 @@ routes.delete('/posts/:idPost/comments/:idComment',Comment.delete);
 
 routes.post('/feature', Features.store);
 routes.get('/feature', Features.index);
-routes.put('/feature/:FeatureId', Features.update)
-routes.delete('/feature/:FeatureId', Features.delete)
+routes.put('/feature/:FeatureId', Features.update);
+routes.delete('/feature/:FeatureId', Features.delete);
 
 routes.post('/features/post/:PostId', FeaturesOfPost.strore);
 routes.get('/features/post/:PostId', FeaturesOfPost.index);
@@ -69,5 +70,7 @@ routes.put('/healthProblems', HealthProblems.update);
 
 routes.get('/healthProblems/post/:PostId', HealthProblemsOfPost.index);
 routes.post('/healthProblems/post/:PostId', HealthProblemsOfPost.store);
+
+routes.get('/post/filterby/', filters.filterByGenre , filters.filterByFeatures , filters.filterByProblems );
 
 module.exports = routes;
