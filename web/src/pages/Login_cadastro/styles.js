@@ -9,13 +9,23 @@ export const Container = styled.div`
     max-height: 750px;
     border-radius: 15px;
     background: rgba(0,0,0,0.4);
-
     overflow: hidden;
     position: relative;
+    
 
     > img{
       height: 100%;
       width: 100%;
+    }
+
+    @media (max-width: 780px){
+      max-height: none;
+      border-radius: 0px;
+
+      > img{
+        height: 100%;
+        width: auto;
+      }
     }
 `;
 
@@ -25,6 +35,10 @@ export const ContainerInfo = styled.form`
     background: rgba(0,0,0,.4);
     position: absolute;
     top: 0px;
+
+    @media (max-width: 780px){
+      overflow-y: auto;
+    }
 `;
 
 export const LoginContainerMenu = styled.div`
@@ -95,12 +109,11 @@ export const ContainerTextMenor = styled.div`
 `;
 
 export const LoginConfigInput = styled.div`
-
       height: 60px;
       width: 100%;
       display: flex;
       align-content: center;
-      align-content: center;
+      align-items: center;
       padding-left: 90px;
       box-sizing: border-box;
 
@@ -118,16 +131,30 @@ export const LoginConfigInput = styled.div`
 
       > input[type="submit"]{
         color: #fff;
-      background: #E64F4A;    
-      padding: 0;
-      cursor: pointer;
+        background: #E64F4A;    
+        padding: 0;
+        cursor: pointer;
+      }
+
+      @media (max-width: 780px){
+        height: auto;
+        width: auto;
+        justify-content: center;
+        flex-direction: column;
+        
+        > input{
+          height: 85px;
+          width: 460px;
+          margin-bottom: 20px;
+          font-size: 2em;
+        }
       }
 `;
 
 /* Cadastro */
 
 export const CadastroContainerMenu = styled.div`
-height: 120px;
+    height: 120px;
     width: 100%;
     padding-left: 90px;
     box-sizing: border-box;
@@ -171,22 +198,28 @@ export const CadastroConfigInput = styled.div`
     align-items: center;
     padding-top: 100px;
     box-sizing: border-box;
+
+    @media (max-width: 780px){
+      height: auto;
+      min-height: 50px;
+      flex-direction: column;
+    }
 `;
 
 export const ContainerInput = styled.div`
-height: 100%;
+    height: 100%;
     width: 260px;
     float: left;
     padding-right: 30px;
 
 > label{
-  font-size: 1.2em;
+    font-size: 1.2em;
     color: #fff;
     font-family: arial;
 }
 
 > input{
-  height: 50px;
+    height: 50px;
     width: 100%;
     border: none;
     outline: none;
@@ -197,6 +230,20 @@ height: 100%;
     font-size: 1.2em;
     margin-top: 20px;
 }
+
+@media (max-width: 780px){
+  height: auto;
+  width: 460px;
+
+  > label{
+    font-size: 2em;
+  }
+
+  > input{
+    height: 80px;
+    font-size: 2em;
+  }
+}
 `;
 
 export const ContainerInputSpace = styled.div`
@@ -205,10 +252,14 @@ height: 100%;
     float: left;
     padding-right: 30px;
     margin-right: 80px;
+
+    @media (max-width: 780px){
+      margin-left: -120px;
+    }
 `;
 
 export const Footer = styled.div`
-height: 140px;
+    height: 140px;
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -219,19 +270,61 @@ height: 140px;
     box-sizing: border-box;
 
     > input{
+      height: 65px;
+      width: 360px;
+      border-radius: 10px;
+      background: #E64F4A;
+      cursor: pointer;
+      font-size: 1.3em;
+      color: #fff;
+      border: none;
+    }
+`;
+  
+export const ContainerBtn = styled.div`
+    height: 100%;
+    width: auto;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+
+    > input{
       height: 55px;
-    width: 260px;
-    border-radius: 10px;
-    background: #E64F4A;
-    cursor: pointer;
-    font-size: 1.3em;
-    color: #fff;
-    border: none;
+      width: 250px;
+      border-radius: 10px;
+      background: #E64F4A;
+      cursor: pointer;
+      font-size: 1.3em;
+      color: #fff;
+      border: none;
+      outline: none;
+      margin-left: 10px;
+      margin-right: 10px;
+    }
+
+    > p{
+      font-size: 1.5em;
+      color: #fff;
+      font-family: arial;
+    }
+
+    @media (max-width: 780px){
+      height: auto;
+      flex-direction: column;
+
+      > input{
+        margin-bottom: 10px; 
+      }
+
+      > p{
+        margin-bottom: 10px; 
+      }
     }
 `;
 
 export const ContainerFoto = styled.div`
-height: 100%;
+    height: 100%;
     width: auto;
     display: flex;
     justify-content: center;
@@ -239,8 +332,8 @@ height: 100%;
     align-items: center;
 
     > label{
-        height: 100px;
-        width: 100px;
+        height: 90px;
+        width: 90px;
         background: #E64F4A;
         border-radius: 50%;
         margin-right: 10px;
@@ -252,14 +345,14 @@ height: 100%;
     >.photo{
         height: 70%;
         width: 70%;
-        margin: 15px;
+        margin: 13px;
     }
     }
 
     > p{
       font-size: 1.5em;
-    color: #fff;
-    font-family: arial;
+      color: #fff;
+      font-family: arial;
     }
 
     > input{

@@ -15,7 +15,11 @@ export const GlobalStyles = createGlobalStyle`
         justify-content: center;
         align-content: center;
         align-items: center;
-        height: 100vh;
+        
+
+        @media (min-width: 1050px){
+            height: 100vh;
+        }
     }
 
 `
