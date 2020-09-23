@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { BrowserRouter, Switch, Route, Redirect} from "react-router-dom";
-import Login from "./pages/Login";
+import Login from "./pages/Login_cadastro/index.js";
 import Home from "./pages/home";
 import { isSignedIn } from './services/security';
 
