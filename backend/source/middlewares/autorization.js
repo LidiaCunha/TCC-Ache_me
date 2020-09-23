@@ -5,7 +5,7 @@ module.exports = ( req,res,next ) => {
 	const auto = req.headers.authorization;
 
 	if ( !auto )
-		res.send(401).send({erro:"token não informado!!!!!!"});
+		res.status(401).send({erro:"token não informado!!!!!!"});
 	
 	const [Bearer, token] = auto.split(" ");
 
