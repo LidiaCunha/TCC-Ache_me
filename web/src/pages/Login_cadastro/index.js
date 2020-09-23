@@ -4,6 +4,7 @@ import backgroundLogin from "../../assets/imagemLogin.jpg";
 import backgroundRegister from "../../assets/imagemCadastro.jpg";
 import camera from "../../assets/camera.png";
 import logo from "../../assets/logo.png";
+import CheckEmail from "../../components/Card_email";
 import { 
     Container,
     ContainerInfo,
@@ -23,6 +24,7 @@ import {
     ContainerInputSpace,
     Footer,
     ContainerFoto,
+    ContainerBtn
 
   } from "./styles";
 
@@ -30,9 +32,15 @@ import React, { useState, useRef } from "react";
 import { api } from '../../services/api';
 import { signIn } from '../../services/security';
 
+// const EmailChecked = ({setShowCheckEmail}) => {
+//     return <CheckEmail />;
+// }
+
 const FormRegister = (props) => {
     
-    const history = useHistory();
+    // const history = useHistory();
+
+    const [ShowCheckEmail, setShowCheckEmail] = useState(false);
 
     
     const [userRegister, setUserRegister] = useState({
@@ -85,7 +93,11 @@ const FormRegister = (props) => {
 
                 signIn(retorno.data);
 
-                return history.push("/home");
+                return setShowCheckEmail(true)
+
+
+
+                // return history.push("/home");
             };
 
         } catch (erro) {
@@ -147,6 +159,7 @@ const FormRegister = (props) => {
 
     return(
         <Container onSubmit={register}>
+        {ShowCheckEmail && <CheckEmail setShowCheckEmail={setShowCheckEmail} props={props}/>}
         <img src={backgroundRegister} alt="área de cadastro"/>
 
         <ContainerInfo >
@@ -167,7 +180,7 @@ const FormRegister = (props) => {
                   <label>CPF</label>
                   <input type="text" id="CPF" value={userRegister.CPF} onChange={handlerInput} placeholder="Insira seu CPF" required />
                               
-                  <label>Algume te indicou o Ache.me?</label>
+                  <label>Alguem te indicou o Ache.me?</label>
                   <input type="text" placeholder="insira o úsuario"/>
               </ContainerInput>
 
@@ -187,20 +200,20 @@ const FormRegister = (props) => {
                   <ContainerInput>
                       <label>Cep</label>
                       <input type="text" id="cep" value={userRegister.cep} onChange={handlerInput} onBlur={(e) => findAddress(e)} onKeyUp={( e ) => { mask( e ) }} placeholder="insira seu CEP" required />
-                                
+
                       <label>Bairro</label>
-                      <input type="text" id="bairro" value={userRegister.bairro} onChange={handlerInput} placeholder="Seu bairro aparecerá aqui" required />
+                      <input type="text" id="bairro" value={userRegister.bairro} onChange={handlerInput} placeholder="Insira seu bairro" required />
                                 
                       <label>Estado</label>
-                      <input type="text" id="state" value={userRegister.state} onChange={handlerInput} placeholder="Seu Estado aparecerá aqui" required />
+                      <input type="text" id="state" value={userRegister.state} onChange={handlerInput} placeholder="Insira seu estado" required />
                   </ContainerInput>
             
               <ContainerInput>
                   <label>Rua</label>
-                  <input type="text" id="street" value={userRegister.street} onChange={handlerInput} placeholder="Sua rua aparecerá aqui" required />
+                  <input type="text" id="street" value={userRegister.street} onChange={handlerInput} placeholder="Insira sua rua" required />
                             
                   <label>Cidade</label>
-                  <input type="text" id="city" value={userRegister.city} onChange={handlerInput} placeholder="Sua cidade aparecerá aqui" required />
+                  <input type="text" id="city" value={userRegister.city} onChange={handlerInput} placeholder="Insira sua cidade" required />
               </ContainerInput>
 
           </CadastroConfigInput>
@@ -213,10 +226,11 @@ const FormRegister = (props) => {
                 </label>
                 <p>Escolha sua foto</p>      
             </ContainerFoto>
-            <ContainerFoto>
-                <input type="button" value="Ja tenho Cadastro" onClick={() => {props.showForm("login")}}/>
+            <ContainerBtn>
+                <input type="button" value="Já tenho cadastro" onClick={() => {props.showForm("login")}}/>
+                <p>OU</p>
                 <input type="submit" value="Cadastrar-se"/>
-            </ContainerFoto>
+            </ContainerBtn>
           </Footer>
 
         </ContainerInfo>
@@ -279,13 +293,12 @@ const FormLogin = (props) => {
                 </LoginContainerMenu>
 
                 <LoginContainerText>
-                    <h1>Bem-Vindo novamente! Que bom que</h1>
-                    <h1>Voltou, sua ajuda é muito importante.</h1>
+                    <h1>Bem-Vindo! Que bom que você está <br/> aqui, sua ajuda é muito importante.</h1>
                 </LoginContainerText>
 
                 <ContainerTextMenor>
-                    <h2>Colabore com essa busca, ajude famílias a encontrarem seus entes queridos, é</h2>
-                    <h2>simples, rápido e gratificante ajudar alguém.</h2>
+                    <h2>Colabore com essa busca, ajude famílias a encontrarem seus entes queridos, é<br/>
+                    simples, rápido e gratificante ajudar alguém.</h2>
                 </ContainerTextMenor>
 
                 <LoginConfigInput>
@@ -302,7 +315,7 @@ const FormLogin = (props) => {
 const Login = () => {
     
     const [showForm, setShowForm] = useState("login");
-    
+
     return (
         <>
             <Container>

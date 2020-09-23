@@ -20,26 +20,6 @@ import {
 
 const Cadastro = () => {
 
-  const onBlurCep = async (ev, setFieldValue) => {
-    const {value} = ev.target;
-
-    const cep = value?.replace(/[^0-9]/g, '');
-
-    if(cep?.lenght !== 8){
-      return;
-    }
-
-    const address = await axios.get(`https://viacep.com.br/ws/${cep}/json/`);
-    
-    console.log(address);
-
-    setFieldValue('logradouro', address.logradouro);
-    setFieldValue('bairro', address.bairro);
-    setFieldValue('cidade', address.localidade);
-    setFieldValue('uf', address.uf);
-  
-  };
-
   return(
     <>
       <Container>
@@ -95,8 +75,6 @@ const Cadastro = () => {
 
                       <ContainerInput>
                           <label>Cep</label>
-                          
-                          <input type="text" name="cep" placeholder="babaca seu cep" onKeyDown={(ev) => console.log(ev)} />
                           <Field name="cep" type="text" placeholder="insira seu cep" onKeyDown={(ev) => console.log(ev)} />
                                     
                           <label>Bairro</label>
