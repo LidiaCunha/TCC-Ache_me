@@ -4,6 +4,7 @@ import backgroundLogin from "../../assets/imagemLogin.jpg";
 import backgroundRegister from "../../assets/imagemCadastro.jpg";
 import camera from "../../assets/camera.png";
 import logo from "../../assets/logo.png";
+import CheckEmail from "../../components/Card_email";
 
 import { 
     Container,
@@ -31,9 +32,15 @@ import React, { useState, useRef } from "react";
 import { api } from '../../services/api';
 import { signIn } from '../../services/security';
 
+// const EmailChecked = ({setShowCheckEmail}) => {
+//     return <CheckEmail />;
+// }
+
 const FormRegister = (props) => {
     
-    const history = useHistory();
+    // const history = useHistory();
+
+    const [ShowCheckEmail, setShowCheckEmail] = useState(false);
 
     const [userRegister, setUserRegister] = useState({
         name: "",
@@ -85,7 +92,11 @@ const FormRegister = (props) => {
 
                 signIn(retorno.data);
 
-                return history.push("/home");
+                return setShowCheckEmail(true)
+
+
+
+                // return history.push("/home");
             };
 
         } catch (erro) {
@@ -119,6 +130,7 @@ const FormRegister = (props) => {
 
     return(
         <Container onSubmit={register}>
+        {ShowCheckEmail && <CheckEmail setShowCheckEmail={setShowCheckEmail} props={props}/>}
         <img src={backgroundRegister} alt="área de cadastro"/>
 
         <ContainerInfo >
@@ -274,7 +286,7 @@ const FormLogin = (props) => {
 const Login = () => {
     
     const [showForm, setShowForm] = useState("login");
-    
+
     return (
         <>
             <Container>

@@ -2,15 +2,16 @@ import React from "react";
 import Icon from "../../assets/Card_email/logoEmail.png";
 
 import {
+    CardEmail,
     ContainerCard,
     ContainerImg,
     ContainerInformacoes,
     BtnOk
 } from "./styles";
 
-const Card_email = () => {
+const Card_email = ({setShowCheckEmail, props}) => {
     return(
-        <>
+        <CardEmail>
             <ContainerCard>
                 <ContainerImg>
                     <img src={Icon} alt="icone do email"/>
@@ -24,10 +25,13 @@ const Card_email = () => {
                 </ContainerInformacoes>
 
                 <BtnOk>
-                    <input type="submit" value="OK"/>
+                    <input type="submit" onClick={() => {
+                        setShowCheckEmail(false);
+                        props.showForm("login");
+                    }} value="OK"/>
                 </BtnOk>
             </ContainerCard>
-        </>
+        </CardEmail>
     )
 }
 

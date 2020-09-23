@@ -1,5 +1,21 @@
 import Styled from "styled-components";
 
+export const CardEmail = Styled.div`
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 9;
+    overflow-y: auto;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: #333d;
+
+    animation: fadeIn 0.4s;
+`;
+
 export const ContainerCard = Styled.div`
     height: 550px;
     width: 500px;
