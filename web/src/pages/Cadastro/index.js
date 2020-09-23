@@ -2,7 +2,7 @@ import React from "react";
 import foto from "../../assets/Cadastro/imagemCadastro.jpg";
 import camera from "../../assets/Cadastro/cameraCadastro.png";
 import logo from "../../assets/Cadastro/logo.png";
-import { Formik, Field, Form } from 'formik';
+//import { Formik, Field, Form } from 'formik';
 
 import { 
   Container,
@@ -20,7 +20,7 @@ import {
 
 const Cadastro = () => {
 
-  function onBlurCep(ev, setFieldValue) {
+  const onBlurCep = async (ev, setFieldValue) => {
     const {value} = ev.target;
 
     const cep = value?.replace(/[^0-9]/g, '');
@@ -29,11 +29,15 @@ const Cadastro = () => {
       return;
     }
 
-    fetch(`https://viacep.com.br/ws/${cep}/json/`).then((res) => res.json()).then((data) => {
-    setFieldValue('logradouro', data.logradouro);
-    setFieldValue('bairro', data.bairro);
-    setFieldValue('cidade', data.localidade);
-    setFieldValue('uf', data.uf);});
+    const address = await axios.get(`https://viacep.com.br/ws/${cep}/json/`);
+    
+    console.log(address);
+
+    setFieldValue('logradouro', address.logradouro);
+    setFieldValue('bairro', address.bairro);
+    setFieldValue('cidade', address.localidade);
+    setFieldValue('uf', address.uf);
+  
   };
 
   return(
@@ -43,23 +47,23 @@ const Cadastro = () => {
 
         <ContainerInfo>
           <ContainerMenu>
-              <img src={logo}/>
+              <img src={logo} alt="logo"/>
               
               <ContainerText>
-              <h1>Seja Um membro Achem.me e faça</h1>
+              <h1>Seja Um membro Ache.me e faça</h1>
               <h1>parte de reencontros.</h1>
               </ContainerText>
           </ContainerMenu>
 
           <Formik
             initialValues={{
-              // nome: '',
-              // cpf: '',
-              // cep: '',
-              // bairro: '',
-              // uf: '',
-              // logradouro: '',
-              // localidade: '',
+              nome: '',
+              cpf: '',
+              cep: '',
+              bairro: '',
+              uf: '',
+              logradouro: '',
+              localidade: '',
             }}
             render={({setFieldValue}) => (
               <Form>
@@ -91,7 +95,9 @@ const Cadastro = () => {
 
                       <ContainerInput>
                           <label>Cep</label>
-                          <Field name="cep" type="text" placeholder="insira seu cep" onBlur={(ev) => onBlurCep(ev, setFieldValue)} />
+                          
+                          <input type="text" name="cep" placeholder="babaca seu cep" onKeyDown={(ev) => console.log(ev)} />
+                          <Field name="cep" type="text" placeholder="insira seu cep" onKeyDown={(ev) => console.log(ev)} />
                                     
                           <label>Bairro</label>
                           <Field name="bairro" type="text" placeholder="insira seu bairro"/>
