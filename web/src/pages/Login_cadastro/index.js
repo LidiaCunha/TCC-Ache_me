@@ -199,7 +199,7 @@ const FormRegister = (props) => {
               
                   <ContainerInput>
                       <label>Cep</label>
-                      <input type="text" id="cep" value={userRegister.cep} onChange={handlerInput} onBlur={(e) => findAddress(e)} onKeyUp={( e ) => { mask( e ) }} placeholder="insira seu CEP" required />
+                      <input type="text" id="cep" value={userRegister.cep} onChange={handlerInput} onBlur={(e) => findAddress(e)} onKeyUp={( e ) => { mask( e ) }} placeholder="Insira seu CEP" required />
 
                       <label>Bairro</label>
                       <input type="text" id="bairro" value={userRegister.bairro} onChange={handlerInput} placeholder="Insira seu bairro" required />
