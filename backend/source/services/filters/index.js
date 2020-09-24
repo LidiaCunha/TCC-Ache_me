@@ -74,7 +74,7 @@ module.exports ={
     filterByAge      : async ( req , res , next ) => {
         const { Amin , Amax } = req.query;
 
-        if ( !Amin && !Amax && Amin >= Amax) return next();
+        if ( !Amin && !Amax || Amin >= Amax) return next();
 
         const filtredPosts = req.body.filtredPosts ? req.body.filtredPosts : await LostedPost.findAll();;
         
@@ -93,16 +93,60 @@ module.exports ={
 
         req.body.filtredPosts = posts;
         
-        next();
+        return next();
     },
     filterByDate     : async ( req , res , next ) => {
+        const { Ap , Mp , Dp } = req.query;
+    
+        const now = new Date();
+    
+        if ( ( !Ap || !Mp || !Dp) || Ap > now.getFullYear()) return next();
+
+        const filtredPosts = req.body.filtredPosts ? req.body.filtredPosts : await LostedPost.findAll();;
         
+        var posts = [];
+
+        filtredPosts.forEach( post => {
+            const ageOfPost = moment(post.created_at).locale("America/Sao_Paulo").format("YYYY")
+            const mounthOfPost = moment(post.created_at).locale("America/Sao_Paulo").format("MM")
+            const dayOfPost = moment(post.created_at).locale("America/Sao_Paulo").format("DD")
+            if ( 
+                 Ap ? Ap === ageOfPost : ( Mp === mounthOfPost || Dp === dayOfPost ) && 
+                 Mp ? Mp === mounthOfPost : ( Dp === dayOfPost || Ap === ageOfPost ) && 
+                 Dp ? Dp === dayOfPost : ( Ap === ageOfPost || Mp === mounthOfPost ) 
+               ) 
+            {
+                posts[ posts.length ] = post;
+            }
+        });
+
+        req.body.filtredPosts = posts;
+        
+        return next();
     },
     filterByHour     : async ( req , res , next ) => {
+        const { Hp } = req.query;
 
+        if (!Hp) return next();
+
+        const filtredPosts = req.body.filtredPosts ? req.body.filtredPosts : await LostedPost.findAll();;
+        
+        var posts = [];
+
+        filtredPosts.forEach( post => {
+            const hourOfPost = moment(post.created_at).locale("America/Sao_Paulo").format("HH");
+            Hp === hourOfPost ? posts[posts.length] = post : null;
+        });
+
+
+        req.body.filtredPosts = posts;
+
+        return next();
     },
     filterByLocale   : async ( req , res , next ) => {
-
+        const { L } = req.query;
+        
+        return next();
     },
     filterByProblems : async ( req , res ) => {
         const { H } = req.query;

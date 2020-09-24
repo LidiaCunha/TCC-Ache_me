@@ -3,6 +3,7 @@ const multer = require('multer');
 
 const Users = require('./controllers/users');
 const Citys = require('./controllers/city');
+const Genre = require('./controllers/genre');
 const States = require('./controllers/state');
 const LostedPost = require('./controllers/LostedPost');
 const Comment = require('./controllers/comment')
@@ -23,8 +24,8 @@ const Multer = multer({
 	limits  : 1024*1024,
 });
 
-// routes.post('/newUser', Multer.single("photo"), validMail , imageUpload , Users.store);
-routes.post('/newUser', Multer.single("photo"), imageUpload, Users.store);
+routes.post('/newUser', Multer.single("photo"), imageUpload, validMail );
+routes.get('/validMail/' , Users.store)
 routes.post('/users', Users.login);
 
 routes.use(middleware);
@@ -44,7 +45,7 @@ routes.get('/state', States.index);
 routes.delete('/state/:stateId', States.delete);
 
 routes.get('/posts', LostedPost.index);
-routes.get('/post/filterby/', filters.filterByGenre , filters.filterByFeatures , filters.filterByAge , filters.filterByProblems );
+routes.get('/post/filterby/', filters.filterByGenre , filters.filterByFeatures , filters.filterByAge , filters.filterByDate , filters.filterByHour , filters.filterByLocale , filters.filterByProblems );
 routes.get('/posts/:PostId', LostedPost.show);
 routes.post('/posts', Multer.single("photo"), imageUpload , LostedPost.store);
 routes.delete('/posts/:idPost', LostedPost.delete);
@@ -54,6 +55,10 @@ routes.get('/posts/:idPost/comments',Comment.index);
 routes.post('/posts/:idPost/comments', Comment.store);
 routes.put('/posts/:idPost/comments/:idComment',Comment.update);
 routes.delete('/posts/:idPost/comments/:idComment',Comment.delete);
+
+routes.post('/genre', Genre.store);
+routes.get('/genre', Genre.index);
+routes.delete('/genre', Genre.delete);
 
 routes.post('/feature', Features.store);
 routes.get('/feature', Features.index);
@@ -70,7 +75,5 @@ routes.put('/healthProblems', HealthProblems.update);
 
 routes.get('/healthProblems/post/:PostId', HealthProblemsOfPost.index);
 routes.post('/healthProblems/post/:PostId', HealthProblemsOfPost.store);
-
-routes.get('/post/filterby/', filters.filterByGenre , filters.filterByFeatures , filters.filterByProblems );
 
 module.exports = routes;

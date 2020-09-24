@@ -8,7 +8,7 @@ module.exports = {
 
         const alreadyExists = await Genre.findOne({where:{genre}});
         
-        const wasCreated = alreadyExists ? await Genre.create({genre}) : {"error":"already exists an genre with this name in the database"};
+        const wasCreated = alreadyExists ? {"error":"already exists an genre with this name in the database"} : await Genre.create({genre});
         
         return wasCreated ? res.status(200).send(wasCreated) : res.status(401).send({"error":"sequelize dosent create"})
     },
