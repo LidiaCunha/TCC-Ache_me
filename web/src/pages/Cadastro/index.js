@@ -75,7 +75,7 @@ const Cadastro = () => {
 
                       <ContainerInput>
                           <label>Cep</label>
-                          <Field name="cep" type="text" placeholder="insira seu cep" onKeyDown={(ev) => console.log(ev)} />
+                          <Field name="cep" type="text" placeholder="Insira seu cep" onKeyDown={(ev) => console.log(ev)} />
                                     
                           <label>Bairro</label>
                           <Field name="bairro" type="text" placeholder="insira seu bairro"/>
