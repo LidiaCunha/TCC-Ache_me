@@ -303,7 +303,7 @@ const FormLogin = (props) => {
 
                 <LoginConfigInput>
                     <input type="text" id="mail" value={userLogin.mail} onChange={handlerInput} placeholder="E-mail ou telefone" required/>
-                    <input type="password" id="password" value={userLogin.password} onChange={handlerInput} placeholder="senha" required />
+                    <input type="password" id="password" value={userLogin.password} onChange={handlerInput} placeholder="Senha" required />
                     <input type="submit" value="Entrar"/>
                 </LoginConfigInput>
                 
