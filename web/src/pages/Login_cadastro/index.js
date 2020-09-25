@@ -127,7 +127,7 @@ const FormRegister = (props) => {
               <img src={logo} alt="logo"/>
               
               <CadastroContainerText>
-                <h1>Seja um membro Achem.me e faça <br/> parte de reencontros.</h1>
+                <h1>Seja um membro Ache.me e faça <br/> parte de reencontros.</h1>
               </CadastroContainerText>
           </CadastroContainerMenu>
 
@@ -140,8 +140,8 @@ const FormRegister = (props) => {
                   <label>CPF</label>
                   <input type="text" id="CPF" value={userRegister.CPF} onChange={handlerInput} placeholder="Insira seu CPF" required />
                               
-                  <label>Alguem te indicou o Ache.me?</label>
-                  <input type="text" placeholder="insira o úsuario"/>
+                  <label>Alguém te indicou o Ache.me?</label>
+                  <input type="text" placeholder="Insira o úsuario"/>
               </ContainerInput>
 
               <ContainerInputSpace>
@@ -263,7 +263,7 @@ const FormLogin = (props) => {
 
                 <LoginConfigInput>
                     <input type="text" id="mail" value={userLogin.mail} onChange={handlerInput} placeholder="E-mail ou telefone" required/>
-                    <input type="password" id="password" value={userLogin.password} onChange={handlerInput} placeholder="senha" required />
+                    <input type="password" id="password" value={userLogin.password} onChange={handlerInput} placeholder="Senha" required />
                     <input type="submit" value="Entrar"/>
                 </LoginConfigInput>
                 

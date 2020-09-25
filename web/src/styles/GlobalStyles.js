@@ -17,7 +17,7 @@ export const GlobalStyles = createGlobalStyle`
         align-items: center;
         
 
-        @media (min-width: 1050px){
+        @media (min-width: 781px){
             height: 100vh;
         }
     }
