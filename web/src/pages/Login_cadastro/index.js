@@ -4,7 +4,7 @@ import backgroundLogin from "../../assets/imagemLogin.jpg";
 import backgroundRegister from "../../assets/imagemCadastro.jpg";
 import camera from "../../assets/camera.png";
 import logo from "../../assets/logo.png";
-
+import CheckEmail from "../../components/Card_email";
 import { 
     Container,
     ContainerInfo,
@@ -32,10 +32,17 @@ import React, { useState, useRef } from "react";
 import { api } from '../../services/api';
 import { signIn } from '../../services/security';
 
+// const EmailChecked = ({setShowCheckEmail}) => {
+//     return <CheckEmail />;
+// }
+
 const FormRegister = (props) => {
     
-    const history = useHistory();
+    // const history = useHistory();
 
+    const [ShowCheckEmail, setShowCheckEmail] = useState(false);
+
+    
     const [userRegister, setUserRegister] = useState({
         name: "",
         mail: "",
@@ -86,7 +93,11 @@ const FormRegister = (props) => {
 
                 signIn(retorno.data);
 
-                return history.push("/home");
+                return setShowCheckEmail(true)
+
+
+
+                // return history.push("/home");
             };
 
         } catch (erro) {
@@ -118,8 +129,37 @@ const FormRegister = (props) => {
         setImage(e.target.files[0]);
     };
 
+    const findAddress = async( e ) =>{
+        let cep = e.target.value;
+
+        const setForm = (data) =>{
+            setUserRegister({...userRegister, 
+                'street': data.logradouro,
+                'bairro' : data.bairro,
+                'city' : data.cidade,
+                'state': data.estado_info.nome,
+            });
+        }
+
+        const url = `https://api.postmon.com.br/v1/cep/${cep}`;
+        const endereco = await fetch(url).then(res => res.json());
+        console.log(endereco)
+        setForm(endereco)
+    }
+    const mask = ( e ) => {
+        let cep = e.target.value;
+
+        cep = cep.replace(/[^0-9]/g,'')
+                 .replace(/(.{5})(.{3})/,'$1-$2')
+                 .replace(/(.{9})(.*)/,'$1');
+        
+        setUserRegister({...userRegister, [e.target.id]: cep});
+        
+    }
+
     return(
         <Container onSubmit={register}>
+        {ShowCheckEmail && <CheckEmail setShowCheckEmail={setShowCheckEmail} props={props}/>}
         <img src={backgroundRegister} alt="área de cadastro"/>
 
         <ContainerInfo >
@@ -158,9 +198,9 @@ const FormRegister = (props) => {
               </ContainerInputSpace>
               
                   <ContainerInput>
-                      <label>CEP</label>
-                      <input type="text" id="cep" value={userRegister.cep} onChange={handlerInput} placeholder="Insira seu CEP" required />
-                                
+                      <label>Cep</label>
+                      <input type="text" id="cep" value={userRegister.cep} onChange={handlerInput} onBlur={(e) => findAddress(e)} onKeyUp={( e ) => { mask( e ) }} placeholder="Insira seu CEP" required />
+
                       <label>Bairro</label>
                       <input type="text" id="bairro" value={userRegister.bairro} onChange={handlerInput} placeholder="Insira seu bairro" required />
                                 
@@ -253,7 +293,7 @@ const FormLogin = (props) => {
                 </LoginContainerMenu>
 
                 <LoginContainerText>
-                    <h1>Bem-Vindo! Que bom que você está <br/> aqui, sua ajuda é muito importante.</h1>
+                    <h1>Bem-vindo! Que bom que você está <br/> aqui, sua ajuda é muito importante.</h1>
                 </LoginContainerText>
 
                 <ContainerTextMenor>
@@ -275,7 +315,7 @@ const FormLogin = (props) => {
 const Login = () => {
     
     const [showForm, setShowForm] = useState("login");
-    
+
     return (
         <>
             <Container>

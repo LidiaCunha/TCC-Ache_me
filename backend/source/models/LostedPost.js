@@ -17,8 +17,9 @@ class LostedPost extends Model {
         this.hasMany( MODELS.Comment, {foreignKey:"id_losted"});
         this.belongsTo( MODELS.Genre, {foreignKey:"genre_id"});
 
+        this.belongsToMany( MODELS.LostedSeen , {through:"losted_that_was_seen"});
         this.belongsToMany( MODELS.Features, {through: "FeaturesOfPost"});
-        this.belongsToMany( MODELS.HealthProblems, {through: "HealthProblemsOfPost"})
+        this.belongsToMany( MODELS.HealthProblems, {through: "HealthProblemsOfPost"});
     }
 }
 

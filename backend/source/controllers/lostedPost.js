@@ -113,79 +113,6 @@ module.exports = {
         return res.status(200).send(completePost);
         
     },
-    filterByGenre : async( req , res , next) => {
-        const { G } = req.query;
-
-        const genreBD = G && await Genre.findOne({where:{genre:G}});
-        
-        if ( !genreBD )  return next();
-        
-        const PostsWithGenreFiltred = await LostedPost.findAll({where:{genre_id:genreBD.dataValues.id}});
-
-        if ( !PostsWithGenreFiltred ) return next();
-        
-        req.body.filtredPosts = PostsWithGenreFiltred;
-
-        return next();
-    },
-    filterByFeatures : async( req , res , next) => {
-        const { F } = req.query;
-        
-        if(!F) return next();
-
-        var AllPostsWithFeatures = [];
-
-        for ( f of F ) {
-            const feature = f && await Features.findOne({where:{feature:f}});
-        
-            const featuresOnPost = feature && await FeatureOfPost.findAll({where:{feature_id:feature.dataValues.id}});
-
-            for ( featureOnPost of featuresOnPost ) {
-                if( req.body.filtredPosts ){
-                    for( post of req.body.filtredPosts ){
-                        if( post.dataValues.id == featureOnPost.dataValues.losted_id ){
-                            AllPostsWithFeatures[AllPostsWithFeatures.length]=post.dataValues;
-                        }
-                    }
-                }else{
-                    AllPostsWithFeatures[AllPostsWithFeatures.length]=await LostedPost.findByPk(featureOnPost.dataValues.losted_id);
-                }
-            }
-        }
-            
-        req.body.filtredPosts = AllPostsWithFeatures;
-
-        return next();
-    },
-    filterByProblems : async( req , res , next ) => {
-        const { H } = req.query;
-
-        if(!H) return next();
-
-        var AllPostsWithFeatures = [];
-
-        for ( h of H ) {
-
-            const problem = h && await  HealthProblems.findOne({where:{problem:h}});
-
-            const problemsOnPost = problem && await HealthProblemsOfPost.findAll({where:{LostedPostId:problem.dataValues.id}});
-
-            for ( problemOnPost of problemsOnPost ) {
-                if( req.body.filtredPosts ){
-                    for( post of req.body.filtredPosts ){
-                        if( post.dataValues.id == problemOnPost.dataValues.losted_id ){
-                            AllPostsWithFeatures[AllPostsWithFeatures.length]=post.dataValues;
-                        }
-                    }
-                }else{
-                    AllPostsWithFeatures[AllPostsWithFeatures.length]=await LostedPost.findByPk(featureOnPost.dataValues.losted_id);
-                }
-            }
-        }
-            
-        req.body.filtredPosts = AllPostsWithFeatures;
-        return res.send(req.body.filtredPosts)
-    },
     store  : async( req, res) => {
         const  id_user  = req.userId;
 
@@ -203,8 +130,7 @@ module.exports = {
         if ( gengeAlreadyExists ){
             genre_id = gengeAlreadyExists.dataValues.id;
         }else{
-            const genreCreated = await Genre.create({genre:name_of_genre});
-            genre_id = genreCreated.dataValues.id;
+            return res.status(401).send({"error":"this genre need to be added to database, please write a mail to acheme@gmail.com and we will add it to the database"});
         }
             
         const LostedExists = await LostedPost.findOne({where: {[Op.and]: {name:name, borned_at:moment(borned_at,'ddd, D MMM YYYY H:mm:ss Z').format()}}})
@@ -219,7 +145,7 @@ module.exports = {
             return res.status(401).send({"error":"sequelize died"})
         }
         
-        return res.status(201).send({...Post.dataValues, features: featuresCreateds });   
+        return res.status(201).send({...Post.dataValues});   
     },
     update : async( req, res) => {
         const { idPost } = req.params;
@@ -242,8 +168,7 @@ module.exports = {
         if ( gengeAlreadyExists ){
             genre_id = gengeAlreadyExists.dataValues.id;
         }else{
-            const genreCreated = await Genre.create({genre:name_of_genre});
-            genre_id = genreCreated.dataValues.id;
+            return res.status(401).send({"error":"this genre need to be added to database, please write a mail to acheme@gmail.com and we will add it to the database"});
         }
     
         const wasUpdated = LostedPost.update({name,description,borned_at: moment(borned_at,'ddd, D MMM YYYY H:mm:ss Z').format(),photo:firebaseUrl, genre_id}, { where: { id : idPost } } );        
@@ -273,4 +198,4 @@ module.exports = {
 
         return res.status(201).send({"sucess":true});
     },
-};
+};  

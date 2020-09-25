@@ -21,6 +21,8 @@ class Users extends Model {
 	static associete( MODELS ){
 		this.belongsTo( MODELS.WhereLive , {foreignKey:"where_live_id"} );
 		this.hasMany( MODELS.LostedPost , {foreignKey:"id_user"});
+
+		this.belongsToMany( MODELS.WhoSaw , {through:"who_saw"} );
     }
 }
 module.exports = Users; 
