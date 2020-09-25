@@ -71,7 +71,7 @@ module.exports = {
 
         
         // return res.status(401).send({"unauthorized":"verify your data or create a new account if you never had accessed"});
-        return res.status(401).send({erro:"verify your data or create a new account if you never had accessed"});
+        return res.status(401).send({erro:"Usuario e/ou senha incorretos"});
     },
 /* INSERT */
     store  : async( req , res ) => {
@@ -81,7 +81,7 @@ module.exports = {
         const ExistUser = await Users.findOne({ where: { [Op.or] : [ {telephone:telephone} , {mail:mail} , {cpf:CPF} ] } });
 
         if(ExistUser)
-            return res.status(401).send({erro:"this user already exists"});
+            return res.status(401).send({erro:"Usuário já existente"});
         
         let CityR = await City.findOne({ where: { name_of_city:city } });
         if (! CityR)
@@ -181,7 +181,7 @@ module.exports = {
         const ExistUser = await Users.findOne({ where: { [Op.or] : [{name:name} , {cpf:CPF} , {mail:mail} ] } });
 
         if(ExistUser && await crypt.compare(password, ExistUser.password ) )
-            return res.status(401).send({"error":"this account already exists"});
+            return res.status(401).send({"error":"Está conta já existe"});
         
         const whereMaybeLived = await WhereLive.findByPk(user.dataValues.where_live_id);
         const cityToCompare = await City.findByPk(whereMaybeLived.dataValues.city_id);
@@ -215,9 +215,9 @@ module.exports = {
         const userUpdated = await Users.update({name , mail , cpf:CPF , telephone , password:cryptPassword , photo:firebaseUrl, merit , indication , updatedAt:null }, { where: { id: userId } });
         
         if( !userUpdated )
-            return res.status(401).send({"error":"something is wrong with your user id"});
+            return res.status(401).send({"error":"Algo errado com sua conta"});
         
-        return res.status(201).send({"sucess":"the user was updated sucefuly!"});
+        return res.status(201).send({"sucess":"Usuário foi atualizado com sucesso!"});
     },
     updateFieldOfUsers: async( req , res ) => {
         const {userId} = req.params;
@@ -239,7 +239,7 @@ module.exports = {
             
         }
         
-        return res.status(422).send({"error": "this user does not exists or the data is equal the lasted"});
+        return res.status(422).send({"error": "Este usuário não existe ou não houve alteração"});
         
     },
     updateFieldFromWhereUserLive: async( req, res) => {
@@ -264,7 +264,7 @@ module.exports = {
             
         }
         
-        return res.status(422).send({"error": "this user does not exists or the data is equal the lasted"});
+        return res.status(422).send({"error": "Este usuário não existe ou não houve alteração"});
     
     },
 /* DELETE */
@@ -275,7 +275,7 @@ module.exports = {
         const userDeleted = await Users.destroy({where:{[Op.and]:{id:userId,where_live_id:thisUser.dataValues.where_live_id}}})
         
         if(!userDeleted){
-            return res.status(401).send({"error":"something is wrong!"})
+            return res.status(401).send({"error":"Algo está errado!"})
         }
         return res.sendStatus(201);
     },

@@ -7,11 +7,11 @@ module.exports = {
         const alreadyExists = await States.findOne({ where: {name_of_state}});
         
         if ( alreadyExists ) 
-            return res.status(400).send({"error":"this state already exists"})
+            return res.status(400).send({"error":"Estado já existente"})
         
         const stateCreated = await City.create({name_of_state});
 
-        return stateCreated ?  res.status(201).send(stateCreated) : res.status(404).send({"error":"some error to create"})
+        return stateCreated ?  res.status(201).send(stateCreated) : res.status(404).send({"error":"Algum erro ao cadastrar"})
     },
     index: async( res ) => {
         const states = await States.findAll();
@@ -24,7 +24,7 @@ module.exports = {
         const stateDeleted = await States.destroy({where:{id:stateId}})
         
         if(!stateDeleted){
-            return res.status(401).send({"error":"something is wrong!"})
+            return res.status(401).send({"error":"Algo deu errado!!"})
         }
         return res.sendStatus(201);
     }

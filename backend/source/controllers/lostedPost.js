@@ -121,7 +121,7 @@ module.exports = {
         const { firebaseUrl } = req.file ? req.file : "";
 
         if ( !(name && description && borned_at && firebaseUrl) ) {
-            return res.status(401).send({"error":"you need to pass all arguments"})
+            return res.status(401).send({"error":"Você precisa preencher todos os campos"})
         }
     
         const gengeAlreadyExists = await Genre.findOne({where:{genre:name_of_genre}});
@@ -130,19 +130,19 @@ module.exports = {
         if ( gengeAlreadyExists ){
             genre_id = gengeAlreadyExists.dataValues.id;
         }else{
-            return res.status(401).send({"error":"this genre need to be added to database, please write a mail to acheme@gmail.com and we will add it to the database"});
+            return res.status(401).send({"error":"Este gênero precisa ser adicionado ao banco de dados, por favor escreva um e-mail para acheme@gmail.com e nós o adicionaremos ao banco de dados"});
         }
             
         const LostedExists = await LostedPost.findOne({where: {[Op.and]: {name:name, borned_at:moment(borned_at,'ddd, D MMM YYYY H:mm:ss Z').format()}}})
 
         if ( LostedExists ){
-            return res.status(400).send({"error":"i need to implement an artificial inteligence here to analise the pictures and se if there as the same people"})
+            return res.status(400).send({"error":"Futuramente será adicionado uma inteligência artificial para a análise das fotos"})
         }
 
         const Post = await LostedPost.create({name,description,borned_at: moment(borned_at,'ddd, D MMM YYYY H:mm:ss Z').format(),photo:firebaseUrl,id_user, genre_id});
     
         if ( !Post ){
-            return res.status(401).send({"error":"sequelize died"})
+            return res.status(401).send({"error":"Erro no sequelize"})
         }
         
         return res.status(201).send({...Post.dataValues});   
@@ -159,7 +159,7 @@ module.exports = {
         const postExists = await LostedPost.findByPk(idPost);
 
         if ( !postExists && postExists.dataValues.id_user != id_user ) {
-            return res.status(403).send({"error":"post doesn't exists or don't pertences to user"});
+            return res.status(403).send({"error":"A postagem não existe ou não pertence ao usuário"});
         }
 
         const gengeAlreadyExists = await Genre.findOne({genre:name_of_genre});
@@ -168,7 +168,7 @@ module.exports = {
         if ( gengeAlreadyExists ){
             genre_id = gengeAlreadyExists.dataValues.id;
         }else{
-            return res.status(401).send({"error":"this genre need to be added to database, please write a mail to acheme@gmail.com and we will add it to the database"});
+            return res.status(401).send({"error":"Este gênero precisa ser adicionado ao banco de dados, por favor escreva um e-mail para acheme@gmail.com e nós o adicionaremos ao banco de dados"});
         }
     
         const wasUpdated = LostedPost.update({name,description,borned_at: moment(borned_at,'ddd, D MMM YYYY H:mm:ss Z').format(),photo:firebaseUrl, genre_id}, { where: { id : idPost } } );        
@@ -187,7 +187,7 @@ module.exports = {
         const postExists = await LostedPost.findByPk(idPost);
 
         if ( !postExists && postExists.dataValues.id_user != id_user ) {
-            return res.status(403).send({"error":"post doesn't exists or don't pertences to user"});
+            return res.status(403).send({"error":"A postagem não existe ou não pertence ao usuário"});
         }
 
         const wasDeleted = await LostedPost.destroy({where: {id:idPost}});

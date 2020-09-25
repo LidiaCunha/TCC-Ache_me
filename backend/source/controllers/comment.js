@@ -20,7 +20,7 @@ module.exports = {
             return res.status(201).send(commentCreated);
         }
 
-        return res.status(404).send({"error":"a fucking error"});
+        return res.status(404).send({"error":"Algo deu errado!!"});
     },
     update : async( req , res ) => {
         const { idPost, idComment } = req.params;
@@ -32,12 +32,12 @@ module.exports = {
         const commentExists = await Comment.findByPk(idComment);
 
         if ( !commentExists && commentExists.dataValues.id_user != id_user )
-            return res.status(404).send({"error":"you cannot alter this comment"});    
+            return res.status(404).send({"error":"Você não pode alterar este comentário"});    
         
         const commentUpdated = await Comment.update({comment},{where: {id:idComment}});
 
         if ( !commentUpdated )
-            return res.status(401).send({"error":"comment was not updated"});
+            return res.status(401).send({"error":"Comentário não foi atualizado"});
         
         return res.status(201).send({"sucess":true});
     },
@@ -47,7 +47,7 @@ module.exports = {
             const deletedComment = await Comment.destroy({where:{id:idComment}});
 
             if ( !deletedComment ){
-                return res.status(404).send({"error":"NOT FOUND"})
+                return res.status(404).send({"error":"NÃO ENCONTRADO"})
             }
             return res.status(201).send({"sucess":true, ...deletedComment});
     },

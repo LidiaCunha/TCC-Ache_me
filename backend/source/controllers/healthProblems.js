@@ -7,14 +7,14 @@ module.exports = {
         const alreadyExists = await HealthProblems.findOne({where:{problem}});
 
         if ( alreadyExists )
-            return res.status(302).send({"error":"this health problem already exists"});
+            return res.status(302).send({"error":"Problema de saúde já existente"});
         
         const wasCreated = await HealthProblems.create({problem});
     
         if ( wasCreated ) 
             return res.status(201).send(wasCreated);
         
-        return res.status(500).send({"error":"can't create health problem"});
+        return res.status(500).send({"error":"Não pode criar problema de saúde"});
     },
     index  : async( req , res ) => {
         const allHealthProblems = await HealthProblems.findAll();
@@ -26,7 +26,7 @@ module.exports = {
 
         const wasDeleted = await HealthProblems.destroy({where: {HealthProblemId}});
     
-        return wasDeleted ? res.status(200).send({"sucess":"deleted"}) : res.status(404).send({"error":"Not deleted"});
+        return wasDeleted ? res.status(200).send({"sucess":"Deletado"}) : res.status(404).send({"error":"Não foi deletado"});
     },
     update : async( req , res ) => {
         const { HealthProblemId } = req.params;
@@ -34,6 +34,6 @@ module.exports = {
 
         const wasUpdated = await HealthProblems.destroy({problem},{where: {HealthProblemId}});
     
-        return wasUpdated ? res.status(200).send({"sucess":"updated"}) : res.status(404).send({"error":"Not updated"});
+        return wasUpdated ? res.status(200).send({"sucess":"Atualizado com sucesso!!"}) : res.status(404).send({"error":"Não foi atualizado."});
     },
 };

@@ -9,7 +9,7 @@ module.exports = {
         if (wasCreated){
             return res.status(201).send(wasCreated);
         }
-        return res.status(501).send({"error":"error"})
+        return res.status(501).send({"error":"Erro!"})
     },
     index: async( req , res ) => {
         const features = await Features.findAll();
@@ -19,13 +19,13 @@ module.exports = {
     update: async( req , res ) => {
         const wasUpdated = await Features.update({feature:req.body.feature},{where:{id:req.params.FeatureId}});
         if (wasUpdated)
-            return res.status(200).send({"success":"updated"});
-        return res.status(500).send({"error":"unupdated"});
+            return res.status(200).send({"success":"Atualizado com sucesso!!"});
+        return res.status(500).send({"error":"Não atualizado"});
     },
     delete: async( req , res ) => {
         const wasDeleted = await Features.destroy({where: {id:req.params.FeatureId}});
         if(wasDeleted)
-            return res.status(200).send({"sucess":"deleted"});
-        return res.status(500).send({"error":"undeleted"});
+            return res.status(200).send({"sucess":"Deletado"});
+        return res.status(500).send({"error":"Não foi deletado"});
     },
 };

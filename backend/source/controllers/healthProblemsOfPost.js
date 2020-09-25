@@ -18,12 +18,12 @@ module.exports = {
         const alreadyExistsInPost = await HealthProblemsOfPost.findOne({ where: { [Op.and] : [  {HealthProblemId:toTakeId.dataValues.id },{LostedPostId:PostId} ] } });
 
         if ( alreadyExistsInPost ) 
-            return res.status(300).send({"error":"this health problem already exists in post"})
+            return res.status(300).send({"error":"Este problema de saúde já existe na postagem"})
         
 
         const wasCreated = await HealthProblemsOfPost.create( { HealthProblemId : toTakeId.dataValues.id , LostedPostId: PostId } );
         
-        return wasCreated ? res.status(201).send({wasCreated,problem:toTakeId.dataValues.problem}) : res.status(500).send({"error":"error in the create process"});
+        return wasCreated ? res.status(201).send({wasCreated,problem:toTakeId.dataValues.problem}) : res.status(500).send({"error":"Erro no processo de criação"});
     },
     index  : async( req , res ) => {
         const { PostId } = req.params;
@@ -37,7 +37,7 @@ module.exports = {
             Problems[Problems.length]={userCreatorId:req.userId,PostId:PostId,problem:Problem.dataValues.problem,problemId:idProblem.dataValues.id}
         }
         
-        return Problems ? res.status(200).send(Problems) : res.status(500).send({"":"any post found to this post"})
+        return Problems ? res.status(200).send(Problems) : res.status(500).send({"error":"qualquer postagem encontrada nesta postagem"})
     },
     
 };
