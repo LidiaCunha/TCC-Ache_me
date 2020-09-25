@@ -3,16 +3,14 @@ import styled from "styled-components";
 /* OFICIAL DESIGN*/
 
 export const Container = styled.div`
-    width: 100vw;
-    max-width: 1400px;
-    height: 100vh;
-    max-height: 750px;
+    
+    width: 90vw;
+    height: 90vh;
     border-radius: 15px;
     background: rgba(0,0,0,0.4);
     overflow: hidden;
     position: relative;
     
-
     > img{
       height: 100%;
       width: 100%;
@@ -23,8 +21,7 @@ export const Container = styled.div`
       border-radius: 0px;
 
       > img{
-        height: 100%;
-        width: auto;
+        width: 100%;
       }
     }
 `;
@@ -35,14 +32,16 @@ export const ContainerInfo = styled.form`
     background: rgba(0,0,0,.4);
     position: absolute;
     top: 0px;
+    
 
     @media (max-width: 780px){
       overflow-y: auto;
+
     }
 `;
 
 export const LoginContainerMenu = styled.div`
-    height: 120px;
+    height: auto;
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -50,10 +49,20 @@ export const LoginContainerMenu = styled.div`
     align-items: center;
 
     > img{
-      height: 80px;
-      width: 80px;
-      margin-left: 90px;
-      margin-top: 30px;
+      height: 10vh;
+      width: 10vh;
+      margin-left: 5vw;
+      margin-top: 5vh;
+    }
+
+    @media (max-width: 780px){
+    
+      >img {
+        height: 7vh;
+        width: 7vh;
+        margin-left: 3vw;
+        margin-top: 3vh;
+      }
     }
 `;
 
@@ -71,7 +80,7 @@ export const ContainerItensMenu = styled.nav`
 
         > li{
           margin-right: 40px;
-          font-size: 1.2em;
+          font-size: 1.2vw;
           color: #fff;
           font-weight: bold;
           font-family: arial;
@@ -79,33 +88,51 @@ export const ContainerItensMenu = styled.nav`
         }
       }
 
+      @media (max-width: 780px){
+    
+       > ul{
+         > li{
+          font-size: 2.4vw;
+          margin-right: 20px;
+         }
+       }
+      }
       
 `;
-
-
 
 export const LoginContainerText = styled.div`
       height: auto;
       width: auto;
-      font-size: 1.3em;
+      font-size: 1.3vw;
       font-weight: bold;
       font-family: arial;
       color: #fff;
-      padding-left: 90px;
-      padding-top: 100px;
+      padding-left: 5vw;
+      padding-top: 10vh;
       box-sizing: border-box;
+
+      @media (max-width: 780px){
+        padding-top: 5vh;
+        font-size: 2vw;
+      }
 `;
 
 export const ContainerTextMenor = styled.div`
       height: auto;
       width: auto;
-      font-size: 1em;
+      font-size: 1vw;
       font-family: arial;
       color: rgba(255,255,255,.6);
       margin-bottom: 80px;
-      padding-left: 90px;
-      padding-top: 20px;
+      padding-left: 5vw;
+      padding-top: 3vh;
       box-sizing: border-box;
+
+      @media (max-width: 780px){
+        padding-top: 2vh;
+        font-size: 1.5vw;
+        margin-bottom: 50px;
+      }
 `;
 
 export const LoginConfigInput = styled.div`
@@ -114,17 +141,17 @@ export const LoginConfigInput = styled.div`
       display: flex;
       align-content: center;
       align-items: center;
-      padding-left: 90px;
+      padding-left: 5vw;
       box-sizing: border-box;
 
       > input{
-        height: 55px;
-        width: 260px;
+        height: 7vh;
+        width: 17vw;
         border: none;
         border-radius: 10px;
-        padding-left: 20px;
+        padding-left: 2vw;
         box-sizing: border-box;
-        font-size: 1.2em;
+        font-size: 1.2vw;
         margin-right: 40px;
         outline: none;
       }
@@ -141,12 +168,13 @@ export const LoginConfigInput = styled.div`
         width: auto;
         justify-content: center;
         flex-direction: column;
+        padding-left: 10vw;
         
         > input{
-          height: 85px;
-          width: 460px;
+          height: 7vh;
+          width: 70vw;
           margin-bottom: 20px;
-          font-size: 2em;
+          font-size: 3vw;
         }
       }
 `;
@@ -156,15 +184,27 @@ export const LoginConfigInput = styled.div`
 export const CadastroContainerMenu = styled.div`
     height: 120px;
     width: 100%;
-    padding-left: 90px;
-    box-sizing: border-box;
     display: flex;
+    justify-content: space-between;
     align-content: center;
     align-items: center;
 
     > img{
-      height: 70px;
-      width: 70px;
+      height: 10vh;
+      width: 5vw;
+      margin-left: 5vw;
+      margin-top: 7vh;
+    }
+
+    @media (max-width: 780px){
+      height: auto;
+
+      >img {
+        height: 7vh;
+        width: 7vh;
+        margin-left: 3vw;
+        margin-top: 3vh;
+      }
     }
 `;
 
@@ -176,28 +216,38 @@ export const CadastroContainerText = styled.div`
     align-content: center;
     align-items: flex-start;
     flex-direction: column;
-    padding-left: 20px;
-    padding-top: 30px;
+    padding-left: 5vw;
+    padding-top: 7vh;
     box-sizing: border-box;
+
     > h1{
       height: auto;
-    width: auto;
-    font-size: 2.5em;
-    color: #fff;
-    font-family: arial;
-    font-weight: bold;
+      width: auto;
+      font-size: 2.5vw;
+      color: #fff;
+      font-family: arial;
+      font-weight: bold;
+    }
+
+    @media (max-width: 780px){
+      padding-top: 2vh;
+      
+      >h1 {
+        font-size: 3vw;
+      }
     }
 `;
 
 export const CadastroConfigInput = styled.div`
-    height: 500px;
+    height: 60vh;
     width: 100%;
     display: flex;
     justify-content: center;
     align-content: center;
     align-items: center;
-    padding-top: 100px;
+    padding-top: 7vh;
     box-sizing: border-box;
+    
 
     @media (max-width: 780px){
       height: auto;
@@ -208,24 +258,29 @@ export const CadastroConfigInput = styled.div`
 
 export const ContainerInput = styled.div`
     height: 100%;
-    width: 260px;
+    width: 17vw;
+    max-width: 360px;
     float: left;
     padding-right: 30px;
+    display: flex;
+    flex-direction: column;
+    padding-left: 10px;
 
 > label{
-    font-size: 1.2em;
+    font-size: 1.2vw;
     color: #fff;
     font-family: arial;
 }
 
 > input{
-    height: 50px;
+    height: auto;
+    min-height: 50px;
     width: 100%;
     border: none;
     outline: none;
     padding-left: 20px;
     box-sizing: border-box;
-    margin-bottom: 50px;
+    margin-bottom: 7vh;
     border-radius: 10px;
     font-size: 1.2em;
     margin-top: 20px;
@@ -233,44 +288,50 @@ export const ContainerInput = styled.div`
 
 @media (max-width: 780px){
   height: auto;
-  width: 460px;
-
+  width: auto;
+  justify-content: center;
+  flex-direction: column;
+  padding-left: 10vw;
+  
   > label{
-    font-size: 2em;
-  }
+    font-size: 3vw;
+
 
   > input{
-    height: 80px;
-    font-size: 2em;
+    height: 7vh;
+    width: 70vw;
+    margin-bottom: 20px;
+    font-size: 3vw;
   }
 }
 `;
 
 export const ContainerInputSpace = styled.div`
-height: 100%;
+    height: 100%;
     width: 260px;
     float: left;
     padding-right: 30px;
-    margin-right: 80px;
+    margin-right: 8vw;
 
     @media (max-width: 780px){
-      margin-left: -120px;
+      width: 90vw;
+      margin-left: 60px;
     }
 `;
 
 export const Footer = styled.div`
-    height: 140px;
+    height: 10vh;
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-content: center;
     align-items: center;
-    padding-left: 100px;
-    padding-right: 100px;
+    padding-left: 10vw;
+    padding-right: 10vw;
     box-sizing: border-box;
 
     > input{
-      height: 65px;
+      height: 10vh;
       width: 360px;
       border-radius: 10px;
       background: #E64F4A;
@@ -278,6 +339,10 @@ export const Footer = styled.div`
       font-size: 1.3em;
       color: #fff;
       border: none;
+    }
+
+    @media (max-width: 780px){
+      flex-direction: column;
     }
 `;
   
@@ -290,8 +355,8 @@ export const ContainerBtn = styled.div`
     align-items: center;
 
     > input{
-      height: 55px;
-      width: 250px;
+      height: 6vh;
+      width: 15vw;
       border-radius: 10px;
       background: #E64F4A;
       cursor: pointer;
@@ -314,6 +379,8 @@ export const ContainerBtn = styled.div`
       flex-direction: column;
 
       > input{
+        height: 7vh;
+        width: 70vw;
         margin-bottom: 10px; 
       }
 
@@ -330,22 +397,25 @@ export const ContainerFoto = styled.div`
     justify-content: center;
     align-content: center;
     align-items: center;
+    
 
     > label{
-        height: 90px;
-        width: 90px;
+        height: 9vh;
+        width: 9vh;
         background: #E64F4A;
         border-radius: 50%;
         margin-right: 10px;
-        /* padding: 10px; */
-        box-sizing: border-box;
         overflow: hidden;
         cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        align-items: center;
     
     >.photo{
         height: 70%;
         width: 70%;
-        margin: 13px;
+        
     }
     }
 
@@ -356,8 +426,8 @@ export const ContainerFoto = styled.div`
     }
 
     > input{
-      height: 55px;
-      width: 250px;
+      height: 9vh;
+      width: 15vw;
       border-radius: 10px;
       background: #E64F4A;
       cursor: pointer;
@@ -367,5 +437,9 @@ export const ContainerFoto = styled.div`
       outline: none;
       margin-left: 10px;
       margin-right: 10px;
+    }
+
+    @media (max-width: 780px){
+      margin-bottom: 20px;
     }
 `;
