@@ -146,7 +146,7 @@ const FormRegister = (props) => {
         console.log(endereco)
         setForm(endereco)
     }
-    const mask = ( e ) => {
+    const maskCep = ( e ) => {
         let cep = e.target.value;
 
         cep = cep.replace(/[^0-9]/g,'')
@@ -154,8 +154,27 @@ const FormRegister = (props) => {
                  .replace(/(.{9})(.*)/,'$1');
         
         setUserRegister({...userRegister, [e.target.id]: cep});
-        
-    }
+    };
+
+    const maskCpf = ( e ) => {
+        let cpf = e.target.value;
+
+        cpf = cpf.replace(/\D/g, '').replace(/(\d{3})(\d)/, '$1.$2').replace(/(\d{3})(\d)/, '$1.$2').replace(/(\d{3})(\d{1,2})/, '$1-$2').replace(/(-\d{2})\d+?$/, '$1');
+
+        setUserRegister({...userRegister, [e.target.id]: cpf});
+    };
+
+    const maskTelephone = ( e ) => {
+        let telephone = e.target.value;
+
+        telephone = telephone.replace (/[^0-9]/g, '')
+        // ORGANIZA DA FORMA (11) 91111-1111
+        .replace(/(.{2})(.{5})(.{4})/, '($1) $2 - $3')
+        // APAGA TUDO QUE TENHA MAIS DE 17 CARACTERES
+        .replace(/(.{17})(.*)/, '$1' );
+
+        setUserRegister({...userRegister, [e.target.id]: telephone});
+    };
 
     return(
         <Container onSubmit={register}>
@@ -178,7 +197,7 @@ const FormRegister = (props) => {
                   <input type="text" id="name" value={userRegister.name} onChange={handlerInput} placeholder="Insira seu nome" required />
                               
                   <label>CPF</label>
-                  <input type="text" id="CPF" value={userRegister.CPF} onChange={handlerInput} placeholder="Insira seu CPF" required />
+                  <input type="text" id="CPF" value={userRegister.CPF} onChange={handlerInput} onKeyUp={( e ) => { maskCpf( e ) }} placeholder="Insira seu CPF" required />
                               
                   <label>Alguém te indicou o Ache.me?</label>
                   <input type="text" placeholder="Insira o úsuario"/>
@@ -190,7 +209,7 @@ const FormRegister = (props) => {
                       <input type="email" id="mail" value={userRegister.mail} onChange={handlerInput} placeholder="Insira seu email" required />
                                   
                       <label>Telefone</label>
-                      <input type="text" id="telephone" value={userRegister.telephone} onChange={handlerInput} placeholder="Insira seu telefone" required />
+                      <input type="text" id="telephone" value={userRegister.telephone} onChange={handlerInput} onKeyUp={( e ) => { maskTelephone( e ) }} placeholder="Insira seu telefone" required />
                                   
                       <label>Senha</label>
                       <input type="password" id="password" value={userRegister.password} onChange={handlerInput} placeholder="Insira sua senha" required />
@@ -199,7 +218,7 @@ const FormRegister = (props) => {
               
                   <ContainerInput>
                       <label>Cep</label>
-                      <input type="text" id="cep" value={userRegister.cep} onChange={handlerInput} onBlur={(e) => findAddress(e)} onKeyUp={( e ) => { mask( e ) }} placeholder="Insira seu CEP" required />
+                      <input type="text" id="cep" value={userRegister.cep} onChange={handlerInput} onBlur={(e) => findAddress(e)} onKeyUp={( e ) => { maskCep( e ) }} placeholder="Insira seu CEP" required />
 
                       <label>Bairro</label>
                       <input type="text" id="bairro" value={userRegister.bairro} onChange={handlerInput} placeholder="Insira seu bairro" required />
