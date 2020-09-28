@@ -10,7 +10,7 @@ export const Container = styled.div`
     background: rgba(0,0,0,0.4);
     overflow: hidden;
     position: relative;
-    
+     
     > img{
       height: 100%;
       width: 100%;
@@ -183,7 +183,7 @@ export const LoginConfigInput = styled.div`
 
 export const CadastroContainerMenu = styled.div`
     height: 120px;
-    width: 100%;
+    width: 100vw;
     display: flex;
     justify-content: space-between;
     align-content: center;
@@ -209,8 +209,8 @@ export const CadastroContainerMenu = styled.div`
 `;
 
 export const CadastroContainerText = styled.div`
-    height: 100%;
-    width: 100%;
+    height: 100vh;
+    width: 100vw;
     display: flex;
     justify-content: center;
     align-content: center;
@@ -240,20 +240,34 @@ export const CadastroContainerText = styled.div`
 
 export const CadastroConfigInput = styled.div`
     height: 60vh;
-    width: 100%;
+    width: 92vw;
     display: flex;
     justify-content: center;
-    align-content: center;
     align-items: center;
     padding-top: 7vh;
     box-sizing: border-box;
-    
 
+   
     @media (max-width: 780px){
       height: auto;
       min-height: 50px;
       flex-direction: column;
     }
+`;
+
+export const ContainerDados = styled.div`
+  height: inherit;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+
+  @media (max-width: 780px){
+      height: auto;
+      width: 100%;
+      min-height: 50px;
+      flex-direction: column;
+  }
+
 `;
 
 export const ContainerInput = styled.div`
@@ -265,6 +279,7 @@ export const ContainerInput = styled.div`
     display: flex;
     flex-direction: column;
     padding-left: 10px;
+       
 
 > label{
     font-size: 1.2vw;
@@ -295,7 +310,7 @@ export const ContainerInput = styled.div`
   
   > label{
     font-size: 3vw;
-
+  } 	
 
   > input{
     height: 7vh;
@@ -304,19 +319,6 @@ export const ContainerInput = styled.div`
     font-size: 3vw;
   }
 }
-`;
-
-export const ContainerInputSpace = styled.div`
-    height: 100%;
-    width: 260px;
-    float: left;
-    padding-right: 30px;
-    margin-right: 8vw;
-
-    @media (max-width: 780px){
-      width: 90vw;
-      margin-left: 60px;
-    }
 `;
 
 export const Footer = styled.div`

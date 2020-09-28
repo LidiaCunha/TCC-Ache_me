@@ -19,9 +19,7 @@ const Card_email = ({setShowCheckEmail, props}) => {
 
                 <ContainerInformacoes>
                     <h1>Obrigado por se cadastrar!</h1>
-                    <h2>Você recebera um pedido de confirmação no</h2>
-                    <h2>seu e-mail para autorizar a navegação na</h2>
-                    <h2>Ache.me, aceite e faça parte de reecontros.</h2>
+                    <h2>Você recebera um pedido de confirmação no seu e-mail para autorizar a navegação na Ache.me, aceite e faça parte de reecontros.</h2>
                 </ContainerInformacoes>
 
                 <BtnOk>
