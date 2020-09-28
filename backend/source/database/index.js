@@ -18,7 +18,7 @@ const HealthProblemsOfPost = require('../models/HealthProblemsOfPost');
 const Address = require('../models/Address');
 const Seen = require('../models/Seen');
 const WhoSaw = require('../models/WhoSaw');
-const LostedSeen = require('../models/LostedSeen');
+//const LostedSeen = require('../models/LostedSeen');
 const Found = require('../models/Found');
 // AQUI DEVESE INICIAR AS MODELS
 
@@ -36,7 +36,7 @@ HealthProblemsOfPost.init(conection);
 Address.init(conection);
 Seen.init(conection);
 WhoSaw.init(conection);
-LostedSeen.init(conection);
+//LostedSeen.init(conection);
 Found.init(conection);
 
 // AQUI DEVESE FAZER AS ASSOCIAÇÕES(RELACIONAMENTO) ENTRE AS MODELS
@@ -55,7 +55,7 @@ HealthProblemsOfPost.associete(conection.models);
 Address.associete(conection.models);
 Seen.associete(conection.models);
 WhoSaw.associete(conection.models);
-LostedPost.associete(conection.models);
+//LostedSeen.associete(conection.models);
 Found.associete(conection.models);
 
 // exportando a conexçao

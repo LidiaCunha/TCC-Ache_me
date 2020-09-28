@@ -90,14 +90,8 @@ const FormRegister = (props) => {
             });
             
             if (retorno.status === 201) {
-
                 signIn(retorno.data);
-
-                return setShowCheckEmail(true)
-
-
-
-                // return history.push("/home");
+                return setShowCheckEmail(true);
             };
 
         } catch (erro) {

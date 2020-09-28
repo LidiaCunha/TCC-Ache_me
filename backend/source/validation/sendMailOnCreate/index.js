@@ -23,8 +23,8 @@ const sendMailOnCreate = async( req ,res ,next ) => {
     
     const hasSended = await sendMail( accDetails.my_acc , accDetails.my_password , mail , subject ,text, htmlContentMail);
 
-    if(hasSended.accepted[0] == mail && teste){
-        return res.status(200).send({"sucess":"mail was sended successfully"});
+    if(hasSended.accepted[0] == mail){
+        return res.status(201).send({"sucess":"mail was sended successfully"});
     }else{
         return res.status(404).send({"error":"this mail is not valid"});
     }
