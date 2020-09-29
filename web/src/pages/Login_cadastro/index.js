@@ -1,5 +1,5 @@
 import {useHistory} from "react-router-dom";
-
+import SpinnerFullScreen from '../../components/Spinner'
 import backgroundLogin from "../../assets/imagemLogin.jpg";
 import backgroundRegister from "../../assets/imagemCadastro.jpg";
 import camera from "../../assets/camera.png";
@@ -32,16 +32,10 @@ import React, { useState, useRef } from "react";
 import { api } from '../../services/api';
 import { signIn } from '../../services/security';
 
-// const EmailChecked = ({setShowCheckEmail}) => {
-//     return <CheckEmail />;
-// }
 
 const FormRegister = (props) => {
     
-    // const history = useHistory();
-
     const [ShowCheckEmail, setShowCheckEmail] = useState(false);
-
     
     const [userRegister, setUserRegister] = useState({
         name: "",
@@ -62,8 +56,10 @@ const FormRegister = (props) => {
 
     const [image, setImage] = useState(null);
 
-    const register = async (e) => {
+    const [loading, setLoading] = useState(false);
 
+    const register = async (e) => {
+        setLoading(true);
         e.preventDefault();
 
         const data = new FormData();
@@ -90,14 +86,9 @@ const FormRegister = (props) => {
             });
             
             if (retorno.status === 201) {
-
                 signIn(retorno.data);
-
-                return setShowCheckEmail(true)
-
-
-
-                // return history.push("/home");
+                setLoading(false);
+                return setShowCheckEmail(true);
             };
 
         } catch (erro) {
@@ -177,8 +168,11 @@ const FormRegister = (props) => {
     };
 
     return(
+        <>
+        {loading &&  <SpinnerFullScreen />}
         <Container onSubmit={register}>
-        {ShowCheckEmail && <CheckEmail setShowCheckEmail={setShowCheckEmail} props={props}/>}
+        {ShowCheckEmail && <CheckEmail setShowCheckEmail={setShowCheckEmail} props={props}/>} 
+        
         <img src={backgroundRegister} alt="área de cadastro"/>
 
         <ContainerInfo >
@@ -260,7 +254,8 @@ const FormRegister = (props) => {
 
         </ContainerInfo>
 
-      </Container>
+        </Container>
+        </>
     );
 };
 

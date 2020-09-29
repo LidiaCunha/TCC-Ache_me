@@ -4,7 +4,12 @@ const HealthProblemsOfPost = require('../../models/HealthProblemsOfPost');
 const Features = require('../../models/Features');
 const FeatureOfPost = require('../../models/FeatureOfPost');
 const LostedPost = require('../../models/LostedPost');
- 
+const Seen = require('../../models/Seen');
+const Address = require('../../models/Address');
+const States = require('../../models/States');
+const City = require('../../models/City');
+
+const { Op } = require('sequelize')
 const moment = require('moment');
 
 module.exports ={
@@ -144,8 +149,60 @@ module.exports ={
         return next();
     },
     filterByLocale   : async ( req , res , next ) => {
-        const { L } = req.query;
+        const { Sa, Str, Br, Cp, Rp, Cm, Stt, Ct } = req.query;
+
+        const addtoFilter = {
+                    "street":Str,
+                    "bairro":Br,
+                    "cep":Cp,
+                    "reference_point":Rp,
+                    "complement":Cm,
+                    "state":{
+                        "name_of_state":Stt
+                    },
+                    "city":{
+                        "name_of_city":Ct
+                    }
+                };
+
+        const addressOfSeens =  await Address.findAll(
+            {
+                where:{
+                    [Op.or]:{
+                    street:addtoFilter["street"],
+                    bairro:addtoFilter["bairro"],
+                    cep:addtoFilter["cep"],
+                    reference_point:addtoFilter["reference_point"],
+                }}
+            }
+        );
+
         
+        
+        const seens = await Seen.findAll();
+        
+        seens.find( 
+            seen => 
+            { 
+                const whenSeen = Sa && filterByWhenWasSeen( seen , Sa) ;
+                
+                if (whenSeen || !Sa){
+                    for(let i = 0; i < addressOfSeens.length; i++){
+                        if ( seen.dataValues.address_id === addressOfSeens[i].dataValues.id){
+                            console.log({...seen.dataValues , address:{...addressOfSeens[i].dataValues}})
+                        }
+                    }
+                }
+
+                function filterByWhenWasSeen ( seen , seen_at_to_filter ) {
+                    return moment(seen.seen_at).locale("America/Sao_Paulo").format('DD/MM/YYYY')  == seen_at_to_filter ? true : false; 
+                }
+            }) 
+
+        // function filterByWhoSaw () {
+
+        // }
+        // //console.log(IdfiltredPosts)
         return next();
     },
     filterByProblems : async ( req , res ) => {

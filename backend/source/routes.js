@@ -11,6 +11,7 @@ const Features = require('./controllers/features');
 const FeaturesOfPost = require('./controllers/featuresPost');
 const HealthProblems = require('./controllers/healthProblems');
 const HealthProblemsOfPost = require('./controllers/healthProblemsOfPost');
+const Seen = require('./controllers/seen');
 
 const filters = require('./services/filters/'); 
 const middleware = require('./middlewares/autorization');
@@ -75,5 +76,8 @@ routes.put('/healthProblems', HealthProblems.update);
 
 routes.get('/healthProblems/post/:PostId', HealthProblemsOfPost.index);
 routes.post('/healthProblems/post/:PostId', HealthProblemsOfPost.store);
+
+routes.post('/seen/:PostId', Seen.store);
+routes.get('/seen', Seen.index);
 
 module.exports = routes;

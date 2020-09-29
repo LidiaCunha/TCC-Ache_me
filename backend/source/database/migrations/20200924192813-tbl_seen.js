@@ -15,6 +15,14 @@ module.exports = {
         onUpdate: "CASCADE",
         onDelete: "CASCADE",
       },
+      losted_id :  { type: Sequelize.INTEGER,allowNull: false,
+        references :{
+          model:"losted_post",
+          key:"id"
+        },
+        OnUpdate: "CASCADE",
+        OnDelete: "CASCADE",
+      },
     });
   },
 
