@@ -1,11 +1,14 @@
 import {Container, ContainerTitulo, Logo, Titulo, Input, Botao, Texto} from './styles';
 import React from 'react';
-import { Button, Text, TextInput } from 'react-native';
 import planoDeFundo from "../../assets/planoDeFundo.jpg";
 import iconeEndereco from "../../assets/iconeEndereco.png";
 import logo from "../../assets/logo.png";
 
-const Login = () => {
+const Login = ({navigation}) => {
+    function navigateToRegister() {
+        navigation.navigate('Cadastro')
+    }
+
     return(
         <Container source={planoDeFundo}>
             <ContainerTitulo>
@@ -16,7 +19,7 @@ const Login = () => {
             <Input placeholder="Senha"></Input>
             <Botao><Texto>Entrar</Texto></Botao> 
             <Texto>OU</Texto>   
-            <Botao><Texto>Cadastrar-se</Texto></Botao>      
+            <Botao tiotle="navigate" onClick={navigateToRegister} ><Texto>Cadastrar-se</Texto></Botao>      
         </Container>
     )
 };
