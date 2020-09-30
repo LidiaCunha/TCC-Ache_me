@@ -1,12 +1,14 @@
 import {Container, ContainerTitulo, Logo, Titulo, Input, Botao, Texto} from './styles';
 import React from 'react';
 import planoDeFundo from "../../assets/planoDeFundo.jpg";
-import iconeEndereco from "../../assets/iconeEndereco.png";
 import logo from "../../assets/logo.png";
+import { login } from '../../services/auth';
 
-const Login = ({navigation}) => {
-    function navigateToRegister() {
-        navigation.navigate('Cadastro')
+const Login = () => {
+    async function handleSignIn() {
+        const response = await login();
+
+        console.log(response);
     }
 
     return(
@@ -17,9 +19,9 @@ const Login = ({navigation}) => {
             </ContainerTitulo>
             <Input placeholder="E-mail ou Telefone"></Input>
             <Input placeholder="Senha"></Input>
-            <Botao><Texto>Entrar</Texto></Botao> 
+            <Botao title="Entrar" onPress={() => {}}/> 
             <Texto>OU</Texto>   
-            <Botao tiotle="navigate" onClick={navigateToRegister} ><Texto>Cadastrar-se</Texto></Botao>      
+            <Botao title="Cadastrar" onPress={() => {}}/> 
         </Container>
     )
 };
