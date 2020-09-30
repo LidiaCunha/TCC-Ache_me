@@ -12,7 +12,7 @@ export const ContainerInfos = styled.View`
 export const ContainerCard = styled.View`
     width: 100%;
     height: 300px;
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: #ffffff;
     border-radius: 20px;
     align-items: center;
     margin-top: -90px;

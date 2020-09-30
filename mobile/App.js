@@ -11,7 +11,6 @@ import CadastroEmail from './src/pages/cadastro_email';
 
 export default function App() {
   return (
-    // <CadastroEmail/>
     <NavigationContainer>
       <StatusBar barStyle="light-content"/>
       <Routes/>
