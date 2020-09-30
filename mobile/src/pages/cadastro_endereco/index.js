@@ -11,7 +11,7 @@ const CadastroEndereco = () => {
             <BotaoVoltar source={setaVoltar}/>
             <ContainerCadastro>
                 <IconeCadastro source={Icone}/>
-                <Input placeholder="Insira seu cep"></Input>
+                <Input placeholder="Insira seu cep" keyboardType="numeric" returnKeyType="next"></Input>
                 <Input placeholder="Insira sua rua"></Input>
                 <Input placeholder="Insira seu bairro"></Input>
                 <Input placeholder="Insira sua cidade"></Input>

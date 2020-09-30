@@ -15,8 +15,8 @@ const Login = ({navigation}) => {
                 <Logo source={logo} ></Logo>
                 <Titulo>Ache.me</Titulo>
             </ContainerTitulo>
-            <Input placeholder="E-mail ou Telefone"></Input>
-            <Input placeholder="Senha"></Input>
+            <Input placeholder="E-mail ou Telefone" keyboardType="email-address"></Input>
+            <Input placeholder="Senha" secureTextEntry={true} autoCorrect={false}></Input>
             <Botao><Texto>Entrar</Texto></Botao> 
             <Texto>OU</Texto>   
             <Botao tiotle="navigate" onClick={navigateToRegister} ><Texto>Cadastrar-se</Texto></Botao>      
