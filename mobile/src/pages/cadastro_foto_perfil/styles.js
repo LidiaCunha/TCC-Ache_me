@@ -43,16 +43,16 @@ export const ContainerFoto = styled.View`
     width: 150px;
     height: 150px;
     border-radius: 75px;
-    background-color: #777777;
+    background-color: #EF5245;
     z-index: 998;
     border: solid 5px #ffffff;
     margin-bottom: 10px;
+    padding: 5px;
 `
 
 export const FotoImagem = styled.Image`
     width: 100%;
     height: 100%;
-    border-radius: 75px;
 `
 
 export const IconeFoto = styled.View`
@@ -88,6 +88,7 @@ export const TextoEmail = styled.Text`
     color: #869189;
     font-size: 18px;
     align-self: center;
+    text-align: center;
 `
 
 export const Botao = styled.TouchableOpacity`

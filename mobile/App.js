@@ -7,9 +7,11 @@ import CadastroFotoPerfil from './src/pages/cadastro_foto_perfil/index';
 import Routes from './src/routes';
 import { StatusBar } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
+import CadastroEmail from './src/pages/cadastro_email';
 
 export default function App() {
   return (
+    // <CadastroEmail/>
     <NavigationContainer>
       <StatusBar barStyle="light-content"/>
       <Routes/>
