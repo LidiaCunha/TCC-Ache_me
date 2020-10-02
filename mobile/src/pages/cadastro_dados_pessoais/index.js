@@ -11,9 +11,9 @@ const CadastroPessoal = () => {
             <ContainerCadastro>
                 <IconeCadastro source={Icone}/>
                 <Input placeholder="Insira seu nome" returnKeyType="next" ></Input>
-                <Input placeholder="Insira seu cpf" keyboardType="numeric" returnKeyType="next"></Input>
+                <Input placeholder="Insira seu cpf" keyboardType="numeric" returnKeyType="next" maxLength={11}></Input>
                 <Input placeholder="Insira seu email" keyboardType="email-address" returnKeyType="next"></Input>
-                <Input placeholder="Insira seu telefone" keyboardType="number-pad" returnKeyType="next"></Input>
+                <Input placeholder="Insira seu telefone" keyboardType="number-pad" returnKeyType="next" maxLength={11}></Input>
                 <Input placeholder="Usuário que te indicou o app" returnKeyType="next"></Input>
                 <Input placeholder="Senha" secureTextEntry={true} autoCorrect={false} returnKeyType="done"></Input>
                 <Botao><Texto>Próximo</Texto></Botao>
