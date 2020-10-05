@@ -1,6 +1,6 @@
 
 
-const login = () => {
+export function login() {
   return new Promise(resolve => {
     setTimeout(() => {
       resolve({
@@ -13,5 +13,3 @@ const login = () => {
     }, 2000);
   });
 };
-
-export default login;

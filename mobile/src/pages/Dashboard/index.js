@@ -1,9 +1,28 @@
 import React from 'react';
+import {View, Button, Text, StyleSheet} from 'react-native';
+import {useAuth} from '../../contexts/auth';
 
-// import { Container } from './styles';
+const style = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});
 
-function Dashboard() {
-  return <div />;
+const Dashboard = () => {
+  const {user, logout} = useAuth();
+
+  function handlerLogout() {
+    logout();
+  }
+
+   return (
+     <View style={style.container}>
+       <Text>{user?.name}</Text>
+       <Button title="Logout" onPress = {handlerLogout} />
+     </View>
+   ); 
 }
 
 export default Dashboard;

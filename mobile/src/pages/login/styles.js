@@ -34,7 +34,7 @@ export const Input = styled.TextInput`
     margin-bottom: 30px;
 `
 
-export const Botao = styled.Button`
+export const Botao = styled.TouchableOpacity`
     background-color: #EF5245;
     width: 50%;
     align-self: center;

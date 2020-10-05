@@ -5,7 +5,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 
 const AuthStack = createStackNavigator();
 
-const AuthRoutes = () => {
+const AuthRoutes: React.FC  = () => {
   return (
   <AuthStack.Navigator>
     <AuthStack.Screen name="Login" component={Login}/>
