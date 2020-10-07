@@ -48,8 +48,23 @@ const Login = () => {
                 <Logo source={logo} ></Logo>
                 <Titulo>Ache.me</Titulo>
             </ContainerTitulo>
-            <Input keyboardType="email-address" id="mail" placeholder="E-mail ou Telefone" keyboardType="email-address"value={userLogin.mail} onChange={handleSignIn} required></Input>
-            <Input textContentType="newPassword" id="password" placeholder="Senha" secureTextEntry={true} autoCorrect={false}value={userLogin.password} onChange={handleSignIn} required></Input>
+            <Input 
+                keyboardType="email-address" 
+                id="mail" placeholder="E-mail ou Telefone" 
+                keyboardType="email-address" 
+                value={userLogin.mail} 
+                onChange={handleSignIn} 
+                required
+            ></Input>
+            <Input 
+                textContentType="newPassword" 
+                id="password" placeholder="Senha"
+                secureTextEntry={true} 
+                autoCorrect={false}
+                value={userLogin.password} 
+                onChange={handleSignIn} 
+                required
+            ></Input>
             <Botao title="Entrar" onPress={enter}>
                 <Texto>Entrar</Texto>   
             </Botao> 
