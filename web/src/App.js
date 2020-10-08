@@ -2,12 +2,15 @@
 import React from "react";
 import { GlobalStyles } from "./styles/GlobalStyles";
 import Routes from "./routes";
+import SobreEmpresa from "./pages/sobre";
 
 function App() {
   return (
     <>
-      <Routes/>
+      <SobreEmpresa/>
       <GlobalStyles/>
+      {/* <Routes/>
+      <GlobalStyles/> */}
     </>
   );
 }

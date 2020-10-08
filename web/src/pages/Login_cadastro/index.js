@@ -1,5 +1,5 @@
 import {useHistory} from "react-router-dom";
-import SpinnerFullScreen from '../../components/Spinner'
+import SpinnerFullScreen from '../../components/Spinner';
 import backgroundLogin from "../../assets/imagemLogin.jpg";
 import backgroundRegister from "../../assets/imagemCadastro.jpg";
 import camera from "../../assets/camera.png";
