@@ -1,22 +1,50 @@
-import React from 'react';
+//Funcional
+import React, {useState} from 'react';
+import Address from '../cadastro_endereco';
+
+// Style
 import {Container, BotaoVoltar, ContainerCadastro, IconeCadastro, Input, Botao, Texto} from './styles';
 import planoDeFundo from "../../assets/planoDeFundo.jpg";
-import setaVoltar from "../../assets/setaVoltar.png";
 import Icone from "../../assets/iconeDadosPessoais.png";
 
-const CadastroPessoal = () => {
+const CadastroPessoal = ({navigation}) => {
+    const navigateToAddress = () => {
+        navigation.navigate('Endereço');
+    }
+
+    const [basicInfo, setBasicInfo] = useState({
+        name: "",
+        CPF: "",
+        mail: "",
+        telephone: "",
+        password: "",
+    });
+
+    const sendToAddress = async (e) => {
+        e.preventDefault();
+
+        Address(basicInfo);
+
+        return navigateToAddress();
+        
+    }
+
+    const handlerInput = (e) => {
+        setBasicInfo({...basicInfo, [e.target.id]: e.target.value});
+
+    }
+
     return(
         <Container source={planoDeFundo}>
-            <BotaoVoltar source={setaVoltar}/>
             <ContainerCadastro>
                 <IconeCadastro source={Icone}/>
-                <Input placeholder="Insira seu nome" returnKeyType="next" ></Input>
-                <Input placeholder="Insira seu cpf" keyboardType="numeric" returnKeyType="next" maxLength={11}></Input>
-                <Input placeholder="Insira seu email" keyboardType="email-address" returnKeyType="next"></Input>
-                <Input placeholder="Insira seu telefone" keyboardType="number-pad" returnKeyType="next" maxLength={11}></Input>
-                <Input placeholder="Usuário que te indicou o app" returnKeyType="next"></Input>
-                <Input placeholder="Senha" secureTextEntry={true} autoCorrect={false} returnKeyType="done"></Input>
-                <Botao><Texto>Próximo</Texto></Botao>
+                <Input id="name" placeholder="Insira seu nome" value={basicInfo.name} onChange={handlerInput} returnKeyType="next" ></Input>
+                <Input id="CPF" placeholder="Insira seu cpf" value={basicInfo.CPF} onChange={handlerInput} returnKeyType="next" maxLength={11}></Input>
+                <Input id="mail" placeholder="Insira seu email" value={basicInfo.mail} onChange={handlerInput}keyboardType="email-address" returnKeyType="next"></Input>
+                <Input id="telephone" placeholder="Insira seu telefone" value={basicInfo.telephone} onChange={handlerInput}keyboardType="number-pad" returnKeyType="next" maxLength={11}></Input>
+                <Input id="indication" placeholder="Usuário que te indicou o app" returnKeyType="next"></Input>
+                <Input id="password" placeholder="Senha" secureTextEntry={true} autoCorrect={false} value={basicInfo.password} onChange={handlerInput}returnKeyType="done"></Input>
+                <Botao onPress={sendToAddress}><Texto>Próximo</Texto></Botao>
             </ContainerCadastro>
         </Container>
     )

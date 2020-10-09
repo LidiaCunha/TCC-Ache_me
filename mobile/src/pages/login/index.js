@@ -9,7 +9,11 @@ import planoDeFundo from "../../assets/planoDeFundo.jpg";
 import logo from "../../assets/logo.png";
 
 
-const Login = () => {
+const Login = ({navigation}) => {
+    const navigateToRegister = () => {
+        navigation.navigate('Informações');
+    }
+
     const {login} = useAuth();
     const [userLogin, setUserLogin] = useState({
         mail: "",
@@ -69,7 +73,7 @@ const Login = () => {
                 <Texto>Entrar</Texto>   
             </Botao> 
             <Texto>OU</Texto>   
-            <Botao title="Cadastrar" onPress={() => {}}>
+            <Botao title="Cadastrar" onPress={navigateToRegister}>
                 <Texto>Cadastrar</Texto>   
             </Botao> 
         </Container>

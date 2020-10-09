@@ -1,14 +1,17 @@
 import React from 'react';
+
+//Style
 import { Container, BotaoVoltar, ContainerInfos, Texto, ContainerCard, ContainerFoto, FotoImagem, IconeFoto, FotoCamera, TextoNome, TextoEmail, TextosCard, Botao, TextoBotao } from './styles';
 import planoDeFundo from "../../assets/planoDeFundo.jpg";
-import setaVoltar from "../../assets/setaVoltar.png";
 import Foto from "../../assets/fotoExemplo.jpg";
 import Camera from "../../assets/cameraCadastro.png"
 
-const CadastroFotoPerfil = () => {
+const CadastroFotoPerfil = ({navigation}) => {
+    const navigateToCheckEmail = () => {
+        navigation.navigate('CheckEmail');
+    }
     return(
         <Container source={planoDeFundo}>
-            <BotaoVoltar source={setaVoltar}/>
             <ContainerInfos>
                 <Texto>Escolha uma foto para o seu perfil.</Texto>
                 <ContainerFoto>
@@ -24,7 +27,7 @@ const CadastroFotoPerfil = () => {
                     </TextosCard>
                 </ContainerCard>
             </ContainerInfos>
-            <Botao><TextoBotao>Pular</TextoBotao></Botao>
+            <Botao onPress={navigateToCheckEmail}><TextoBotao>Confirmar</TextoBotao></Botao>
         </Container>
     )
 }
