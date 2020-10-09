@@ -1,40 +1,46 @@
+//Funcional
 import React, {useState} from 'react';
-import Register from '../../contexts/register';
- 
+
 //Style
 import {Container, BotaoVoltar, ContainerCadastro, Input, Botao, Texto} from '../cadastro_dados_pessoais/styles';
 import { IconeCadastro } from './styles';
 import planoDeFundo from "../../assets/planoDeFundo.jpg";
 import Icone from "../../assets/iconeEndereco.png";
 
-const CadastroEndereco = ({navigation}, props) => {
-    console.log(props);
+const CadastroEndereco = ({route, navigation}) => {
+    const {props} = route.params;
 
-    const navigateToPhoto = () => {
-        navigation.navigate('Confirmar');
+    const navigateToConfirm = (props) => {
+        navigation.navigate('Confirmar', {props});
     }
 
     const [advancedInfo, setAdvancedInfo] = useState({
-        name: "",
-        CPF: "",
-        mail: "",
-        telephone: "",
-        password: "",
+        name: props.name,
+        CPF: props.CPF,
+        mail: props.mail,
+        telephone: props.telephone,
+        password: props.password,
+        cep: "",
+        street: "",
+        bairro: "",
+        city: "",
+        state: "",
+        number: "",
+
     });
 
-    const sendToAddress = async (e) => {
+    const sendToConfirm = async (e) => {
         e.preventDefault();
 
         try {
-            Address(advancedInfo);
+            return navigateToConfirm(advancedInfo);
 
-            return navigateToAddress();
         } catch (erro) {
             if(erro.response){
-                return props.setMensagem(erro.response.data.erro);
+                return window.alert(erro.response.data.erro);
             }
-
-            props.setMensagem("Ops, algo deu errado, tente novamente.")
+            
+            window.alert("Ops, algo deu errado, tente novamente mais tarde.");
         }
     }
 
@@ -47,13 +53,13 @@ const CadastroEndereco = ({navigation}, props) => {
         <Container source={planoDeFundo}>
             <ContainerCadastro>
                 <IconeCadastro source={Icone}/>
-                <Input id="cep" placeholder="Insira seu cep" value={advancedInfo.cep} onChange={handleSignIn}keyboardType="numeric" returnKeyType="next" maxLength={8}></Input>
-                <Input id="street" placeholder="Insira sua rua" value={advancedInfo.street} onChange={handleSignIn}></Input>
-                <Input id="district" placeholder="Insira seu bairro" value={advancedInfo.district} onChange={handleSignIn}></Input>
-                <Input id="city" placeholder="Insira sua cidade" value={advancedInfo.city} onChange={handleSignIn}></Input>
-                <Input id="state" placeholder="Insira seu estado" value={advancedInfo.state} onChange={handleSignIn}></Input>
-                <Input id="number" placeholder="Insira seu número" value={advancedInfo.number} onChange={handleSignIn}></Input>
-                <Botao onPress={register}><Texto>Próximo</Texto></Botao>
+                <Input id="cep" placeholder="Insira seu cep" value={advancedInfo.cep} onChange={handlerInput} returnKeyType="next" maxLength={8}></Input>
+                <Input id="street" placeholder="Insira sua rua" value={advancedInfo.street} onChange={handlerInput}></Input>
+                <Input id="bairro" placeholder="Insira seu bairro" value={advancedInfo.bairro} onChange={handlerInput}></Input>
+                <Input id="city" placeholder="Insira sua cidade" value={advancedInfo.city} onChange={handlerInput}></Input>
+                <Input id="state" placeholder="Insira seu estado" value={advancedInfo.state} onChange={handlerInput}></Input>
+                <Input id="number" placeholder="Insira seu número" value={advancedInfo.number} onChange={handlerInput}></Input>
+                <Botao onPress={sendToConfirm}><Texto>Próximo</Texto></Botao>
             </ContainerCadastro>
         </Container>
     )

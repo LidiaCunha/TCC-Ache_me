@@ -1,6 +1,5 @@
 //Funcional
 import React, {useState} from 'react';
-import Address from '../cadastro_endereco';
 
 // Style
 import {Container, BotaoVoltar, ContainerCadastro, IconeCadastro, Input, Botao, Texto} from './styles';
@@ -8,8 +7,8 @@ import planoDeFundo from "../../assets/planoDeFundo.jpg";
 import Icone from "../../assets/iconeDadosPessoais.png";
 
 const CadastroPessoal = ({navigation}) => {
-    const navigateToAddress = () => {
-        navigation.navigate('Endereço');
+    const navigateToAddress = (props) => {
+        navigation.navigate('Endereço',{props});
     }
 
     const [basicInfo, setBasicInfo] = useState({
@@ -23,9 +22,16 @@ const CadastroPessoal = ({navigation}) => {
     const sendToAddress = async (e) => {
         e.preventDefault();
 
-        Address(basicInfo);
+        try {
+            return navigateToAddress(basicInfo);
 
-        return navigateToAddress();
+        } catch (erro) {
+            if(erro.response){
+                return window.alert(erro.response.data.erro);
+            }
+            
+            window.alert("Ops, algo deu errado, tente novamente mais tarde.");
+        }
         
     }
 
