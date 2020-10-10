@@ -10,7 +10,7 @@ export const GlobalStyles = createGlobalStyle`
     }
 
     body {
-        background: #292929;
+        background: #273444;
         display: flex;
         justify-content: center;
         align-content: center;
@@ -18,7 +18,11 @@ export const GlobalStyles = createGlobalStyle`
         
 
         @media (min-width: 781px){
-            height: 100vh;
+            min-height: 100vh;
+            paddin: auto;
+            box-sizing: border-box;
+            overflow-x: hidden;
+            
         }
     }
 
