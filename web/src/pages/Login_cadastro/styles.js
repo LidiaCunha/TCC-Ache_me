@@ -4,9 +4,8 @@ import styled from "styled-components";
 
 export const Container = styled.div`
     
-    width: 90vw;
-    height: 90vh;
-    border-radius: 15px;
+    width: 100vw;
+    height: 100vh;
     background: rgba(0,0,0,0.4);
     overflow: hidden;
     position: relative;
@@ -107,13 +106,14 @@ export const LoginContainerText = styled.div`
       font-weight: bold;
       font-family: arial;
       color: #fff;
-      padding-left: 5vw;
       padding-top: 10vh;
+      padding-left: 10vh;
       box-sizing: border-box;
 
       @media (max-width: 780px){
         padding-top: 5vh;
         font-size: 2vw;
+        padding-left: 3vh;
       }
 `;
 
@@ -256,6 +256,20 @@ export const CadastroConfigInput = styled.div`
     }
 `;
 
+export const ContainerDados = styled.div`
+  height: inherit;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+
+  @media (max-width: 780px){
+      height: auto;
+      width: 100%;
+      min-height: 50px;
+      flex-direction: column;
+  }
+`;
+
 export const ContainerInput = styled.div`
     height: 100%;
     width: 17vw;
@@ -295,29 +309,18 @@ export const ContainerInput = styled.div`
   
   > label{
     font-size: 3vw;
-
+  }
 
   > input{
     height: 7vh;
     width: 70vw;
     margin-bottom: 20px;
     font-size: 3vw;
-  }
-}
-`;
-
-export const ContainerInputSpace = styled.div`
-    height: 100%;
-    width: 260px;
-    float: left;
-    padding-right: 30px;
-    margin-right: 8vw;
-
-    @media (max-width: 780px){
-      width: 90vw;
-      margin-left: 60px;
     }
+  }
+
 `;
+
 
 export const Footer = styled.div`
     height: 10vh;
@@ -386,6 +389,7 @@ export const ContainerBtn = styled.div`
 
       > p{
         margin-bottom: 10px; 
+        font-size: 1.0em;
       }
     }
 `;
@@ -441,5 +445,9 @@ export const ContainerFoto = styled.div`
 
     @media (max-width: 780px){
       margin-bottom: 20px;
+
+      >p {
+        font-size: 1.0em;
+      }
     }
 `;

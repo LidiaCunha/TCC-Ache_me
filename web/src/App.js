@@ -9,8 +9,9 @@ import SobreEmpresa from "./pages/sobre";
 function App() {
   return (
     <>
-      <SobreEmpresa/>
-      {/* <Routes/> */}
+      {/* <SobreEmpresa/> */}
+      <Routes/>
+      {/* < AreaInformativa /> */}
       <GlobalStyles/>
     </>
   );

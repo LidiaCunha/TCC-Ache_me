@@ -150,10 +150,8 @@ import {
 
                         <CardText>
                             <p>
-                            Nós da Ache.me nos preocupamos com todos os clientes, 
-                            por esse motivo, compartilhamos nossos valores e os levamos a sério.
-
-
+                                Nós da Ache.me nos preocupamos com todos os clientes, 
+                                por esse motivo, compartilhamos nossos valores e os levamos a sério.
                             </p>
                             <p>
                                 Trazemos conosco a vontade de apoiar os outros e sobretudo 
@@ -164,28 +162,28 @@ import {
                             <Cards>
                                 <img src={qualidade}/>
                                 <TextCardValores>
-                                    <h1>Qualidade</h1>
+                                    <h3>Qualidade</h3>
                                     <p>A Ache.me busca oferecer serviços de qualidade.</p>
                                 </TextCardValores>
                             </Cards>
                             <Cards>
                                 <img src={seguranca}/>
                                 <TextCardValores>
-                                    <h1>Segurança</h1>
+                                    <h3>Segurança</h3>
                                     <p>Focamos sempre na segurança de seus dados e informações.</p>
                                 </TextCardValores>
                             </Cards>
                             <Cards>
                                 <img src={respeito}/>
                                 <TextCardValores>
-                                    <h1>Respeito</h1>
+                                    <h3>Respeito</h3>
                                     <p>Mantemos o respeito por todos os clientes.</p>
                                 </TextCardValores>
                             </Cards>
                             <Cards>
                                 <img src={responsabilidade}/>
                                 <TextCardValores>
-                                    <h1>Responsabilidade</h1>
+                                    <h3>Responsabilidade</h3>
                                     <p>Somos cientes quanto a responsabilidade em relação aos nossos clientes.</p>
                                 </TextCardValores>
                             </Cards>
@@ -194,7 +192,7 @@ import {
                 </ContainerValores>
             </Container>
             <Container>
-                <ContainerInfo>
+            <ContainerInfo>
                     <h2>Nosso Time</h2>
                     <ContainerCardsTime>
                         <Cards>

@@ -47,9 +47,9 @@ export const ContainerApoio = styled.div`
     margin-bottom: 20px;
 
     > h1{
-        font-size: 2em;
+        font-size: 1.8em;
         font-family: arial;
-        color: #fff;
+        color: #000;
         text-align: center;
         margin-bottom: 50px;
         font-weight: bold;
@@ -76,15 +76,12 @@ export const ContianerCardsApoio = styled.div`
     @media (max-width: 780px){
         min-height: 150px;
         width: 100vw;
-
-
     }
 `;
 
 
 export const Conjunto = styled.div`
-
-    heigth: auto;
+    height: auto;
     width: auto;
     display: flex;
     justify-content: space-around;
@@ -111,23 +108,23 @@ export const CardApoio = styled.div`
     flex-direction: column;
     padding: 20px;
     box-sizing: border-box;
-    transition: 1s; 
-//background: rgba(255,255,255,.5);
+    transition: 1s;
+    color: #000000;
+    font-family: Arial, Helvetica, sans-serif;
 
-    > h2{
-      font-size: 1.5em;
+    > h3 {
+      font-size: 1.2em;
       font-weight: bold;
       font-family: arial;
-      color: rgba(255,255,255, .9);
+      margin: 30px 0;
     }
 
-    > p{
-      font-size: 1.2em;
+    > p {
+      font-size: 1.1em;
       font-family: arial;
-      color: rgba(255,255,255, .7);
     }
 
-    : hover{
+    :hover {
       cursor: pointer;
       transition: .7s;
       transform: scale(1.1); 
@@ -143,20 +140,20 @@ export const CardApoio = styled.div`
 
 
         > h2{
-          font-size: 4vw;
+            font-size: 4vw;
             margin-bottom: 10px;
         }
 
         > p{
-          font-size: 3vw;
-text-align: center;
+            font-size: 3vw;
+            text-align: center;
         }
     }
 `;
 
 export const ContainerImgApoio = styled.div`
-    height: 110px;
-    width: 110px;
+    height: 86px;
+    width: 86px;
     background: #fff;
     border-radius: 50%;
     display: flex;
@@ -165,7 +162,7 @@ export const ContainerImgApoio = styled.div`
     align-items: center;
     overflow: hidden;
 
-    > img{
+    > img {
       height: 70%;
       width: 70%;
     }
@@ -173,7 +170,7 @@ export const ContainerImgApoio = styled.div`
     @media (max-width: 780px){
         height: 50px;
         width: 50px;
-margin-bottom: 10px;
+        margin-bottom: 10px;
     }
 `;
 
@@ -246,11 +243,6 @@ export const ContainerInfo = styled.div`
       font-family: arial;
       margin-bottom: 10px;
     }  
-
-    :hover ~ EfeitoBtn{
-      transform: translate3D(0,0,0);
-      transition: all 1s;
-  }
 
 @media(max-width: 780px){
     padding: 10px;

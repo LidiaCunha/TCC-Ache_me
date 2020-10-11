@@ -8,7 +8,7 @@ export const Container = styled.div`
     position: relative;
     background-color: #fff;
     
-    > img{
+    > img {
       height: 100%;
       width: 100%;
       filter: brightness(30%);
@@ -20,7 +20,6 @@ export const ContainerInfo = styled.div`
     width: 100%;
     position: absolute;
     top: 0px;
-    /* background-color: red; */
     font-family: arial;
 
     >h1 {
@@ -94,7 +93,7 @@ export const LoginContainerText = styled.div`
 export const ContainerTextMenor = styled.div`
       height: auto;
       width: auto;
-      font-size: 1vw;
+      font-size: 0.9em;
       font-family: arial;
       color: rgba(255,255,255,.6);
       margin-bottom: 80px;
@@ -167,7 +166,7 @@ export const CardContent = styled.div`
   >p{
     font-size: 1.1em;
   }
-  >img{
+  >img {
     height: 64px;
     width: 64px;
     margin: 0 auto;
@@ -279,12 +278,9 @@ export const ContainerCardsValores = styled.div`
 
 export const TextCardValores = styled.div`
   display: block;
-  >h1, p{
+  >h3, p{
     text-align: left;
     margin-bottom: 10px;
-  }
-  >h1{
-    font-size: 1.4em;
   }
   >p{
     font-size: 1.1em;
@@ -302,10 +298,8 @@ export const ContainerCardsTime = styled.div`
   column-gap: 10px;
   padding: 15px;
   box-sizing: border-box;
-
   >div{
     display: flex;
-
     >img{
       width: 100px;
       height: 100px;
@@ -313,6 +307,7 @@ export const ContainerCardsTime = styled.div`
       margin-right: 10px;
     }
   }
+
 `
 
 export const ContainerCardsTimeCenter = styled.div`
@@ -326,10 +321,8 @@ export const ContainerCardsTimeCenter = styled.div`
   column-gap: 10px;
   padding: 15px;
   box-sizing: border-box;
-
   >div{
     display: flex;
-
     >img{
       width: 100px;
       height: 100px;
@@ -346,10 +339,10 @@ export const TextCardTime = styled.div`
     margin-bottom: 5px;
   }
   >h1{
-    font-size: 1.4em;
+    font-size: 1.2em;
   }
   h2{
-    font-size: 1.3em;
+    font-size: 1.1em;
     color: #E64F4A;
   }
   >p{
