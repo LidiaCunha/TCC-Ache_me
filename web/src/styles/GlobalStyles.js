@@ -10,10 +10,13 @@ export const GlobalStyles = createGlobalStyle`
     }
 
     body {
-        background: #292929;
 
         @media (min-width: 781px){
-            height: 100vh;
+            min-height: 100vh;
+            padding: auto;
+            box-sizing: border-box;
+            overflow-x: hidden;
+            
         }
     }
 
