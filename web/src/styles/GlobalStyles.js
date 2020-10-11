@@ -10,8 +10,8 @@ export const GlobalStyles = createGlobalStyle`
     }
 
     body {
-        background: #273444;
-        display: flex;
+        background: #292929;
+        display: flex; 
         justify-content: center;
         align-content: center;
         align-items: center;
@@ -23,6 +23,17 @@ export const GlobalStyles = createGlobalStyle`
             box-sizing: border-box;
             overflow-x: hidden;
             
+        }
+    }
+
+    h1{
+        color: #262626;
+        text-align: center;
+    }
+
+    footer{
+        >img{
+            width: 100%;
         }
     }
 

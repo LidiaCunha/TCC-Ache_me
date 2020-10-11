@@ -70,7 +70,7 @@ const Area_informativa = () => {
 
                             <h2>Documentos</h2>
 
-                            <p>Tire o RG (Registro de identidade Civeil) da criança o quanto antes.</p>
+                            <p>Tire o RG (Registro de identidade Civil) da criança o quanto antes.</p>
                         </CardApoio>
 
                         <CardApoio>
@@ -92,7 +92,7 @@ const Area_informativa = () => {
 
                             <h2>Supervisão</h2>
 
-                            <p>Não autorizar o seu filho a brincar na rua sem a seupervisão de um adulto conhecido.</p>
+                            <p>Não autorizar o seu filho a brincar na rua sem a supervisão de um adulto conhecido.</p>
                         </CardApoio>
 
                         <CardApoio>
@@ -117,7 +117,7 @@ const Area_informativa = () => {
                     <ContainerInfo>
                         <h2>Crianças</h2>
 
-                        <p>Crianças de até sete anos costumam se perder em shopping, parques e areoportos.</p>
+                        <p>Crianças de até sete anos costumam se perder em shopping, parques e aeroportos.</p>
                            
                         <p>Oito a doze, podem sair de casa por maus-tratos ou problemas familiares.</p>
                            <Porcentagem>3%
