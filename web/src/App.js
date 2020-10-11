@@ -8,9 +8,8 @@ function App() {
   return (
     <>
       <SobreEmpresa/>
+      {/* <Routes/> */}
       <GlobalStyles/>
-      {/* <Routes/>
-      <GlobalStyles/> */}
     </>
   );
 }

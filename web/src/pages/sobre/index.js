@@ -63,7 +63,7 @@ import {
                     </ContainerMenu>
 
                     <LoginContainerText>
-                        <h1>Nós somos como você,<br/> preocupados com o próximo.</h1>
+                        <h1>Nós somos como você, preocupados <br /> com o próximo.</h1>
                     </LoginContainerText>
 
                     <ContainerTextMenor>
@@ -82,14 +82,14 @@ import {
                         <Cards>
                             <CardContent>
                                 <img src={iconeBusca} alt="icone de busca"></img>
-                                <h1>Apoio as buscas</h1>
+                                <h3>Apoio as buscas</h3>
                                 <p>A plataforma possibilita a postagem de indivíduos desaparecidos.</p>
                             </CardContent>
                         </Cards>
                         <Cards>
                             <CardContent>
                                 <img src={iconeMerito} alt="icone de méritos"></img>
-                                <h1>Reconhecimento por mérito</h1>
+                                <h3>Reconhecimento por mérito</h3>
                                 <p>Os membros podem divulgar a plataforma garantindo mais conexões.
                                     O ato é contabilizado e reconhecido no sistema para todos os usuários.
                                 </p>
@@ -98,7 +98,7 @@ import {
                         <Cards>
                             <CardContent>
                                 <img src={iconeFiltros} alt="icone de chat"></img>
-                                <h1>Filtro de buscas</h1>
+                                <h3>Filtro de buscas</h3>
                                 <p>As postagens oferecem ferramentas de buscas, como os filtros, que auxiliam
                                     na divulgação e procura.
                                 </p>
@@ -107,7 +107,7 @@ import {
                         <Cards>
                             <CardContent>
                                 <img src={iconeChat} alt="icone de filtros"></img>
-                                <h1>Interação entre usuários</h1>
+                                <h3>Interação entre usuários</h3>
                                 <p>Os usuários podem trocar informações no chat e criarem assim uma rede de apoio.</p>
                             </CardContent>
                         </Cards>
@@ -122,7 +122,7 @@ import {
                         <Cards>
                             <CardContentMissao>
                                 <img src={missao} alt="icone missão"></img>
-                                <h1>Missão</h1>
+                                <h3>Missão</h3>
                                 <p>Apoiar famílias e amigos na busca de pessoas desaparecidas,
                                     oferecendo uma plataforma segura e responsável aos clientes,
                                     gerando conexões.
@@ -132,7 +132,7 @@ import {
                         <Cards>
                             <CardContentMissao>
                                 <img src={visao} alt="icone visão"></img>
-                                <h1>Visão</h1>
+                                <h3>Visão</h3>
                                 <p>Ser a maior e melhor plataforma de busca de pessoas
                                     desaparecidas do país, minimizando o número de casos
                                     e proporcionando reencontros.
@@ -144,16 +144,20 @@ import {
             </Container>
             <Container>
                 <ContainerValores>
-                    <h1>Nossos Valores</h1>
+                    <h1>Nossos Valores</h1> 
+
                     <ContainerGridValores>
+
                         <CardText>
-                            <p>Ser a maior e melhor plataforma de busca de pessoas
-                                desaparecidas do país, minimizando o número de casos
-                                e proporcionando reencontros.
+                            <p>
+                            Nós da Ache.me nos preocupamos com todos os clientes, 
+                            por esse motivo, compartilhamos nossos valores e os levamos a sério.
+
+
                             </p>
-                            <p>Ser a maior e melhor plataforma de busca de pessoas
-                                desaparecidas do país, minimizando o número de casos
-                                e proporcionando reencontros.
+                            <p>
+                                Trazemos conosco a vontade de apoiar os outros e sobretudo 
+                                levar nossos valores nessa missão.
                             </p>
                         </CardText>
                         <ContainerCardsValores>

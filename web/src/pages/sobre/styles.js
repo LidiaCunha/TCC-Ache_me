@@ -20,11 +20,15 @@ export const ContainerInfo = styled.div`
     width: 100%;
     position: absolute;
     top: 0px;
-    >h1{
+    /* background-color: red; */
+    font-family: arial;
+
+    >h1 {
       color: #fff;
       padding: 25px;
+      text-align: center;
     }
-    >h2{
+    >h2 {
       color: #262626;
       font-size: 1.8em;
       text-align: center;
@@ -39,12 +43,13 @@ export const ContainerMenu = styled.div`
   justify-content: space-between;
   align-content: center;
   align-items: center;
+  /* background-color: red; */
 
-  > img{
+  > img {
     height: 10vh;
-    width: 10vw;
-    margin-left: 3vw;
-    margin-top: 3vh;
+    width: 5vw;
+    margin-left: 5vw;
+    margin-top: 5vh;
   }
 `
 
@@ -115,7 +120,7 @@ export const ContainerBtn = styled.button`
     margin-right: auto;
     padding: 15px;
     box-sizing: border-box;
-    font-size: 1.4em;
+    font-size: 1.2em;
     color: #fff;
     font-family: arial;
     &:hover {
@@ -151,20 +156,22 @@ export const CardContent = styled.div`
   padding: 8px;
   box-sizing: border-box;
   color: #262626;
-  text-align: center;
+  text-align: left;
   
-  >h1, p{
+  >h3, p{
     margin-bottom: 15px;
   }
-  >h1{
-    font-size: 1.4em;
+  >h3{
+    font-size: 1.2em;
   }
   >p{
     font-size: 1.1em;
   }
   >img{
-    margin-left: auto;
-    margin-right: auto;
+    height: 64px;
+    width: 64px;
+    margin: 0 auto;
+    margin-bottom: 30px;
   }
 `
 
@@ -187,20 +194,24 @@ export const CardContentMissao = styled.div`
   height: auto;
   width: 100%;
   justify-content: center;
-  padding: 8px;
+  padding: 15px;
   box-sizing: border-box;
   color: #262626;
-  text-align: justify;
+  text-align: left;
   
-  >h1, p{
+  >h3, p {
     margin-bottom: 15px;
     margin-left: 50px;
   }
-  >h1{
-    text-align: left;
-  }
-  >p{
+
+  >p {
     font-size: 1.3em;
+  }
+
+  >img {
+    height: 86px;
+    width: 86px;
+    margin-bottom: 20px;
   }
   `
   export const ContainerValores = styled.div`
@@ -209,7 +220,10 @@ export const CardContentMissao = styled.div`
     position: absolute;
     top: 0px;
     background-color: #E64F4A;
-    >h1{
+    font-family: Arial, Helvetica, sans-serif;
+    padding-top: 8px;
+    
+    >h1 {
       color: #fff;
       text-align: left;
       width: 1200px;
@@ -227,18 +241,18 @@ export const CardContentMissao = styled.div`
     grid-template-columns: 40% 60%;
     justify-content: center;
     padding: 8px;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 0 auto;
+    column-gap: 20px;
     grid-auto-rows: 150px;
   `
   export const CardText = styled.div`
-  color: #fff;
-  padding: 8px;
-  box-sizing: border-box;
-  font-size: 1.3em;
-  >p{
-    margin-bottom: 20px;
-  }
+    color: #fff;
+    padding: 8px;
+    box-sizing: border-box;
+    font-size: 1.3em;
+    >p{
+      margin-bottom: 20px;
+    }
 `
 
 export const ContainerCardsValores = styled.div`
@@ -247,7 +261,7 @@ export const ContainerCardsValores = styled.div`
   display: grid;
   grid-template-columns: 50% 50%;
   grid-auto-rows: 100px;
-  grid-gap: 30px;
+  gap: 30px;
   >div{
     height: 110px;
     display: flex;
