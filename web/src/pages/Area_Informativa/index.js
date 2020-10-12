@@ -16,7 +16,7 @@ import Adolescente from "../../assets/Area_Informativa/adolescentes.jpeg";
 import Video from "../../assets/Area_Informativa/video.mp4";
 
 // ====== FOOTER =======
-import Fundo_footer from "../../assets/Area_Informativa/footer.jpg";
+// import Fundo_footer from "../../assets/Area_Informativa/footer.jpg";
 import Logo from "../../assets/Area_Informativa/logo.png";
 
 import {
@@ -39,13 +39,13 @@ import {
 
 // ======== video ========
 
-    Container_video,
+    ContainerVideo,
 
 // ======== footer =======    
     Footer,
     ContainerLogo,
     Texto,
-    Texto_vermelho,
+    TextoVermelho,
     Copyright,
 
     
@@ -166,11 +166,11 @@ const Area_informativa = () => {
         </Container>
 
         <Container>
-            <Container_video>
+            <ContainerVideo>
                 <video loop muted controls>
                     <source src={Video} type="video/mp4"/>
                 </video>
-            </Container_video>
+            </ContainerVideo>
         </Container>
 
         <Footer>
@@ -178,7 +178,7 @@ const Area_informativa = () => {
                 <ContainerLogo>
                     <img src={Logo} alt="logo"/>
                     <Texto>Ache.</Texto>
-                    <Texto_vermelho>me</Texto_vermelho>
+                    <TextoVermelho>me</TextoVermelho>
                 </ContainerLogo>
 
                 <Copyright>

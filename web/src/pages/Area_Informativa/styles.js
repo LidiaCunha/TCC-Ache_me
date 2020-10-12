@@ -283,7 +283,7 @@ export const EfeitoBtn = styled.div`
 `;
 // ========== VIDEO ==============
 
-export const Container_video = styled.div`
+export const ContainerVideo = styled.div`
     height: 800px;
     width: 100%;
     display: flex;
@@ -358,7 +358,7 @@ export const Texto = styled.div`
     margin-top: 30px;
 `;
 
-export const Texto_vermelho = styled.div`
+export const TextoVermelho = styled.div`
     font-size: 2em;
     font-family: arial;
     color: #E64F4A;

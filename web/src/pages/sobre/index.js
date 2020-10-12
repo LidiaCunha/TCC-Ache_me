@@ -1,4 +1,5 @@
 import React from "react";
+import {useHistory} from "react-router-dom";
 import logo from "../../assets/logo.png";
 import { 
     Container,
@@ -44,16 +45,21 @@ import {
 
 
   const SobreEmpresa = (props) => {
+    const history = useHistory();
       return(
         <>
             <Container>
                 <img src={background} alt="background"/>
                 <ContainerInfo>
                     <ContainerMenu>
-                        <img src={logo} alt="logo ache.me"/>
+                        <img src={logo} alt="logo ache.me" onClick={() => {
+                            history.push("/");
+                        }}/>
                         <ContainerItensMenu>
                             <ul>
-                                <li>Área Informativa</li>
+                                <li onClick={() => {
+                                history.push("/area-informativa");
+                                }}>Área Informativa</li>
                                 <li>Serviços</li>
                                 <li>Missão e Visão</li>
                                 <li>Valores</li>

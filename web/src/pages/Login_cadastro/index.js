@@ -306,8 +306,12 @@ const FormLogin = (props) => {
                         <li onClick={() => {
                         props.showForm("registrar");
                         }}>Cadastrar-se</li>
-                        <li>Sobre</li>
-                        <li>Área Informativa</li>
+                        <li onClick={() => {
+                        history.push("/sobre");
+                        }}>Sobre</li>
+                        <li onClick={() => {
+                        history.push("/area-informativa");
+                        }}>Área Informativa</li>
                     </ul>
                 </ContainerItensMenu>
                 </LoginContainerMenu>
