@@ -20,10 +20,6 @@ const Login = ({navigation}) => {
         password: "",
     });
 
-    function handleSignIn(e) {
-        setUserLogin({...userLogin, [e.target.id]: e.target.value});
-    }
-
     const enter = async (e) => {
 
         e.preventDefault();
@@ -57,7 +53,7 @@ const Login = ({navigation}) => {
                 id="mail" placeholder="E-mail ou Telefone" 
                 keyboardType="email-address" 
                 value={userLogin.mail} 
-                onChange={handleSignIn} 
+                onChangeText={mail => setUserLogin({mail})} 
                 required
             ></Input>
             <Input 
@@ -66,7 +62,7 @@ const Login = ({navigation}) => {
                 secureTextEntry={true} 
                 autoCorrect={false}
                 value={userLogin.password} 
-                onChange={handleSignIn} 
+                onChangeText={password => setUserLogin({password})} 
                 required
             ></Input>
             <Botao title="Entrar" onPress={enter}>
