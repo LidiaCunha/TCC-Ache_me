@@ -6,10 +6,6 @@ export const Container = styled.div`
     height: auto;
     min-height: 50px;
     width: 100%;
-<<<<<<< HEAD
-=======
-
->>>>>>> 0a5f3832529f59e926b9c42a94af1183ef6276b5
     @media (max-width: 780px){
         width: 100vw;
     }
@@ -113,10 +109,6 @@ export const CardApoio = styled.div`
     color: #000000;
     font-family: Arial, Helvetica, sans-serif;
    
-<<<<<<< HEAD
-=======
-
->>>>>>> 0a5f3832529f59e926b9c42a94af1183ef6276b5
     > h3 {
       font-size: 1.2em;
       font-weight: bold;
@@ -125,18 +117,10 @@ export const CardApoio = styled.div`
       align-self: flex-start;
       color: #262626;
     }
-<<<<<<< HEAD
-=======
-
->>>>>>> 0a5f3832529f59e926b9c42a94af1183ef6276b5
     > p {
       font-size: 1.1em;
       font-family: arial;
     }
-<<<<<<< HEAD
-=======
-
->>>>>>> 0a5f3832529f59e926b9c42a94af1183ef6276b5
     :hover {
       transition: .7s;
       transform: scale(1.1); 
@@ -169,10 +153,6 @@ export const ContainerImgApoio = styled.div`
     align-content: center;
     align-items: center;
     overflow: hidden;
-<<<<<<< HEAD
-=======
-
->>>>>>> 0a5f3832529f59e926b9c42a94af1183ef6276b5
     > img {
       height: 70%;
       width: 70%;
@@ -247,10 +227,6 @@ export const ContainerInfo = styled.div`
       font-family: arial;
       margin-bottom: 10px;
     }  
-<<<<<<< HEAD
-=======
-
->>>>>>> 0a5f3832529f59e926b9c42a94af1183ef6276b5
 @media(max-width: 780px){
     padding: 10px;
     padding-top: 100px;
@@ -259,33 +235,17 @@ export const ContainerInfo = styled.div`
 `;
 
 export const Porcentagem = styled.div`
-    height: 55px;
-    width: 120px;
-    border: 2px solid #E64F4A;
     font-size: 1.2em;
     color: #fff;
     font-family: arial;
     margin-bottom: 10px;
-    border-radius: 15px;
     text-align: center;
-    padding-top: 15px;
     box-sizing: border-box;
     position: absolute;
     bottom: 45px;
     right: 45px;
     overflow: hidden;
     z-index: 2;
-`;
-
-export const EfeitoBtn = styled.div`
-    height: 55px;
-    width: 150px;
-    background: #E64F4A;
-    position: absolute;
-    top: 0;
-    z-index: -1;
-    transform: translate3D(101%,0,0);
-    transition: 1s;
 `;
 // ========== VIDEO ==============
 

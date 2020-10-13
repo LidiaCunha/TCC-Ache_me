@@ -39,6 +39,10 @@ export const ContainerMenu = styled.div`
   height: auto;
   width: 100%;
   display: flex;
+  position: fixed;
+  padding-bottom: 10px;
+  z-index: 999;
+  background-color: #262626;
   justify-content: space-between;
   align-content: center;
   align-items: center;
@@ -46,7 +50,8 @@ export const ContainerMenu = styled.div`
     height: 6vw;
     width: 6vw;
     margin-left: 5vw;
-    margin-top: 4vh;
+    margin-top: 1vh;
+    cursor: pointer;
 
   }
 `
@@ -77,6 +82,7 @@ export const ContainerItensMenu = styled.nav`
 export const LoginContainerText = styled.div`
       height: auto;
       width: auto;
+      margin-top: 100px;
       font-size: 1.3vw;
       font-weight: bold;
       font-family: arial;
