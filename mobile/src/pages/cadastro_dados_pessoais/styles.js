@@ -1,9 +1,8 @@
 import styled from "styled-components/native";
 
 export const Container = styled.ImageBackground`
-    flex: auto;
+    flex: 1;
     justify-content: flex-start;
-    padding: 20px;
 `
 
 export const BotaoVoltar = styled.Image`
