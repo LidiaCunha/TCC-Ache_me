@@ -1,4 +1,6 @@
 import React from "react";
+import { Link} from "react-scroll"
+import {useHistory} from "react-router-dom";
 import logo from "../../assets/logo.png";
 import { 
     Container,
@@ -20,7 +22,12 @@ import {
     TextCardValores,
     ContainerCardsTime,
     ContainerCardsTimeCenter,
-    TextCardTime
+    TextCardTime,
+    Footer,
+    ContainerLogo,
+    Texto,
+    TextoVermelho,
+    Copyright,
   } from "./styles";
 
   import background from "../../assets/Sobre/background.jpg";
@@ -44,26 +51,31 @@ import {
 
 
   const SobreEmpresa = (props) => {
+    const history = useHistory();
       return(
         <>
             <Container>
                 <img src={background} alt="background"/>
                 <ContainerInfo>
                     <ContainerMenu>
-                        <img src={logo} alt="logo ache.me"/>
+                        <img src={logo} alt="logo ache.me" onClick={() => {
+                            history.push("/");
+                        }}/>
                         <ContainerItensMenu>
                             <ul>
-                                <li>Área Informativa</li>
-                                <li>Serviços</li>
-                                <li>Missão e Visão</li>
-                                <li>Valores</li>
-                                <li>Time</li>
+                                <li onClick={() => {
+                                history.push("/area-informativa");
+                                }}>Área Informativa</li>
+                                <li><Link to="servico" offset={-50} smooth={true} duration={500}>Serviços</Link></li>
+                                <li><Link to="missao" offset={-50} smooth={true} duration={500}>Missão e Visão</Link></li>
+                                <li><Link to="valores" offset={-50} smooth={true} duration={500}>Valores</Link></li>
+                                <li><Link to="time" offset={-50} smooth={true} duration={500}>Time</Link></li>
                             </ul>
                         </ContainerItensMenu>
                     </ContainerMenu>
 
                     <LoginContainerText>
-                        <h1>Nós somos como você,<br/> preocupados com o próximo.</h1>
+                        <h1>Nós somos como você, preocupados <br /> com o próximo.</h1>
                     </LoginContainerText>
 
                     <ContainerTextMenor>
@@ -77,19 +89,19 @@ import {
             </Container>
             <Container>
                 <ContainerInfo>
-                    <h2>Nossos Serviços</h2>
+                    <h2 name="servico">Nossos Serviços</h2>
                     <ContainerCards>
                         <Cards>
                             <CardContent>
                                 <img src={iconeBusca} alt="icone de busca"></img>
-                                <h1>Apoio as buscas</h1>
+                                <h3>Apoio as buscas</h3>
                                 <p>A plataforma possibilita a postagem de indivíduos desaparecidos.</p>
                             </CardContent>
                         </Cards>
                         <Cards>
                             <CardContent>
                                 <img src={iconeMerito} alt="icone de méritos"></img>
-                                <h1>Reconhecimento por mérito</h1>
+                                <h3>Reconhecimento por mérito</h3>
                                 <p>Os membros podem divulgar a plataforma garantindo mais conexões.
                                     O ato é contabilizado e reconhecido no sistema para todos os usuários.
                                 </p>
@@ -98,7 +110,7 @@ import {
                         <Cards>
                             <CardContent>
                                 <img src={iconeFiltros} alt="icone de chat"></img>
-                                <h1>Filtro de buscas</h1>
+                                <h3>Filtro de buscas</h3>
                                 <p>As postagens oferecem ferramentas de buscas, como os filtros, que auxiliam
                                     na divulgação e procura.
                                 </p>
@@ -107,7 +119,7 @@ import {
                         <Cards>
                             <CardContent>
                                 <img src={iconeChat} alt="icone de filtros"></img>
-                                <h1>Interação entre usuários</h1>
+                                <h3>Interação entre usuários</h3>
                                 <p>Os usuários podem trocar informações no chat e criarem assim uma rede de apoio.</p>
                             </CardContent>
                         </Cards>
@@ -117,12 +129,12 @@ import {
             <Container>
                 <img src={missaoBackground} alt="background missão e valores"/>
                 <ContainerInfo>
-                    <h1>Missão e Visão</h1>
+                    <h1 name="missao">Missão e Visão</h1>
                     <ContainerCardsMissao>
                         <Cards>
                             <CardContentMissao>
                                 <img src={missao} alt="icone missão"></img>
-                                <h1>Missão</h1>
+                                <h3>Missão</h3>
                                 <p>Apoiar famílias e amigos na busca de pessoas desaparecidas,
                                     oferecendo uma plataforma segura e responsável aos clientes,
                                     gerando conexões.
@@ -132,7 +144,7 @@ import {
                         <Cards>
                             <CardContentMissao>
                                 <img src={visao} alt="icone visão"></img>
-                                <h1>Visão</h1>
+                                <h3>Visão</h3>
                                 <p>Ser a maior e melhor plataforma de busca de pessoas
                                     desaparecidas do país, minimizando o número de casos
                                     e proporcionando reencontros.
@@ -144,44 +156,46 @@ import {
             </Container>
             <Container>
                 <ContainerValores>
-                    <h1>Nossos Valores</h1>
+                    <h1 name="valores">Nossos Valores</h1> 
+
                     <ContainerGridValores>
+
                         <CardText>
-                            <p>Ser a maior e melhor plataforma de busca de pessoas
-                                desaparecidas do país, minimizando o número de casos
-                                e proporcionando reencontros.
+                            <p>
+                                Nós da Ache.me nos preocupamos com todos os clientes, 
+                                por esse motivo, compartilhamos nossos valores e os levamos a sério.
                             </p>
-                            <p>Ser a maior e melhor plataforma de busca de pessoas
-                                desaparecidas do país, minimizando o número de casos
-                                e proporcionando reencontros.
+                            <p>
+                                Trazemos conosco a vontade de apoiar os outros e sobretudo 
+                                levar nossos valores nessa missão.
                             </p>
                         </CardText>
                         <ContainerCardsValores>
                             <Cards>
-                                <img src={qualidade}/>
+                                <img src={qualidade} alt="Qualidade"/>
                                 <TextCardValores>
-                                    <h1>Qualidade</h1>
+                                    <h3>Qualidade</h3>
                                     <p>A Ache.me busca oferecer serviços de qualidade.</p>
                                 </TextCardValores>
                             </Cards>
                             <Cards>
-                                <img src={seguranca}/>
+                                <img src={seguranca} alt="Segurança"/>
                                 <TextCardValores>
-                                    <h1>Segurança</h1>
+                                    <h3>Segurança</h3>
                                     <p>Focamos sempre na segurança de seus dados e informações.</p>
                                 </TextCardValores>
                             </Cards>
                             <Cards>
-                                <img src={respeito}/>
+                                <img src={respeito} alt="Respeito"/>
                                 <TextCardValores>
-                                    <h1>Respeito</h1>
+                                    <h3>Respeito</h3>
                                     <p>Mantemos o respeito por todos os clientes.</p>
                                 </TextCardValores>
                             </Cards>
                             <Cards>
-                                <img src={responsabilidade}/>
+                                <img src={responsabilidade} alt="Responsabilidade"/>
                                 <TextCardValores>
-                                    <h1>Responsabilidade</h1>
+                                    <h3>Responsabilidade</h3>
                                     <p>Somos cientes quanto a responsabilidade em relação aos nossos clientes.</p>
                                 </TextCardValores>
                             </Cards>
@@ -190,11 +204,11 @@ import {
                 </ContainerValores>
             </Container>
             <Container>
-                <ContainerInfo>
-                    <h2>Nosso Time</h2>
+            <ContainerInfo>
+                    <h2 name="time">Nosso Time</h2>
                     <ContainerCardsTime>
                         <Cards>
-                            <img src={erick}/>
+                            <img src={erick} alt="Erick"/>
                             <TextCardTime>
                                 <h1>Erick</h1>
                                 <h2>Gerente Jurídico</h2>
@@ -202,7 +216,7 @@ import {
                             </TextCardTime>
                         </Cards>
                         <Cards>
-                            <img src={everson}/>
+                            <img src={everson} alt="Everson"/>
                             <TextCardTime>
                                 <h1>Everson</h1>
                                 <h2>Coordenador de Marketing</h2>
@@ -210,7 +224,7 @@ import {
                             </TextCardTime>
                         </Cards>
                         <Cards>
-                            <img src={iuri}/>
+                            <img src={iuri} alt="Iuri"/>
                             <TextCardTime>
                                 <h1>Iuri</h1>
                                 <h2>Gerente Financeiro</h2>
@@ -220,7 +234,7 @@ import {
                     </ContainerCardsTime>
                     <ContainerCardsTimeCenter>
                         <Cards>
-                            <img src={james}/>
+                            <img src={james} alt="James"/>
                             <TextCardTime>
                                 <h1>James</h1>
                                 <h2>Gerente de Desenvolvimento</h2>
@@ -228,7 +242,7 @@ import {
                             </TextCardTime>
                         </Cards>
                         <Cards>
-                            <img src={lidia}/>
+                            <img src={lidia} alt="Lidia"/>
                             <TextCardTime>
                                 <h1>Lídia</h1>
                                 <h2>Diretora Geral</h2>
@@ -238,9 +252,19 @@ import {
                     </ContainerCardsTimeCenter>
                 </ContainerInfo>
             </Container>
-            <footer>
-                <img src={footer}/>
-            </footer>
+
+            <Footer>
+                <ContainerLogo>
+                    <img src={logo} alt="logo"/>
+                    <Texto>Ache.</Texto>
+                    <TextoVermelho>me</TextoVermelho>
+                </ContainerLogo>
+
+                <Copyright>
+                    <p>© 2020 Ache me. Todos os direitos reservados.</p>
+                </Copyright>
+            </Footer>
+
         </>
       )
   };

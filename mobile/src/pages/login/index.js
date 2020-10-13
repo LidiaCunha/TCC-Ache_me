@@ -15,14 +15,11 @@ const Login = ({navigation}) => {
     }
 
     const {login} = useAuth();
+
     const [userLogin, setUserLogin] = useState({
         mail: "",
         password: "",
     });
-
-    function handleSignIn(e) {
-        setUserLogin({...userLogin, [e.target.id]: e.target.value});
-    }
 
     const enter = async (e) => {
 
@@ -47,28 +44,25 @@ const Login = ({navigation}) => {
     };
 
     return (
-            <Container source={planoDeFundo}>
+        <Container source={planoDeFundo}>
             <ViewContainer>
                 <ContainerTitulo>
                     <Logo source={logo} ></Logo>
                     <Titulo>Ache.me</Titulo>
                 </ContainerTitulo>
-                <Input 
-                    keyboardType="email-address" 
-                    id="mail" placeholder="E-mail ou telefone" 
+                <Input
+                    placeholder="E-mail ou telefone" 
+                    autoCorrect={false}
                     keyboardType="email-address" 
                     value={userLogin.mail} 
-                    onChange={handleSignIn} 
-                    required
+                    onChangeText={mail => setUserLogin({mail})} 
                 ></Input>
                 <Input 
-                    textContentType="newPassword" 
-                    id="password" placeholder="Senha"
+                    placeholder="Senha"
                     secureTextEntry={true} 
                     autoCorrect={false}
                     value={userLogin.password} 
-                    onChange={handleSignIn} 
-                    required
+                    onChangeText={password => setUserLogin({password})} 
                 ></Input>
                 <Botao title="Entrar" onPress={enter}>
                     <Texto>Entrar</Texto>   
@@ -76,8 +70,8 @@ const Login = ({navigation}) => {
                 <Texto>OU</Texto>   
                 <Botao title="Cadastrar" onPress={navigateToRegister}>
                     <Texto>Cadastrar</Texto>   
-                </Botao>
-            </ViewContainer> 
+                </Botao> 
+            </ViewContainer>
         </Container>
     );
 };

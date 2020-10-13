@@ -2,6 +2,8 @@ import React from 'react';
 
 import { BrowserRouter, Switch, Route, Redirect} from "react-router-dom";
 import Login from "./pages/Login_cadastro/index.js";
+import Sobre from "./pages/sobre";
+import AreaInformativa from "./pages/Area_Informativa";
 import Home from "./pages/home";
 import { isSignedIn } from './services/security';
 
@@ -21,6 +23,12 @@ function Routes() {
         <Switch>
             <Route exact path="/">
                 <Login/>
+            </Route>
+            <Route path="/sobre">
+                <Sobre/>
+            </Route>
+            <Route path="/area-informativa">
+                <AreaInformativa/>
             </Route>
             <PrivateRoute path="/home">
                 <Home/>

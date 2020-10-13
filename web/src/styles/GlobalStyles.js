@@ -10,21 +10,14 @@ export const GlobalStyles = createGlobalStyle`
     }
 
     body {
-        background: #292929;
-        /* display: flex; */
-        /* justify-content: center;
-        align-content: center;
-        align-items: center; */
-        
 
         @media (min-width: 781px){
-            height: 100vh;
+            min-height: 100vh;
+            padding: auto;
+            box-sizing: border-box;
+            overflow-x: hidden;
+            
         }
-    }
-
-    h1{
-        color: #262626;
-        text-align: center;
     }
 
     footer{
