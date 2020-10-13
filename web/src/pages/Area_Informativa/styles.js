@@ -5,7 +5,7 @@ export const Container = styled.div`
     margin-right: auto;
     height: auto;
     min-height: 50px;
-    width: 1400px;
+    width: 100%;
 
     @media (max-width: 780px){
         width: 100vw;
@@ -38,13 +38,15 @@ export const Header = styled.div`
 export const ContainerApoio = styled.div`
     min-height: 50px;
     height: auto;
-    width: 100%;
+    width: 93%;
     display: flex;
     justify-content: space-around;
     align-content: center;
     align-items: center;
     flex-direction: column;
+    margin: 0 auto;
     margin-bottom: 20px;
+
 
     > h1{
         font-size: 1.8em;
@@ -53,6 +55,7 @@ export const ContainerApoio = styled.div`
         text-align: center;
         margin-bottom: 50px;
         font-weight: bold;
+        color: #262626;
     }
 
     @media (max-width: 780px){
@@ -104,19 +107,22 @@ export const CardApoio = styled.div`
     height: auto;
     width: auto;
     display: flex;
-    justify-content: space-around;
     flex-direction: column;
+    align-items: center;
     padding: 20px;
     box-sizing: border-box;
     transition: 1s;
     color: #000000;
     font-family: Arial, Helvetica, sans-serif;
+   
 
     > h3 {
       font-size: 1.2em;
       font-weight: bold;
       font-family: arial;
       margin: 30px 0;
+      align-self: flex-start;
+      color: #262626;
     }
 
     > p {
@@ -125,7 +131,6 @@ export const CardApoio = styled.div`
     }
 
     :hover {
-      cursor: pointer;
       transition: .7s;
       transform: scale(1.1); 
     }

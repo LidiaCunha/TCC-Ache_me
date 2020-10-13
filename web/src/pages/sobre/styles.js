@@ -162,6 +162,7 @@ export const CardContent = styled.div`
   }
   >h3{
     font-size: 1.2em;
+    color: #262626;
   }
   >p{
     font-size: 1.1em;
@@ -172,6 +173,12 @@ export const CardContent = styled.div`
     margin: 0 auto;
     margin-bottom: 30px;
   }
+  
+  :hover {
+      transition: .7s;
+      transform: scale(1.1); 
+      
+    }
 `
 
 export const ContainerCardsMissao = styled.div`
@@ -204,7 +211,7 @@ export const CardContentMissao = styled.div`
   }
 
   >p {
-    font-size: 1.3em;
+    font-size: 1.2em;
   }
 
   >img {
@@ -213,6 +220,7 @@ export const CardContentMissao = styled.div`
     margin-bottom: 20px;
   }
   `
+
   export const ContainerValores = styled.div`
     height: 100%;
     width: 100%;
@@ -248,7 +256,7 @@ export const CardContentMissao = styled.div`
     color: #fff;
     padding: 8px;
     box-sizing: border-box;
-    font-size: 1.3em;
+    font-size: 1.2em;
     >p{
       margin-bottom: 20px;
     }
