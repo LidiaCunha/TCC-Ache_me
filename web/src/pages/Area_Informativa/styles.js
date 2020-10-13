@@ -6,6 +6,10 @@ export const Container = styled.div`
     height: auto;
     min-height: 50px;
     width: 100%;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 0a5f3832529f59e926b9c42a94af1183ef6276b5
     @media (max-width: 780px){
         width: 100vw;
     }
@@ -44,6 +48,7 @@ export const ContainerApoio = styled.div`
     flex-direction: column;
     margin: 0 auto;
     margin-bottom: 20px;
+
     > h1{
         font-size: 1.8em;
         font-family: arial;
@@ -108,6 +113,10 @@ export const CardApoio = styled.div`
     color: #000000;
     font-family: Arial, Helvetica, sans-serif;
    
+<<<<<<< HEAD
+=======
+
+>>>>>>> 0a5f3832529f59e926b9c42a94af1183ef6276b5
     > h3 {
       font-size: 1.2em;
       font-weight: bold;
@@ -116,10 +125,18 @@ export const CardApoio = styled.div`
       align-self: flex-start;
       color: #262626;
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 0a5f3832529f59e926b9c42a94af1183ef6276b5
     > p {
       font-size: 1.1em;
       font-family: arial;
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 0a5f3832529f59e926b9c42a94af1183ef6276b5
     :hover {
       transition: .7s;
       transform: scale(1.1); 
@@ -152,6 +169,10 @@ export const ContainerImgApoio = styled.div`
     align-content: center;
     align-items: center;
     overflow: hidden;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 0a5f3832529f59e926b9c42a94af1183ef6276b5
     > img {
       height: 70%;
       width: 70%;
@@ -226,6 +247,10 @@ export const ContainerInfo = styled.div`
       font-family: arial;
       margin-bottom: 10px;
     }  
+<<<<<<< HEAD
+=======
+
+>>>>>>> 0a5f3832529f59e926b9c42a94af1183ef6276b5
 @media(max-width: 780px){
     padding: 10px;
     padding-top: 100px;

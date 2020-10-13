@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Login from '../pages/Login';
+import Login from '../pages/login';
 import BasicInfo from '../pages/cadastro_dados_pessoais';
 import Address from '../pages/cadastro_endereco';
 import Photo from '../pages/cadastro_foto_perfil';

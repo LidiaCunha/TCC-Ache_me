@@ -8,7 +8,7 @@ export const Container = styled.div`
     position: relative;
     background-color: #fff;
     
-    > img{
+    > img {
       height: 100%;
       width: 100%;
       filter: brightness(30%);
@@ -20,11 +20,14 @@ export const ContainerInfo = styled.div`
     width: 100%;
     position: absolute;
     top: 0px;
-    >h1{
+    font-family: arial;
+
+    >h1 {
       color: #fff;
       padding: 25px;
+      text-align: center;
     }
-    >h2{
+    >h2 {
       color: #262626;
       font-size: 1.8em;
       text-align: center;
@@ -39,12 +42,12 @@ export const ContainerMenu = styled.div`
   justify-content: space-between;
   align-content: center;
   align-items: center;
-
   > img{
     height: 6vw;
     width: 6vw;
     margin-left: 5vw;
     margin-top: 4vh;
+
   }
 `
 
@@ -89,7 +92,7 @@ export const LoginContainerText = styled.div`
 export const ContainerTextMenor = styled.div`
       height: auto;
       width: auto;
-      font-size: 1vw;
+      font-size: 0.9em;
       font-family: arial;
       margin-bottom: 80px;
       padding-left: 5vw;
@@ -116,10 +119,9 @@ export const ContainerBtn = styled.button`
     margin-right: auto;
     padding: 15px;
     box-sizing: border-box;
-    font-size: 1.4em;
+    font-size: 1.2em;
+    color: #fff;
     font-family: arial;
-
-    
 `;
 
 export const ContainerCards = styled.div`
@@ -149,21 +151,30 @@ export const CardContent = styled.div`
   padding: 8px;
   box-sizing: border-box;
   color: #262626;
-  text-align: center;
+  text-align: left;
   
-  >h1, p{
+  >h3, p{
     margin-bottom: 15px;
   }
-  >h1{
-    font-size: 1.4em;
+  >h3{
+    font-size: 1.2em;
+    color: #262626;
   }
   >p{
     font-size: 1.1em;
   }
-  >img{
-    margin-left: auto;
-    margin-right: auto;
+  >img {
+    height: 64px;
+    width: 64px;
+    margin: 0 auto;
+    margin-bottom: 30px;
   }
+  
+  :hover {
+      transition: .7s;
+      transform: scale(1.1); 
+      
+    }
 `
 
 export const ContainerCardsMissao = styled.div`
@@ -185,29 +196,37 @@ export const CardContentMissao = styled.div`
   height: auto;
   width: 100%;
   justify-content: center;
-  padding: 8px;
+  padding: 15px;
   box-sizing: border-box;
   color: #262626;
-  text-align: justify;
+  text-align: left;
   
-  >h1, p{
+  >h3, p {
     margin-bottom: 15px;
     margin-left: 50px;
   }
-  >h1{
-    text-align: left;
+
+  >p {
+    font-size: 1.2em;
   }
-  >p{
-    font-size: 1.3em;
+
+  >img {
+    height: 86px;
+    width: 86px;
+    margin-bottom: 20px;
   }
   `
+
   export const ContainerValores = styled.div`
     height: 100%;
     width: 100%;
     position: absolute;
     top: 0px;
     background-color: #E64F4A;
-    >h1{
+    font-family: Arial, Helvetica, sans-serif;
+    padding-top: 8px;
+    
+    >h1 {
       color: #fff;
       text-align: left;
       width: 1200px;
@@ -225,18 +244,18 @@ export const CardContentMissao = styled.div`
     grid-template-columns: 40% 60%;
     justify-content: center;
     padding: 8px;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 0 auto;
+    column-gap: 20px;
     grid-auto-rows: 150px;
   `
   export const CardText = styled.div`
-  color: #fff;
-  padding: 8px;
-  box-sizing: border-box;
-  font-size: 1.3em;
-  >p{
-    margin-bottom: 20px;
-  }
+    color: #fff;
+    padding: 8px;
+    box-sizing: border-box;
+    font-size: 1.2em;
+    >p{
+      margin-bottom: 20px;
+    }
 `
 
 export const ContainerCardsValores = styled.div`
@@ -245,7 +264,7 @@ export const ContainerCardsValores = styled.div`
   display: grid;
   grid-template-columns: 50% 50%;
   grid-auto-rows: 100px;
-  grid-gap: 30px;
+  gap: 30px;
   >div{
     height: 110px;
     display: flex;
@@ -263,12 +282,9 @@ export const ContainerCardsValores = styled.div`
 
 export const TextCardValores = styled.div`
   display: block;
-  >h1, p{
+  >h3, p{
     text-align: left;
     margin-bottom: 10px;
-  }
-  >h1{
-    font-size: 1.4em;
   }
   >p{
     font-size: 1.1em;
@@ -286,10 +302,8 @@ export const ContainerCardsTime = styled.div`
   column-gap: 10px;
   padding: 15px;
   box-sizing: border-box;
-
   >div{
     display: flex;
-
     >img{
       width: 100px;
       height: 100px;
@@ -297,6 +311,7 @@ export const ContainerCardsTime = styled.div`
       margin-right: 10px;
     }
   }
+
 `
 
 export const ContainerCardsTimeCenter = styled.div`
@@ -310,10 +325,8 @@ export const ContainerCardsTimeCenter = styled.div`
   column-gap: 10px;
   padding: 15px;
   box-sizing: border-box;
-
   >div{
     display: flex;
-
     >img{
       width: 100px;
       height: 100px;
@@ -330,10 +343,10 @@ export const TextCardTime = styled.div`
     margin-bottom: 5px;
   }
   >h1{
-    font-size: 1.4em;
+    font-size: 1.2em;
   }
   h2{
-    font-size: 1.3em;
+    font-size: 1.1em;
     color: #E64F4A;
   }
   >p{
