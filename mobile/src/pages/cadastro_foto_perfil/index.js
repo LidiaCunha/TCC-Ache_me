@@ -5,7 +5,7 @@ import {api} from '../../services/api';
 //Style
 import { Container, BotaoVoltar, ContainerInfos, Texto, ContainerCard, ContainerFoto, FotoImagem, IconeFoto, FotoCamera, TextoNome, TextoEmail, TextosCard, Botao, TextoBotao } from './styles';
 import planoDeFundo from "../../assets/planoDeFundo.jpg";
-import Foto from "../../assets/fotoExemplo.jpg";
+// import Foto from "../../assets/fotoExemplo.jpg";
 import Camera from "../../assets/cameraCadastro.png"
 
 const CadastroFotoPerfil = ({route, navigation}) => {
@@ -18,7 +18,7 @@ const CadastroFotoPerfil = ({route, navigation}) => {
 
     const register = async (e) => {
         e.preventDefault();
-
+        
         const data = new FormData();
 
         data.append("name", props.name);
@@ -33,7 +33,7 @@ const CadastroFotoPerfil = ({route, navigation}) => {
         data.append("city", props.city);
         data.append("state", props.state);
         data.append("complement", props.complement);
-        // data.append("photo", image);
+        data.append("photo", image);
 
         try {
             const retorno = await api.post("/newUser", data, {
@@ -60,7 +60,6 @@ const CadastroFotoPerfil = ({route, navigation}) => {
             <ContainerInfos>
                 <Texto>Escolha uma foto para o seu perfil.</Texto>
                 <ContainerFoto>
-                    <FotoImagem source={Foto}/>
                     <IconeFoto>
                         <FotoCamera source={Camera}/>
                     </IconeFoto>

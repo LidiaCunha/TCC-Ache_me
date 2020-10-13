@@ -20,20 +20,16 @@ const CadastroEndereco = ({route, navigation}) => {
         mail: props.mail,
         telephone: props.telephone,
         password: props.password,
-        cep: "",
-        street: "",
-        bairro: "",
-        city: "",
-        state: "",
-        number: "",
-
     });
-
+    
     const sendToConfirm = async (e) => {
         e.preventDefault();
-
+ 
         try {
-            return navigateToConfirm(advancedInfo);
+            if( advancedInfo.cep && advancedInfo.street && advancedInfo.bairro && advancedInfo.city && advancedInfo.state && advancedInfo.number)
+                return navigateToConfirm(advancedInfo);
+            else
+                return window.alert("Nos precisamos saber seu endereço para completar seu cadastro.");
 
         } catch (erro) {
             if(erro.response){
@@ -44,21 +40,52 @@ const CadastroEndereco = ({route, navigation}) => {
         }
     }
 
-    const handlerInput = (e) => {
-        setAdvancedInfo({...advancedInfo, [e.target.id]: e.target.value});
+    const handlerCep = ( e ) => {
+        setAdvancedInfo({ ...advancedInfo , cep : e.nativeEvent.text.replace(/[^0-9]/g,'').replace(/(.{5})(.{3})/,'$1-$2').replace(/(.{9})(.*)/,'$1') });
+    }
+    const handlerStreet = ( e ) => {
+        setAdvancedInfo({ ...advancedInfo , street : e.nativeEvent.text });
+    }
+    const handlerBairro = ( e ) => {
+        setAdvancedInfo({ ...advancedInfo , bairro : e.nativeEvent.text });
+    }
+    const handlerCity = ( e ) => {
+        setAdvancedInfo({ ...advancedInfo , city : e.nativeEvent.text });
+    }
+    const handlerState = ( e ) => {
+        setAdvancedInfo({ ...advancedInfo , state : e.nativeEvent.text });
+    }
+    const handlerNumber = ( e ) => {
+        setAdvancedInfo({ ...advancedInfo , number : e.nativeEvent.text });
+    }
 
+    const autoCompleteByCep = async( e ) => {
+        const cep = advancedInfo.cep;
+
+        const setForm = async(data) =>{
+            setAdvancedInfo({...advancedInfo, 
+                'street': data.logradouro,
+                'bairro' : data.bairro,
+                'city' : data.cidade,
+                'state': data.estado_info.nome,
+            });
+        }
+
+        const url = `https://api.postmon.com.br/v1/cep/${cep}`;
+        const endereco = await fetch(url).then(res => res.json());
+        setForm(endereco)
     }
 
     return(
         <Container source={planoDeFundo}>
             <ContainerCadastro>
                 <IconeCadastro source={Icone}/>
-                <Input id="cep" placeholder="Insira seu cep" value={advancedInfo.cep} onChange={handlerInput} returnKeyType="next" maxLength={8}></Input>
-                <Input id="street" placeholder="Insira sua rua" value={advancedInfo.street} onChange={handlerInput}></Input>
-                <Input id="bairro" placeholder="Insira seu bairro" value={advancedInfo.bairro} onChange={handlerInput}></Input>
-                <Input id="city" placeholder="Insira sua cidade" value={advancedInfo.city} onChange={handlerInput}></Input>
-                <Input id="state" placeholder="Insira seu estado" value={advancedInfo.state} onChange={handlerInput}></Input>
-                <Input id="number" placeholder="Insira seu número" value={advancedInfo.number} onChange={handlerInput}></Input>
+                <Input id="cep" placeholder="Insira seu cep" value={advancedInfo.cep} onBlur={autoCompleteByCep} onChange={handlerCep} returnKeyType="next" maxLength={9}></Input>
+                <Input id="street" placeholder="Insira sua rua" value={advancedInfo.street} onChange={handlerStreet}></Input>
+                <Input id="bairro" placeholder="Insira seu bairro" value={advancedInfo.bairro} onChange={handlerBairro}></Input>
+                <Input id="city" placeholder="Insira sua cidade" value={advancedInfo.city} onChange={handlerCity}></Input>
+                <Input id="state" placeholder="Insira seu estado" value={advancedInfo.state} onChange={handlerState}></Input>
+                <Input id="number" placeholder="Insira seu número" value={advancedInfo.number} onChange={handlerNumber}></Input>
                 <Botao onPress={sendToConfirm}><Texto>Próximo</Texto></Botao>
             </ContainerCadastro>
         </Container>

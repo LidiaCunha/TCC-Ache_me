@@ -21,7 +21,7 @@ const Login = ({navigation}) => {
     });
 
     function handleSignIn(e) {
-        setUserLogin({...userLogin, [e.target.id]: e.target.value});
+        setUserLogin({ [e.target.id]: e.target.value});
     }
 
     const enter = async (e) => {
