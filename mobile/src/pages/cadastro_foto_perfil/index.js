@@ -38,6 +38,7 @@ const CadastroFotoPerfil = ({route, navigation}) => {
         if (!result.cancelled) {
           setImage(result.uri);
         }
+        return result;
       };
 
     const {props} = route.params;
@@ -45,6 +46,13 @@ const CadastroFotoPerfil = ({route, navigation}) => {
     const navigateToCheckEmail = () => {
         navigation.navigate('CheckEmail');
     }
+
+    const [textoBotao, setTextoBotao] = useState("Pular")
+    const mudarTextoBotao = (result) =>{
+        if(result !== null){
+            setTextoBotao("Confirmar");
+        }
+    };
 
     const register = async (e) => {
         e.preventDefault();
@@ -92,7 +100,7 @@ const CadastroFotoPerfil = ({route, navigation}) => {
                     <Texto>Escolha uma foto para o seu perfil.</Texto>
                     <ContainerFoto>
                         <FotoImagem source={{ uri: image }}/>
-                        <IconeFoto onPress={pickImage}>
+                        <IconeFoto onPressOut={mudarTextoBotao} onPress={pickImage}>
                             <FotoCamera source={Camera}/>
                         </IconeFoto>
                     </ContainerFoto>
@@ -103,7 +111,7 @@ const CadastroFotoPerfil = ({route, navigation}) => {
                         </TextosCard>
                     </ContainerCard>
                 </ContainerInfos>
-                <Botao onPress={navigateToCheckEmail}><TextoBotao>Pular</TextoBotao></Botao>
+    <Botao onPress={navigateToCheckEmail}><TextoBotao>{textoBotao}</TextoBotao></Botao>
             </ViewContainer>
         </Container>
     )
