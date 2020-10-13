@@ -55,12 +55,12 @@ const CadastroEndereco = ({route, navigation}) => {
             <ViewContainer>
                 <ContainerCadastro>
                     <IconeCadastro source={Icone}/>
-                    <Input id="cep" placeholder="Insira seu cep" value={advancedInfo.cep} onChange={handlerInput} returnKeyType="next" maxLength={8}></Input>
-                    <Input id="street" placeholder="Insira sua rua" value={advancedInfo.street} onChange={handlerInput}></Input>
-                    <Input id="bairro" placeholder="Insira seu bairro" value={advancedInfo.bairro} onChange={handlerInput}></Input>
-                    <Input id="city" placeholder="Insira sua cidade" value={advancedInfo.city} onChange={handlerInput}></Input>
-                    <Input id="state" placeholder="Insira seu estado" value={advancedInfo.state} onChange={handlerInput}></Input>
-                    <Input id="number" placeholder="Insira seu número" value={advancedInfo.number} onChange={handlerInput}></Input>
+                    <Input id="cep" placeholder="Insira seu CEP" keyboardType="numeric" value={advancedInfo.cep} onChange={handlerInput} returnKeyType="next" maxLength={8} onChangeText={cep => setAdvancedInfo({cep})}></Input>
+                    <Input id="street" placeholder="Insira sua rua" value={advancedInfo.street} onChange={handlerInput} onChangeText={street => setAdvancedInfo({street})}></Input>
+                    <Input id="bairro" placeholder="Insira seu bairro" value={advancedInfo.bairro} onChange={handlerInput} onChangeText={bairro => setAdvancedInfo({bairro})}></Input>
+                    <Input id="city" placeholder="Insira sua cidade" value={advancedInfo.city} onChange={handlerInput} onChangeText={city => setAdvancedInfo({city})}></Input>
+                    <Input id="state" placeholder="Insira seu estado" value={advancedInfo.state} onChange={handlerInput} onChangeText={state => setAdvancedInfo({state})}></Input>
+                    <Input id="number" placeholder="Insira seu número" value={advancedInfo.number} onChange={handlerInput} onChangeText={number => setAdvancedInfo({number})}></Input>
                     <Botao onPress={sendToConfirm}><Texto>Próximo</Texto></Botao>
                 </ContainerCadastro>
             </ViewContainer>
