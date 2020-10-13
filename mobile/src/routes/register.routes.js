@@ -12,7 +12,7 @@ import CheckEmail from '../pages/cadastro_email';
 const RegisterRoutes = () => {
   return (
   <AuthStack.Navigator initialRouteName="Basic_Info" >
-    <AuthStack.Screen name="Informações" component={BasicInfo}/>
+    <AuthStack.Screen name="Informações Pessoais" component={BasicInfo}/>
     <AuthStack.Screen name="Endereço" component={Address}/>
     <AuthStack.Screen name="Confirmar" component={Photo}/>
     <AuthStack.Screen name="CheckEmail" component={CheckEmail} options={{headerShown:false}}/>

@@ -5,6 +5,7 @@ import React, {useState} from 'react';
 import {Container, BotaoVoltar, ContainerCadastro, IconeCadastro, Input, Botao, Texto} from './styles';
 import planoDeFundo from "../../assets/planoDeFundo.jpg";
 import Icone from "../../assets/iconeDadosPessoais.png";
+import { ViewContainer } from "../login/styles";
 
 const CadastroPessoal = ({navigation}) => {
     const navigateToAddress = (props) => {
