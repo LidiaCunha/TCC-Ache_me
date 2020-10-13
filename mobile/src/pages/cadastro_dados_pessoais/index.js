@@ -39,13 +39,49 @@ const CadastroPessoal = ({navigation}) => {
         <Container source={planoDeFundo}>
             <ContainerCadastro>
                 <IconeCadastro source={Icone}/>
-                <Input name="name" placeholder="Insira seu nome" value={basicInfo.name} onChangeText={handlerInput} returnKeyType="next" ></Input>
-                <Input name="CPF" placeholder="Insira seu cpf" value={basicInfo.CPF} onChangeText={handlerInput} returnKeyType="next" maxLength={11}></Input>
-                <Input name="mail" placeholder="Insira seu email" value={basicInfo.mail} onChangeText={handlerInput}keyboardType="email-address" returnKeyType="next"></Input>
-                <Input name="telephone" placeholder="Insira seu telefone" value={basicInfo.telephone} onChangeText={handlerInput}keyboardType="number-pad" returnKeyType="next" maxLength={11}></Input>
-                <Input name="indication" placeholder="Usuário que te indicou o app" returnKeyType="next"></Input>
-                <Input name="password" placeholder="Senha" secureTextEntry={true} autoCorrect={false} value={basicInfo.password} onChangeText={handlerInput}returnKeyType="done"></Input>
-                <Botao onPress={sendToAddress}><Texto>Próximo</Texto></Botao>
+                <Input  name="name" 
+                        placeholder="Insira seu nome" 
+                        value={basicInfo.name} 
+                        onChangeText={name => setBasicInfo({name})} 
+                        returnKeyType="next" 
+                ></Input>
+                <Input  name="CPF" 
+                        placeholder="Insira seu cpf" 
+                        value={basicInfo.CPF} 
+                        onChangeText={CPF => setBasicInfo({CPF})} 
+                        returnKeyType="next"
+                        maxLength={11}
+                ></Input>
+                <Input  name="mail" 
+                        placeholder="Insira seu email" 
+                        value={basicInfo.mail} 
+                        onChangeText={mail => setBasicInfo({mail})}
+                        keyboardType="email-address" 
+                        returnKeyType="next"
+                ></Input>
+                <Input  name="telephone" 
+                        placeholder="Insira seu telefone" 
+                        value={basicInfo.telephone} 
+                        onChangeText={telephone => setBasicInfo({telephone})}
+                        keyboardType="number-pad" 
+                        returnKeyType="next" 
+                        maxLength={11}
+                ></Input>
+                <Input  name="indication" 
+                        placeholder="Usuário que te indicou o app" 
+                        returnKeyType="next"
+                ></Input>
+                <Input  name="password" 
+                        placeholder="Senha" 
+                        secureTextEntry={true} 
+                        autoCorrect={false} 
+                        value={basicInfo.password} 
+                        onChangeText={password => setBasicInfo({password})}
+                        returnKeyType="done"
+                ></Input>
+                <Botao onPress={sendToAddress}>
+                    <Texto>Próximo</Texto>
+                </Botao>
             </ContainerCadastro>
         </Container>
     )

@@ -15,6 +15,7 @@ const Login = ({navigation}) => {
     }
 
     const {login} = useAuth();
+
     const [userLogin, setUserLogin] = useState({
         mail: "",
         password: "",
@@ -48,22 +49,19 @@ const Login = ({navigation}) => {
                 <Logo source={logo} ></Logo>
                 <Titulo>Ache.me</Titulo>
             </ContainerTitulo>
-            <Input 
-                keyboardType="email-address" 
-                id="mail" placeholder="E-mail ou Telefone" 
+            <Input
+                placeholder="E-mail ou Telefone" 
+                autoCorrect={false}
                 keyboardType="email-address" 
                 value={userLogin.mail} 
                 onChangeText={mail => setUserLogin({mail})} 
-                required
             ></Input>
             <Input 
-                textContentType="newPassword" 
-                id="password" placeholder="Senha"
+                placeholder="Senha"
                 secureTextEntry={true} 
                 autoCorrect={false}
                 value={userLogin.password} 
                 onChangeText={password => setUserLogin({password})} 
-                required
             ></Input>
             <Botao title="Entrar" onPress={enter}>
                 <Texto>Entrar</Texto>   
