@@ -46,7 +46,7 @@ export const ContainerMenu = styled.div`
 
   > img {
     height: 10vh;
-    width: 5vw;
+    width: 4.8vw;
     margin-left: 5vw;
     margin-top: 5vh;
   }
