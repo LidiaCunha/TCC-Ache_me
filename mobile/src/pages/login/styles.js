@@ -1,9 +1,20 @@
 import styled from "styled-components/native";
 
-export const Container = styled.ImageBackground`
-    flex: auto;
+export const ViewContainer = styled.View`
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.5);
     justify-content: center;
     align-items: center;
+`
+
+export const Container = styled.ImageBackground`
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    /* background-color: black;
+    opacity: 0.65; */
 `
 
 export const ContainerTitulo = styled.View`

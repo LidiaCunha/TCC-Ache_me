@@ -4,14 +4,14 @@ import {useAuth} from '../../contexts/auth';
 import {api} from '../../services/api';
 
 // Styles
-import {Container, ContainerTitulo, Logo, Titulo, Input, Botao, Texto} from './styles';
+import {ViewContainer, Container, ContainerTitulo, Logo, Titulo, Input, Botao, Texto} from './styles';
 import planoDeFundo from "../../assets/planoDeFundo.jpg";
 import logo from "../../assets/logo.png";
 
 
 const Login = ({navigation}) => {
     const navigateToRegister = () => {
-        navigation.navigate('Informações');
+        navigation.navigate('Informações Pessoais');
     }
 
     const {login} = useAuth();
@@ -45,31 +45,33 @@ const Login = ({navigation}) => {
 
     return (
         <Container source={planoDeFundo}>
-            <ContainerTitulo>
-                <Logo source={logo} ></Logo>
-                <Titulo>Ache.me</Titulo>
-            </ContainerTitulo>
-            <Input
-                placeholder="E-mail ou Telefone" 
-                autoCorrect={false}
-                keyboardType="email-address" 
-                value={userLogin.mail} 
-                onChangeText={mail => setUserLogin({mail})} 
-            ></Input>
-            <Input 
-                placeholder="Senha"
-                secureTextEntry={true} 
-                autoCorrect={false}
-                value={userLogin.password} 
-                onChangeText={password => setUserLogin({password})} 
-            ></Input>
-            <Botao title="Entrar" onPress={enter}>
-                <Texto>Entrar</Texto>   
-            </Botao> 
-            <Texto>OU</Texto>   
-            <Botao title="Cadastrar" onPress={navigateToRegister}>
-                <Texto>Cadastrar</Texto>   
-            </Botao> 
+            <ViewContainer>
+                <ContainerTitulo>
+                    <Logo source={logo} ></Logo>
+                    <Titulo>Ache.me</Titulo>
+                </ContainerTitulo>
+                <Input
+                    placeholder="E-mail ou telefone" 
+                    autoCorrect={false}
+                    keyboardType="email-address" 
+                    value={userLogin.mail} 
+                    onChangeText={mail => setUserLogin({mail})} 
+                ></Input>
+                <Input 
+                    placeholder="Senha"
+                    secureTextEntry={true} 
+                    autoCorrect={false}
+                    value={userLogin.password} 
+                    onChangeText={password => setUserLogin({password})} 
+                ></Input>
+                <Botao title="Entrar" onPress={enter}>
+                    <Texto>Entrar</Texto>   
+                </Botao> 
+                <Texto>OU</Texto>   
+                <Botao title="Cadastrar" onPress={navigateToRegister}>
+                    <Texto>Cadastrar</Texto>   
+                </Botao> 
+            </ViewContainer>
         </Container>
     );
 };

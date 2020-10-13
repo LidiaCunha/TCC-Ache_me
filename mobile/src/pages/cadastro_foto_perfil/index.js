@@ -1,14 +1,44 @@
 //Funcional
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {api} from '../../services/api';
+import { Platform } from 'react-native';
 
 //Style
-import { Container, BotaoVoltar, ContainerInfos, Texto, ContainerCard, ContainerFoto, FotoImagem, IconeFoto, FotoCamera, TextoNome, TextoEmail, TextosCard, Botao, TextoBotao } from './styles';
+import { ViewContainer, Container, BotaoVoltar, ContainerInfos, Texto, ContainerCard, ContainerFoto, FotoImagem, IconeFoto, FotoCamera, TextoNome, TextoEmail, TextosCard, Botao, TextoBotao } from './styles';
 import planoDeFundo from "../../assets/planoDeFundo.jpg";
 import Foto from "../../assets/fotoExemplo.jpg";
 import Camera from "../../assets/cameraCadastro.png"
+import * as ImagePicker from 'expo-image-picker';
+import Constants from 'expo-constants';
 
 const CadastroFotoPerfil = ({route, navigation}) => {
+
+    useEffect(() => {
+        (async () => {
+          if (Platform.OS !== 'web') {
+            const { status } = await ImagePicker.requestCameraRollPermissionsAsync();
+            if (status !== 'granted') {
+              alert('Sorry, we need camera roll permissions to make this work!');
+            }
+          }
+        })();
+      }, []);    
+
+    const [image, setImage] = useState(null);
+    const pickImage = async () => {
+        let result = await ImagePicker.launchImageLibraryAsync({
+          mediaTypes: ImagePicker.MediaTypeOptions.All,
+          allowsEditing: true,
+          aspect: [4, 3],
+          quality: 1,
+        });
+    
+        console.log(result);
+    
+        if (!result.cancelled) {
+          setImage(result.uri);
+        }
+      };
 
     const {props} = route.params;
 
@@ -57,22 +87,24 @@ const CadastroFotoPerfil = ({route, navigation}) => {
     };
     return(
         <Container source={planoDeFundo}>
-            <ContainerInfos>
-                <Texto>Escolha uma foto para o seu perfil.</Texto>
-                <ContainerFoto>
-                    <FotoImagem source={Foto}/>
-                    <IconeFoto>
-                        <FotoCamera source={Camera}/>
-                    </IconeFoto>
-                </ContainerFoto>
-                <ContainerCard>
-                    <TextosCard>
-                        <TextoNome>{props.name}</TextoNome>
-                        <TextoEmail>{props.mail}</TextoEmail>
-                    </TextosCard>
-                </ContainerCard>
-            </ContainerInfos>
-            <Botao onPress={register}><TextoBotao>Confirmar</TextoBotao></Botao>
+            <ViewContainer>
+                <ContainerInfos>
+                    <Texto>Escolha uma foto para o seu perfil.</Texto>
+                    <ContainerFoto>
+                        <FotoImagem source={{ uri: image }}/>
+                        <IconeFoto onPress={pickImage}>
+                            <FotoCamera source={Camera}/>
+                        </IconeFoto>
+                    </ContainerFoto>
+                    <ContainerCard>
+                        <TextosCard>
+                            <TextoNome>{props.name}</TextoNome>
+                            <TextoEmail>{props.mail}</TextoEmail>
+                        </TextosCard>
+                    </ContainerCard>
+                </ContainerInfos>
+                <Botao onPress={navigateToCheckEmail}><TextoBotao>Pular</TextoBotao></Botao>
+            </ViewContainer>
         </Container>
     )
 }
