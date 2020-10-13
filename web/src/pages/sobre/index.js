@@ -1,4 +1,5 @@
 import React from "react";
+import { Link} from "react-scroll"
 import {useHistory} from "react-router-dom";
 import logo from "../../assets/logo.png";
 import { 
@@ -60,10 +61,10 @@ import {
                                 <li onClick={() => {
                                 history.push("/area-informativa");
                                 }}>Área Informativa</li>
-                                <li>Serviços</li>
-                                <li>Missão e Visão</li>
-                                <li>Valores</li>
-                                <li>Time</li>
+                                <li><Link to="servico" offset={-50} smooth={true} duration={500}>Serviços</Link></li>
+                                <li><Link to="missao" offset={-50} smooth={true} duration={500}>Missão e Visão</Link></li>
+                                <li><Link to="valores" offset={-50} smooth={true} duration={500}>Valores</Link></li>
+                                <li><Link to="time" offset={-50} smooth={true} duration={500}>Time</Link></li>
                             </ul>
                         </ContainerItensMenu>
                     </ContainerMenu>
@@ -83,7 +84,7 @@ import {
             </Container>
             <Container>
                 <ContainerInfo>
-                    <h2>Nossos Serviços</h2>
+                    <h2 name="servico">Nossos Serviços</h2>
                     <ContainerCards>
                         <Cards>
                             <CardContent>
@@ -123,7 +124,7 @@ import {
             <Container>
                 <img src={missaoBackground} alt="background missão e valores"/>
                 <ContainerInfo>
-                    <h1>Missão e Visão</h1>
+                    <h1 name="missao">Missão e Visão</h1>
                     <ContainerCardsMissao>
                         <Cards>
                             <CardContentMissao>
@@ -150,7 +151,7 @@ import {
             </Container>
             <Container>
                 <ContainerValores>
-                    <h1>Nossos Valores</h1> 
+                    <h1 name="valores">Nossos Valores</h1> 
 
                     <ContainerGridValores>
 
@@ -166,28 +167,28 @@ import {
                         </CardText>
                         <ContainerCardsValores>
                             <Cards>
-                                <img src={qualidade}/>
+                                <img src={qualidade} alt="Qualidade"/>
                                 <TextCardValores>
                                     <h3>Qualidade</h3>
                                     <p>A Ache.me busca oferecer serviços de qualidade.</p>
                                 </TextCardValores>
                             </Cards>
                             <Cards>
-                                <img src={seguranca}/>
+                                <img src={seguranca} alt="Segurança"/>
                                 <TextCardValores>
                                     <h3>Segurança</h3>
                                     <p>Focamos sempre na segurança de seus dados e informações.</p>
                                 </TextCardValores>
                             </Cards>
                             <Cards>
-                                <img src={respeito}/>
+                                <img src={respeito} alt="Respeito"/>
                                 <TextCardValores>
                                     <h3>Respeito</h3>
                                     <p>Mantemos o respeito por todos os clientes.</p>
                                 </TextCardValores>
                             </Cards>
                             <Cards>
-                                <img src={responsabilidade}/>
+                                <img src={responsabilidade} alt="Responsabilidade"/>
                                 <TextCardValores>
                                     <h3>Responsabilidade</h3>
                                     <p>Somos cientes quanto a responsabilidade em relação aos nossos clientes.</p>
@@ -199,10 +200,10 @@ import {
             </Container>
             <Container>
             <ContainerInfo>
-                    <h2>Nosso Time</h2>
+                    <h2 name="time">Nosso Time</h2>
                     <ContainerCardsTime>
                         <Cards>
-                            <img src={erick}/>
+                            <img src={erick} alt="Erick"/>
                             <TextCardTime>
                                 <h1>Erick</h1>
                                 <h2>Gerente Jurídico</h2>
@@ -210,7 +211,7 @@ import {
                             </TextCardTime>
                         </Cards>
                         <Cards>
-                            <img src={everson}/>
+                            <img src={everson} alt="Everson"/>
                             <TextCardTime>
                                 <h1>Everson</h1>
                                 <h2>Coordenador de Marketing</h2>
@@ -218,7 +219,7 @@ import {
                             </TextCardTime>
                         </Cards>
                         <Cards>
-                            <img src={iuri}/>
+                            <img src={iuri} alt="Iuri"/>
                             <TextCardTime>
                                 <h1>Iuri</h1>
                                 <h2>Gerente Financeiro</h2>
@@ -228,7 +229,7 @@ import {
                     </ContainerCardsTime>
                     <ContainerCardsTimeCenter>
                         <Cards>
-                            <img src={james}/>
+                            <img src={james} alt="James"/>
                             <TextCardTime>
                                 <h1>James</h1>
                                 <h2>Gerente de Desenvolvimento</h2>
@@ -236,7 +237,7 @@ import {
                             </TextCardTime>
                         </Cards>
                         <Cards>
-                            <img src={lidia}/>
+                            <img src={lidia} alt="Lidia"/>
                             <TextCardTime>
                                 <h1>Lídia</h1>
                                 <h2>Diretora Geral</h2>
@@ -247,7 +248,7 @@ import {
                 </ContainerInfo>
             </Container>
             <footer>
-                <img src={footer}/>
+                <img src={footer} alt="Footer"/>
             </footer>
         </>
       )
