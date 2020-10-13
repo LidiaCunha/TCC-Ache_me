@@ -11,6 +11,7 @@ import Crianca from "../../assets/Area_Informativa/criancas.jpg";
 import Homem from "../../assets/Area_Informativa/homens.jpg";
 import Mulher from "../../assets/Area_Informativa/mulheres.jpg";
 import Adolescente from "../../assets/Area_Informativa/adolescentes.jpeg";
+import Button from "../../components/button";
 
 // ====== VIDEO =======
 import Video from "../../assets/Area_Informativa/video.mp4";
@@ -35,7 +36,6 @@ import {
     CardDesaparecidos,
     ContainerInfo,
     Porcentagem,
-    EfeitoBtn,
 
 // ======== video ========
 
@@ -120,8 +120,8 @@ const Area_informativa = () => {
                         <p>Crianças de até sete anos costumam se perder em shopping, parques e aeroportos.</p>
                            
                         <p>Oito a doze, podem sair de casa por maus-tratos ou problemas familiares.</p>
-                           <Porcentagem>3%
-                               <EfeitoBtn></EfeitoBtn>
+                           <Porcentagem>
+                                <Button title={"3%"}/>
                            </Porcentagem>
                     </ContainerInfo>
                 </CardDesaparecidos>
@@ -132,8 +132,8 @@ const Area_informativa = () => {
                     <ContainerInfo>
                     <h2>Homens</h2>
                            <p>Homens desaparecem para fugir de dívidas, não assumir a paternidade ou ter um relacionamento fora do casamento.</p>
-                           <Porcentagem>60%
-                               <EfeitoBtn></EfeitoBtn>
+                           <Porcentagem>
+                                <Button title={"60%"}/>
                            </Porcentagem>
                     </ContainerInfo>
                 </CardDesaparecidos>
@@ -144,8 +144,8 @@ const Area_informativa = () => {
                     <ContainerInfo>
                     <h2>Mulheres</h2>
                     <p>Mulheres desaparecem depois de serem vítimas de violência doméstica.</p>
-                           <Porcentagem>40%
-                               <EfeitoBtn></EfeitoBtn>
+                           <Porcentagem>
+                               <Button title={"40%"}/>
                            </Porcentagem>
                     </ContainerInfo>
                 </CardDesaparecidos>
@@ -156,8 +156,8 @@ const Area_informativa = () => {
                     <ContainerInfo>
                     <h2>Adolescentes</h2>
                     <p>Adolescentes têm desaparecido depois de marcarem encontros pela internet, de sofrerem abusos ou de não conseguirem autorização dos pais para se divertir com amigos.</p>
-                           <Porcentagem>14%
-                               <EfeitoBtn></EfeitoBtn>
+                           <Porcentagem>
+                                <Button title={"14%"}/>
                            </Porcentagem>
                     </ContainerInfo>
                 </CardDesaparecidos>
