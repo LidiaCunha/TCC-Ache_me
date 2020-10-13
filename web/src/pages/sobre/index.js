@@ -22,7 +22,12 @@ import {
     TextCardValores,
     ContainerCardsTime,
     ContainerCardsTimeCenter,
-    TextCardTime
+    TextCardTime,
+    Footer,
+    ContainerLogo,
+    Texto,
+    TextoVermelho,
+    Copyright,
   } from "./styles";
 
   import background from "../../assets/Sobre/background.jpg";
@@ -247,9 +252,19 @@ import {
                     </ContainerCardsTimeCenter>
                 </ContainerInfo>
             </Container>
-            <footer>
-                <img src={footer} alt="Footer"/>
-            </footer>
+
+            <Footer>
+                <ContainerLogo>
+                    <img src={logo} alt="logo"/>
+                    <Texto>Ache.</Texto>
+                    <TextoVermelho>me</TextoVermelho>
+                </ContainerLogo>
+
+                <Copyright>
+                    <p>© 2020 Ache me. Todos os direitos reservados.</p>
+                </Copyright>
+            </Footer>
+
         </>
       )
   };

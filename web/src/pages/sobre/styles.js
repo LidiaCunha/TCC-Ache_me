@@ -42,13 +42,12 @@ export const ContainerMenu = styled.div`
   justify-content: space-between;
   align-content: center;
   align-items: center;
-  /* background-color: red; */
-
-  > img {
-    height: 10vh;
-    width: 5vw;
+  > img{
+    height: 6vw;
+    width: 6vw;
     margin-left: 5vw;
-    margin-top: 5vh;
+    margin-top: 4vh;
+
   }
 `
 
@@ -95,11 +94,11 @@ export const ContainerTextMenor = styled.div`
       width: auto;
       font-size: 0.9em;
       font-family: arial;
-      color: rgba(255,255,255,.6);
       margin-bottom: 80px;
       padding-left: 5vw;
       padding-top: 3vh;
       box-sizing: border-box;
+      color: #fff;
 `;
 
 export const ContainerBtn = styled.button`
@@ -110,10 +109,11 @@ export const ContainerBtn = styled.button`
     justify-content: center;
     align-content: center;
     border-radius: 10px;
-    background: #E64F4A;
+    background: transparent;
+    border: none;
+    border: solid 2px #E64F4A;
     cursor: pointer;
     color: #fff;
-    border: none;
     outline: none;
     margin-left: auto;
     margin-right: auto;
@@ -122,10 +122,6 @@ export const ContainerBtn = styled.button`
     font-size: 1.2em;
     color: #fff;
     font-family: arial;
-    &:hover {
-    background-color: #fff;
-    color: #E64F4A;
-  }
 `;
 
 export const ContainerCards = styled.div`
@@ -162,6 +158,7 @@ export const CardContent = styled.div`
   }
   >h3{
     font-size: 1.2em;
+    color: #262626;
   }
   >p{
     font-size: 1.1em;
@@ -172,6 +169,12 @@ export const CardContent = styled.div`
     margin: 0 auto;
     margin-bottom: 30px;
   }
+  
+  :hover {
+      transition: .7s;
+      transform: scale(1.1); 
+      
+    }
 `
 
 export const ContainerCardsMissao = styled.div`
@@ -204,7 +207,7 @@ export const CardContentMissao = styled.div`
   }
 
   >p {
-    font-size: 1.3em;
+    font-size: 1.2em;
   }
 
   >img {
@@ -213,6 +216,7 @@ export const CardContentMissao = styled.div`
     margin-bottom: 20px;
   }
   `
+
   export const ContainerValores = styled.div`
     height: 100%;
     width: 100%;
@@ -248,7 +252,7 @@ export const CardContentMissao = styled.div`
     color: #fff;
     padding: 8px;
     box-sizing: border-box;
-    font-size: 1.3em;
+    font-size: 1.2em;
     >p{
       margin-bottom: 20px;
     }
@@ -349,3 +353,57 @@ export const TextCardTime = styled.div`
     font-size: 1.1em;
   }
 `
+// ========= FOOTER ==============
+
+export const Footer = styled.div`
+    height: 140px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    overflow: hidden;
+    background: #3F4042;
+    padding-left: 120px;
+    box-sizing: border-box;  
+`;
+
+export const ContainerLogo = styled.div`
+    height: auto;
+    width: 250px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    > img{
+      height: 70px;
+      width: 70px;
+      margin-right: 20px;
+    }
+  `;
+
+export const Texto = styled.div`
+    font-size: 2em;
+    font-family: arial;
+    color: #fff;
+    margin-top: 30px;
+`;
+
+export const TextoVermelho = styled.div`
+    font-size: 2em;
+    font-family: arial;
+    color: #E64F4A;
+    margin-top: 30px;
+`;
+
+export const Copyright = styled.div`
+    height: auto;
+    width: 550px;
+    > p{
+      font-size: 1.2em;
+      font-family: arial;
+      color: #fff;
+    }
+    @media(max-width: 780px){
+        font-size: 0.7em;
+    }
+`;
