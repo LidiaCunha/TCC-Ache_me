@@ -16,7 +16,7 @@ import Adolescente from "../../assets/Area_Informativa/adolescentes.jpeg";
 import Video from "../../assets/Area_Informativa/video.mp4";
 
 // ====== FOOTER =======
-import Fundo_footer from "../../assets/Area_Informativa/footer.jpg";
+// import Fundo_footer from "../../assets/Area_Informativa/footer.jpg";
 import Logo from "../../assets/Area_Informativa/logo.png";
 
 import {
@@ -39,13 +39,13 @@ import {
 
 // ======== video ========
 
-    Container_video,
+    ContainerVideo,
 
 // ======== footer =======    
     Footer,
     ContainerLogo,
     Texto,
-    Texto_vermelho,
+    TextoVermelho,
     Copyright,
 
     
@@ -59,7 +59,7 @@ const Area_informativa = () => {
 
         <Container>
             <ContainerApoio>
-                <h1>Instruções de apoio</h1>
+                <h1>Instruções de Apoio</h1>
 
                 <ContianerCardsApoio>
                     <Conjunto>
@@ -68,9 +68,9 @@ const Area_informativa = () => {
                                 <img src={Documento} alt="documentos"/>
                             </ContainerImgApoio>
 
-                            <h2>Documentos</h2>
+                            <h3>Documentos</h3>
 
-                            <p>Tire o RG (Registro de identidade Civil) da criança o quanto antes.</p>
+                            <p>Tire o RG (Registro de Identidade Civil) da criança o quanto antes.</p>
                         </CardApoio>
 
                         <CardApoio>
@@ -78,7 +78,7 @@ const Area_informativa = () => {
                                 <img src={Coracao} alt="documentos"/>
                             </ContainerImgApoio>
 
-                            <h2>Acompanhamento</h2>
+                            <h3>Acompanhamento</h3>
 
                             <p>Garanta que a criança esteja sempre acompanhada de alguém de confiança da família.</p>
                         </CardApoio>
@@ -90,7 +90,7 @@ const Area_informativa = () => {
                                 <img src={Loja} alt="documentos"/>
                             </ContainerImgApoio>
 
-                            <h2>Supervisão</h2>
+                            <h3>Supervisão</h3>
 
                             <p>Não autorizar o seu filho a brincar na rua sem a supervisão de um adulto conhecido.</p>
                         </CardApoio>
@@ -100,7 +100,7 @@ const Area_informativa = () => {
                                 <img src={Monitor} alt="documentos"/>
                             </ContainerImgApoio>
 
-                            <h2>Internet</h2>
+                            <h3>Internet</h3>
 
                             <p>Fique atento em como seus filhos utilizam computadores com acesso a internet.</p>
                         </CardApoio>
@@ -166,11 +166,11 @@ const Area_informativa = () => {
         </Container>
 
         <Container>
-            <Container_video>
+            <ContainerVideo>
                 <video loop muted controls>
                     <source src={Video} type="video/mp4"/>
                 </video>
-            </Container_video>
+            </ContainerVideo>
         </Container>
 
         <Footer>
@@ -178,7 +178,7 @@ const Area_informativa = () => {
                 <ContainerLogo>
                     <img src={Logo} alt="logo"/>
                     <Texto>Ache.</Texto>
-                    <Texto_vermelho>me</Texto_vermelho>
+                    <TextoVermelho>me</TextoVermelho>
                 </ContainerLogo>
 
                 <Copyright>

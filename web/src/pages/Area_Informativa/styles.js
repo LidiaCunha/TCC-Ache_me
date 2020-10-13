@@ -5,8 +5,7 @@ export const Container = styled.div`
     margin-right: auto;
     height: auto;
     min-height: 50px;
-    width: 1400px;
-
+    width: 100%;
     @media (max-width: 780px){
         width: 100vw;
     }
@@ -24,7 +23,6 @@ export const Header = styled.div`
     font-family: arial;
     margin-bottom: 30px;
     background: #2edbad;
-
     @media (max-width: 780px){
         font-size: 6vw;
         height: 300px;
@@ -38,23 +36,23 @@ export const Header = styled.div`
 export const ContainerApoio = styled.div`
     min-height: 50px;
     height: auto;
-    width: 100%;
+    width: 93%;
     display: flex;
     justify-content: space-around;
     align-content: center;
     align-items: center;
     flex-direction: column;
+    margin: 0 auto;
     margin-bottom: 20px;
-
     > h1{
-        font-size: 2em;
+        font-size: 1.8em;
         font-family: arial;
-        color: #fff;
+        color: #000;
         text-align: center;
         margin-bottom: 50px;
         font-weight: bold;
+        color: #262626;
     }
-
     @media (max-width: 780px){
         width: 100vw;
         min-height: 10px;   
@@ -72,25 +70,20 @@ export const ContianerCardsApoio = styled.div`
     justify-content: space-around;
     align-content: center;
     align-items: center;
-
     @media (max-width: 780px){
         min-height: 150px;
         width: 100vw;
-
-
     }
 `;
 
 
 export const Conjunto = styled.div`
-
-    heigth: auto;
+    height: auto;
     width: auto;
     display: flex;
     justify-content: space-around;
     align-content: center;
     align-items: center;
-
 @media (max-width: 780px){
     width: 100vw;
     padding-left: 20px;
@@ -107,32 +100,30 @@ export const CardApoio = styled.div`
     height: auto;
     width: auto;
     display: flex;
-    justify-content: space-around;
     flex-direction: column;
+    align-items: center;
     padding: 20px;
     box-sizing: border-box;
-    transition: 1s; 
-//background: rgba(255,255,255,.5);
-
-    > h2{
-      font-size: 1.5em;
+    transition: 1s;
+    color: #000000;
+    font-family: Arial, Helvetica, sans-serif;
+   
+    > h3 {
+      font-size: 1.2em;
       font-weight: bold;
       font-family: arial;
-      color: rgba(255,255,255, .9);
+      margin: 30px 0;
+      align-self: flex-start;
+      color: #262626;
     }
-
-    > p{
-      font-size: 1.2em;
+    > p {
+      font-size: 1.1em;
       font-family: arial;
-      color: rgba(255,255,255, .7);
     }
-
-    : hover{
-      cursor: pointer;
+    :hover {
       transition: .7s;
       transform: scale(1.1); 
     }
-
     @media (max-width: 780px){
         height: 100%;
         width: 150px;
@@ -140,23 +131,20 @@ export const CardApoio = styled.div`
         justify-content: space-around;
         align-content: center;
         align-items: center;
-
-
         > h2{
-          font-size: 4vw;
+            font-size: 4vw;
             margin-bottom: 10px;
         }
-
         > p{
-          font-size: 3vw;
-text-align: center;
+            font-size: 3vw;
+            text-align: center;
         }
     }
 `;
 
 export const ContainerImgApoio = styled.div`
-    height: 110px;
-    width: 110px;
+    height: 86px;
+    width: 86px;
     background: #fff;
     border-radius: 50%;
     display: flex;
@@ -164,16 +152,14 @@ export const ContainerImgApoio = styled.div`
     align-content: center;
     align-items: center;
     overflow: hidden;
-
-    > img{
+    > img {
       height: 70%;
       width: 70%;
     }
-
     @media (max-width: 780px){
         height: 50px;
         width: 50px;
-margin-bottom: 10px;
+        margin-bottom: 10px;
     }
 `;
 
@@ -188,7 +174,6 @@ export const ContainerFotos = styled.div`
     align-items: center;
     margin-bottom: 20px;
 overflow: hidden;
-
 @media (max-width: 780px){
     flex-direction: column;
     min-height: 550px;
@@ -203,17 +188,14 @@ export const CardDesaparecidos = styled.div`
     position: relative;
 overflow: hidden;
 border-radius: 10px;
-
     > img{
       height: 100%;
       width: 100%;
     }
-
 @media (max-width: 780px){
     width: 90vw;
     height: 400px;
     margin-bottom: 10px;
-
 > img{
       height: auto;
       width: 100%;
@@ -231,7 +213,6 @@ export const ContainerInfo = styled.div`
     padding-top: 200px;
     box-sizing: border-box;
     overflow: hidden;
-
     > h2{
       font-size: 1.5em;
       color: #fff;
@@ -239,23 +220,15 @@ export const ContainerInfo = styled.div`
       margin-bottom: 30px;
       font-weight: bold;
     }
-
     > p{
       font-size: 1.2em;
       color: rgba(255, 255, 255,.7);
       font-family: arial;
       margin-bottom: 10px;
     }  
-
-    :hover ~ EfeitoBtn{
-      transform: translate3D(0,0,0);
-      transition: all 1s;
-  }
-
 @media(max-width: 780px){
     padding: 10px;
     padding-top: 100px;
-
     border-radius: 10px;  
 }
 `;
@@ -291,7 +264,7 @@ export const EfeitoBtn = styled.div`
 `;
 // ========== VIDEO ==============
 
-export const Container_video = styled.div`
+export const ContainerVideo = styled.div`
     height: 800px;
     width: 100%;
     display: flex;
@@ -300,7 +273,6 @@ export const Container_video = styled.div`
     align-items: center;
     box-sizing: border-box;
     margin-bottom: 20px;
-
     > video{
       height: 800px;
       width: 1400px;
@@ -310,18 +282,15 @@ export const Container_video = styled.div`
       align-content: center;
       align-items: center;
       outline: none;
-
       > source{
         height: 100%;
         width: 100%;
       }
     }
-
 @media (max-width: 780px){
     height: 200px;
     width: 90vw;
     margin-left: 20px;
-
      > video{
           height: 180px;
           width: 90vw;
@@ -332,26 +301,24 @@ export const Container_video = styled.div`
 // ========= FOOTER ==============
 
 export const Footer = styled.div`
-    height: 200px;
-    width: 100vw;
-    position: relative;
+    height: 140px;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-content: center;
     align-items: center;
     overflow: hidden;
     background: #3F4042;
-    padding-left: 50px;
+    padding-left: 120px;
     box-sizing: border-box;  
 `;
 
 export const ContainerLogo = styled.div`
     height: auto;
-    width: 100%;
+    width: 250px;
     display: flex;
     align-items: center;
     margin-bottom: 20px;
-
     > img{
       height: 70px;
       width: 70px;
@@ -366,7 +333,7 @@ export const Texto = styled.div`
     margin-top: 30px;
 `;
 
-export const Texto_vermelho = styled.div`
+export const TextoVermelho = styled.div`
     font-size: 2em;
     font-family: arial;
     color: #E64F4A;
@@ -375,22 +342,13 @@ export const Texto_vermelho = styled.div`
 
 export const Copyright = styled.div`
     height: auto;
-    width: 100%;
-
+    width: 550px;
     > p{
       font-size: 1.2em;
       font-family: arial;
       color: #fff;
     }
-
     @media(max-width: 780px){
         font-size: 0.7em;
     }
-
-
 `;
-
-
-
-
-

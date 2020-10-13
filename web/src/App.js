@@ -6,7 +6,7 @@ import AreaInformativa from "./pages/Area_Informativa/index.js";
 import Routes from "./routes";
 import SobreEmpresa from "./pages/sobre";
 
-function App() {
+function App() {  
   return (
     <>
       <SobreEmpresa/>
