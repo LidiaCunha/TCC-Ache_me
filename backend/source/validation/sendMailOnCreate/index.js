@@ -9,15 +9,24 @@ const sendMailOnCreate = async( req ,res ,next ) => {
     const subject = "Confirme seu email para se cadastrar no Ache.me";
     const text = "Clique no botão para se cadastrar no Ache.me, se não foi você que se cadastrou desconsidere este email.";
     const htmlContentMail = `
-    <link href="https://fonts.googleapis.com/css2?family=Lato&family=Oswald:wght@200&display=swap" rel="stylesheet">
+    <div style='width:600px; background-color:#1e1f21; height:500px; margin:0px; padding:20px;'>
+        <h1 style='color:#dddddd;text-align:center;font-size:60px;font-family: "Oswald", sans-serif;font-weight:700;'>
+        Ache<span style='color:#d62828;'>.me</span>
+        </h1>
+
+        <div style=' margin: auto; width:70px;background-color:#d62828; height:70px;border-radius: 50%; padding: 10px; box-sizing: border-box;'>
+        </div>
+
+        <h1 style='color:#dddddd;text-align:center;padding-top:0.2%;font-family: "Oswald", sans-serif;font-weight:700;'>
+        Seja bem-vindo!
+        </h1>
     
-    <div style='width:100vw;background-color:#eae2b7; height:100vh;margin:0px;padding:0px;'>
-      <h1 style='color:#003049;text-align:center;padding-top:0.2%;font-size:60px;font-family: "Oswald", sans-serif;font-weight:700;'>Ache<span style='color:#d62828;'>.me</span></h1>
-    
-      <h2 style='font-family: "Lato", sans-serif;padding:10px; font-weight:200;color:#003049'>Se é i ${name} e se cadastrou no site Ache<span style='color:#d62828;'>.me</span> clique no botão abaixo para efetuar a validação do seu email, caso não tenha se cadastrado, desconsidere esse email.</h2>
-  
-      <a href="http://localhost:3001/validMail/?&name=${name}&mail=${mail}&CPF=${CPF}&telephone=${telephone}&password=${password}&cep=${cep}&bairro=${bairro}&street=${street}&number=${number}&city=${city}&complement=${complement}&state=${state}&photo=${firebaseUrl}" 
-      style='padding:20px;width:50%;font-family: "Lato", sans-serif;padding:10px; font-weight:400;font-size:20px;color:#f77f00;border:solid 1px #f77f00;background-color:#eae2b7;border-radius:20px;margin-left:25%;'>Validar email</a>
+        <h2 style='text-align: center; font-family: "Lato", sans-serif;padding:10px; font-weight:200;color:#dddddd'>
+        Agora, é só validar seu cadastro na Ache<span style='color:#d62828;'>.me</span> clicando no botão abaixo. Se você não efetuou o cadastro, desconsidere esse e-mail.
+        </h2>
+        <a style='text-decoration: none;' href="http://localhost:3001/validMail/?&name=${name}&mail=${mail}&CPF=${CPF}&telephone=${telephone}&password=${password}&cep=${cep}&bairro=${bairro}&street=${street}&number=${number}&city=${city}&complement=${complement}&state=${state}&photo=${firebaseUrl}">
+        <div style=' padding:20px; width: 150px;text-align: center; font-family: "Lato", sans-serif;padding:10px; font-weight:400;font-size:20px;color:#dddddd;background-color:#d62828;border-radius:20px; margin: auto;'>Validar email</div>
+        </a>
     </div>
     `;  
     
