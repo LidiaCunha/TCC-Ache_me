@@ -19,7 +19,6 @@ export const CardEmail = Styled.div`
 export const ContainerCard = Styled.div`
     height: 550px;
     width: 500px;
-    border-radius: 15px;
     background: #fff;
     display: flex;
     justify-content: center;
@@ -27,6 +26,15 @@ export const ContainerCard = Styled.div`
     align-items: center;
     flex-direction: column;
     position: relative;
+
+    @media (min-width: 780px){
+        border-radius: 15px;
+    }
+
+    @media (max-width: 780px){
+        height: 100%;
+        width: 100%;
+    }
 `;
 
 export const ContainerImg = Styled.div`
@@ -41,7 +49,7 @@ export const ContainerImg = Styled.div`
 
     > img{
         height: 80%;
-    width: 80%;
+        width: 80%;
     }
 `;
 
@@ -55,6 +63,7 @@ export const ContainerInformacoes = Styled.div`
     flex-direction: column;
     color: #5D5D61;
     font-family: arial;
+    text-align: center;
 
     > h1{
         margin-bottom: 30px;
