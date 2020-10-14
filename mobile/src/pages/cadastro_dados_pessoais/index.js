@@ -60,7 +60,7 @@ const CadastroPessoal = ({navigation}) => {
             <ContainerCadastro>
                 <IconeCadastro source={Icone}/>
                 <Input id="name" placeholder="Insira seu nome" value={basicInfo.name} onChange={handlerName} returnKeyType="next" ></Input>
-                <Input id="CPF" placeholder="Insira seu cpf" value={basicInfo.CPF} onChange={handlerCpf} returnKeyType="next" maxLength={14}></Input>
+                <Input id="CPF" placeholder="Insira seu cpf" value={basicInfo.CPF} onChange={handlerCpf} returnKeyType="next" maxLength={14} keyboardType="numeric"></Input>
                 <Input id="mail" placeholder="Insira seu email" value={basicInfo.mail} onChange={handlerMail}keyboardType="email-address" returnKeyType="next"></Input>
                 <Input id="telephone" placeholder="Insira seu telefone" value={basicInfo.telephone} onChange={handlerTelephone}keyboardType="number-pad" returnKeyType="next" maxLength={20}></Input>
                 <Input id="indication" placeholder="Usuário que te indicou o app" onChange={handlerIndication} value={basicInfo.indication} returnKeyType="next"></Input>

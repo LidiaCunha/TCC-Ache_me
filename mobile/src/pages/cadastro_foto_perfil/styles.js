@@ -84,9 +84,10 @@ export const FotoCamera = styled.Image`
 `
 
 export const TextosCard = styled.View`
-    width: 90%;
+    width: 100%;
     height: 100px;
     padding: 30px;
+    margin-bottom: 5px;
 `
 
 export const TextoNome = styled.Text`

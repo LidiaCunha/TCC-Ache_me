@@ -38,7 +38,6 @@ const CadastroFotoPerfil = ({route, navigation}) => {
         if (!result.cancelled) {
           setImage(result.uri);
         }
-        return result;
       };
 
     const {props} = route.params;
@@ -48,10 +47,8 @@ const CadastroFotoPerfil = ({route, navigation}) => {
     }
 
     const [textoBotao, setTextoBotao] = useState("Pular")
-    const mudarTextoBotao = (result) =>{
-        if(result !== null){
+    const mudarTextoBotao = () =>{
             setTextoBotao("Confirmar");
-        }
     };
 
     const register = async (e) => {
@@ -90,6 +87,7 @@ const CadastroFotoPerfil = ({route, navigation}) => {
             }
             
             window.alert("Ops, algo deu errado, tente novamente mais tarde.");
+            console.log(erro);
         }
 
     };
@@ -111,7 +109,7 @@ const CadastroFotoPerfil = ({route, navigation}) => {
                         </TextosCard>
                     </ContainerCard>
                 </ContainerInfos>
-            <Botao onPress={navigateToCheckEmail}><TextoBotao>{textoBotao}</TextoBotao></Botao>
+            <Botao onPress={navigateToCheckEmail, register}><TextoBotao>{textoBotao}</TextoBotao></Botao>
             </ViewContainer>
         </Container>
     )

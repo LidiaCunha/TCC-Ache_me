@@ -80,7 +80,7 @@ const CadastroEndereco = ({route, navigation}) => {
         <Container source={planoDeFundo}>
             <ContainerCadastro>
                 <IconeCadastro source={Icone}/>
-                <Input id="cep" placeholder="Insira seu cep" value={advancedInfo.cep} onBlur={autoCompleteByCep} onChange={handlerCep} returnKeyType="next" maxLength={9}></Input>
+                <Input id="cep" placeholder="Insira seu cep" value={advancedInfo.cep} onBlur={autoCompleteByCep} onChange={handlerCep} returnKeyType="next" maxLength={9} keyboardType="numeric"></Input>
                 <Input id="street" placeholder="Insira sua rua" value={advancedInfo.street} onChange={handlerStreet}></Input>
                 <Input id="bairro" placeholder="Insira seu bairro" value={advancedInfo.bairro} onChange={handlerBairro}></Input>
                 <Input id="city" placeholder="Insira sua cidade" value={advancedInfo.city} onChange={handlerCity}></Input>
