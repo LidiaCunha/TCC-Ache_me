@@ -281,7 +281,6 @@ export const ContainerInput = styled.div`
     padding-left: 10px;
 
 > label{
-    font-size: 1.2vw;
     color: #fff;
     font-family: arial;
 }
@@ -296,7 +295,7 @@ export const ContainerInput = styled.div`
     box-sizing: border-box;
     margin-bottom: 7vh;
     border-radius: 10px;
-    font-size: 1.2em;
+    font-size: 1em;
     margin-top: 20px;
 }
 

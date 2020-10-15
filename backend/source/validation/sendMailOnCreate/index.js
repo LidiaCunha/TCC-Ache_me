@@ -25,7 +25,7 @@ const sendMailOnCreate = async( req ,res ,next ) => {
         Agora, é só validar seu cadastro na Ache<span style='color:#d62828;'>.me</span> clicando no botão abaixo. Se você não efetuou o cadastro, desconsidere esse e-mail.
         </h2>
         <a style='text-decoration: none;' href="http://localhost:3001/validMail/?&name=${name}&mail=${mail}&CPF=${CPF}&telephone=${telephone}&password=${password}&cep=${cep}&bairro=${bairro}&street=${street}&number=${number}&city=${city}&complement=${complement}&state=${state}&photo=${firebaseUrl}">
-        <div style=' padding:20px; width: 150px;text-align: center; font-family: "Lato", sans-serif;padding:10px; font-weight:400;font-size:20px;color:#dddddd;background-color:#d62828;border-radius:20px; margin: auto;'>Validar email</div>
+        <div style=' padding:20px; width: 200px; height: 40px; text-align: center; font-family: "Lato", sans-serif;padding:10px; font-weight:400;font-size:20px;color:#dddddd;background-color:#d62828;border-radius:20px; margin: auto;'>Validar e-mail</div>
         </a>
     </div>
     `;  
