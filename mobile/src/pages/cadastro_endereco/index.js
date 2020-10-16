@@ -6,6 +6,7 @@ import {Container, BotaoVoltar, ContainerCadastro, Input, Botao, Texto} from '..
 import { IconeCadastro } from './styles';
 import planoDeFundo from "../../assets/planoDeFundo.jpg";
 import Icone from "../../assets/iconeEndereco.png";
+import { ViewContainer } from "../login/styles";
 
 const CadastroEndereco = ({route, navigation}) => {
     const {props} = route.params;
@@ -78,16 +79,18 @@ const CadastroEndereco = ({route, navigation}) => {
 
     return(
         <Container source={planoDeFundo}>
-            <ContainerCadastro>
-                <IconeCadastro source={Icone}/>
-                <Input id="cep" placeholder="Insira seu cep" value={advancedInfo.cep} onBlur={autoCompleteByCep} onChange={handlerCep} returnKeyType="next" maxLength={9} keyboardType="numeric"></Input>
-                <Input id="street" placeholder="Insira sua rua" value={advancedInfo.street} onChange={handlerStreet}></Input>
-                <Input id="bairro" placeholder="Insira seu bairro" value={advancedInfo.bairro} onChange={handlerBairro}></Input>
-                <Input id="city" placeholder="Insira sua cidade" value={advancedInfo.city} onChange={handlerCity}></Input>
-                <Input id="state" placeholder="Insira seu estado" value={advancedInfo.state} onChange={handlerState}></Input>
-                <Input id="number" placeholder="Insira seu número" value={advancedInfo.number} onChange={handlerNumber}></Input>
-                <Botao onPress={sendToConfirm}><Texto>Próximo</Texto></Botao>
-            </ContainerCadastro>
+            <ViewContainer>
+                <ContainerCadastro>
+                    <IconeCadastro source={Icone}/>
+                    <Input id="cep" placeholder="Insira seu cep" value={advancedInfo.cep} onBlur={autoCompleteByCep} onChange={handlerCep} returnKeyType="next" maxLength={9} keyboardType="numeric"></Input>
+                    <Input id="street" placeholder="Insira sua rua" value={advancedInfo.street} onChange={handlerStreet}></Input>
+                    <Input id="bairro" placeholder="Insira seu bairro" value={advancedInfo.bairro} onChange={handlerBairro}></Input>
+                    <Input id="city" placeholder="Insira sua cidade" value={advancedInfo.city} onChange={handlerCity}></Input>
+                    <Input id="state" placeholder="Insira seu estado" value={advancedInfo.state} onChange={handlerState}></Input>
+                    <Input id="number" placeholder="Insira seu número" value={advancedInfo.number} onChange={handlerNumber}></Input>
+                    <Botao onPress={sendToConfirm}><Texto>Próximo</Texto></Botao>
+                </ContainerCadastro>
+            </ViewContainer>
         </Container>
     )
 }
