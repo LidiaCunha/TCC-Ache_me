@@ -15,6 +15,7 @@ const sendMailOnCreate = async( req ,res ,next ) => {
         </h1>
 
         <div style=' margin: auto; width:70px;background-color:#d62828; height:70px;border-radius: 50%; padding: 10px; box-sizing: border-box;'>
+            <img src="https://imagizer.imageshack.com/img924/2540/1fjwDS.png" alt="logo" style='width:50p; height:50px;'>
         </div>
 
         <h1 style='color:#dddddd;text-align:center;padding-top:0.2%;font-family: "Oswald", sans-serif;font-weight:700;'>
