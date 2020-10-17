@@ -1,5 +1,5 @@
 import React from "react";
-import { Link} from "react-scroll"
+import {Link} from "react-scroll"
 import {useHistory} from "react-router-dom";
 import logo from "../../assets/logo.png";
 import { 
@@ -28,6 +28,14 @@ import {
     Texto,
     TextoVermelho,
     Copyright,
+    
+    // Everson
+    
+    ContainerNossosServicos,
+    ContainerMissao,
+    ContainerTime,
+    ContainerFooter,
+    
   } from "./styles";
 
   import background from "../../assets/Sobre/background.jpg";
@@ -63,9 +71,7 @@ import {
                         }}/>
                         <ContainerItensMenu>
                             <ul>
-                                <li onClick={() => {
-                                history.push("/area-informativa");
-                                }}>Área Informativa</li>
+                                <li onClick={() => {history.push("/area-informativa");}}>Área Informativa</li>
                                 <li><Link to="servico" offset={-50} smooth={true} duration={500}>Serviços</Link></li>
                                 <li><Link to="missao" offset={-50} smooth={true} duration={500}>Missão e Visão</Link></li>
                                 <li><Link to="valores" offset={-50} smooth={true} duration={500}>Valores</Link></li>
@@ -87,8 +93,9 @@ import {
                     </ContainerBtn>
                 </ContainerInfo>
             </Container>
+
             <Container>
-                <ContainerInfo>
+                <ContainerNossosServicos>
                     <h2 name="servico">Nossos Serviços</h2>
                     <ContainerCards>
                         <Cards>
@@ -124,42 +131,47 @@ import {
                             </CardContent>
                         </Cards>
                     </ContainerCards>
-                </ContainerInfo>
+                </ContainerNossosServicos>
             </Container>
+
+
             <Container>
-                <img src={missaoBackground} alt="background missão e valores"/>
-                <ContainerInfo>
-                    <h1 name="missao">Missão e Visão</h1>
-                    <ContainerCardsMissao>
-                        <Cards>
-                            <CardContentMissao>
-                                <img src={missao} alt="icone missão"></img>
-                                <h3>Missão</h3>
-                                <p>Apoiar famílias e amigos na busca de pessoas desaparecidas,
-                                    oferecendo uma plataforma segura e responsável aos clientes,
-                                    gerando conexões.
-                                </p>
-                            </CardContentMissao>
-                        </Cards>
-                        <Cards>
-                            <CardContentMissao>
-                                <img src={visao} alt="icone visão"></img>
-                                <h3>Visão</h3>
-                                <p>Ser a maior e melhor plataforma de busca de pessoas
-                                    desaparecidas do país, minimizando o número de casos
-                                    e proporcionando reencontros.
-                                </p>
-                            </CardContentMissao>
-                        </Cards>
-                    </ContainerCardsMissao>
-                </ContainerInfo>
+                <ContainerMissao>                    
+                    <img src={missaoBackground} alt="background missão e valores"/>
+                    <ContainerInfo>
+                        <h1 name="missao">Missão e Visão</h1>
+                        <ContainerCardsMissao>
+                            <Cards>
+                                <CardContentMissao>
+                                    <img src={missao} alt="icone missão"></img>
+                                    <h3>Missão</h3>
+                                    <p>Apoiar famílias e amigos na busca de pessoas desaparecidas,
+                                        oferecendo uma plataforma segura e responsável aos clientes,
+                                        gerando conexões.
+                                    </p>
+                                </CardContentMissao>
+                            </Cards>
+                            <Cards>
+                                <CardContentMissao>
+                                    <img src={visao} alt="icone visão"></img>
+                                    <h3>Visão</h3>
+                                    <p>Ser a maior e melhor plataforma de busca de pessoas
+                                        desaparecidas do país, minimizando o número de casos
+                                        e proporcionando reencontros.
+                                    </p>
+                                </CardContentMissao>
+                            </Cards>
+                        </ContainerCardsMissao>
+                    </ContainerInfo>
+                </ContainerMissao> 
             </Container>
+
+
             <Container>
                 <ContainerValores>
                     <h1 name="valores">Nossos Valores</h1> 
 
                     <ContainerGridValores>
-
                         <CardText>
                             <p>
                                 Nós da Ache.me nos preocupamos com todos os clientes, 
@@ -203,66 +215,73 @@ import {
                     </ContainerGridValores>
                 </ContainerValores>
             </Container>
+
+
             <Container>
-            <ContainerInfo>
-                    <h2 name="time">Nosso Time</h2>
-                    <ContainerCardsTime>
-                        <Cards>
-                            <img src={erick} alt="Erick"/>
-                            <TextCardTime>
-                                <h1>Erick</h1>
-                                <h2>Gerente Jurídico</h2>
-                                <p>Atua como gerente jurídico na empresa Ache.me</p>
-                            </TextCardTime>
-                        </Cards>
-                        <Cards>
-                            <img src={everson} alt="Everson"/>
-                            <TextCardTime>
-                                <h1>Everson</h1>
-                                <h2>Coordenador de Marketing</h2>
-                                <p>Atua como coordenador na empresa Ache.me</p>
-                            </TextCardTime>
-                        </Cards>
-                        <Cards>
-                            <img src={iuri} alt="Iuri"/>
-                            <TextCardTime>
-                                <h1>Iuri</h1>
-                                <h2>Gerente Financeiro</h2>
-                                <p>Atua como gerente financeiro na empresa Ache.me</p>
-                            </TextCardTime>
-                        </Cards>
-                    </ContainerCardsTime>
-                    <ContainerCardsTimeCenter>
-                        <Cards>
-                            <img src={james} alt="James"/>
-                            <TextCardTime>
-                                <h1>James</h1>
-                                <h2>Gerente de Desenvolvimento</h2>
-                                <p>Atua como gerente de desenvolvimento na empresa Ache.me</p>
-                            </TextCardTime>
-                        </Cards>
-                        <Cards>
-                            <img src={lidia} alt="Lidia"/>
-                            <TextCardTime>
-                                <h1>Lídia</h1>
-                                <h2>Diretora Geral</h2>
-                                <p>Atua como diretora geral na empresa Ache.me</p>
-                            </TextCardTime>
-                        </Cards>
-                    </ContainerCardsTimeCenter>
-                </ContainerInfo>
+                <ContainerTime>
+                    <ContainerInfo>
+                        <h2 name="time">Nosso Time</h2>
+                        <ContainerCardsTime>
+                            <Cards>
+                                <img src={erick} alt="Erick"/>
+                                <TextCardTime>
+                                    <h1>Erick</h1>
+                                    <h2>Gerente Jurídico</h2>
+                                    <p>Atua como gerente jurídico na empresa Ache.me</p>
+                                </TextCardTime>
+                            </Cards>
+                            <Cards>
+                                <img src={everson} alt="Everson"/>
+                                <TextCardTime>
+                                    <h1>Everson</h1>
+                                    <h2>Coordenador de Marketing</h2>
+                                    <p>Atua como coordenador na empresa Ache.me</p>
+                                </TextCardTime>
+                            </Cards>
+                            <Cards>
+                                <img src={iuri} alt="Iuri"/>
+                                <TextCardTime>
+                                    <h1>Iuri</h1>
+                                    <h2>Gerente Financeiro</h2>
+                                    <p>Atua como gerente financeiro na empresa Ache.me</p>
+                                </TextCardTime>
+                            </Cards>
+                        </ContainerCardsTime>
+
+                        <ContainerCardsTimeCenter>
+                            <Cards>
+                                <img src={james} alt="James"/>
+                                <TextCardTime>
+                                    <h1>James</h1>
+                                    <h2>Gerente de Desenvolvimento</h2>
+                                    <p>Atua como gerente de desenvolvimento na empresa Ache.me</p>
+                                </TextCardTime>
+                            </Cards>
+                            <Cards>
+                                <img src={lidia} alt="Lidia"/>
+                                <TextCardTime>
+                                    <h1>Lídia</h1>
+                                    <h2>Diretora Geral</h2>
+                                    <p>Atua como diretora geral na empresa Ache.me</p>
+                                </TextCardTime>
+                            </Cards>
+                        </ContainerCardsTimeCenter>
+                    </ContainerInfo>
+                </ContainerTime>
             </Container>
 
             <Footer>
-                <ContainerLogo>
-                    <img src={logo} alt="logo"/>
-                    <Texto>Ache.</Texto>
-                    <TextoVermelho>me</TextoVermelho>
-                </ContainerLogo>
+                <ContainerFooter>
+                    <ContainerLogo>
+                        <img src={logo} alt="logo"/>
+                        <Texto>Ache.</Texto>
+                        <TextoVermelho>me</TextoVermelho>
+                    </ContainerLogo>
 
-                <Copyright>
-                    <p>© 2020 Ache me. Todos os direitos reservados.</p>
-                </Copyright>
+                    <Copyright>
+                        <p>© 2020 Ache me. Todos os direitos reservados.</p>
+                    </Copyright>
+                </ContainerFooter>
             </Footer>
 
         </>
