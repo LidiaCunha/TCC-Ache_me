@@ -9,7 +9,7 @@ import {
     BtnOk
 } from "./styles";
 
-const Card_email = ({setShowCheckEmail, props}) => {
+const Card_Email = ({setShowCheckEmail, props}) => {
     return(
         <CardEmail>
             <ContainerCard>
@@ -19,9 +19,9 @@ const Card_email = ({setShowCheckEmail, props}) => {
 
                 <ContainerInformacoes>
                     <h1>Obrigado por se cadastrar!</h1>
-                    <h2>Você recebera um pedido de confirmação no</h2>
-                    <h2>seu e-mail para autorizar a navegação na</h2>
-                    <h2>Ache.me, aceite e faça parte de reecontros.</h2>
+                    <p>Você recebera um pedido de confirmação no
+                    seu e-mail para autorizar a navegação na
+                    Ache.me, aceite e faça parte de reecontros.</p>
                 </ContainerInformacoes>
 
                 <BtnOk>
@@ -35,4 +35,4 @@ const Card_email = ({setShowCheckEmail, props}) => {
     )
 }
 
-export default Card_email;
+export default Card_Email;

@@ -32,7 +32,6 @@ import React, { useState, useRef } from "react";
 import { api } from '../../services/api';
 import { signIn } from '../../services/security';
 
-
 const FormRegister = (props) => {
     
     const [ShowCheckEmail, setShowCheckEmail] = useState(false);
@@ -201,13 +200,13 @@ const FormRegister = (props) => {
                 
                 <ContainerInput >
                     <label>E-mail</label>
-                    <input type="email" id="mail" value={userRegister.mail} onChange={handlerInput} placeholder="Insira seu email" required />
+                    <input type="email" id="mail" value={userRegister.mail} onChange={handlerInput} placeholder="Insira seu e-mail" required />
                                 
                     <label>Telefone</label>
                     <input type="text" id="telephone" value={userRegister.telephone} onChange={handlerInput} onKeyUp={( e ) => { maskTelephone( e ) }} placeholder="Insira seu telefone" required />
                                 
                     <label>Senha</label>
-                    <input type="password" id="password" value={userRegister.password} onChange={handlerInput} placeholder="Insira sua senha" required />
+                    <input type="password" id="password" value={userRegister.password} onChange={handlerInput} minLength="8" placeholder="Insira sua senha" required />
                 </ContainerInput>
             </ContainerDados>
 

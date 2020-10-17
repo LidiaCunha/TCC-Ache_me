@@ -36,7 +36,7 @@ export const ContainerInfo = styled.div`
 `;
 
 export const ContainerMenu = styled.div`
-  height: auto;
+  height: 80px;
   width: 100%;
   display: flex;
   position: fixed;
@@ -47,10 +47,10 @@ export const ContainerMenu = styled.div`
   align-content: center;
   align-items: center;
   > img{
-    height: 6vw;
-    width: 6vw;
+    height: 4.8vw;
+    width: 4.8vw;
     margin-left: 5vw;
-    margin-top: 1vh;
+    margin-top: 12px;
     cursor: pointer;
 
   }
@@ -104,7 +104,7 @@ export const ContainerTextMenor = styled.div`
       padding-left: 5vw;
       padding-top: 3vh;
       box-sizing: border-box;
-      color: #fff;
+      color: rgba(255,255,255,.6);
 `;
 
 export const ContainerBtn = styled.button`

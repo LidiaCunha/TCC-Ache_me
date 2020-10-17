@@ -57,16 +57,18 @@ const CadastroPessoal = ({navigation}) => {
 
     return(
         <Container source={planoDeFundo}>
-            <ContainerCadastro>
-                <IconeCadastro source={Icone}/>
-                <Input id="name" placeholder="Insira seu nome" value={basicInfo.name} onChange={handlerName} returnKeyType="next" ></Input>
-                <Input id="CPF" placeholder="Insira seu cpf" value={basicInfo.CPF} onChange={handlerCpf} returnKeyType="next" maxLength={14}></Input>
-                <Input id="mail" placeholder="Insira seu email" value={basicInfo.mail} onChange={handlerMail}keyboardType="email-address" returnKeyType="next"></Input>
-                <Input id="telephone" placeholder="Insira seu telefone" value={basicInfo.telephone} onChange={handlerTelephone}keyboardType="number-pad" returnKeyType="next" maxLength={20}></Input>
-                <Input id="indication" placeholder="Usuário que te indicou o app" onChange={handlerIndication} value={basicInfo.indication} returnKeyType="next"></Input>
-                <Input id="password" placeholder="Senha" secureTextEntry={true} autoCorrect={false} value={basicInfo.password} onChange={handlerPassword}returnKeyType="done"></Input>
-                <Botao onPress={sendToAddress}><Texto>Próximo</Texto></Botao>
-            </ContainerCadastro>
+            <ViewContainer>
+                <ContainerCadastro>
+                    <IconeCadastro source={Icone}/>
+                    <Input id="name" placeholder="Insira seu nome" value={basicInfo.name} onChange={handlerName} returnKeyType="next" ></Input>
+                    <Input id="CPF" placeholder="Insira seu cpf" value={basicInfo.CPF} onChange={handlerCpf} returnKeyType="next" maxLength={14} keyboardType="numeric"></Input>
+                    <Input id="mail" placeholder="Insira seu email" value={basicInfo.mail} onChange={handlerMail}keyboardType="email-address" returnKeyType="next"></Input>
+                    <Input id="telephone" placeholder="Insira seu telefone" value={basicInfo.telephone} onChange={handlerTelephone}keyboardType="number-pad" returnKeyType="next" maxLength={20}></Input>
+                    <Input id="indication" placeholder="Usuário que te indicou o app" onChange={handlerIndication} value={basicInfo.indication} returnKeyType="next"></Input>
+                    <Input id="password" placeholder="Senha" secureTextEntry={true} autoCorrect={false} value={basicInfo.password} onChange={handlerPassword}returnKeyType="done"></Input>
+                    <Botao onPress={sendToAddress}><Texto>Próximo</Texto></Botao>
+                </ContainerCadastro>
+            </ViewContainer>
         </Container>
     )
 }
