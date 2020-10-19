@@ -5,6 +5,7 @@ import Login from "./pages/Login_cadastro/index.js";
 import Sobre from "./pages/sobre";
 import AreaInformativa from "./pages/Area_Informativa";
 import Home from "./pages/home";
+import UserInfo from "./pages/user_info";
 import { isSignedIn } from './services/security';
 
 const PrivateRoute = ({ children, location, ...rest }) => {
@@ -22,7 +23,7 @@ function Routes() {
     <BrowserRouter>
         <Switch>
             <Route exact path="/">
-                <Login/>
+                <UserInfo/>
             </Route>
             <Route path="/sobre">
                 <Sobre/>
