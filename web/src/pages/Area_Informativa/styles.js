@@ -71,6 +71,7 @@ export const ContianerCardsApoio = styled.div`
     justify-content: space-around;
     align-content: center;
     align-items: center;
+
     @media (max-width: 780px){
         min-height: 150px;
         width: 100vw;
@@ -109,6 +110,7 @@ export const CardApoio = styled.div`
     color: #000000;
     font-family: Arial, Helvetica, sans-serif;
 
+
     > h3 {
       font-size: 1.2em;
       font-weight: bold;
@@ -117,7 +119,7 @@ export const CardApoio = styled.div`
       align-self: flex-start;
       color: #262626;
     }
-    
+
     > p {
       font-size: 1.1em;
       font-family: arial;
@@ -238,33 +240,17 @@ export const ContainerInfo = styled.div`
 `;
 
 export const Porcentagem = styled.div`
-    height: 55px;
-    width: 120px;
-    border: 2px solid #E64F4A;
     font-size: 1.2em;
     color: #fff;
     font-family: arial;
     margin-bottom: 10px;
-    border-radius: 15px;
     text-align: center;
-    padding-top: 15px;
     box-sizing: border-box;
     position: absolute;
     bottom: 45px;
     right: 45px;
     overflow: hidden;
     z-index: 2;
-`;
-
-export const EfeitoBtn = styled.div`
-    height: 55px;
-    width: 150px;
-    background: #E64F4A;
-    position: absolute;
-    top: 0;
-    z-index: -1;
-    transform: translate3D(101%,0,0);
-    transition: 1s;
 `;
 // ========== VIDEO ==============
 

@@ -1,6 +1,9 @@
-import React from "react";
+// Funcional
+import React, {useEffect} from "react";
 import {Link} from "react-scroll"
 import {useHistory} from "react-router-dom";
+
+// Style
 import logo from "../../assets/logo.png";
 import { 
     Container,
@@ -8,6 +11,7 @@ import {
     ContainerMenu,
     LoginContainerText,
     ContainerTextMenor,
+    ContainerTextMaior,
     ContainerInfo, 
     ContainerBtn, 
     ContainerCards, 
@@ -35,6 +39,7 @@ import {
     ContainerMissao,
     ContainerTime,
     ContainerFooter,
+    ContainerMenuTexto,
     
   } from "./styles";
 
@@ -55,11 +60,15 @@ import {
   import erick from "../../assets/Sobre/erick.jpeg";
   import everson from "../../assets/Sobre/everson.jpeg";
   import iuri from "../../assets/Sobre/iuri.jpeg";
-  import footer from "../../assets/footer.PNG";
-
+  import Button from "../../components/button";
 
   const SobreEmpresa = (props) => {
+
+
     const history = useHistory();
+
+    useEffect(() => {});
+
       return(
         <>
             <Container>
@@ -72,25 +81,25 @@ import {
                         <ContainerItensMenu>
                             <ul>
                                 <li onClick={() => {history.push("/area-informativa");}}>Área Informativa</li>
-                                <li><Link to="servico" offset={-50} smooth={true} duration={500}>Serviços</Link></li>
-                                <li><Link to="missao" offset={-50} smooth={true} duration={500}>Missão e Visão</Link></li>
-                                <li><Link to="valores" offset={-50} smooth={true} duration={500}>Valores</Link></li>
-                                <li><Link to="time" offset={-50} smooth={true} duration={500}>Time</Link></li>
+                                <li><Link to="servico" offset={-180} smooth={true} duration={500}>Serviços</Link></li>
+                                <li><Link to="missao" offset={-180} smooth={true} duration={500}>Missão e Visão</Link></li>
+                                <li><Link to="valores" offset={-180} smooth={true} duration={500}>Valores</Link></li>
+                                <li><Link to="time" offset={-180} smooth={true} duration={500}>Time</Link></li>
                             </ul>
                         </ContainerItensMenu>
                     </ContainerMenu>
-
-                    <LoginContainerText>
-                        <h1>Nós somos como você, preocupados <br /> com o próximo.</h1>
-                    </LoginContainerText>
-
+                    <ContainerMenuTexto>
+                    <ContainerTextMaior>
+                        <h2>Nós somos como você, preocupados<br/>com o próximo.</h2>
+                    </ContainerTextMaior>
                     <ContainerTextMenor>
                         <h2>Aqui você pode conhecer mais sobre a empresa, nossa equipe e propósitos.<br/>
                         Fazemos parte de iniciativas do bem e esperamos que você também faça.</h2>
                     </ContainerTextMenor>
                     <ContainerBtn>
-                        Conhecer Valores
+                        <Link to="valores" offset={-180} smooth={true} duration={500}>Conhecer Valores</Link>
                     </ContainerBtn>
+                    </ContainerMenuTexto>
                 </ContainerInfo>
             </Container>
 
@@ -172,46 +181,46 @@ import {
                     <h1 name="valores">Nossos Valores</h1> 
 
                     <ContainerGridValores>
-                        <CardText>
-                            <p>
-                                Nós da Ache.me nos preocupamos com todos os clientes, 
-                                por esse motivo, compartilhamos nossos valores e os levamos a sério.
-                            </p>
-                            <p>
-                                Trazemos conosco a vontade de apoiar os outros e sobretudo 
-                                levar nossos valores nessa missão.
-                            </p>
-                        </CardText>
-                        <ContainerCardsValores>
-                            <Cards>
-                                <img src={qualidade} alt="Qualidade"/>
-                                <TextCardValores>
-                                    <h3>Qualidade</h3>
-                                    <p>A Ache.me busca oferecer serviços de qualidade.</p>
-                                </TextCardValores>
-                            </Cards>
-                            <Cards>
-                                <img src={seguranca} alt="Segurança"/>
-                                <TextCardValores>
-                                    <h3>Segurança</h3>
-                                    <p>Focamos sempre na segurança de seus dados e informações.</p>
-                                </TextCardValores>
-                            </Cards>
-                            <Cards>
-                                <img src={respeito} alt="Respeito"/>
-                                <TextCardValores>
-                                    <h3>Respeito</h3>
-                                    <p>Mantemos o respeito por todos os clientes.</p>
-                                </TextCardValores>
-                            </Cards>
-                            <Cards>
-                                <img src={responsabilidade} alt="Responsabilidade"/>
-                                <TextCardValores>
-                                    <h3>Responsabilidade</h3>
-                                    <p>Somos cientes quanto a responsabilidade em relação aos nossos clientes.</p>
-                                </TextCardValores>
-                            </Cards>
-                        </ContainerCardsValores>
+                            <CardText>
+                                <p>
+                                    Nós da Ache.me nos preocupamos com todos os clientes, por esse motivo, compartilhamos nossos valores e os levamos a sério.
+                                </p>
+
+                                <p>
+                                    Trazemos conosco a vontade de apoiar os outros e sobretudo levar nossos valores nessa missão.
+                                </p>
+                            </CardText>
+                            
+                            <ContainerCardsValores>
+                                <Cards>
+                                    <img src={qualidade} alt="Qualidade"/>
+                                    <TextCardValores>
+                                        <h3>Qualidade</h3>
+                                        <p>A Ache.me busca oferecer serviços de qualidade.</p>
+                                    </TextCardValores>
+                                </Cards>
+                                <Cards>
+                                    <img src={seguranca} alt="Segurança"/>
+                                    <TextCardValores>
+                                        <h3>Segurança</h3>
+                                        <p>Focamos sempre na segurança de seus dados e informações.</p>
+                                    </TextCardValores>
+                                </Cards>
+                                <Cards>
+                                    <img src={respeito} alt="Respeito"/>
+                                    <TextCardValores>
+                                        <h3>Respeito</h3>
+                                        <p>Mantemos o respeito por todos os clientes.</p>
+                                    </TextCardValores>
+                                </Cards>
+                                <Cards>
+                                    <img src={responsabilidade} alt="Responsabilidade"/>
+                                    <TextCardValores>
+                                        <h3>Responsabilidade</h3>
+                                        <p>Somos cientes quanto a responsabilidade em relação aos nossos clientes.</p>
+                                    </TextCardValores>
+                                </Cards>
+                            </ContainerCardsValores>
                     </ContainerGridValores>
                 </ContainerValores>
             </Container>
@@ -283,9 +292,8 @@ import {
                     </Copyright>
                 </ContainerFooter>
             </Footer>
+    </>
+    )
+};
 
-        </>
-      )
-  };
-
-  export default SobreEmpresa;
+export default SobreEmpresa;

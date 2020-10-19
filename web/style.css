@@ -3,9 +3,11 @@
     font-size: 1.2em;
     font-family: arial;
     padding-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
     box-sizing: border-box;
     
-    
+    overflow: hidden;
     
     border-radius: 10px;
     margin-bottom: 10px;
@@ -25,4 +27,17 @@
     margin-right: auto;
     margin-left: auto;
     
+    
+    min-height: 50px;
+    height: auto;
+    width: 100vw;
+    
+    position: fixed;
+    background: rgba(0,0,0,.7);
+    outline: none;
+    
+    letter-spacing: 5px;
+    word-spacing: 5px;
+    border-spacing: 5px;
+    line-height: 5px;
 }

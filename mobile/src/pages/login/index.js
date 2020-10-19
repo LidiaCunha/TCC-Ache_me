@@ -4,24 +4,25 @@ import {useAuth} from '../../contexts/auth';
 import {api} from '../../services/api';
 
 // Styles
-import {Container, ContainerTitulo, Logo, Titulo, Input, Botao, Texto} from './styles';
+import {ViewContainer, Container, ContainerTitulo, Logo, Titulo, Input, Botao, Texto} from './styles';
 import planoDeFundo from "../../assets/planoDeFundo.jpg";
 import logo from "../../assets/logo.png";
 
 
 const Login = ({navigation}) => {
     const navigateToRegister = () => {
-        navigation.navigate('Informações');
+        navigation.navigate('Informações Pessoais');
     }
 
     const {login} = useAuth();
-    const [userLogin, setUserLogin] = useState({
-        mail: "",
-        password: "",
-    });
 
-    function handleSignIn(e) {
-        setUserLogin({...userLogin, [e.target.id]: e.target.value});
+    const [userLogin, setUserLogin] = useState({});
+
+    function handlerEmail(e) {
+        setUserLogin({ ...userLogin , mail : e.nativeEvent.text});
+    }
+    function handlerPassword(e) {
+        setUserLogin({ ...userLogin , password : e.nativeEvent.text});
     }
 
     const enter = async (e) => {
@@ -48,34 +49,33 @@ const Login = ({navigation}) => {
 
     return (
         <Container source={planoDeFundo}>
-            <ContainerTitulo>
-                <Logo source={logo} ></Logo>
-                <Titulo>Ache.me</Titulo>
-            </ContainerTitulo>
-            <Input 
-                keyboardType="email-address" 
-                id="mail" placeholder="E-mail ou Telefone" 
-                keyboardType="email-address" 
-                value={userLogin.mail} 
-                onChange={handleSignIn} 
-                required
-            ></Input>
-            <Input 
-                textContentType="newPassword" 
-                id="password" placeholder="Senha"
-                secureTextEntry={true} 
-                autoCorrect={false}
-                value={userLogin.password} 
-                onChange={handleSignIn} 
-                required
-            ></Input>
-            <Botao title="Entrar" onPress={enter}>
-                <Texto>Entrar</Texto>   
-            </Botao> 
-            <Texto>OU</Texto>   
-            <Botao title="Cadastrar" onPress={navigateToRegister}>
-                <Texto>Cadastrar</Texto>   
-            </Botao> 
+            <ViewContainer>
+                <ContainerTitulo>
+                    <Logo source={logo} ></Logo>
+                    <Titulo>Ache.me</Titulo>
+                </ContainerTitulo>
+                <Input
+                    placeholder="E-mail ou telefone" 
+                    autoCorrect={false}
+                    keyboardType="email-address" 
+                    value={userLogin.mail} 
+                    onChangeText={handlerEmail} 
+                ></Input>
+                <Input 
+                    placeholder="Senha"
+                    secureTextEntry={true} 
+                    autoCorrect={false}
+                    value={userLogin.password} 
+                    onChangeText={handlerPassword} 
+                ></Input>
+                <Botao title="Entrar" onPress={enter}>
+                    <Texto>Entrar</Texto>   
+                </Botao> 
+                <Texto>OU</Texto>   
+                <Botao title="Cadastrar" onPress={navigateToRegister}>
+                    <Texto>Cadastrar</Texto>   
+                </Botao> 
+            </ViewContainer>
         </Container>
     );
 };

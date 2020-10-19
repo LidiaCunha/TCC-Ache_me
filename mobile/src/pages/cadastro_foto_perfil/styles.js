@@ -1,9 +1,20 @@
 import styled from "styled-components/native";
 
-export const Container = styled.ImageBackground`
-    flex: auto;
-    justify-content: flex-start;
+export const ViewContainer = styled.View`
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
     padding: 20px;
+`
+
+export const Container = styled.ImageBackground`
+    flex: 1;
+    justify-content: flex-start;
+    /* background-color: black;
+    opacity: 0.65; */
 `
 
 export const BotaoVoltar = styled.Image`
@@ -47,15 +58,15 @@ export const ContainerFoto = styled.View`
     z-index: 998;
     border: solid 5px #ffffff;
     margin-bottom: 10px;
-    padding: 5px;
 `
 
 export const FotoImagem = styled.Image`
     width: 100%;
     height: 100%;
+    border-radius: 75px;
 `
 
-export const IconeFoto = styled.View`
+export const IconeFoto = styled.TouchableOpacity`
     width: 50px;
     height: 50px;
     border-radius: 25px;
@@ -73,9 +84,10 @@ export const FotoCamera = styled.Image`
 `
 
 export const TextosCard = styled.View`
-    width: 90%;
+    width: 100%;
     height: 100px;
     padding: 30px;
+    margin-bottom: 5px;
 `
 
 export const TextoNome = styled.Text`
