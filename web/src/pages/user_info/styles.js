@@ -7,6 +7,11 @@ export const Center = styled.div`
     justify-content: center;
     align-content: center;
     align-items: center;
+
+@media(max-width: 780px){
+    width: 100vw;
+    overflow-x: hidden;
+}
 `;
 
 
@@ -65,9 +70,10 @@ export const Container = styled.div`
     background-color: #efefef;
     margin: 0px;
     padding: 0px;
-@media(max-width: 780px){
-    width: 100vw;
-}
+    @media(max-width: 780px){
+        width: 100vw;
+        overflow-x: hidden;
+    }
 `;
 
 // ========= HEADER =========
@@ -81,6 +87,7 @@ export const Header = styled.div`
     z-index: 999;
 @media(max-width: 780px){
     width: 100vw;
+    overflow: hidden;
 }
 `;
 
@@ -302,10 +309,7 @@ export const Profile = styled.div`
     'city city'
     'state state'
     'button button';
-
-    background: lightblue;
 }
-
 `;
 
 export const Input = styled.div`
