@@ -9,7 +9,7 @@ import {
     Container,
     ContainerItensMenu,
     ContainerMenu,
-    LoginContainerText,
+    // LoginContainerText,
     ContainerTextMenor,
     ContainerTextMaior,
     ContainerInfo, 
@@ -60,7 +60,7 @@ import {
   import erick from "../../assets/Sobre/erick.jpeg";
   import everson from "../../assets/Sobre/everson.jpeg";
   import iuri from "../../assets/Sobre/iuri.jpeg";
-  import Button from "../../components/button";
+//   import Button from "../../components/Button";
 
   const SobreEmpresa = (props) => {
       
