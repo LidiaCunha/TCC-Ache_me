@@ -7,7 +7,8 @@ import {
   Home, 
   Main,
   Section,
-  // Info,
+    
+//  Info,
   Button,
 
   // Section 1 
@@ -30,6 +31,10 @@ import {
   Members,
   Member,
   MemberName,
+    
+  //Everson
+  Center,
+      
       
 } from './styles';
 
@@ -48,6 +53,8 @@ function user_info() {
   );
 
   return (
+      
+    <Center>  
     <Container>
       <Header>
         <Home>
@@ -130,6 +137,7 @@ function user_info() {
               </Input>
               <Button style={{gridArea:'button', right:'0'}}>Salvar</Button>
             </Profile>
+      
             <ShareIndicated>
               <Share>
                 <img src={share} alt="compartilhar"/>
@@ -152,6 +160,7 @@ function user_info() {
         </Section>
       </Main>
     </Container>
+    </Center>
   );
 }
 

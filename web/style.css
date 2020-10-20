@@ -7,7 +7,7 @@
     padding-right: 20px;
     box-sizing: border-box;
     
-    overflow: hidden;
+    overflow: ;
     
     border-radius: 10px;
     margin-bottom: 10px;
@@ -22,17 +22,21 @@
     word-break: break-all;
     
     margin-right: 8px;
+    margin-left: 8px;
     padding-right: 5px;
     
     margin-right: auto;
     margin-left: auto;
+
+    text-align: center;
     
+    background: rgba(0,0,0,.6);
     
     min-height: 50px;
     height: auto;
     width: 100vw;
     
-    position: fixed;
+    position: relative;
     background: rgba(0,0,0,.7);
     outline: none;
     
@@ -40,4 +44,9 @@
     word-spacing: 5px;
     border-spacing: 5px;
     line-height: 5px;
+    
+    height: 10px;
+    width: 10px;
+    
+    box-sizing: border-box;
 }

@@ -63,8 +63,7 @@ import {
   import Button from "../../components/button";
 
   const SobreEmpresa = (props) => {
-
-
+      
     const history = useHistory();
 
     useEffect(() => {});
@@ -81,6 +80,7 @@ import {
                         <ContainerItensMenu>
                             <ul>
                                 <li onClick={() => {history.push("/area-informativa");}}>Área Informativa</li>
+                                <li><Link to="inicio" offset={-180} smooth={true} duration={500}>Inicio</Link></li>
                                 <li><Link to="servico" offset={-180} smooth={true} duration={500}>Serviços</Link></li>
                                 <li><Link to="missao" offset={-180} smooth={true} duration={500}>Missão e Visão</Link></li>
                                 <li><Link to="valores" offset={-180} smooth={true} duration={500}>Valores</Link></li>
@@ -90,7 +90,7 @@ import {
                     </ContainerMenu>
                     <ContainerMenuTexto>
                     <ContainerTextMaior>
-                        <h2>Nós somos como você, preocupados<br/>com o próximo.</h2>
+                        <h2 name="inicio">Nós somos como você, preocupados<br/>com o próximo.</h2>
                     </ContainerTextMaior>
                     <ContainerTextMenor>
                         <h2>Aqui você pode conhecer mais sobre a empresa, nossa equipe e propósitos.<br/>
