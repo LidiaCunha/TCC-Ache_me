@@ -65,7 +65,7 @@ function user_info() {
                 </NewPhoto>
               </Photo>
               <Login>
-                <Name>Gabriela Jordão <span>gabriela.jogmail.com</span></Name>
+                <Name>Gabriela Jordão<br/><span>gabriela.jogmail.com</span></Name>
                 <Button>Salvar Foto</Button>
               </Login>
             </PhotoProfile>
