@@ -76,7 +76,7 @@ const CadastroFotoPerfil = ({route, navigation}) => {
                     "Content-type": `multipart/form-data`,
                 }
             });
-            
+            console.log(retorno)
             if (retorno.status === 201) {
                 return navigateToCheckEmail();
             };
