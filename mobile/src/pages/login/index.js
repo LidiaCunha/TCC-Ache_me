@@ -19,10 +19,10 @@ const Login = ({navigation}) => {
     const [userLogin, setUserLogin] = useState({});
 
     function handlerEmail(e) {
-        setUserLogin({ ...userLogin , mail : e.nativeEvent.text});
+       setUserLogin({ ...userLogin , mail : e});
     }
     function handlerPassword(e) {
-        setUserLogin({ ...userLogin , password : e.nativeEvent.text});
+        setUserLogin({ ...userLogin , password : e});
     }
 
     const enter = async (e) => {

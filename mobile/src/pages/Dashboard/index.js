@@ -10,17 +10,22 @@ const style = StyleSheet.create({
   },
 });
 
-const Dashboard = () => {
+const Dashboard = ({route, navigation}) => {
   const {user, logout} = useAuth();
 
   function handlerLogout() {
     logout();
   }
 
+  function openConversations(){
+    navigation.navigate('conversations')
+  }
+
    return (
      <View style={style.container}>
        <Text>{user?.name}</Text>
        <Button title="Logout" onPress = {handlerLogout} />
+       <Button title="Chat" onPress={openConversations} />
      </View>
    ); 
 }

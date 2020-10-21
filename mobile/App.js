@@ -3,12 +3,20 @@ import React from 'react';
 import Routes from './src/routes';
 import { NavigationContainer } from '@react-navigation/native';
 import { AuthProvider } from './src/contexts/auth';
+//import useLocalStorage from './src/hooks/useLocalStorage';
+import { ConversationProvider } from './src/contexts/ConversationProvider';
+import { SocketProvider } from './src/contexts/socketProvider';
 
-const App = () => {
-  return (
+const App = () => { 
+
+   return (
     <NavigationContainer>
       <AuthProvider>
-        <Routes/>
+        <ConversationProvider>
+          <SocketProvider>
+            <Routes />
+          </SocketProvider>
+        </ConversationProvider>
       </AuthProvider>
     </NavigationContainer>
   );
