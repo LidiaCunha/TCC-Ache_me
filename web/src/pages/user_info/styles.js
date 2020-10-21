@@ -8,7 +8,7 @@ export const Text = styled.p`
     line-height: 30px;
 
     >span{
-        color: #caced4;
+        color: #a1a1a1;
         font-family: Arial, Helvetica, sans-serif;
         text-align: left;
         line-height: 30px;
@@ -39,13 +39,17 @@ export const Button = styled.div`
     overflow: hidden;
     cursor: pointer;
     text-align: center;
+
+    :hover{
+        background-color: #e6352f;
+    }
 `;
 
 export const Container = styled.div`
     width: 100vw;
     /* height: 140vh; */
     box-sizing: border-box;
-    background-color: #F7F9FC;
+    background-color: #efefef;
     margin: 0px;
     padding: 0px;
 `;
@@ -68,6 +72,10 @@ export const Home = styled.div`
     border-radius: 50%;
     background-color:#E64F4A;
     cursor: pointer;
+
+    :hover{
+        background-color: #e6352f;
+    }
 
     >img {
       width: 100%;
@@ -100,7 +108,6 @@ export const BasicInfos = styled.div`
     position: relative;
     display: flex;
     box-sizing: border-box;
-    border: solid 2px #F1F3F6;
     margin-top: 50px;
 `;
 
@@ -109,7 +116,7 @@ export const PhotoProfile = styled.div`
     height: 100%;
     display: grid;
     grid-template-columns: 40% 60%;
-    border-right: solid 2px #F1F3F6;
+    border-right: solid 2px #dddddd;
 `;
 
 export const Merit = styled.div`
@@ -146,6 +153,10 @@ export const NewPhoto = styled.div`
     top: -40px;
     left: 75px;
 
+    :hover{
+        background-color: #e6352f;
+    }
+
     >img {
       width: 100%;
     }
@@ -166,7 +177,7 @@ export const Name = styled.h1`
     font-weight: bold;
 
     >span{
-        color: #caced4;
+        color: #a1a1a1;
         font-family: Arial, Helvetica, sans-serif;
         font-size: 0.8em;
         text-align: left;
@@ -184,7 +195,7 @@ export const Title = styled.p`
     font-size: 0.8em;
     text-align: left;
     padding: 5px 0px;
-    border-bottom: solid 2px #F1F3F6;
+    border-bottom: solid 2px #dddddd;
     margin-top: 20px;
 `;
 
@@ -221,9 +232,12 @@ export const Input = styled.div`
     >input{
         width: 100%;
         height: 30px;
-        border: solid 2px #F1F3F6;
+        border: solid 2px #eaeaea;
         border-radius: 5px;
         padding-left: 10px;
+    }
+    >input:hover{
+        background-color: #f6f6f6;
     }
 `;
 
@@ -249,8 +263,8 @@ export const Share = styled.div`
     }
 
     >p{
-        color: #caced4;
-        font-size: 0.75em;
+        color: #a1a1a1;
+        font-size: 0.8em;
     }
 
     >img {
@@ -296,7 +310,7 @@ export const MemberName = styled.h1`
     font-weight: bold;
 
     >span{
-        color: #caced4;
+        color: #a1a1a1;
         font-family: Arial, Helvetica, sans-serif;
         font-size: 1em;
         text-align: left;

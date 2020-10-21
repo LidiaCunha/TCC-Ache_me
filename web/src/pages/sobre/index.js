@@ -9,7 +9,7 @@ import {
     Container,
     ContainerItensMenu,
     ContainerMenu,
-    LoginContainerText,
+    // LoginContainerText,
     ContainerTextMenor,
     ContainerTextMaior,
     ContainerInfo, 
