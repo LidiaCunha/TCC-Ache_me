@@ -1,5 +1,20 @@
 import styled from "styled-components";
 
+export const Center = styled.div`
+    heigth: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+
+@media(max-width: 780px){
+    width: 100vw;
+    overflow-x: hidden;
+}
+`;
+
+
 export const Text = styled.p`
     color: #262626;
     font-family: Arial, Helvetica, sans-serif;
@@ -24,7 +39,8 @@ export const Info = styled.p`
 `;
 
 export const Button = styled.div`
-    min-width: 140px;
+    width: 125px;
+    height: 38px;
     border-radius: 5px;
     background: #E64F4A;
     color: #fff;
@@ -32,35 +48,47 @@ export const Button = styled.div`
     padding: 10px;
     margin: auto;
     box-sizing: border-box;
-    font-size: 1.2em;
+    font-size: 0.8em;
     font-family: arial;
+    font-weight: bold;
     position: relative;
     z-index: 1;
     overflow: hidden;
     cursor: pointer;
     text-align: center;
 
-    :hover{
-        background-color: #e6352f;
-    }
+@media(max-width: 780px){
+    min-width: 160px;
+}
+
 `;
 
 export const Container = styled.div`
-    width: 100vw;
+    width: 1000px;
     /* height: 140vh; */
     box-sizing: border-box;
     background-color: #efefef;
     margin: 0px;
     padding: 0px;
+    @media(max-width: 780px){
+        width: 100vw;
+        overflow-x: hidden;
+    }
 `;
 
+// ========= HEADER =========
+
 export const Header = styled.div`
-    width: 100%;
+    width: 1000px;
     height: 50px;
     padding-top: 5px;
     background-color: #fff;
     position: fixed;
     z-index: 999;
+@media(max-width: 780px){
+    width: 100vw;
+    overflow: hidden;
+}
 `;
 
 export const Home = styled.div`
@@ -72,11 +100,9 @@ export const Home = styled.div`
     border-radius: 50%;
     background-color:#E64F4A;
     cursor: pointer;
-
     :hover{
         background-color: #e6352f;
     }
-
     >img {
       width: 100%;
     }
@@ -84,10 +110,14 @@ export const Home = styled.div`
 
 export const Main = styled.div`
     width: 1000px;
+    height: auto;
     padding-top: 50px;
     display: grid;
     grid-template-rows: 25% 75%;
     box-sizing:border-box;
+@media(max-width: 780px){
+    grid-template-rows: none;
+}
 `;
 
 export const Section = styled.div`
@@ -97,9 +127,14 @@ export const Section = styled.div`
     flex-direction: column;
     align-items: center;
     /* border-bottom: solid 2px black; */
+@media(max-width: 780px){
+    width: 100vw;
+}
+
 `;
 
-// Section 1
+// ========= SECTION 1 - USER_PHOTO =========
+
 export const BasicInfos = styled.div`
     width: 80%;
     height: 200px;
@@ -109,6 +144,17 @@ export const BasicInfos = styled.div`
     display: flex;
     box-sizing: border-box;
     margin-top: 50px;
+    box-shadow: 0px 0px 6px #fff;
+@media(max-width: 780px){
+    width: 90vw;
+    height: 400px;
+    padding: 8px 0px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    flex-direction: column;
+}
 `;
 
 export const PhotoProfile = styled.div`
@@ -117,6 +163,15 @@ export const PhotoProfile = styled.div`
     display: grid;
     grid-template-columns: 40% 60%;
     border-right: solid 2px #dddddd;
+@media(max-width: 780px){
+    grid-template-columns: 100%;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    flex-direction: column;
+    border: none;
+}
 `;
 
 export const Merit = styled.div`
@@ -124,12 +179,18 @@ export const Merit = styled.div`
     width: 50%;
     height: 100%;
     padding: 15px 30px;
+
+@media(max-width: 780px){
+    width: 100%;
+    padding: 0px 20px;
+    height: auto;
+}
 `;
 
 export const Photo = styled.div`
     width: 120px;
     height: 120px;
-    background-color: red;
+    background-color: #E64F4A;
     margin: 0px 20px;
     border-radius: 50%;
     border: 1px solid #caced4;
@@ -147,7 +208,7 @@ export const NewPhoto = styled.div`
     padding: 10px;
     box-sizing: border-box;
     border-radius: 50%;
-    background-color:#E64F4A;
+    background-color: #E64F4A;
     cursor: pointer;
     position: relative;
     top: -40px;
@@ -184,6 +245,10 @@ export const Name = styled.h1`
         line-height: 30px;
         font-weight: normal;
     }
+
+@media(max-width: 780px){
+    text-align: center;
+}
 `;
 
 // Section 2
@@ -207,11 +272,17 @@ export const AdvancedInfos = styled.div`
     display: grid;
     grid-template-columns: 65% 30%;
     justify-content: space-between;
+
+@media(max-width: 780px){
+    grid-template-columns: 100%;
+    width: 100vw;
+}
 `;
 
 export const Profile = styled.div`
     width: 100%;
     background-color: #fff;
+    box-shadow: 0px 0px 6px #fff;
     padding: 30px;
     box-sizing: border-box;
     display: grid;
@@ -224,6 +295,23 @@ export const Profile = styled.div`
     'street neighborhood'
     'city state'
     '... button';
+
+@media(max-width: 780px){
+    grid-template-areas:
+    'name name'
+    'email email'
+    'password password'
+    'new-password new-password'
+    'confirm-password confirm-password'
+    'telephone telephone'
+    'cpf cpf'
+    'cep cep'
+    'street street'
+    'neighborhood neighborhood'
+    'city city'
+    'state state'
+    'button button';
+}
 `;
 
 export const Input = styled.div`
@@ -232,6 +320,7 @@ export const Input = styled.div`
     >input{
         width: 100%;
         height: 30px;
+        outline: none;
         border: solid 2px #eaeaea;
         border-radius: 5px;
         padding-left: 10px;
@@ -246,6 +335,12 @@ export const ShareIndicated = styled.div`
     height: 100%;
     display: grid;
     grid-template-rows: 35% 65%;
+
+@media(max-width: 780px){
+    grid-template-rows: 100%;
+    width: 100vw;
+    height: 160px;
+}
 `;
 
 export const Share = styled.div`
@@ -255,6 +350,7 @@ export const Share = styled.div`
     display: flex;
     flex-direction: column;
     font-family: Arial, Helvetica, sans-serif;
+    box-shadow: 0px 0px 6px #fff;
 
     >h1{
         color: #262626;
@@ -271,6 +367,28 @@ export const Share = styled.div`
         width: 60px;
         margin: auto;
     }
+
+@media(max-width: 780px){
+    height: 170px;
+    margin-top:30px;
+
+    >h1{
+        color: #262626;
+        font-size: 1em;
+        line-height: 30px;
+    }
+
+    >p{
+        color: #caced4;
+        font-size: .8em;
+    }
+
+    >img {
+        width: 40px;
+        margin: auto;
+    }
+
+}
 `;
 
 export const Indicated = styled.div`
@@ -278,6 +396,11 @@ export const Indicated = styled.div`
     height: 100%;
     display: grid;
     grid-template-rows: 50px 350px;
+
+    @media(max-width: 780px){
+    margin-top:30px;
+    }    
+    
 `;
 
 export const Members = styled.div`
@@ -293,8 +416,8 @@ export const Member = styled.div`
     font-family: Arial, Helvetica, sans-serif;
     
     >img{
-        width: 60px;
-        height: 60px;
+        width: 45px;
+        height: 45px;
         border-radius: 50%;
         border: solid 1px #caced4;
         margin-right: 10px;
@@ -304,7 +427,7 @@ export const Member = styled.div`
 export const MemberName = styled.h1`
     color: #262626;
     font-family: Arial, Helvetica, sans-serif;
-    font-size: 0.8em;
+    font-size: 0.7em;
     text-align: left;
     line-height: 15px;
     font-weight: bold;

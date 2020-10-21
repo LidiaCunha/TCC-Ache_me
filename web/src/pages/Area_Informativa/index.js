@@ -1,4 +1,10 @@
 import React from "react";
+import {Link} from "react-scroll"
+import {useHistory} from "react-router-dom";
+
+// ======= CABEÇALHO ========
+import Background from "../../assets/Sobre/background.jpg";
+
 
 // ======= SEÇÃO 2 ========
 import Documento from "../../assets/Area_Informativa/documentos.png";
@@ -22,7 +28,12 @@ import Logo from "../../assets/Area_Informativa/logo.png";
 
 import {
     Container,
+    
+// ====== HEADER ========    
     Header,
+    ContainerHeader,
+    ContainerMenu,
+    ContainerItensMenu,
 
 // ====== sessão 2 =======
     ContainerApoio,
@@ -47,19 +58,41 @@ import {
     Texto,
     TextoVermelho,
     Copyright,
+    
 
     
 
 } from "./styles";
 
 const Area_informativa = () => {
+    
+    const history = useHistory();
+    
     return (
         <>
-        <Header>CABEÇALHO</Header>
+        <Header name="inicio">
+            <img src={Background} alt="Background"/>
+            <ContainerHeader>
+                <ContainerMenu>
+                    <img src={Logo} alt="logo ache.me"/>
+                    <ContainerItensMenu>
+                        <ul>
+                            <li onClick={() => {history.push("/sobre");}}>Sobre a empresa</li>
+                            <li><Link to="inicio" offset={-180} smooth={true} duration={500}>Inicio</Link></li>
+                            <li><Link to="apoio" offset={-180} smooth={true} duration={500}>Apoio</Link></li>
+                            <li><Link to="video" offset={-180} smooth={true} duration={500}>Video</Link></li>
+                            
+                        </ul>
+                    </ContainerItensMenu>
+                </ContainerMenu>
+        
+            </ContainerHeader>
+        
+        </Header>
 
         <Container>
             <ContainerApoio>
-                <h1>Instruções de Apoio</h1>
+                <h1 name="apoio">Instruções de Apoio</h1>
 
                 <ContianerCardsApoio>
                     <Conjunto>
@@ -166,7 +199,7 @@ const Area_informativa = () => {
         </Container>
 
         <Container>
-            <ContainerVideo>
+            <ContainerVideo name="video">
                 <video loop muted controls>
                     <source src={Video} type="video/mp4"/>
                 </video>
