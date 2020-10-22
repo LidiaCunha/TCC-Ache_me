@@ -46,7 +46,7 @@ function Chat({route}) {
     </View>
     <View style={styles.Form}>
       <TextInput style={styles.inputMsg} placeholder="Digite sua mensagem" onTouchStart={() => setHeightOfMsgBox({height:325})} onBlur={() => setHeightOfMsgBox({height:650})} value={value.msg} onChange={handlerInput} />
-      <Button title="send" style={styles.btnMsg} onPress={() => sendMessage({id:route.params.id,name:route.params.name,mail:route.params.mail},value )}/>  
+      <Button title="send" style={styles.btnMsg} onPress={() => sendMessage(id,value )}/>  
     </View>
   </View>
   );
