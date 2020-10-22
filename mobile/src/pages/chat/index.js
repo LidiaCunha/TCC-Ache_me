@@ -1,5 +1,6 @@
 import React,{useState} from 'react';
 import {View, Button,Image , Text, TextInput, StyleSheet} from 'react-native';
+import { useConversarion } from '../../contexts/ConversationProvider';
 
 function Chat({route}) {
   const styles = StyleSheet.create({
@@ -29,7 +30,13 @@ function Chat({route}) {
   const [heightMsgBox, setHeightOfMsgBox] = useState({
     height:650
   })
-
+  const [ value, setValue ] = useState({
+    msg:""
+  })
+  const handlerInput = ( e ) => {
+    setValue({msg : e.nativeEvent.text})
+  } 
+  const { sendMessage } = useConversarion();
   return (
   <View>
     {/* <Image src={route.params.photo} alt="foto de perfil" /> */}
@@ -38,8 +45,8 @@ function Chat({route}) {
       
     </View>
     <View style={styles.Form}>
-      <TextInput style={styles.inputMsg} placeholder="Digite sua mensagem" onTouchStart={() => setHeightOfMsgBox({height:325})} onBlur={() => setHeightOfMsgBox({height:650})} />
-      <Button title="send" style={styles.btnMsg}/>  
+      <TextInput style={styles.inputMsg} placeholder="Digite sua mensagem" onTouchStart={() => setHeightOfMsgBox({height:325})} onBlur={() => setHeightOfMsgBox({height:650})} value={value.msg} onChange={handlerInput} />
+      <Button title="send" style={styles.btnMsg} onPress={() => sendMessage({id:route.params.id,name:route.params.name,mail:route.params.mail},value )}/>  
     </View>
   </View>
   );
