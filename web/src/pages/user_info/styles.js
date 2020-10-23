@@ -1,19 +1,16 @@
 import styled from "styled-components";
 
-export const Center = styled.div`
-    heigth: 100%;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    align-items: center;
+export const Container = styled.div`
+    width: 100vw;
+    min-height: 100vh;
+    height: auto;
+    box-sizing: border-box;
+    background-color: #efefef;
 
 @media(max-width: 780px){
-    width: 100vw;
     overflow-x: hidden;
 }
 `;
-
 
 export const Text = styled.p`
     color: #262626;
@@ -56,88 +53,79 @@ export const Button = styled.div`
     overflow: hidden;
     cursor: pointer;
     text-align: center;
-
-@media(max-width: 780px){
-    min-width: 160px;
-}
-
-`;
-
-export const Container = styled.div`
-    width: 1000px;
-    /* height: 140vh; */
-    box-sizing: border-box;
-    background-color: #efefef;
-    margin: 0px;
-    padding: 0px;
-    @media(max-width: 780px){
-        width: 100vw;
-        overflow-x: hidden;
-    }
 `;
 
 // ========= HEADER =========
 
 export const Header = styled.div`
-    width: 1000px;
-    height: 50px;
-    padding-top: 5px;
+    width: 100vw;
+    height: 6vh;
+    padding: 4px;
+    box-sizing: border-box;
     background-color: #fff;
     position: fixed;
     z-index: 999;
-@media(max-width: 780px){
-    width: 100vw;
+    top: 0;
     overflow: hidden;
+    
+@media(max-width: 780px){
+    height: 10vh;
 }
 `;
 
 export const Home = styled.div`
-    width: 45px;
-    height: 45px;
+    width: 5vh;
+    height: 5vh;
+    min-width: 45px;
+    min-height: 45px;
     padding: 5px;
     box-sizing: border-box;
-    margin-left: 25px;
     border-radius: 50%;
     background-color:#E64F4A;
     cursor: pointer;
+margin-left: 190px;
+    
     :hover{
         background-color: #e6352f;
     }
     >img {
       width: 100%;
+      height: 100%;
     }
 `;
 
 export const Main = styled.div`
-    width: 1000px;
+    width: 60vw;
+    min-width: 1000px;
     height: auto;
+    min-height: 50px;
     padding-top: 50px;
     display: grid;
     grid-template-rows: 25% 75%;
     box-sizing:border-box;
+
 @media(max-width: 780px){
-    grid-template-rows: none;
+    grid-template-rows: 18%;
 }
 `;
 
 export const Section = styled.div`
-    width: 100%;
-    height: fit-content;
+    width: 100vw;
+    height: auto;
+    min-height: 5px;  
     display: flex;
     flex-direction: column;
     align-items: center;
     /* border-bottom: solid 2px black; */
-@media(max-width: 780px){
-    width: 100vw;
-}
 
 `;
 
 // ========= SECTION 1 - USER_PHOTO =========
 
 export const BasicInfos = styled.div`
-    width: 80%;
-    height: 200px;
+    width: 80vw;
+    height: 10vh;
+    min-height: 200px;
     padding: 20px 0px;
     background-color: #fff;
     position: relative;
@@ -145,32 +133,38 @@ export const BasicInfos = styled.div`
     box-sizing: border-box;
     margin-top: 50px;
     box-shadow: 0px 0px 6px #fff;
+
 @media(max-width: 780px){
     width: 90vw;
-    height: 400px;
-    padding: 8px 0px;
-    display: flex;
+    height: auto;
+    min-height: 50px;
     justify-content: center;
     align-content: center;
     align-items: center;
     flex-direction: column;
+    margin-top: 30px;
+
 }
 `;
 
 export const PhotoProfile = styled.div`
     width: 50%;
-    height: 100%;
+    height: auto;
+    min-height: 50px;
     display: grid;
     grid-template-columns: 40% 60%;
     border-right: solid 2px #dddddd;
+
 @media(max-width: 780px){
     grid-template-columns: 100%;
+    border-right: solid 2px transparent;
+    width: 100%;
+    height: auto;
     display: flex;
     justify-content: center;
     align-content: center;
     align-items: center;
     flex-direction: column;
-    border: none;
 }
 `;
 
@@ -182,8 +176,9 @@ export const Merit = styled.div`
 
 @media(max-width: 780px){
     width: 100%;
-    padding: 0px 20px;
     height: auto;
+
+    padding: 15px 15px;
 }
 `;
 
@@ -245,10 +240,6 @@ export const Name = styled.h1`
         line-height: 30px;
         font-weight: normal;
     }
-
-@media(max-width: 780px){
-    text-align: center;
-}
 `;
 
 // Section 2
@@ -262,6 +253,10 @@ export const Title = styled.p`
     padding: 5px 0px;
     border-bottom: solid 2px #dddddd;
     margin-top: 20px;
+
+@media(max-width: 780px){
+    width: 90vw;
+}
 `;
 
 export const AdvancedInfos = styled.div`
@@ -275,7 +270,17 @@ export const AdvancedInfos = styled.div`
 
 @media(max-width: 780px){
     grid-template-columns: 100%;
-    width: 100vw;
+    width: 100%;
+    margin-bottom: 10px;
+    margin-top: 20px;
+display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    
+    flex-direction: column;
+
+
 }
 `;
 
@@ -311,6 +316,9 @@ export const Profile = styled.div`
     'city city'
     'state state'
     'button button';
+
+    width: 90%;
+    margin: 20px;
 }
 `;
 
@@ -335,11 +343,9 @@ export const ShareIndicated = styled.div`
     height: 100%;
     display: grid;
     grid-template-rows: 35% 65%;
-
 @media(max-width: 780px){
-    grid-template-rows: 100%;
-    width: 100vw;
-    height: 160px;
+    width: 90vw;
+
 }
 `;
 
@@ -355,7 +361,7 @@ export const Share = styled.div`
     >h1{
         color: #262626;
         font-size: 0.8em;
-        line-height: 30px;
+        line-height: 40px;
     }
 
     >p{
@@ -367,28 +373,6 @@ export const Share = styled.div`
         width: 60px;
         margin: auto;
     }
-
-@media(max-width: 780px){
-    height: 170px;
-    margin-top:30px;
-
-    >h1{
-        color: #262626;
-        font-size: 1em;
-        line-height: 30px;
-    }
-
-    >p{
-        color: #caced4;
-        font-size: .8em;
-    }
-
-    >img {
-        width: 40px;
-        margin: auto;
-    }
-
-}
 `;
 
 export const Indicated = styled.div`
@@ -396,11 +380,22 @@ export const Indicated = styled.div`
     height: 100%;
     display: grid;
     grid-template-rows: 50px 350px;
+`;
 
-    @media(max-width: 780px){
-    margin-top:30px;
-    }    
-    
+export const TitleMember = styled.div`
+    width: 100%;
+    color: #262626;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.8em;
+    text-align: left;
+    padding: 5px 0px;
+    border-bottom: solid 2px #dddddd;
+    margin-top: 15px;
+
+@media(max-width: 780px){
+    width: 90vw;
+    margin-top: 20px;
+}
 `;
 
 export const Members = styled.div`
