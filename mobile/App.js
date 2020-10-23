@@ -8,12 +8,12 @@ import Contatos from "./src/pages/chat/listaContatos"
 
 const App = () => {
   return (
-    <Contatos/>
-    // <NavigationContainer>
-    //   <AuthProvider>
-    //     <Routes/>
-    //   </AuthProvider>
-    // </NavigationContainer>
+    // <Contatos/>
+    <NavigationContainer>
+    <AuthProvider>
+    <Routes/>
+    </AuthProvider>
+    </NavigationContainer>
   );
 }
 

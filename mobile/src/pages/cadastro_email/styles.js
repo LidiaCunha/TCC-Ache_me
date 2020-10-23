@@ -22,7 +22,7 @@ export const ContainerCard = styled.View`
 
 export const TextoEmail = styled.Text`
     color: #555555;
-    font-size: 14px;
+    font-size: 18px;
     align-self: center;
     text-align: center;
     margin-bottom: 18px;
