@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon source/server.js",
-    "chat" : "nodemon source/services/chat/index.js",
-    "test" : "echo \"Error: no test specified\" && exit 1"
+    "chat": "nodemon source/services/chat/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -33,6 +33,7 @@
     "nodemon": "^2.0.4",
     "sequelize": "^6.3.5",
     "sequelize-cli": "^6.2.0",
-    "socket.io": "^2.3.0"
+    "socket.io": "^2.3.0",
+    "sqlite3": "^5.0.0"
   }
 }

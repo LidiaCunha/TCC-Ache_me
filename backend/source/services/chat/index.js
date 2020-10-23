@@ -1,16 +1,17 @@
-const io = require('socket.io')(5000)
+const io = require('socket.io')(5000);
+
+const messagesController = require('./controller/messages')
 
 io.on('connection', socket => {
     const id = socket.handshake.query.id;
     socket.join(id);
 
-    socket.on( 'envia-msg' , ({ recipients , text })=>{
-        recipients.forEach(recipent => {
-            const newRecipient = recipients.filter(r => r !== recipients );
+    socket.on( 'envia-msg' , ({ recipient , text })=>{
 
-            newRecipient.push(id);
+        socket.to(recipient).emit( 'recebe-msg' , { recipient, sender: id , text } );
+    	
+    	const res = messagesController.sendMessage(id, recipient, text);
 
-            socket.broadcast.to(recipent).emit( 'recebe-msg' , { recipients: newRecipient, sender: id , text } );
-        })
+    	console.log(res)
     } )
 })

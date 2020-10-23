@@ -21,7 +21,6 @@ export const AuthProvider = ({ children }) => {
         api.defaults.headers.Authorization = `Bearer ${storagedToken.token}`;
 
         setUser(JSON.parse(storagedUser));
-        // setloading(false);
       }
     }
 
@@ -46,15 +45,14 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-  // <AuthContext.Provider value={{ signed: !!user, user, loading, login, logout}}>
-  <AuthContext.Provider value={{ signed: !!user, user, login, logout}}>
-    {children}
-  </AuthContext.Provider>
+    <AuthContext.Provider value={{ signed: !!user, user, login, logout}}>
+      {children}
+    </AuthContext.Provider>
   );
 };
 
 export function useAuth(){
   const context = useContext(AuthContext);
-
+  
   return context;
 };

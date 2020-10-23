@@ -98,7 +98,7 @@ export const TextoNome = styled.Text`
 
 export const TextoEmail = styled.Text`
     color: #869189;
-    font-size: 18px;
+    font-size: 14px;
     align-self: center;
     text-align: center;
 `

@@ -29,7 +29,7 @@ function useLocalStorage( key , initialValue ) {
     if ( alreadyExists )
       return alreadyExists;
 
-    return typeof initialValue === 'function' ? initialValue() : initialValue; 
+    return typeof initialValue === 'function' && value.length > 0 ? initialValue() : initialValue; 
   })
 
   React.useEffect(() => {

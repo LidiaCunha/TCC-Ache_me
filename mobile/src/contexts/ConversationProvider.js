@@ -12,11 +12,11 @@ export const useConversarion = () => {
 }
 
 export const ConversationProvider = ({children}) => {
-    const { user } = useAuth(); 
+    const { user } = useAuth();
+    const socket = useSocket();
     const [ conversations , setConversations ] = useLocalStorage( 'conversarions' , [] );
     const [selectedConversationIndex , setSelectedConversationIndex ] = React.useState(0)
-    const socket = useSocket();
- 
+    
     function createConversation( recipient ){
         setConversations( ( prevCvs ) => {
             return [ ...prevCvs, { recipient , messages:[] } ];
@@ -28,30 +28,30 @@ export const ConversationProvider = ({children}) => {
 
         addMessageToConversation({recipient, text, sender:user})
     }
-    const addMessageToConversation = React.useCallback(({ recipients, text, sender }) => {
+    const addMessageToConversation = React.useCallback(({ recipient, text, sender }) => {
         setConversations(prevConversations => {
-          let madeChange = false
+          console.log(prevConversations)
+          //let madeChange = false
           const newMessage = { sender, text }
-          const newConversations = prevConversations.map(conversation => {
-            if (arrayEquality(conversation.recipients, recipients)) {
-              madeChange = true
-              return {
-                ...conversation,
-                messages: [...conversation.messages, newMessage]
-              }
-            }
-    
-            return conversation
-          })
-    
-          if (madeChange) {
-            return newConversations
-          } else {
-            return [
-              ...prevConversations,
-              { recipients, messages: [newMessage] }
+
+          // const newConversations = prevConversations?.map(conversation => {
+          //   madeChange = true
+              
+          //   return {
+          //     ...conversation,
+          //     messages: [...conversation.messages, newMessage]
+          //   }
+          // })
+  
+          // if (madeChange) {
+          //   return newConversations
+          // } else {
+            const n = [
+               ...prevConversations,
+             { recipient ,newMessage }
             ]
-          }
+            return n
+          //}
         })
     }, [setConversations])
 
@@ -61,28 +61,43 @@ export const ConversationProvider = ({children}) => {
         socket.on('recebe-msg', addMessageToConversation);
 
         return ( ) => socket.off('recebe-msg');
-    },[ socket , addMessageToConversation ]);
+    },[ socket , addMessageToConversation ]);  
+    
+    var output = {};
+    if(conversations ==='undefined'){    
+      const formatedConversations = conversations.map( (conversation, index ) => {
 
-    const formatedConversations = conversations.map( (conversation, index ) => {
-            const recipient =  {id: recipient};
-            const messages = conversation.messages.map( (message) => { 
-
+        const recipient =  {id: recipient};
+            
+          const messages = conversation.messages.map( (message) => { 
             const res = api.get(`/users/${message.sender}`);
 
             const name = ( contact && contact.name) || message.sender;
+              
             const fromMe = id === message.sender;
+              
             return { sender: message.sender, fromMe, text:message.text};
-        })
+          });
+        
         const selected = index === selectedConversationIndex;
+        
         return {...conversation, messages , selected , recipients};
-    })
+      })
  
-    const output = {
+      output = {
         conversations : formatedConversations,
         selectedConversation:formatedConversations[selectedConversationIndex],
         selectedConversationIndex: setSelectedConversationIndex,
         createConversation,
         sendMessage
+      }
+    }else{
+      
+      output = {
+        selectedConversationIndex: setSelectedConversationIndex,
+        createConversation,
+        sendMessage
+      }
     }
     return (
         <ConversationsContext.Provider value={output}>
