@@ -24,7 +24,7 @@ module.exports = {
     delete : async( req , res ) => {
         const { HealthProblemId } = req.params;
 
-        const wasDeleted = await HealthProblems.destroy({where: {HealthProblemId}});
+        const wasDeleted = await HealthProblems.destroy({where: {id:HealthProblemId}});
     
         return wasDeleted ? res.status(200).send({"sucess":"Deletado"}) : res.status(404).send({"error":"Não foi deletado"});
     },
@@ -32,7 +32,7 @@ module.exports = {
         const { HealthProblemId } = req.params;
         const { problem } = req.body;
 
-        const wasUpdated = await HealthProblems.destroy({problem},{where: {HealthProblemId}});
+        const wasUpdated = await HealthProblems.update({problem},{where: {id:HealthProblemId}});
     
         return wasUpdated ? res.status(200).send({"sucess":"Atualizado com sucesso!!"}) : res.status(404).send({"error":"Não foi atualizado."});
     },

@@ -73,8 +73,8 @@ routes.get('/features/post/:PostId', FeaturesOfPost.index);
 
 routes.post('/healthProblems', HealthProblems.store);
 routes.get('/healthProblems', HealthProblems.index);
-routes.delete('/healthProblems', HealthProblems.delete);
-routes.put('/healthProblems', HealthProblems.update);
+routes.delete('/healthProblems/:HealthProblemId', HealthProblems.delete);
+routes.put('/healthProblems/:HealthProblemId', HealthProblems.update);
 
 routes.get('/healthProblems/post/:PostId', HealthProblemsOfPost.index);
 routes.post('/healthProblems/post/:PostId', HealthProblemsOfPost.store);

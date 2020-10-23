@@ -86,7 +86,7 @@ module.exports ={
         var posts = [];
 
         filtredPosts.forEach( post => {
-            const ageOfPost = moment(post.borned_at).locale("America/Sao_Paulo").format("YYYY")
+            const ageOfPost = moment(post.borned_at).locale("America/Sao_Paulo").format("YYYY");
             
             const now = new Date();
             const peopleAge = now.getFullYear() - ageOfPost;
@@ -144,12 +144,14 @@ module.exports ={
         });
 
 
-        req.body.filtredPosts = posts;
+        req.body.filtredPosts = { posts };
 
         return next();
     },
     filterByLocale   : async ( req , res , next ) => {
         const { Sa, Str, Br, Cp, Rp, Cm, Stt, Ct } = req.query;
+
+        if( !Sa || !Str || !Br || !Cp || !Rp || !Cm || !Stt || !Ct  ) return next()
 
         const addtoFilter = {
                     "street":Str,
@@ -160,7 +162,7 @@ module.exports ={
                     "state":{
                         "name_of_state":Stt
                     },
-                    "city":{
+                        "city":{
                         "name_of_city":Ct
                     }
                 };
@@ -176,7 +178,6 @@ module.exports ={
                 }}
             }
         );
-
         
         
         const seens = await Seen.findAll();
@@ -189,7 +190,7 @@ module.exports ={
                 if (whenSeen || !Sa){
                     for(let i = 0; i < addressOfSeens.length; i++){
                         if ( seen.dataValues.address_id === addressOfSeens[i].dataValues.id){
-                            console.log({...seen.dataValues , address:{...addressOfSeens[i].dataValues}})
+                            req.body.filtredPosts = { ...seen.dataValues , address:{...addressOfSeens[i].dataValues}}
                         }
                     }
                 }
@@ -198,16 +199,15 @@ module.exports ={
                     return moment(seen.seen_at).locale("America/Sao_Paulo").format('DD/MM/YYYY')  == seen_at_to_filter ? true : false; 
                 }
             }) 
-
         // function filterByWhoSaw () {
 
         // }
-        // //console.log(IdfiltredPosts)
+
         return next();
     },
     filterByProblems : async ( req , res ) => {
         const { H } = req.query;
-        
+ //       console.log(req.body.filtredPosts)
         if(!H) return res.status(200).send(req.body.filtredPosts);
 
         const takePostsWithProblems = async( ObjectOfProblems ) => {
