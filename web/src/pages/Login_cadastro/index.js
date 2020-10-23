@@ -281,7 +281,7 @@ const FormLogin = (props) => {
 
                 signIn(retorno.data);
 
-                return history.push("/home");
+                return history.push("/user_info");
             };
 
         } catch (erro) {
