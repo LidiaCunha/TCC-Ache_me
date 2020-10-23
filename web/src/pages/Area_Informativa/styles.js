@@ -18,17 +18,92 @@ export const Header = styled.div`
     justify-content: center;
     align-content: center;
     align-items: center;
-    font-size: 5em;
-    color: #fff;
-    font-family: arial;
     margin-bottom: 30px;
-    background: #2edbad;
+    overflow: hidden;
+    position: relative;
+
+    > img{
+        heigth: 100%;
+        width: 100%;
+    }
+
     @media (max-width: 780px){
         font-size: 6vw;
-        height: 300px;
+        height: 200px;
         width: 100vw;
         margin-bottom: 10px;
     }
+`;
+
+export const ContainerHeader = styled.div`
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0px;
+    background: rgba(0,0,0,.6);
+`;
+
+export const ContainerMenu = styled.div`
+    height: 120px;
+    width: 100%;
+    display: flex;
+    padding-bottom: 10px;
+    z-index: 999;
+    justify-content: space-between;
+    align-content: center;
+    align-items: center;
+    position: fixed;
+    background: rgba(0,0,0,.7);
+
+    > img{
+        height: 4.8vw;
+        width: 4.8vw;
+        margin-left: 5vw;
+        margin-top: 1vh;
+        cursor: pointer;
+    }
+
+@media(max-width: 780px){
+    height: 50px;
+
+    > img{
+        height: 10vw;
+        width: 10vw;
+        margin-left: 3vh;
+    }
+}
+`;
+
+export const ContainerItensMenu = styled.nav`
+    height: 100%;
+    width: auto;
+
+    > ul{
+        height: 100%;
+        width: auto;
+        display: flex;
+        justify-content: space-around;
+        align-content: center;
+        align-items: center;
+
+        > li{
+           margin-right: 40px;
+           font-size: 1.2vw;
+           color: #fff;
+           font-weight: bold;
+           font-family: arial;
+           cursor: pointer;
+        }
+    }
+
+@media(max-width: 780px){
+    > ul{
+        > li{
+          margin-right: 15px;
+          font-size: 2.2vw;
+        }
+    }
+}
 `;
 
 // ======= sessão 2 =========
@@ -43,25 +118,25 @@ export const ContainerApoio = styled.div`
     align-items: center;
     flex-direction: column;
     margin: 0 auto;
-    margin-bottom: 20px;
 
     > h1{
         font-size: 1.8em;
         font-family: arial;
         color: #000;
         text-align: center;
-        margin-bottom: 50px;
+        margin-bottom: 40px;
         font-weight: bold;
         color: #262626;
     }
-    @media (max-width: 780px){
-        width: 100vw;
-        min-height: 10px;   
-        > h1{
-            font-size: 1.2em;
-            margin-bottom: 30px;
-        }
+
+@media (max-width: 780px){
+    width: 100vw;
+    
+    > h1{
+        font-size: 1.2em;
+        margin-bottom: 20px;
     }
+}
 `;
 
 export const ContianerCardsApoio = styled.div`
@@ -71,9 +146,11 @@ export const ContianerCardsApoio = styled.div`
     justify-content: space-around;
     align-content: center;
     align-items: center;
+    overflow: hidden;
 
     @media (max-width: 780px){
-        min-height: 150px;
+        min-height: 50px;
+        height: auto;
         width: 100vw;
     }
 `;
@@ -86,9 +163,10 @@ export const Conjunto = styled.div`
     justify-content: space-around;
     align-content: center;
     align-items: center;
+
 @media (max-width: 780px){
     width: 100vw;
-    padding-left: 20px;
+    padding-left: 15px;
     box-sizing: border-box;
     margin-bottom: 10px;
     display: block;
@@ -110,24 +188,24 @@ export const CardApoio = styled.div`
     color: #000000;
     font-family: Arial, Helvetica, sans-serif;
 
-
     > h3 {
-      font-size: 1.2em;
-      font-weight: bold;
-      font-family: arial;
-      margin: 30px 0;
-      align-self: flex-start;
-      color: #262626;
+        font-size: 1.5em;
+        font-weight: bold;
+        font-family: arial;
+        align-self: flex-start;
+        color: #262626;
+        text-align: center;
+        margin-bottom: 10px;
     }
 
     > p {
-      font-size: 1.1em;
-      font-family: arial;
+        font-size: 1.1em;
+        font-family: arial;
     }
 
     :hover {
-      transition: .7s;
-      transform: scale(1.1); 
+        transition: .7s;
+        transform: scale(1.1); 
     }
     @media (max-width: 780px){
         height: 100%;
@@ -136,9 +214,15 @@ export const CardApoio = styled.div`
         justify-content: space-around;
         align-content: center;
         align-items: center;
-        > h2{
+        padding: 0;
+        padding-bottom: 10px;
+        
+
+        > h3{
+width: 100%;
             font-size: 4vw;
             margin-bottom: 10px;
+text-align: center;
         }
         > p{
             font-size: 3vw;
@@ -156,7 +240,7 @@ export const ContainerImgApoio = styled.div`
     justify-content: center;
     align-content: center;
     align-items: center;
-    overflow: hidden;
+
     > img {
       height: 70%;
       width: 70%;
@@ -164,7 +248,7 @@ export const ContainerImgApoio = styled.div`
     @media (max-width: 780px){
         height: 50px;
         width: 50px;
-        margin-bottom: 10px;
+        margin-bottom: 5px;
     }
 `;
 
@@ -178,7 +262,8 @@ export const ContainerFotos = styled.div`
     align-content: center;
     align-items: center;
     margin-bottom: 20px;
-overflow: hidden;
+    overflow: hidden;
+
 @media (max-width: 780px){
     flex-direction: column;
     min-height: 550px;
@@ -251,6 +336,11 @@ export const Porcentagem = styled.div`
     right: 45px;
     overflow: hidden;
     z-index: 2;
+
+@media(max-width: 780px){
+    bottom: 30px;
+    right: 35px; 
+}
 `;
 // ========== VIDEO ==============
 
@@ -291,7 +381,7 @@ export const ContainerVideo = styled.div`
 // ========= FOOTER ==============
 
 export const Footer = styled.div`
-    height: 140px;
+    height: 130px;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -310,8 +400,8 @@ export const ContainerLogo = styled.div`
     align-items: center;
     margin-bottom: 20px;
     > img{
-      height: 70px;
-      width: 70px;
+      height: 60px;
+      width: 60px;
       margin-right: 20px;
     }
   `;

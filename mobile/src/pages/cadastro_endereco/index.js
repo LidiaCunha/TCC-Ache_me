@@ -1,5 +1,7 @@
 //Funcional
 import React, {useState} from 'react';
+import { Animated,StyleSheet , Dimensions, Keyboard, UIManager } from 'react-native';
+
 
 //Style
 import {Container, BotaoVoltar, ContainerCadastro, Input, Botao, Texto} from '../cadastro_dados_pessoais/styles';
@@ -10,6 +12,66 @@ import { ViewContainer } from "../login/styles";
 
 const CadastroEndereco = ({route, navigation}) => {
     const {props} = route.params;
+    
+    const [shift] = useState({
+        shift: new Animated.Value(0)
+    })
+
+    const [currentyInputHeigth, setInputHeigth ] = useState(0);
+    
+    const {width} = Dimensions.get('window');
+
+    let w = width*9/10;
+
+    let styles = StyleSheet.create({
+            conteinerForm:{
+                flex: 1,
+                alignItems: 'center',
+                alignSelf: 'center',
+                width: w ,
+                padding: 4
+            }
+    })
+
+    React.useEffect(()=>{
+        w = width*9/10;
+        styles.conteinerForm = { ...styles.conteinerForm, width:w}
+    }, [width])
+  
+
+    const handlerKeyboardDidShow = (e) => {
+        const {height} = Dimensions.get('window');
+
+        const keyboardHeight = e.endCoordinates.height;
+
+        const gap =(height - keyboardHeight) - currentyInputHeigth ;
+        console.log(gap)
+        if ( gap >= 0 )
+            return;
+
+        Animated.timing(
+            shift.shift,
+            {
+                toValue: gap,
+                duration: 1000,
+                useNativeDriver: true
+            }
+        ).start();
+    }
+
+    const handlerKeyboardDidHide = (e) => {
+        Animated.timing(
+            shift.shift,
+            {
+              toValue: 0,
+              duration: 1000,
+              useNativeDriver: true,
+            }
+          ).start();
+    }
+
+    Keyboard.addListener('keyboardDidHide', handlerKeyboardDidHide )
+    Keyboard.addListener('keyboardDidShow', handlerKeyboardDidShow )
 
     const navigateToConfirm = (props) => {
         navigation.navigate('Confirmar', {props});
@@ -80,16 +142,16 @@ const CadastroEndereco = ({route, navigation}) => {
     return(
         <Container source={planoDeFundo}>
             <ViewContainer>
-                <ContainerCadastro>
+                <Animated.View  style={[styles.conteinerForm, {transform: [{translateY:shift.shift}]}]}>
                     <IconeCadastro source={Icone}/>
-                    <Input id="cep" placeholder="Insira seu cep" value={advancedInfo.cep} onBlur={autoCompleteByCep} onChange={handlerCep} returnKeyType="next" maxLength={9} keyboardType="numeric"></Input>
-                    <Input id="street" placeholder="Insira sua rua" value={advancedInfo.street} onChange={handlerStreet}></Input>
-                    <Input id="bairro" placeholder="Insira seu bairro" value={advancedInfo.bairro} onChange={handlerBairro}></Input>
-                    <Input id="city" placeholder="Insira sua cidade" value={advancedInfo.city} onChange={handlerCity}></Input>
-                    <Input id="state" placeholder="Insira seu estado" value={advancedInfo.state} onChange={handlerState}></Input>
-                    <Input id="number" placeholder="Insira seu número" value={advancedInfo.number} onChange={handlerNumber}></Input>
+                    <Input id="cep" placeholder="Insira seu cep" onTouchStart={(e) => setInputHeigth(e.nativeEvent.pageY + e.nativeEvent.locationY)} value={advancedInfo.cep} onBlur={autoCompleteByCep} onChange={handlerCep} returnKeyType="next" maxLength={9} keyboardType="numeric"></Input>
+                    <Input id="street" placeholder="Insira sua rua" value={advancedInfo.street} onChange={handlerStreet} onTouchStart={(e) => setInputHeigth(e.nativeEvent.pageY + e.nativeEvent.locationY)} ></Input>
+                    <Input id="bairro" placeholder="Insira seu bairro" value={advancedInfo.bairro} onChange={handlerBairro} onTouchStart={(e) => setInputHeigth(e.nativeEvent.pageY + e.nativeEvent.locationY)} ></Input>
+                    <Input id="city" placeholder="Insira sua cidade" value={advancedInfo.city} onChange={handlerCity} onTouchStart={(e) => setInputHeigth(e.nativeEvent.pageY + e.nativeEvent.locationY)} ></Input>
+                    <Input id="state" placeholder="Insira seu estado" value={advancedInfo.state} onChange={handlerState} onTouchStart={(e) => setInputHeigth(e.nativeEvent.pageY + e.nativeEvent.locationY)} ></Input>
+                    <Input id="number" placeholder="Insira seu número" value={advancedInfo.number} onChange={handlerNumber} onTouchStart={(e) => setInputHeigth(e.nativeEvent.pageY + e.nativeEvent.locationY)} ></Input>
                     <Botao onPress={sendToConfirm}><Texto>Próximo</Texto></Botao>
-                </ContainerCadastro>
+                </Animated.View>
             </ViewContainer>
         </Container>
     )

@@ -10,7 +10,6 @@ export const GlobalStyles = createGlobalStyle`
     }
 
     body {
-
         @media (min-width: 781px){
             min-height: 100vh;
             padding: auto;

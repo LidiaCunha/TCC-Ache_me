@@ -1,5 +1,6 @@
 //Funcional
 import React, {useState} from 'react';
+import { Animated,StyleSheet , Dimensions, Keyboard, UIManager } from 'react-native';
 
 // Style
 import {Container, BotaoVoltar, ContainerCadastro, IconeCadastro, Input, Botao, Texto} from './styles';
@@ -8,9 +9,70 @@ import Icone from "../../assets/iconeDadosPessoais.png";
 import { ViewContainer } from "../login/styles";
 
 const CadastroPessoal = ({navigation}) => {
+
+    const {width} = Dimensions.get('window');
+
+    let w = width*9/10;
+
+    let styles = StyleSheet.create({
+            conteinerForm:{
+                flex: 1,
+                alignItems: 'center',
+                alignSelf: 'center',
+                width: w ,
+                padding: 4
+            }
+    })
+
+    React.useEffect(()=>{
+        w = width*9/10;
+        styles.conteinerForm = { ...styles.conteinerForm, width:w}
+    }, [width])
+  
+    const [currentyInputHeigth, setInputHeigth ] = useState(0);
+    
+    const handlerKeyboardDidShow = (e) => {
+        const {height} = Dimensions.get('window');
+
+        const keyboardHeight = e.endCoordinates.height;
+
+        const gap =(height - keyboardHeight) - currentyInputHeigth ;
+        console.log(gap)
+        if ( gap >= 0 )
+            return;
+
+        Animated.timing(
+            shift.shift,
+            {
+                toValue: gap,
+                duration: 1000,
+                useNativeDriver: true
+            }
+        ).start();
+    }
+
+    const handlerKeyboardDidHide = (e) => {
+        Animated.timing(
+            shift.shift,
+            {
+              toValue: 0,
+              duration: 1000,
+              useNativeDriver: true,
+            }
+          ).start();
+    }
+
+    Keyboard.addListener('keyboardDidHide', handlerKeyboardDidHide )
+    Keyboard.addListener('keyboardDidShow', handlerKeyboardDidShow )
+    
+
     const navigateToAddress = (props) => {
         navigation.navigate('Endereço',{props});
     }
+
+    const [shift] = useState({
+        shift: new Animated.Value(0)
+    })
 
     const [basicInfo, setBasicInfo] = useState({ });
 
@@ -33,7 +95,6 @@ const CadastroPessoal = ({navigation}) => {
             
             window.alert("Ops, algo deu errado, tente novamente mais tarde.");
         }
-        
     }
 
     const handlerName = (e) => {
@@ -55,19 +116,20 @@ const CadastroPessoal = ({navigation}) => {
         setBasicInfo({...basicInfo ,password: e.nativeEvent.text});
     }
 
+
     return(
         <Container source={planoDeFundo}>
             <ViewContainer>
-                <ContainerCadastro>
+                <Animated.View  style={[styles.conteinerForm, {transform: [{translateY:shift.shift}]}]}>
                     <IconeCadastro source={Icone}/>
-                    <Input id="name" placeholder="Insira seu nome" value={basicInfo.name} onChange={handlerName} returnKeyType="next" ></Input>
-                    <Input id="CPF" placeholder="Insira seu cpf" value={basicInfo.CPF} onChange={handlerCpf} returnKeyType="next" maxLength={14} keyboardType="numeric"></Input>
-                    <Input id="mail" placeholder="Insira seu email" value={basicInfo.mail} onChange={handlerMail}keyboardType="email-address" returnKeyType="next"></Input>
-                    <Input id="telephone" placeholder="Insira seu telefone" value={basicInfo.telephone} onChange={handlerTelephone}keyboardType="number-pad" returnKeyType="next" maxLength={20}></Input>
-                    <Input id="indication" placeholder="Usuário que te indicou o app" onChange={handlerIndication} value={basicInfo.indication} returnKeyType="next"></Input>
-                    <Input id="password" placeholder="Senha" secureTextEntry={true} autoCorrect={false} value={basicInfo.password} onChange={handlerPassword}returnKeyType="done"></Input>
+                    <Input id="name" placeholder="Insira seu nome" onTouchStart={(e) => setInputHeigth(e.nativeEvent.pageY + e.nativeEvent.locationY)} value={basicInfo.name} onChange={handlerName} returnKeyType="next"  ></Input>
+                    <Input id="CPF" placeholder="Insira seu cpf" value={basicInfo.CPF} onChange={handlerCpf} returnKeyType="next" maxLength={14} keyboardType="numeric" onTouchStart={(e) => setInputHeigth(e.nativeEvent.pageY + e.nativeEvent.locationY)}></Input>
+                    <Input id="mail" placeholder="Insira seu email" value={basicInfo.mail} onChange={handlerMail}keyboardType="email-address" returnKeyType="next" onTouchStart={(e) => setInputHeigth(e.nativeEvent.pageY + e.nativeEvent.locationY)} ></Input>
+                    <Input id="telephone" placeholder="Insira seu telefone" value={basicInfo.telephone} onChange={handlerTelephone}keyboardType="number-pad"onTouchStart={(e) => setInputHeigth(e.nativeEvent.pageY + e.nativeEvent.locationY)} returnKeyType="next" maxLength={20}></Input>
+                    <Input id="indication" placeholder="Usuário que te indicou o app" onChange={handlerIndication} value={basicInfo.indication} returnKeyType="next" onTouchStart={(e) => setInputHeigth(e.nativeEvent.pageY + e.nativeEvent.locationY)}></Input>
+                    <Input id="password" placeholder="Senha" secureTextEntry={true} autoCorrect={false} value={basicInfo.password} onChange={handlerPassword}returnKeyType="done" onTouchStart={(e) => setInputHeigth(e.nativeEvent.pageY + e.nativeEvent.locationY)}></Input>
                     <Botao onPress={sendToAddress}><Texto>Próximo</Texto></Botao>
-                </ContainerCadastro>
+                </Animated.View>
             </ViewContainer>
         </Container>
     )

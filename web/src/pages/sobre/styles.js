@@ -11,6 +11,7 @@ export const Container = styled.div`
       height: 100%;
       width: 100%;
       filter: brightness(30%);
+margin-top: -250px;
     }
 
     @media(max-width:780px){
@@ -74,7 +75,7 @@ export const ContainerMenu = styled.div`
         margin-left: 3vh;
     }
 }
-`
+`;
 
 export const ContainerItensMenu = styled.nav`
     height: 100%;
@@ -173,7 +174,7 @@ export const ContainerTextMenor = styled.div`
     padding-left: 5vw;
     padding-top: 3vh;
     box-sizing: border-box;
-    color: #fff;
+    color: rgba(255,255,255,.6);
 
 @media(max-width: 780px){
     font-size: 1.6vw;
@@ -675,7 +676,7 @@ export const TextCardTime = styled.div`
 // ========= FOOTER ==============
 
 export const Footer = styled.div`
-    height: 140px;
+    height: 130px;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -694,7 +695,7 @@ export const ContainerFooter = styled.div`
     min-height: 50px;
     width: 100%;
 @media (max-width: 780px){
-        width: 100vw;
+    width: 100vw;
 }
 `;
 
@@ -705,8 +706,8 @@ export const ContainerLogo = styled.div`
     align-items: center;
     margin-bottom: 20px;
     > img{
-      height: 70px;
-      width: 70px;
+      height: 60px;
+      width: 60px;
       margin-right: 20px;
     }
   `;
