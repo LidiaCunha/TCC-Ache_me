@@ -3,18 +3,8 @@ import React from 'react';
 import Routes from './src/routes';
 import { NavigationContainer } from '@react-navigation/native';
 import { AuthProvider } from './src/contexts/auth';
-<<<<<<< HEAD
-import Chat from "./src/pages/chat/index"
-import Contatos from "./src/pages/chat/listaContatos"
-
-const App = () => {
-  return (
-    // <Contatos/>
-    <NavigationContainer>
-    <AuthProvider>
-    <Routes/>
-    </AuthProvider>
-=======
+//import Chat from "./src/pages/chat/index"
+//import Contatos from "./src/pages/chat/listaContatos"
 import { ConversationProvider } from './src/contexts/ConversationProvider';
 import { SocketProvider } from './src/contexts/socketProvider';
 
@@ -30,7 +20,6 @@ const App = () => {
           </ConversationProvider>
         </SocketProvider>
       </AuthProvider>
->>>>>>> 0b8ae89128556aa8c716638a2d0623649f35ab0b
     </NavigationContainer>
   );
 }

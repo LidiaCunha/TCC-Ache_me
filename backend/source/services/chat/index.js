@@ -1,6 +1,6 @@
 const io = require('socket.io')(5000);
 
-const messagesController = require('./controller/messages')
+//const messagesController = require('./controller/messages')
 
 io.on('connection', socket => {
     const id = socket.handshake.query.id;
@@ -10,8 +10,8 @@ io.on('connection', socket => {
 
         socket.to(recipient).emit( 'recebe-msg' , { recipient, sender: id , text } );
     	
-    	const res = messagesController.sendMessage(id, recipient, text);
+    	//const res = messagesController.sendMessage(id, recipient, text);
 
-    	console.log(res)
+    	//console.log(res)
     } )
 })

@@ -1,9 +1,12 @@
 import React from 'react';
-import { Container, Item } from './style';
 import { Button,Text,View , FlatList } from 'react-native';
+import { Container, ContainerContatos, MenuContatos, MenuImagem, MenuPesquisar, Pesquisa, ContainerConversas, Texto } from '../chat/styles';
 import { useAuth } from '../../contexts/auth';
 import { ListItem } from 'react-native-elements';
 import { useConversarion } from '../../contexts/ConversationProvider';
+import menu from '../../assets/menu.png';
+import excluir from '../../assets/excluir.png';
+import lupa from '../../assets/lupa.png';
 
 function Conversations({navigation}) {
   //const { user } = useAuth();
@@ -47,13 +50,25 @@ function Conversations({navigation}) {
   }
 
   return  (
-    <View> 
-      <FlatList
-        keyExtractor={ctt => ctt.id }
-        data = {contacts}
-        renderItem={getContactItem}
-      />
-    </View>
+    
+    <Container>
+            <MenuContatos>
+                <MenuImagem source={menu}/>
+                <MenuPesquisar onPress={() => pesquisar()}>
+                    <Pesquisa source={lupa}/>
+                </MenuPesquisar>
+            </MenuContatos>
+            <ContainerConversas>
+                <Texto>Suas conversas</Texto>
+            </ContainerConversas>
+            <ContainerContatos>
+              <FlatList
+                keyExtractor={ctt => ctt.id }
+                data = {contacts}
+                renderItem={getContactItem}
+              />
+            </ContainerContatos>
+        </Container>
   );
 }
 

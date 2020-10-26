@@ -74,7 +74,7 @@ export const ViewMensagem = styled.View`
   padding-right: 8px;
 `
 
-export const Enviar = styled.View`
+export const Enviar = styled.Button`
     width: 44px;
     height: 44px;
     border-radius: 22px;
