@@ -3,8 +3,6 @@ import React from 'react';
 import Routes from './src/routes';
 import { NavigationContainer } from '@react-navigation/native';
 import { AuthProvider } from './src/contexts/auth';
-//import Chat from "./src/pages/chat/index"
-//import Contatos from "./src/pages/chat/listaContatos"
 import { ConversationProvider } from './src/contexts/ConversationProvider';
 import { SocketProvider } from './src/contexts/socketProvider';
 
