@@ -16,6 +16,7 @@ import Svg, { Path } from 'react-native-svg'
 // Import react-native-size-matters
 // from 'https://github.com/nirsky/react-native-size-matters'
 import { moderateScale } from 'react-native-size-matters'
+import { TouchableOpacity } from 'react-native'
 
 // Props info list
 // 1. mine (bool) => renders blue bubble on right
@@ -26,12 +27,12 @@ import { moderateScale } from 'react-native-size-matters'
 class MessageBubble extends React.Component {
   render(){
     return (
-      <View style={[
+      <TouchableOpacity style={[
           styles.message,
           this.props.mine ? styles.mine : styles.not_mine
         ]}
       >
-        <View
+        <TouchableOpacity
           style={[
             styles.cloud,
             {
@@ -70,7 +71,7 @@ class MessageBubble extends React.Component {
             :
               null
           }
-          <View
+          <TouchableOpacity
             style={[
               styles.arrow_container,
               this.props.mine ? styles.arrow_left_container : styles.arrow_right_container
@@ -95,9 +96,9 @@ class MessageBubble extends React.Component {
                   y="0"
               />
             </Svg>
-          </View>
-        </View>
-      </View>
+          </TouchableOpacity>
+        </TouchableOpacity>
+      </TouchableOpacity>
     )
   }
 }
