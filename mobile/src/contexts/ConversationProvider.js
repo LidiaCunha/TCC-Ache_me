@@ -15,43 +15,41 @@ export const ConversationProvider = ({children}) => {
     const { user } = useAuth();
     const socket = useSocket();
     const [ conversations , setConversations ] = useLocalStorage( 'conversarions' , [] );
-    const [selectedConversationIndex , setSelectedConversationIndex ] = React.useState(0)
+    const [selectedConversationIndex , setSelectedConversationIndex ] =React.useState(0)
     
     function createConversation( recipient ){
-        setConversations( ( prevCvs ) => {
-            return [ ...prevCvs, { recipient , messages:[] } ];
-        })
+        setConversations((pc) => { return [ pc , { recipient , messages:[] } ]})
     }
+
     function sendMessage( recipient, text){
+      socket.emit('envia-msg', { recipient: recipient.id, text})
 
-        socket.emit('envia-msg', { recipient, text})
-
-        addMessageToConversation({recipient, text, sender:user})
+      addMessageToConversation({recipient, text, sender:user})
     }
+
     const addMessageToConversation = React.useCallback(({ recipient, text, sender }) => {
         setConversations(prevConversations => {
-          console.log(prevConversations)
-          //let madeChange = false
+          let madeChange = false
           const newMessage = { sender, text }
-
-          // const newConversations = prevConversations?.map(conversation => {
-          //   madeChange = true
-              
-          //   return {
-          //     ...conversation,
-          //     messages: [...conversation.messages, newMessage]
-          //   }
-          // })
-  
-          // if (madeChange) {
-          //   return newConversations
-          // } else {
-            const n = [
-               ...prevConversations,
-             { recipient ,newMessage }
+          const newConversations = prevConversations.map(conversation => {
+            if ( conversation.recipient === recipient ) {
+              madeChange = true
+              return {
+                ...conversation,
+                messages: [...conversation.messages, newMessage]
+              }
+            }
+            return conversation
+          })
+    
+          if (madeChange) {
+            return newConversations
+          } else {
+            return [
+              ...prevConversations,
+              { recipient, messages: [newMessage] }
             ]
-            return n
-          //}
+          }
         })
     }, [setConversations])
 
@@ -64,41 +62,34 @@ export const ConversationProvider = ({children}) => {
     },[ socket , addMessageToConversation ]);  
     
     var output = {};
-    if(conversations ==='undefined'){    
-      const formatedConversations = conversations.map( (conversation, index ) => {
+    
+    const formatedConversations = conversations.length ?  conversations.map( (conversation, index ) => {
+     
+      var messages = []
+      var recipient;
+      conversation.messages != undefined && conversation.messages.length ? 
+        conversation.messages.forEach( async(message) => {
+          recipient= conversation.recipient.id
+          const fromMe = conversation.recipient.id === message.sender;
+          
+          messages[messages.length]= { ...message , fromMe}
+        }) 
+      : conversation.messages;
 
-        const recipient =  {id: recipient};
-            
-          const messages = conversation.messages.map( (message) => { 
-            const res = api.get(`/users/${message.sender}`);
+      const selected = recipient == selectedConversationIndex;
+     // console.log({...conversation, messages , selected , recipient})
+      return {...conversation, messages , selected , ...conversation.recipient};
 
-            const name = ( contact && contact.name) || message.sender;
-              
-            const fromMe = id === message.sender;
-              
-            return { sender: message.sender, fromMe, text:message.text};
-          });
-        
-        const selected = index === selectedConversationIndex;
-        
-        return {...conversation, messages , selected , recipients};
-      })
- 
+    }) : conversations;
+
       output = {
-        conversations : formatedConversations,
-        selectedConversation:formatedConversations[selectedConversationIndex],
-        selectedConversationIndex: setSelectedConversationIndex,
+       conversations : formatedConversations,
+       selectedConversation:formatedConversations[selectedConversationIndex],
+       selectedConversationIndex: setSelectedConversationIndex,
         createConversation,
         sendMessage
       }
-    }else{
-      
-      output = {
-        selectedConversationIndex: setSelectedConversationIndex,
-        createConversation,
-        sendMessage
-      }
-    }
+    
     return (
         <ConversationsContext.Provider value={output}>
             {children}

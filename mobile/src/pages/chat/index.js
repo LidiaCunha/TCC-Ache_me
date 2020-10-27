@@ -4,12 +4,13 @@ import { Container, Seta, MenuVoltar, ContainerUsuario, ContainerChat, ImagemUsu
 import {ScrollView} from 'react-native'
 import seta from '../../assets/setaVoltar.png'
 import {useConversarion} from '../../contexts/ConversationProvider'
+import {useAuth} from '../../contexts/auth'
 import { Animated,StyleSheet , Dimensions, Keyboard, UIManager } from 'react-native';
-
 //import Foto from "../../assets/fotoExemplo.jpg";
 import EnviarMsg from "../../assets/enviar-correio.png";
 
 function Chat({route}) {
+  const { user } = useAuth();
 
   const [currentyInputHeigth, setInputHeigth ] = useState(0);
     
@@ -49,7 +50,7 @@ function Chat({route}) {
 
   const [shift] = useState({
     shift: new Animated.Value(0)
-})
+  })
 
   const [ value, setValue ] = useState({
     msg:""
@@ -57,8 +58,7 @@ function Chat({route}) {
   const handlerInput = ( e ) => {
     setValue({msg : e.nativeEvent.text})
   } 
-  const { sendMessage } = useConversarion();
-
+  const { sendMessage, conversations } = useConversarion();
   return (
 
     <Container>
@@ -73,20 +73,23 @@ function Chat({route}) {
                 <NomeUsuario>{route.params.name}</NomeUsuario>
             </ContainerUsuario>
         </ScrollView>
-          <MessageBubble 
-            text="bo se droga?"
-          />
-          <Hora_Minha>10:38</Hora_Minha>
+                    { conversations ? conversations.map( ( conversation  ) => {
+                        return conversation.messages.map(msg => {
+                          return (
+                            <MessageBubble {...msg.fromMe && mine} text={msg.text.msg} />                      
+                          );
+                        });
+                    }): null}
           
-          <MessageBubble 
-            mine text="bo"
-          />
-          <Hora>10:39</Hora>
+          {/* <Hora_Minha>10:38</Hora_Minha>
+          
+          <MessageBubble mine text="bo" />
+          <Hora>10:39</Hora> */}
 
         <AreaMensagem>
             <ViewMensagem>
                 <Mensagem placeholder="Digite sua mensagem" onTouchStart={(e) => setInputHeigth(e.nativeEvent.pageY + e.nativeEvent.locationY)} onChange={handlerInput}/>
-                <Enviar onPress={() => sendMessage(id,value )} >
+                <Enviar onPress={() => sendMessage(route.params,value )} >
                     <Icone source={EnviarMsg}/>
                 </Enviar> 
             </ViewMensagem>
