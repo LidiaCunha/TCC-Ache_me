@@ -11,16 +11,16 @@ import Contatos from './src/pages/chat/listaContatos'
 const App = () => { 
 
    return (
-    <Contatos/>
-    // <NavigationContainer>
-    //    <AuthProvider>
-    //      <SocketProvider>
-    //        <ConversationProvider>
-    //          <Routes />
-    //        </ConversationProvider>
-    //      </SocketProvider>
-    //    </AuthProvider>
-    //  </NavigationContainer>
+
+    <NavigationContainer>
+      <AuthProvider>
+        <SocketProvider>
+          <ConversationProvider>
+            <Routes />
+          </ConversationProvider>
+        </SocketProvider>
+      </AuthProvider>
+    </NavigationContainer>
   );
 }
 

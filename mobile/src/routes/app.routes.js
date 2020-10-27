@@ -12,11 +12,7 @@ const AppRoutes = () => {
     <AppStack.Navigator>
       <AppStack.Screen name="Dashboard" component={Dashboard}/>
       <AppStack.Screen name="conversations" component={Conversations} />
-      <AppStack.Screen name="chat" component={Chat} options={(props)=>{
-        return{
-          title : props.route.params.name
-        }
-      }} />
+      <AppStack.Screen name="chat" component={Chat} />
     </AppStack.Navigator>
   );
 };

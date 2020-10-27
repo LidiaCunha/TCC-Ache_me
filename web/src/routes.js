@@ -23,7 +23,7 @@ function Routes() {
     <BrowserRouter>
         <Switch>
             <Route exact path="/">
-                <UserInfo/>
+                <Login/>
             </Route>
             <Route path="/sobre">
                 <Sobre/>
@@ -31,8 +31,8 @@ function Routes() {
             <Route path="/area-informativa">
                 <AreaInformativa/>
             </Route>
-            <PrivateRoute path="/home">
-                <Home/>
+            <PrivateRoute path="/user_info">
+                <UserInfo/>
             </PrivateRoute>
         </Switch>
     </BrowserRouter>

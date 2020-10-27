@@ -207,10 +207,3 @@ export const HoraMsg = styled.Text`
     text-align: right;
     font-size: 14px;
 `
-
-export const BotaoDescer = styled.TouchableOpacity`
-    width: 30px;
-    height: 30px;
-    background-color: #0d0d0dcc;
-    border-radius: 15px;
-`
