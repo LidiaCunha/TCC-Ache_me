@@ -1,6 +1,6 @@
 import React,{useState} from "react";
 import MessageBubble from './message';
-import { Container, Seta, MenuVoltar, ContainerUsuario, ContainerChat, ImagemUsuario, NomeUsuario, ViewMensagem, AreaMensagem, Mensagem, Enviar, Icone, Hora, Hora_Minha } from './styles';
+import { Container, Seta, MenuVoltar, BotaoDescer, ContainerUsuario, ContainerChat, ContainerMensagens, ImagemUsuario, NomeUsuario, ViewMensagem, AreaMensagem, Mensagem, Enviar, Icone, Hora, Hora_Minha } from './styles';
 import {ScrollView} from 'react-native'
 import seta from '../../assets/setaVoltar.png'
 import {useConversarion} from '../../contexts/ConversationProvider'
