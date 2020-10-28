@@ -207,3 +207,63 @@ export const HoraMsg = styled.Text`
     text-align: right;
     font-size: 14px;
 `
+
+export const ContainerDadosMensagem = styled.View`
+    flex: auto;
+    justify-content: flex-start;
+    background-color: #0d0d0d;
+    padding: 25px;
+`
+
+export const MenuVoltarDados = styled.TouchableOpacity`
+    width: 100%;
+    height: 15%;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 8px;
+`
+
+export const Data = styled.Text`
+    color: #5e5b55;
+    font-size: 18px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+`
+
+export const Border = styled.View`
+    background-color: #EF5245;
+    width: 100%;
+    height: 1.5px;
+    margin-bottom: 15px;
+`
+
+export const ContainerModal = styled.View`
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+`
+
+export const Excluir = styled.View`
+    width: 90%;
+    height: 25%;
+    background-color: #0d0d0d;
+    padding: 30px;
+`
+
+export const TextoModal = styled.Text`
+    color: white;
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 25px;
+`
+
+export const TextoOpcoes = styled.Text`
+    color: #EF5245;
+    font-size: 23px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    text-align: right;
+`

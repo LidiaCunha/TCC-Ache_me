@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Container, ContainerContatos, MenuContatos, HoraMsg, Numero, ImagemUsuario, TextoNome, AreaTextos, TextoMsg, MenuImagem, MenuPesquisar, Pesquisa, ContainerConversas, Texto, Recentes, ContainerMsgs, AreaDetalhes, Hora, Hora_Minha, NumeroMsgs } from './styles';
 import {ScrollView, StyleSheet, Animated, TouchableOpacity} from 'react-native';
 import menu from '../../assets/menu.png';
@@ -11,7 +11,10 @@ import Swipeable from 'react-native-gesture-handler/Swipeable';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 
+
+
 const Contatos = () => {
+
     function RightActions({progress, dragX, onPress}){
 
         const scale = dragX.interpolate({

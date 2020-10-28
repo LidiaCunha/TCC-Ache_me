@@ -6,21 +6,21 @@ import { AuthProvider } from './src/contexts/auth';
 import { ConversationProvider } from './src/contexts/ConversationProvider';
 import { SocketProvider } from './src/contexts/socketProvider';
 import Chat from './src/pages/chat/index'
-import Contatos from './src/pages/chat/listaContatos'
+import Modal from './src/pages/chat/modalExcluir'
 
 const App = () => { 
 
    return (
-
-    <NavigationContainer>
-      <AuthProvider>
-        <SocketProvider>
-          <ConversationProvider>
-            <Routes />
-          </ConversationProvider>
-        </SocketProvider>
-      </AuthProvider>
-    </NavigationContainer>
+     <Modal/>
+    // <NavigationContainer>
+    //   <AuthProvider>
+    //     <SocketProvider>
+    //       <ConversationProvider>
+    //         <Routes />
+    //       </ConversationProvider>
+    //     </SocketProvider>
+    //   </AuthProvider>
+    // </NavigationContainer>
   );
 }
 
