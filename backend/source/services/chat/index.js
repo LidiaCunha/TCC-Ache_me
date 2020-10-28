@@ -9,9 +9,6 @@ io.on('connection', socket => {
     socket.on( 'envia-msg' , ({ recipient , text })=>{
 
         socket.to(recipient).emit( 'recebe-msg' , { recipient, sender: id , text } );
-    	console.log({ recipient, sender: id , text })
-    	//const res = messagesController.sendMessage(id, recipient, text);
 
-    	//console.log(res)
     } )
 })
