@@ -20,20 +20,23 @@ export const ConversationProvider = ({children}) => {
         setConversations((pc) => { return [ pc , { recipient , messages:[] } ]});
     }
 
-    async function sendMessage( recipient, message){
+    async function sendMessage( recipient, message , image ){
       socket.emit('envia-msg', { recipient: recipient.id, text:message});
 
       addMessageToConversation({recipient, text:message, sender:user});
-      const msg = {
-        message: message.msg
-      }
-      
-      const res = await api.post(`/message/to/${recipient.id}` , msg);
 
-      if (res.status == 201)
-        return true
-      else
-        return false
+      const data = new FormData();
+
+      data.append( "message" , message.msg );
+      image && data.append( "photo" , image );
+      
+      const res = await api.post(`/message/to/${recipient.id}` , data, {
+        headers: {
+            "Content-type": `multipart/form-data`,
+        }
+      });
+
+      return res.status == 201 ? true : false;
     }
     
     const addMessageToConversation = React.useCallback(({ recipient, text, sender }) => {

@@ -14,6 +14,8 @@ import moment from 'moment';
 function Chat({route}) {
   const { user } = useAuth();
 
+  const [image, setImage] = useState();
+
   const [currentyInputHeigth, setInputHeigth ] = useState(0);
     
   const [conversations, setConversations] = useState([]);
@@ -110,7 +112,7 @@ function Chat({route}) {
         <AreaMensagem>
             <ViewMensagem>
                 <Mensagem placeholder="Digite sua mensagem" onTouchStart={(e) => setInputHeigth(e.nativeEvent.pageY + e.nativeEvent.locationY)} onChange={handlerInput}/>
-                <Enviar onPress={() => sendMessage(route.params,value ) ?  takeMessages() : Alert.alert("Erro","não foi possivel enviar a mensagem")  } >
+                <Enviar onPress={() =>( image ? sendMessage(route.params , value , image ) : sendMessage(route.params , value )) ?  takeMessages() : Alert.alert("Erro","não foi possivel enviar a mensagem")  } >
                     <Icone source={EnviarMsg}/>
                 </Enviar> 
             </ViewMensagem>
