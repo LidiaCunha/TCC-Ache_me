@@ -6,6 +6,26 @@ import { AuthProvider } from './src/contexts/auth';
 import { ConversationProvider } from './src/contexts/ConversationProvider';
 import { SocketProvider } from './src/contexts/socketProvider';
 
+import { createAppContainer } from 'react-navigation';
+import { createDrawerNavigator } from 'react-navigation-drawer';
+import { Dimensions } from 'react-native';
+
+import { feather } from '@expo/vector-icons';
+
+import { 
+  Conta, 
+  Conversas, 
+  Postagens, 
+  Membros
+} from './src/pages/screens';
+
+const DrawerNavigator = createDrawerNavigator({
+  Conta, 
+  Conversas, 
+  Postagens, 
+  Membros
+});
+
 const App = () => { 
 
    return (
@@ -22,4 +42,4 @@ const App = () => {
   );
 }
 
-export default App;
+export default App; // createAppContainer(DrawerNavigator); 

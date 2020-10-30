@@ -53,60 +53,37 @@ function user_info() {
   );
 
   return (
-      
     <Container>
       <Header>
         <Home>
           <img src={home} alt="return home"/>
         </Home>
       </Header>
-      
-      
-      
       <Main>
-      
-      
         <Section>
           <BasicInfos>
-      
-      
             <PhotoProfile>
-      
-      
               <Photo>
                 <img src={photo} alt="user"/>
                 <NewPhoto>
                   <img src={camera} alt="camera"/>
                 </NewPhoto>
               </Photo>
-      
-      
               <Login>
                 <Name>Gabriela Jordão<br/><span>gabriela.jogmail.com</span></Name>
                 <Button>Salvar Foto</Button>
               </Login>
-      
-      
             </PhotoProfile>
-      
-      
             <Merit>
               <Text>Seu mérito:</Text>
               <Text>Data da última publicação: <span>12 de agosto de 2020</span></Text>
               <Text>Hora da última publicação: <span>ás 08:00</span></Text>
             </Merit>
-      
-      
           </BasicInfos>
         </Section>
-      
-      
         <Section>
           <Title>INFORMAÇÕES PESSOAIS</Title>
           <AdvancedInfos>
-      
-      
-      
             <Profile>
               <Input id="name" style={{gridArea:'name'}}>
                 <Text>Nome</Text>
@@ -158,9 +135,6 @@ function user_info() {
               </Input>
               <Button style={{gridArea:'button', right:'0'}}>Salvar</Button>
             </Profile>
-      
-      
-      
             <ShareIndicated>
               <Share>
                 <img src={share} alt="compartilhar"/>
@@ -168,8 +142,6 @@ function user_info() {
                 <p>Realize uma nova postagem aqui</p>
                 <Button>Criar Postagem</Button>
               </Share>
-      
-      
               <Indicated>
                 <TitleMember>MEMBROS INDICADOS</TitleMember>
                 <Members>
@@ -180,15 +152,8 @@ function user_info() {
                   {member}
                 </Members>
               </Indicated>
-      
-      
             </ShareIndicated>
-      
-      
-      
           </AdvancedInfos>
-      
-      
         </Section>
       </Main>
     </Container>

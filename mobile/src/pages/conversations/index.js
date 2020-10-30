@@ -53,10 +53,11 @@ function Conversations({navigation}) {
     
     <Container>
             <MenuContatos>
-                <MenuImagem source={menu}/>
+                
                 <MenuPesquisar onPress={() => pesquisar()}>
                     <Pesquisa source={lupa}/>
                 </MenuPesquisar>
+                <MenuImagem source={menu}/>
             </MenuContatos>
             <ContainerConversas>
                 <Texto>Suas conversas</Texto>
