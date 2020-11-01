@@ -256,7 +256,7 @@ export const Excluir = styled.View`
 export const TextoModal = styled.Text`
     color: white;
     font-size: 22px;
-    font-weight: bold;
+    /* font-weight: bold; */
     margin-bottom: 25px;
 `
 

@@ -11,16 +11,16 @@ import Modal from './src/pages/chat/modalExcluir'
 const App = () => { 
 
    return (
-     <Modal/>
-    // <NavigationContainer>
-    //   <AuthProvider>
-    //     <SocketProvider>
-    //       <ConversationProvider>
-    //         <Routes />
-    //       </ConversationProvider>
-    //     </SocketProvider>
-    //   </AuthProvider>
-    // </NavigationContainer>
+    //  <Modal/>
+    <NavigationContainer>
+      <AuthProvider>
+        <SocketProvider>
+          <ConversationProvider>
+            <Routes />
+          </ConversationProvider>
+        </SocketProvider>
+      </AuthProvider>
+    </NavigationContainer>
   );
 }
 
