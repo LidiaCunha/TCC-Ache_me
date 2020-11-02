@@ -87,7 +87,7 @@ module.exports ={
         var posts = [];
 
         filtredPosts.forEach( post => {
-            const ageOfPost = moment(post.borned_at).locale("America/Sao_Paulo").format("YYYY")
+            const ageOfPost = moment(post.borned_at).locale("America/Sao_Paulo").format("YYYY");
             
             const now = new Date();
             const peopleAge = now.getFullYear() - ageOfPost;
@@ -145,12 +145,14 @@ module.exports ={
         });
 
 
-        req.body.filtredPosts = posts;
+        req.body.filtredPosts = { posts };
 
         return next();
     },
     filterByLocale   : async ( req , res , next ) => {
         const { Sa, Str, Br, Cp, Rp, Cm, Stt, Ct } = req.query;
+
+        if( !Sa || !Str || !Br || !Cp || !Rp || !Cm || !Stt || !Ct  ) return next()
 
         const addtoFilter = {
                     "street":(Str ? Str : null),
@@ -175,6 +177,8 @@ module.exports ={
                     cep:addtoFilter["cep"],
                     reference_point:addtoFilter["reference_point"],
                 }}
+            }
+        );
             });
 
         const seens = await Seen.findAll();
@@ -196,7 +200,7 @@ module.exports ={
                 function filterByWhenWasSeen ( seen , seen_at_to_filter ) {
                     return moment(seen.seen_at).locale("America/Sao_Paulo").format('DD/MM/YYYY')  == seen_at_to_filter ? true : false; 
                 }
-                
+
                 async function filterByWhoSaw ( seen ) {
                     const ws = await WhoSaw.findAll({where:{id_losted_seen:seen.id}});
                     return ws;
@@ -205,11 +209,12 @@ module.exports ={
             }) 
 
         seensFiltred ? req.body.filtredPosts=seensFiltred : next();
+
         return next();
     },
     filterByProblems : async ( req , res , next ) => {
         const { H } = req.query;
-        
+ //       console.log(req.body.filtredPosts)
         if(!H) return res.status(200).send(req.body.filtredPosts);
 
         const takePostsWithProblems = async( ObjectOfProblems ) => {

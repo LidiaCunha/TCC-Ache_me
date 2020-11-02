@@ -4,9 +4,8 @@ import styled from "styled-components";
 
 export const Container = styled.div`
     
-    width: 90vw;
-    height: 90vh;
-    border-radius: 15px;
+    width: 100vw;
+    height: 100vh;
     background: rgba(0,0,0,0.4);
     overflow: hidden;
     position: relative;
@@ -107,13 +106,14 @@ export const LoginContainerText = styled.div`
       font-weight: bold;
       font-family: arial;
       color: #fff;
-      padding-left: 5vw;
       padding-top: 10vh;
+      padding-left: 10vh;
       box-sizing: border-box;
 
       @media (max-width: 780px){
         padding-top: 5vh;
         font-size: 2vw;
+        padding-left: 3vh;
       }
 `;
 
@@ -267,7 +267,6 @@ export const ContainerDados = styled.div`
       min-height: 50px;
       flex-direction: column;
   }
-
 `;
 
 export const ContainerInput = styled.div`
@@ -282,7 +281,6 @@ export const ContainerInput = styled.div`
        
 
 > label{
-    font-size: 1.2vw;
     color: #fff;
     font-family: arial;
 }
@@ -297,7 +295,7 @@ export const ContainerInput = styled.div`
     box-sizing: border-box;
     margin-bottom: 7vh;
     border-radius: 10px;
-    font-size: 1.2em;
+    font-size: 1em;
     margin-top: 20px;
 }
 
@@ -310,17 +308,15 @@ export const ContainerInput = styled.div`
   
   > label{
     font-size: 3vw;
-  } 	
-
+  }
   > input{
     height: 7vh;
     width: 70vw;
     margin-bottom: 20px;
     font-size: 3vw;
+    }
   }
-}
 `;
-
 export const Footer = styled.div`
     height: 10vh;
     width: 100%;
@@ -388,6 +384,7 @@ export const ContainerBtn = styled.div`
 
       > p{
         margin-bottom: 10px; 
+        font-size: 1.0em;
       }
     }
 `;
@@ -443,5 +440,9 @@ export const ContainerFoto = styled.div`
 
     @media (max-width: 780px){
       margin-bottom: 20px;
+
+      >p {
+        font-size: 1.0em;
+      }
     }
 `;

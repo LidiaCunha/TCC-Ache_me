@@ -1,5 +1,5 @@
 import {useHistory} from "react-router-dom";
-import SpinnerFullScreen from '../../components/Spinner'
+import SpinnerFullScreen from '../../components/Spinner';
 import backgroundLogin from "../../assets/imagemLogin.jpg";
 import backgroundRegister from "../../assets/imagemCadastro.jpg";
 import camera from "../../assets/camera.png";
@@ -31,7 +31,6 @@ import {
 import React, { useState, useRef } from "react";
 import { api } from '../../services/api';
 import { signIn } from '../../services/security';
-
 
 const FormRegister = (props) => {
     
@@ -186,7 +185,8 @@ const FormRegister = (props) => {
 
           <CadastroConfigInput>
 
-            <ContainerDados>
+          <ContainerDados>
+
                 <ContainerInput>
                     <label>Nome</label>
                     <input type="text" id="name" value={userRegister.name} onChange={handlerInput} placeholder="Insira seu nome" required />
@@ -197,7 +197,23 @@ const FormRegister = (props) => {
                     <label>Alguém te indicou o Ache.me?</label>
                     <input type="text" placeholder="Insira o úsuario"/>
                 </ContainerInput>
+             
+                <ContainerInput >
+                    <label>E-mail</label>
+                    <input type="email" id="mail" value={userRegister.mail} onChange={handlerInput} placeholder="Insira seu e-mail" required />
+                                
+                    <label>Telefone</label>
+                    <input type="text" id="telephone" value={userRegister.telephone} onChange={handlerInput} onKeyUp={( e ) => { maskTelephone( e ) }} placeholder="Insira seu telefone" required />
+                                
+                    <label>Senha</label>
+                    <input type="password" id="password" value={userRegister.password} onChange={handlerInput} minLength="8" placeholder="Insira sua senha" required />
+                </ContainerInput>
+            </ContainerDados>
 
+            <ContainerDados>
+                  <ContainerInput>
+                      <label>Cep</label>
+                      <input type="text" id="cep" value={userRegister.cep} onChange={handlerInput} onBlur={(e) => findAddress(e)} onKeyUp={( e ) => { maskCep( e ) }} placeholder="Insira seu CEP" required />
                 
                 <ContainerInput >
                     <label>E-mail</label>
@@ -227,8 +243,14 @@ const FormRegister = (props) => {
                     <label>Rua</label>
                     <input type="text" id="street" value={userRegister.street} onChange={handlerInput} placeholder="Insira sua rua" required />
                             
-                    <label>Cidade</label>
-                    <input type="text" id="city" value={userRegister.city} onChange={handlerInput} placeholder="Insira sua cidade" required />
+                  <label>Cidade</label>
+                  <input type="text" id="city" value={userRegister.city} onChange={handlerInput} placeholder="Insira sua cidade" required />
+
+                  <label>Número</label>
+                    <input type="text" id="number" value={userRegister.number} onChange={handlerInput} placeholder="Insira seu número" required />
+              </ContainerInput>
+            </ContainerDados>
+
 
                     <label>Número</label>
                     <input type="text" id="number" value={userRegister.number} onChange={handlerInput} placeholder="Insira seu número" required />
@@ -282,7 +304,7 @@ const FormLogin = (props) => {
 
                 signIn(retorno.data);
 
-                return history.push("/home");
+                return history.push("/user_info");
             };
 
         } catch (erro) {
@@ -306,8 +328,12 @@ const FormLogin = (props) => {
                         <li onClick={() => {
                         props.showForm("registrar");
                         }}>Cadastrar-se</li>
-                        <li>Sobre</li>
-                        <li>Área Informativa</li>
+                        <li onClick={() => {
+                        history.push("/sobre");
+                        }}>Sobre</li>
+                        <li onClick={() => {
+                        history.push("/area-informativa");
+                        }}>Área Informativa</li>
                     </ul>
                 </ContainerItensMenu>
                 </LoginContainerMenu>

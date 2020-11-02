@@ -53,7 +53,7 @@ module.exports = {
         const { street, bairro, cep, reference_point, complement , city , state , seen_at_date, seen_at_hours  } = req.body;
         
         const { PostId } = req.params;
-//o usuario que esta logado no momento da criação da postagem é o usuario que viu o perdido 
+
         const CreatorId = req.userId;
     
         let CityR = await City.findOne({ where: { name_of_city:city } });

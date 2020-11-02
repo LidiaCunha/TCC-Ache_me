@@ -2,7 +2,10 @@ import React from 'react';
 
 import { BrowserRouter, Switch, Route, Redirect} from "react-router-dom";
 import Login from "./pages/Login_cadastro/index.js";
+import Sobre from "./pages/sobre";
+import AreaInformativa from "./pages/Area_Informativa";
 import Home from "./pages/home";
+import UserInfo from "./pages/user_info";
 import { isSignedIn } from './services/security';
 
 const PrivateRoute = ({ children, location, ...rest }) => {
@@ -22,8 +25,14 @@ function Routes() {
             <Route exact path="/">
                 <Login/>
             </Route>
-            <PrivateRoute path="/home">
-                <Home/>
+            <Route path="/sobre">
+                <Sobre/>
+            </Route>
+            <Route path="/area-informativa">
+                <AreaInformativa/>
+            </Route>
+            <PrivateRoute path="/user_info">
+                <UserInfo/>
             </PrivateRoute>
         </Switch>
     </BrowserRouter>

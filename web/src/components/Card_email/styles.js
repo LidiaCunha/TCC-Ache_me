@@ -14,19 +14,29 @@ export const CardEmail = Styled.div`
     background-color: #333d;
 
     animation: fadeIn 0.4s;
+    
 `;
 
 export const ContainerCard = Styled.div`
-    height: 550px;
-    width: 500px;
-    border-radius: 15px;
+    height: 400px;
+    width: 400px;
     background: #fff;
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-content: center;
     align-items: center;
     flex-direction: column;
     position: relative;
+  
+
+    @media (min-width: 780px){
+        border-radius: 15px;
+    }
+
+    @media (max-width: 780px){
+        height: 100%;
+        width: 100%;
+    }
 `;
 
 export const ContainerImg = Styled.div`
@@ -41,13 +51,13 @@ export const ContainerImg = Styled.div`
 
     > img{
         height: 80%;
-    width: 80%;
+        width: 80%;
     }
 `;
 
 export const ContainerInformacoes = Styled.div`
     width: 100%;
-    height: 300px;
+    height: 100px;
     display: flex;
     justify-content: center;
     align-content: center;
@@ -55,20 +65,22 @@ export const ContainerInformacoes = Styled.div`
     flex-direction: column;
     color: #5D5D61;
     font-family: arial;
+    text-align: center;
 
     > h1{
-        margin-bottom: 30px;
-        font-family: 1.5em;
+        font-size: 1.3em;
     }
 
-    > h2{
-        font-size: 1.3em;
+    > p{
+        font-size: 1.2em;
+        padding:30px 10px;
+        box-sizing: border-box;
     }
 `;
 
 export const BtnOk = Styled.div`
     width: auto;
-    height: 60px;
+    height: 40px;
     background: #E64F4A;
     position: absolute;
     bottom: 10px;
@@ -82,7 +94,7 @@ export const BtnOk = Styled.div`
     border-radius: 10px;
 
     > input{
-        font-size: 1.5em;
+        font-size: 1.2em;
         color: #fff;
         background: none;
         border: none;

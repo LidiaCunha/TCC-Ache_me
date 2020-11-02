@@ -20,7 +20,7 @@ class Address extends Model {
         this.belongsTo( MODELS.City , {foreignKey:"city_id"} );
         
         this.hasMany( MODELS.Seen , {foreignKey:"address_id"} );
-        this.hasMany( MODELS.Found , {foreignKey:"found_id"} );
+        this.hasMany( MODELS.Found , {foreignKey:"address_id"} );
     }
 }
 
