@@ -28,7 +28,7 @@ import {
 
   } from "./styles";
 
-import React, { useState, useRef } from "react";
+    import React, { useState, useRef } from "react";
 import { api } from '../../services/api';
 import { signIn } from '../../services/security';
 
@@ -59,6 +59,7 @@ const FormRegister = (props) => {
 
     const register = async (e) => {
         setLoading(true);
+        
         e.preventDefault();
 
         const data = new FormData();
@@ -110,13 +111,13 @@ const FormRegister = (props) => {
             imgRef.current.style.height = "100%"
             imgRef.current.style.width = "100%"
             imgRef.current.style.margin = "0px"
+            setImage(e.target.files[0]);
         }else {
             imgRef.current.src = `${camera}`;
             imgRef.current.style.height = "70%"
             imgRef.current.style.width = "70%"
             imgRef.current.style.margin = "15px"
         }
-        setImage(e.target.files[0]);
     };
 
     const findAddress = async( e ) =>{
