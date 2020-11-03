@@ -6,12 +6,12 @@ import { AuthProvider } from './src/contexts/auth';
 import { ConversationProvider } from './src/contexts/ConversationProvider';
 import { SocketProvider } from './src/contexts/socketProvider';
 import Chat from './src/pages/chat/index'
-import Modal from './src/pages/chat/modalExcluir'
+import Usuario from './src/pages/usuario/index'
 
 const App = () => { 
 
    return (
-     <Modal/>
+      <Usuario/>
     // <NavigationContainer>
     //   <AuthProvider>
     //     <SocketProvider>
