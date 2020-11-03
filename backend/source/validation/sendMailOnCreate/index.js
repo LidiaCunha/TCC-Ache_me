@@ -18,6 +18,7 @@ const sendMailOnCreate = async( req ,res ,next ) => {
     const text = "Clique no botão para se cadastrar no Ache.me, se não foi você que se cadastrou desconsidere este email.";
     const htmlContentMail = `
     <div style='width:600px; background-color:#1e1f21; height:500px; margin:0px; padding:20px;'>
+
         <h1 style='color:#dddddd;text-align:center;font-size:60px;font-family: "Oswald", sans-serif;font-weight:700;'>
         Ache<span style='color:#d62828;'>.me</span>
         </h1>

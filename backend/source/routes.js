@@ -14,6 +14,7 @@ const HealthProblemsOfPost = require('./controllers/healthProblemsOfPost');
 const Seen = require('./controllers/seen');
 const Found = require('./controllers/found');
 const WhoSaw = require('./controllers/whosaw');
+const Messages = require('./controllers/messages');
 
 const filters = require('./services/filters/'); 
 const middleware = require('./middlewares/autorization');
@@ -84,9 +85,12 @@ routes.post('/healthProblems/post/:PostId', HealthProblemsOfPost.store);
 routes.post('/seen/:PostId', Seen.store);
 routes.get('/seen', Seen.index);
 
-routes.get('/seen/:seen_id/confirm/:whosaw_id', WhoSaw.confirmedOrUnconfirmed)
+routes.get('/seen/:seen_id/confirm/:whosaw_id', WhoSaw.confirmedOrUnconfirmed);
 
 routes.post('/found/:losted_id', Multer.single("photo"), imageUpload , Found.store);
 routes.get('/found',Found.index);
+
+routes.post('/message/to/:recipient', Multer.single("photo") , imageUpload , Messages.send);
+routes.get('/messages/between/:id/:id2', Messages.seeAllBetween);
 
 module.exports = routes;

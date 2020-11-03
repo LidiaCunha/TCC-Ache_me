@@ -187,6 +187,7 @@ const FormRegister = (props) => {
           <CadastroConfigInput>
 
           <ContainerDados>
+
                 <ContainerInput>
                     <label>Nome</label>
                     <input type="text" id="name" value={userRegister.name} onChange={handlerInput} placeholder="Insira seu nome" required />
@@ -197,8 +198,7 @@ const FormRegister = (props) => {
                     <label>Alguém te indicou o Ache.me?</label>
                     <input type="text" placeholder="Insira o úsuario"/>
                 </ContainerInput>
-
-                
+             
                 <ContainerInput >
                     <label>E-mail</label>
                     <input type="email" id="mail" value={userRegister.mail} onChange={handlerInput} placeholder="Insira seu e-mail" required />
@@ -215,17 +215,34 @@ const FormRegister = (props) => {
                   <ContainerInput>
                       <label>Cep</label>
                       <input type="text" id="cep" value={userRegister.cep} onChange={handlerInput} onBlur={(e) => findAddress(e)} onKeyUp={( e ) => { maskCep( e ) }} placeholder="Insira seu CEP" required />
-
-                      <label>Bairro</label>
-                      <input type="text" id="bairro" value={userRegister.bairro} onChange={handlerInput} placeholder="Insira seu bairro" required />
+                
+                <ContainerInput >
+                    <label>E-mail</label>
+                    <input type="email" id="mail" value={userRegister.mail} onChange={handlerInput} placeholder="Insira seu email" required />
                                 
-                      <label>Estado</label>
-                      <input type="text" id="state" value={userRegister.state} onChange={handlerInput} placeholder="Insira seu estado" required />
-                  </ContainerInput>
+                    <label>Telefone</label>
+                    <input type="text" id="telephone" value={userRegister.telephone} onChange={handlerInput} onKeyUp={( e ) => { maskTelephone( e ) }} placeholder="Insira seu telefone" required />
+                                
+                    <label>Senha</label>
+                    <input type="password" id="password" value={userRegister.password} onChange={handlerInput} placeholder="Insira sua senha" required />
+                </ContainerInput>
+            </ContainerDados>
             
-              <ContainerInput>
-                  <label>Rua</label>
-                  <input type="text" id="street" value={userRegister.street} onChange={handlerInput} placeholder="Insira sua rua" required />
+            <ContainerDados>
+                <ContainerInput>
+                    <label>Cep</label>
+                    <input type="text" id="cep" value={userRegister.cep} onChange={handlerInput} onBlur={(e) => findAddress(e)} onKeyUp={( e ) => { maskCep( e ) }} placeholder="Insira seu CEP" required />
+
+                    <label>Bairro</label>
+                    <input type="text" id="bairro" value={userRegister.bairro} onChange={handlerInput} placeholder="Insira seu bairro" required />
+                            
+                    <label>Estado</label>
+                    <input type="text" id="state" value={userRegister.state} onChange={handlerInput} placeholder="Insira seu estado" required />
+                </ContainerInput>
+                
+                <ContainerInput>
+                    <label>Rua</label>
+                    <input type="text" id="street" value={userRegister.street} onChange={handlerInput} placeholder="Insira sua rua" required />
                             
                   <label>Cidade</label>
                   <input type="text" id="city" value={userRegister.city} onChange={handlerInput} placeholder="Insira sua cidade" required />
@@ -235,6 +252,12 @@ const FormRegister = (props) => {
               </ContainerInput>
             </ContainerDados>
 
+
+                    <label>Número</label>
+                    <input type="text" id="number" value={userRegister.number} onChange={handlerInput} placeholder="Insira seu número" required />
+                </ContainerInput>
+            </ContainerDados>
+            
           </CadastroConfigInput>
 
           <Footer>

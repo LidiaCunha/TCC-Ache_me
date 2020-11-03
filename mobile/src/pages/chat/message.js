@@ -1,11 +1,11 @@
 import React from 'react'
-import { StyleSheet,View,Text,Image} from 'react-native'
+import { StyleSheet,TouchableOpacity,Text,Image} from 'react-native'
 import Svg, { Path } from 'react-native-svg'
 import { moderateScale } from 'react-native-size-matters'
 const MessageBubble = (props) => {
     return (
-      <View style={[ styles.message, props.mine ? styles.mine : styles.not_mine ]} >
-        <View style={[ styles.cloud, { backgroundColor: props.mine ? '#EDEDED' : '#f37e74'} ]} >
+      <TouchableOpacity style={[ styles.message, props.mine ? styles.mine : styles.not_mine ]} >
+        <TouchableOpacity style={[ styles.cloud, { backgroundColor: props.mine ? '#EDEDED' : '#f37e74'} ]} >
         {
           props.image ?
               <Image
@@ -28,12 +28,12 @@ const MessageBubble = (props) => {
             :
               null
           }
-          <View style={[ styles.arrow_container, props.mine ? styles.arrow_left_container : styles.arrow_right_container ]}>
+          <TouchableOpacity style={[ styles.arrow_container, props.mine ? styles.arrow_left_container : styles.arrow_right_container ]}>
             <Svg
               style={props.mine ? styles.arrow_left : styles.arrow_right}
               width={moderateScale(15.5, 0.6)}
               height={moderateScale(17.5, 0.6)}
-              viewBox="32.484 17.5 15.515 17.5"
+              TouchableOpacityBox="32.484 17.5 15.515 17.5"
               enable-background="new 32.485 17.5 15.515 17.5"
             >
               <Path
@@ -48,9 +48,9 @@ const MessageBubble = (props) => {
                   y="0"
               />
             </Svg>
-          </View>
-        </View>
-      </View>
+          </TouchableOpacity>
+        </TouchableOpacity>
+      </TouchableOpacity>
     )
   
 }
