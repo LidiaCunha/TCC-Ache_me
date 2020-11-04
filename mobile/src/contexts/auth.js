@@ -18,7 +18,7 @@ export const AuthProvider = ({ children }) => {
       const storagedToken = await AsyncStorage.getItem('@AMAuth:token');
 
       if (storagedUser && storagedToken) {
-        api.defaults.headers.Authorization = `Bearer ${storagedToken.token}`;
+        api.defaults.headers.Authorization = `Bearer ${storagedToken}`;
 
         setUser(JSON.parse(storagedUser));
       }
@@ -32,7 +32,7 @@ export const AuthProvider = ({ children }) => {
 
     setUser(response); 
 
-    api.defaults.headers.Authorization = `Bearer ${response.token}`;
+    api.defaults.headers.common['Authorization'] = `Bearer ${response.token}`;
 
     await AsyncStorage.setItem('@AMAuth:user', JSON.stringify(response.user));
     await AsyncStorage.setItem('@AMAuth:token', response.token);

@@ -20,6 +20,7 @@ const Seen = require('../models/Seen');
 const WhoSaw = require('../models/WhoSaw');
 //const LostedSeen = require('../models/LostedSeen');
 const Found = require('../models/Found');
+const Message = require('../models/Message') 
 // AQUI DEVESE INICIAR AS MODELS
 
 States.init(conection);
@@ -38,7 +39,7 @@ Seen.init(conection);
 WhoSaw.init(conection);
 //LostedSeen.init(conection);
 Found.init(conection);
-
+Message.init(conection)
 // AQUI DEVESE FAZER AS ASSOCIAÇÕES(RELACIONAMENTO) ENTRE AS MODELS
 
 States.associete(conection.models);
@@ -57,6 +58,6 @@ Seen.associete(conection.models);
 WhoSaw.associete(conection.models);
 //LostedSeen.associete(conection.models);
 Found.associete(conection.models);
-
+Message.associete(conection.models);
 // exportando a conexçao
 module.exports = conection; 
