@@ -59,7 +59,7 @@ export const Button = styled.div`
 
 export const Header = styled.div`
     width: 100vw;
-    height: 6vh;
+    height: 7.5vh;
     padding: 4px;
     box-sizing: border-box;
     background-color: #fff;
@@ -185,15 +185,25 @@ export const Merit = styled.div`
 export const Photo = styled.div`
     width: 120px;
     height: 120px;
-    background-color: #E64F4A;
+    background-color: #aaaaaa;
     margin: 0px 20px;
     border-radius: 50%;
     border: 1px solid #caced4;
+    padding: 2px;
+    box-sizing: border-box;
 
     >img {
         width: 100%;
         height: 100%;
         border-radius: 50%;
+    }
+
+    >input {
+        width: 100%;
+    }
+
+    >label {
+      width: 100%;
     }
 `;
 
@@ -214,7 +224,7 @@ export const NewPhoto = styled.div`
     }
 
     >img {
-      width: 100%;
+        width: 100%;
     }
 `;
 
@@ -273,7 +283,7 @@ export const AdvancedInfos = styled.div`
     width: 100%;
     margin-bottom: 10px;
     margin-top: 20px;
-display: flex;
+    display: flex;
     justify-content: center;
     align-content: center;
     align-items: center;
@@ -296,8 +306,8 @@ export const Profile = styled.div`
     'password password'
     'new-password confirm-password'
     'telephone cpf'
-    'cep cep'
-    'street neighborhood'
+    'cep neighborhood'
+    'street number'
     'city state'
     '... button';
 
@@ -335,6 +345,20 @@ export const Input = styled.div`
     }
     >input:hover{
         background-color: #f6f6f6;
+    }
+
+    >.uneditable{
+        width: 100%;
+        height: 30px;
+        outline: none;
+        border: solid 2px #eaeaea;
+        border-radius: 5px;
+        padding-left: 10px;
+        font:14px Arial, Helvetica, sans-serif;
+        color: #555555;
+        line-height: 30px;
+        background-color: #f6f6f6;
+        cursor: default;
     }
 `;
 

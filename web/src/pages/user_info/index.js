@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 import {
   Text, 
@@ -41,9 +41,164 @@ import {
 import home from "../../assets/user_info/home.png";
 import camera from "../../assets/camera.png";
 import photo from "../../assets/userTest.png";
+import addImage from "../../assets/image.png";
 import share from "../../assets/user_info/compartilhar.png";
+import Spinner from "../../components/Spinner";
 
-function user_info() {
+import {api} from "../../services/api";
+import {getUsers} from "../../services/security";
+
+const UserInfo = () => {
+
+  const [loading, setLoading] = useState(false);
+
+  const [user, setUser] = useState({
+    name: "",
+    mail: "",
+    CPF: "",
+    telephone: "",
+    password : "",
+    newPassword : "",
+    confirmPassword: "",
+		cep: "",
+		bairro: "",
+		street: "",
+    number: "",
+    city:"",
+    state:"",
+  });
+
+  const users = getUsers();
+
+  useEffect(() => {
+    const getUser = async () => {
+
+        try {
+          const retorno = await api.get(`/user/${users.id}`);
+
+          const data = retorno.data;
+          
+          const where_live = data.where_live;
+
+          const newForm = await {
+            name: data.name,
+            mail: data.mail,
+            CPF: data.cpf,
+            telephone: data.telephone,
+            cep: where_live.cep,
+            bairro: where_live.bairro,
+            street: where_live.street,
+            number: where_live.number,
+            city: where_live.city,
+            state: where_live.state,
+
+          }
+
+          setUser(newForm);
+
+          if (data.photo === "undefined"){
+            setImage(addImage);
+          }else{
+            setImage(data.photo);
+          }
+
+        } catch (erro) {
+          if(erro.response){
+              return window.alert(erro.response.data.erro);
+          }
+
+          window.alert("Ops, algo deu errado, tente novamente.")
+        }
+    }
+
+   getUser();
+  },[]);
+  
+  const update = async () => {
+
+    setLoading(true);
+
+    try {
+        const retorno = await api.put(`/editUsers/${users.id}`, user);
+        
+        if (retorno.status === 201) {
+            setLoading(false);
+
+            window.alert(retorno.data.sucess);
+
+            return document.location.reload();
+        };
+
+    } catch (erro) {
+
+      setLoading(false);
+
+        if(erro.response){
+            return window.alert(erro.response.data.erro);
+        }
+        
+        window.alert("Ops, algo deu errado, tente novamente mais tarde.");
+    }
+
+  };
+
+  const handlerInput = (e) => {
+    setUser({...user, [e.target.id]: e.target.value});
+  };
+
+  const imgRef = useRef();
+
+  const [image, setImage] = useState(null);
+
+  const [newImage, setNewImage] = useState(null);
+
+  const photoUpdate = async () => {
+
+    setLoading(true);
+
+    const data = new FormData();
+
+    data.append("photo", newImage);
+
+    try {
+      const retorno = await api.put(`/editPhoto/${users.id}`, data, {
+        headers: {
+          "Content-type": `multipart/form-data`,
+        },
+      });
+      
+      if (retorno.status === 201) {
+          setLoading(false);
+
+          window.alert(retorno.data.sucess);
+
+          return document.location.reload();
+      };
+
+    } catch (erro) {
+      setLoading(false);
+
+      if(erro.response){
+          return window.alert(erro.response.data.erro);
+      }
+      
+      window.alert("Ops, algo deu errado, tente novamente mais tarde.");
+    }
+  }
+
+  const handlerImage = (e) => {
+    if (e.target.files[0]) {
+        imgRef.current.src = URL.createObjectURL(e.target.files[0])
+        imgRef.current.style.height = "100%"
+        imgRef.current.style.width = "100%"
+        imgRef.current.style.margin = "0px"
+        setNewImage(e.target.files[0]);
+    }else {
+        imgRef.current.src = `${image}`;
+        imgRef.current.style.height = "100%"
+        imgRef.current.style.width = "100%"
+    }
+  };
 
   const member = (
     <Member>
@@ -54,30 +209,38 @@ function user_info() {
 
   return (
     <Container>
+      {loading &&  <Spinner/>}
       <Header>
         <Home>
           <img src={home} alt="return home"/>
         </Home>
+<<<<<<< HEAD
       </Header>
+=======
+      </Header>      
+>>>>>>> 3306eb9829905bfd6cb2e5d6cd0b7548b095b85b
       <Main>
         <Section>
           <BasicInfos>
             <PhotoProfile>
               <Photo>
-                <img src={photo} alt="user"/>
-                <NewPhoto>
-                  <img src={camera} alt="camera"/>
-                </NewPhoto>
+                <img src={image} ref={imgRef} alt="user"/>
+                <input type="file" name="photo" id="newPhoto" onChange={handlerImage} hidden/>
+                  <label htmlFor="newPhoto">
+                    <NewPhoto>  
+                        <img src={camera} alt="camera"/>
+                    </NewPhoto>
+                  </label>
               </Photo>
               <Login>
-                <Name>Gabriela Jordão<br/><span>gabriela.jogmail.com</span></Name>
-                <Button>Salvar Foto</Button>
+                <Name>{user.name}<br/><span>{user.mail}</span></Name>
+                <Button onClick={()=>{photoUpdate()}}>Salvar Foto</Button>
               </Login>
             </PhotoProfile>
             <Merit>
               <Text>Seu mérito:</Text>
-              <Text>Data da última publicação: <span>12 de agosto de 2020</span></Text>
-              <Text>Hora da última publicação: <span>ás 08:00</span></Text>
+              <Text>Data da última publicação:</Text>
+              <Text>Hora da última publicação:</Text>
             </Merit>
           </BasicInfos>
         </Section>
@@ -85,55 +248,61 @@ function user_info() {
           <Title>INFORMAÇÕES PESSOAIS</Title>
           <AdvancedInfos>
             <Profile>
-              <Input id="name" style={{gridArea:'name'}}>
+              <Input style={{gridArea:'name'}}>
                 <Text>Nome</Text>
-                <input type="text" name="name" id="input-name"/>
+                <div className="uneditable">{user.name}</div>
               </Input>
-              <Input id="email" style={{gridArea:'email'}}>
+              <Input style={{gridArea:'email'}}>
                 <Text>Email</Text>
-                <input type="email" name="email" id="input-email"/>
+                <div className="uneditable">{user.mail}</div>
               </Input>
-              <Input id="password" style={{gridArea:'password'}}>
+              <Input style={{gridArea:'password'}}>
                 <Text>Senha Atual</Text>
-                <input type="password" name="password" id="input-password"/>
+                <input type="password" name="password" id="password" onChange={handlerInput}/>
               </Input>
-              <Input id="new-password" style={{gridArea:'new-password'}}>
+              <Input style={{gridArea:'new-password'}}>
                 <Text>Nova Senha</Text>
-                <input type="password" name="new-password" id="input-newpassword"/>
+                <input type="password" name="new-password" id="newPassword" onChange={handlerInput}/>
               </Input>
-              <Input id="corfirm-password" style={{gridArea:'confirm-password'}}>
+              <Input style={{gridArea:'confirm-password'}}>
                 <Text>Confirmar Senha</Text>
-                <input type="password" name="confirm-password" id="input-confirmpassword"/>
+                <input type="password" name="confirm-password" id="confirmPassword" onChange={handlerInput}/>
               </Input>
-              <Input id="telephone" style={{gridArea:'telephone'}}>
+              <Input style={{gridArea:'telephone'}}>
                 <Text>Telefone</Text>
-                <input type="text" name="telephone" id="input-telephone"/>
+                <input type="text" name="telephone" id="telephone" value={user.telephone} onChange={handlerInput}/>
               </Input>
-              <Input id="cpf" style={{gridArea:'cpf'}}>
+              <Input style={{gridArea:'cpf'}}>
                 <Text>CPF</Text>
-                <input type="text" name="cpf" id="input-cpf"/>
+                <div className="uneditable">{user.CPF}</div>
               </Input>
-              <Input id="cep" style={{gridArea:'cep'}}>
+              <Input style={{gridArea:'cep'}}>
                 <Text>CEP</Text>
-                <input type="text" name="cep" id="input-cep"/>
+                <input type="text" name="cep" id="cep" value={user.cep} onChange={handlerInput}/>
               </Input>
-              <Input id="street" style={{gridArea:'street'}}>
+              <Input style={{gridArea:'number'}}>
+                <Text>Numero</Text>
+                <input type="text" name="number" id="number" value={user.number} onChange={handlerInput}/>
+              </Input>
+              <Input style={{gridArea:'street'}}>
                 <Text>Rua</Text>
-                <input type="text" name="street" id="input-street"/>
+                <input type="text" name="street" id="street" value={user.street} onChange={handlerInput}/>
               </Input>
-              <Input id="neighborhood" style={{gridArea:'neighborhood'}}>
+              <Input style={{gridArea:'neighborhood'}}>
                 <Text>Bairro</Text>
-                <input type="text" name="neighborhood" id="input-neighborhood"/>
+                <input type="text" name="neighborhood" id="bairro" value={user.bairro} onChange={handlerInput}/>
               </Input>
-              <Input id="city" style={{gridArea:'city'}}>
+              <Input style={{gridArea:'city'}}>
                 <Text>Cidade</Text>
-                <input type="text" name="city" id="input-city"/>
+                <input type="text" name="city" id="city" value={user.city} onChange={handlerInput}/>
               </Input>
-              <Input id="state" style={{gridArea:'state'}}>
+              <Input style={{gridArea:'state'}}>
                 <Text>Estado</Text>
-                <input type="text" name="state" id="input-state"/>
+                <input type="text" name="state" id="state" value={user.state} onChange={handlerInput}/>
               </Input>
-              <Button style={{gridArea:'button', right:'0'}}>Salvar</Button>
+              <Button style={{gridArea:'button', right:'0'}} onClick={() => {update()}}>
+                Salvar
+              </Button>
             </Profile>
             <ShareIndicated>
               <Share>
@@ -158,6 +327,6 @@ function user_info() {
       </Main>
     </Container>
   );
-}
+};
 
-export default user_info;
+export default UserInfo;

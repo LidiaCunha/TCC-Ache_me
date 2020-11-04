@@ -8,6 +8,7 @@ const Seen = require('../../models/Seen');
 const Address = require('../../models/Address');
 const States = require('../../models/States');
 const City = require('../../models/City');
+const WhoSaw = require('../../models/WhoSaw')
 
 const { Op } = require('sequelize')
 const moment = require('moment');
@@ -154,16 +155,16 @@ module.exports ={
         if( !Sa || !Str || !Br || !Cp || !Rp || !Cm || !Stt || !Ct  ) return next()
 
         const addtoFilter = {
-                    "street":Str,
-                    "bairro":Br,
-                    "cep":Cp,
-                    "reference_point":Rp,
-                    "complement":Cm,
+                    "street":(Str ? Str : null),
+                    "bairro":(Br ? Br : null),
+                    "cep":(Cp ? Cp : null),
+                    "reference_point":(Rp ? Rp : null),
+                    "complement":(Cm ? Cm : null),
                     "state":{
-                        "name_of_state":Stt
+                        "name_of_state":(Stt ? Stt : null)
                     },
-                        "city":{
-                        "name_of_city":Ct
+                    "city":{
+                        "name_of_city":(Ct ? Ct : null)
                     }
                 };
 
@@ -178,19 +179,20 @@ module.exports ={
                 }}
             }
         );
-        
-        
+            });
+
         const seens = await Seen.findAll();
-        
+        var seensFiltred = [];
         seens.find( 
             seen => 
             { 
                 const whenSeen = Sa && filterByWhenWasSeen( seen , Sa) ;
+                const whoSaw = filterByWhoSaw( seen )
                 
-                if (whenSeen || !Sa){
+                if ( addressOfSeens && seen && (whenSeen || !Sa) ){
                     for(let i = 0; i < addressOfSeens.length; i++){
                         if ( seen.dataValues.address_id === addressOfSeens[i].dataValues.id){
-                            req.body.filtredPosts = { ...seen.dataValues , address:{...addressOfSeens[i].dataValues}}
+                            seensFiltred[seensFiltred.length] = {...seen.dataValues , address:{...addressOfSeens[i].dataValues}, who_saw:{whoSaw}}
                         }
                     }
                 }
@@ -198,14 +200,19 @@ module.exports ={
                 function filterByWhenWasSeen ( seen , seen_at_to_filter ) {
                     return moment(seen.seen_at).locale("America/Sao_Paulo").format('DD/MM/YYYY')  == seen_at_to_filter ? true : false; 
                 }
-            }) 
-        // function filterByWhoSaw () {
 
-        // }
+                async function filterByWhoSaw ( seen ) {
+                    const ws = await WhoSaw.findAll({where:{id_losted_seen:seen.id}});
+                    return ws;
+
+                }
+            }) 
+
+        seensFiltred ? req.body.filtredPosts=seensFiltred : next();
 
         return next();
     },
-    filterByProblems : async ( req , res ) => {
+    filterByProblems : async ( req , res , next ) => {
         const { H } = req.query;
  //       console.log(req.body.filtredPosts)
         if(!H) return res.status(200).send(req.body.filtredPosts);
@@ -292,7 +299,7 @@ module.exports ={
             const posts = await takePostsWithProblem(H);
             req.body.filtredPosts = posts;
         }
-            
+
         return res.status(200).send(req.body.filtredPosts)
     },
 }

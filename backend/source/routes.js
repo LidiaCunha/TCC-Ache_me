@@ -29,16 +29,18 @@ const Multer = multer({
 });
 
 routes.post('/newUser', Multer.single("photo"), imageUpload, validMail );
-routes.get('/validMail/' , Users.store)
+routes.get('/validMail/' , Users.store);
 routes.post('/users', Users.login);
 
 routes.use(middleware);
 
-
+routes.get('/user/:userId', Users.searchForId);
 routes.get('/users', Users.index);
+routes.put('/editUsers/:userId', Users.update);
+routes.put('/editPhoto/:userId', Multer.single("photo"), imageUpload, Users.photoUpdate);
 routes.put('/users/:userId', Users.updateFieldOfUsers);
 routes.put('/users/wherelive/:userId', Users.updateFieldFromWhereUserLive);
-routes.delete('/users/:userId', Users.delete);
+routes.delete('/deleteUsers/:userId', Users.delete);
 
 routes.post('/city', Citys.store);
 routes.get('/city', Citys.index);
