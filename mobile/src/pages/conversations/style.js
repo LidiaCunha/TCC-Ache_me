@@ -158,7 +158,7 @@ export const Recentes = styled.Text`
     margin-top: 25px;
 `
 
-export const ContainerMsgs = styled.View`
+export const ContainerMsgs = styled.TouchableOpacity`
     flex-direction: row;
     padding: 25px;
     height: 122px;
