@@ -34,7 +34,7 @@ routes.post('/users', Users.login);
 
 routes.use(middleware);
 
-
+routes.get('/user/', Users.findByName)
 routes.get('/users', Users.index);
 routes.put('/users/:userId', Users.updateFieldOfUsers);
 routes.put('/users/wherelive/:userId', Users.updateFieldFromWhereUserLive);

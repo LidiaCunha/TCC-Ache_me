@@ -1,12 +1,14 @@
 import React from 'react';
-import { Button,Text,View , FlatList } from 'react-native';
-import { Container, ContainerContatos, MenuContatos, MenuImagem, MenuPesquisar, Pesquisa, ContainerConversas, Texto } from '../chat/styles';
-import { useAuth } from '../../contexts/auth';
-import { ListItem } from 'react-native-elements';
+import { Container, ContainerContatos, MenuContatos, HoraMsg, Numero, ImagemUsuario, TextoNome, AreaTextos, TextoMsg, MenuImagem, MenuPesquisar, Pesquisa, ContainerConversas, Texto, Recentes, ContainerMsgs, AreaDetalhes, Hora, Hora_Minha, NumeroMsgs } from './style';
+import {ScrollView, StyleSheet, Animated, TouchableOpacity} from 'react-native';
+//import { useAuth } from '../../contexts/auth';
 import { useConversarion } from '../../contexts/ConversationProvider';
 import menu from '../../assets/menu.png';
-import excluir from '../../assets/excluir.png';
+//import excluir from '../../assets/excluir.png';
 import lupa from '../../assets/lupa.png';
+import Swipeable from 'react-native-gesture-handler/Swipeable';
+import Icon from 'react-native-vector-icons/FontAwesome';
+
 
 function Conversations({navigation}) {
   //const { user } = useAuth();
@@ -30,24 +32,31 @@ function Conversations({navigation}) {
       photo:'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse2.mm.bing.net%2Fth%3Fid%3DOIP.t9E7ZbZ0tkOr09MtPJUP4AHaHa%26pid%3DApi&f=1'
     },
   ]
-  const {createConversation, selectedConversationIndex} = useConversarion();
+  const { selectedConversationIndex } = useConversarion();
 
   const openChat = (contact) => {
-    createConversation(contact)
     selectedConversationIndex(contact.id)
     navigation.navigate('chat' , contact);
   }
 
-  const getContactItem = ({item:contact}) => {
-    return (
-      <ListItem
-        leftAvatar={{source:{uri:contact.photo}}}
-        key={contact.id}
-        title={contact.name}
-        subtitle={contact.mail}
-        bottomDivider
-        onPress={() => openChat(contact)}
-      />
+  const openSearch = () => {
+    navigation.navigate('search')
+  }
+
+  function RightActions({progress, dragX, onPress}){
+
+    const scale = dragX.interpolate({
+      inputRange:[-110, 0],
+      outputRange:[1, 0],
+      extrapolate: 'clamp'
+    })
+
+    return(
+      <TouchableOpacity style={styles.rightAction}>
+        <Animated.View style={[ { transform: [{ scale: scale}]} ]}>
+          <Icon name="trash" size={50}  color="#FFF" />
+        </Animated.View>
+      </TouchableOpacity>
     );
   }
 
@@ -56,7 +65,7 @@ function Conversations({navigation}) {
     <Container>
             <MenuContatos>
                 <MenuImagem source={menu}/>
-                <MenuPesquisar onPress={() => pesquisar()}>
+                <MenuPesquisar onPress={() => openSearch()}>
                     <Pesquisa source={lupa}/>
                 </MenuPesquisar>
             </MenuContatos>
@@ -64,14 +73,46 @@ function Conversations({navigation}) {
                 <Texto>Suas conversas</Texto>
             </ContainerConversas>
             <ContainerContatos>
-              <FlatList
-                keyExtractor={ctt => ctt.id }
-                data = {contacts}
-                renderItem={getContactItem}
-              />
+                <Recentes>Recentes</Recentes>
+                <ScrollView>
+                  
+                       {
+                    contacts.map( ctt => 
+
+                      <Swipeable renderRightActions={ (progress, dragX) => <RightActions progress={progress} dragX={dragX}/>} >
+                        <ContainerMsgs   onPress={() => openChat(ctt)}>
+                            <ImagemUsuario source={{uri:ctt.photo}}/>
+                            <AreaTextos>
+                            <TextoNome>{ctt.name}</TextoNome>
+                                <TextoMsg numberOfLines={2}> msgs com {ctt.mail} </TextoMsg>
+                            </AreaTextos>
+                            <AreaDetalhes>
+                                <HoraMsg>9:22</HoraMsg>
+                                {/* <NumeroMsgs><Numero>1</Numero></NumeroMsgs> */}
+                            </AreaDetalhes>
+                        </ContainerMsgs>
+                      </Swipeable>
+
+                    )
+                  }  
+                    
+                </ScrollView>
             </ContainerContatos>
         </Container>
   );
 }
+
+const styles = StyleSheet.create({
+  rightAction:{
+    backgroundColor: '#EF5245',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+    marginTop: 40,
+    marginRight: 10
+  },
+});
 
 export default Conversations;

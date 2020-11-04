@@ -93,7 +93,7 @@ function Chat({route}) {
                 <NomeUsuario>{route.params.name}</NomeUsuario>
             </ContainerUsuario>
         </ScrollView>
-                    { conversations.map( ( conversation  ) => {
+                    { conversations && conversations.map( ( conversation  ) => {
                           if ( conversation.sender === user.id )
                               return (
                                 <>
