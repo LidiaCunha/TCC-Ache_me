@@ -8,7 +8,7 @@ import { ViewContainer, Container, BotaoVoltar, ContainerInfos, Texto, Container
 import planoDeFundo from "../../assets/planoDeFundo.jpg";
 // import Foto from "../../assets/fotoExemplo.jpg";
 import Camera from "../../assets/cameraCadastro.png"
-import defaultImage from "../../assets/user (1).png"
+import defaultImage from "../../assets/user.png"
 import * as ImagePicker from 'expo-image-picker';
 import Constants from 'expo-constants';
 
@@ -98,7 +98,7 @@ const CadastroFotoPerfil = ({route, navigation}) => {
                 <ContainerInfos>
                     <Texto>Escolha uma foto para o seu perfil.</Texto>
                     <ContainerFoto>
-                        <FotoImagem source={ image ? { uri: image } : defaultImage }/>
+                        <FotoImagem source={image ? { uri: image} : defaultImage}/>
                         <IconeFoto onPressOut={mudarTextoBotao} onPress={pickImage}>
                             <FotoCamera source={Camera}/>
                         </IconeFoto>

@@ -87,6 +87,7 @@ export const Enviar = styled.TouchableOpacity`
     padding: 2px;
     align-items: center;
     justify-content: center;
+    margin-left: 5px;
 `
 
 export const Icone = styled.Image`

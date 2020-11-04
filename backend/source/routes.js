@@ -34,6 +34,7 @@ routes.post('/users', Users.login);
 
 routes.use(middleware);
 
+routes.get('/user/', Users.findByName)
 routes.get('/user/:userId', Users.searchForId);
 routes.get('/users', Users.index);
 routes.put('/editUsers/:userId', Users.update);

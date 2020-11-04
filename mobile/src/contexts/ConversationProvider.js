@@ -73,7 +73,7 @@ export const ConversationProvider = ({children}) => {
         return ( ) => socket.off('recebe-msg');
     },[ socket , addMessageToConversation ]);  
    
-    output = {
+    const output = {
         conversations,
         selectedConversationIndex: setSelectedConversationIndex,
         createConversation,

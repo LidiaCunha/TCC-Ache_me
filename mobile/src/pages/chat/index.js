@@ -10,6 +10,7 @@ import { Animated,StyleSheet , Dimensions, Keyboard, UIManager } from 'react-nat
 import EnviarMsg from "../../assets/enviar-correio.png";
 import { api } from '../../services/api';
 import moment from 'moment';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 function Chat({route}) {
   const { user } = useAuth();
@@ -93,7 +94,7 @@ function Chat({route}) {
                 <NomeUsuario>{route.params.name}</NomeUsuario>
             </ContainerUsuario>
         </ScrollView>
-                    { conversations.map( ( conversation  ) => {
+                    { conversations && conversations.map( ( conversation  ) => {
                           if ( conversation.sender === user.id )
                               return (
                                 <>
@@ -114,6 +115,9 @@ function Chat({route}) {
                 <Mensagem placeholder="Digite sua mensagem" onTouchStart={(e) => setInputHeigth(e.nativeEvent.pageY + e.nativeEvent.locationY)} onChange={handlerInput}/>
                 <Enviar onPress={() =>( image ? sendMessage(route.params , value , image ) : sendMessage(route.params , value )) ?  takeMessages() : Alert.alert("Erro","não foi possivel enviar a mensagem")  } >
                     <Icone source={EnviarMsg}/>
+                </Enviar>
+                <Enviar onPress={() =>( image ? sendMessage(route.params , value , image ) : sendMessage(route.params , value )) ?  takeMessages() : Alert.alert("Erro","não foi possivel enviar a mensagem")  } >
+                    <Icon name="add-a-photo" color="white" size={30}/>
                 </Enviar> 
             </ViewMensagem>
         </AreaMensagem>

@@ -42,6 +42,26 @@ module.exports = {
         //return res.status(201).send(users);
     },
 
+    findByName : async( req , res ) => {
+        const { name } = req.query;
+    try{
+
+        var userExist = name.length > 2 && await Users.findAll( { 
+            where: { 
+                [Op.or]:[
+                    {name:{[Op.substring]: name}},
+                    {mail:{[Op.substring]: name}}
+                ] 
+            }
+        });
+
+    }catch(e){
+       console.log(e)
+    }
+        return userExist ? res.status(200).send(userExist) : res.status(401);
+    },
+
+
     searchForId : async ( req, res ) => {
 
         const {userId} = req.params;
