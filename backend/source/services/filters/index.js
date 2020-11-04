@@ -179,7 +179,6 @@ module.exports ={
                 }}
             }
         );
-            });
 
         const seens = await Seen.findAll();
         var seensFiltred = [];
