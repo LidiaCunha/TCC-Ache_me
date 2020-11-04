@@ -14,6 +14,8 @@ import moment from 'moment';
 function Chat({route}) {
   const { user } = useAuth();
 
+  const { sendMessage } = useConversarion();
+
   const [image, setImage] = useState();
 
   const [currentyInputHeigth, setInputHeigth ] = useState(0);
@@ -61,11 +63,10 @@ function Chat({route}) {
   const [ value, setValue ] = useState({
     msg:""
   })
+
   const handlerInput = ( e ) => {
     setValue({msg : e.nativeEvent.text})
   } 
-  
-  const { sendMessage } = useConversarion();
   
   const takeMessages = async() => { 
     const res  = await api.get(`/messages/between/${route.params.id}/${user.id}`)
@@ -77,7 +78,7 @@ function Chat({route}) {
 
   React.useEffect(()=>{
     takeMessages()
-  },[conversations])
+  },[])
 
   return (
 
@@ -112,7 +113,7 @@ function Chat({route}) {
         <AreaMensagem>
             <ViewMensagem>
                 <Mensagem placeholder="Digite sua mensagem" onTouchStart={(e) => setInputHeigth(e.nativeEvent.pageY + e.nativeEvent.locationY)} onChange={handlerInput}/>
-                <Enviar onPress={() =>( image ? sendMessage(route.params , value , image ) : sendMessage(route.params , value )) ?  takeMessages() : Alert.alert("Erro","não foi possivel enviar a mensagem")  } >
+                <Enviar onPress={() =>( image ? sendMessage(route.params , value , image ) ?  takeMessages() : Alert.alert("Erro","não foi possivel enviar a mensagem") : sendMessage(route.params , value )) ?  takeMessages() : Alert.alert("Erro","não foi possivel enviar a mensagem")  } >
                     <Icone source={EnviarMsg}/>
                 </Enviar> 
             </ViewMensagem>

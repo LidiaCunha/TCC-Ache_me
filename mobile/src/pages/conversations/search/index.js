@@ -1,21 +1,17 @@
 import React from 'react';
-import { useConversarion } from '../../../contexts/ConversationProvider';
 import {api} from '../../../services/api';
-import { ImagemUsuario, TextoNome, AreaTextos, TextoMsg, ContainerMsgs, Container, InputSearch, ContainerConversas } from '../style';
+import {ScrollView} from 'react-native';
+import { ImagemUsuario, TextoNome, AreaTextos, TextoMsg, ContainerMsgs, Container, InputSearch, ContainerContatos } from '../style';
 import defaultImage from '../../../assets/user.png';
 
 function ContactItem({contact}){
     
-  const {createConversation, selectedConversationIndex} = useConversarion();
-
   const openChat = (contact) => {
-    createConversation(contact)
-    selectedConversationIndex(contact.id)
     navigation.navigate('chat' , contact);
   }  
 
   return (<ContainerMsgs onPress={() => openChat(contact)}>
-      <ImagemUsuario source={contact.photo ? {uri:contact.photo} : {defaultImage}}/>
+      <ImagemUsuario source={contact.photo ? {uri:contact.photo} : defaultImage}/>
       <AreaTextos>
         <TextoNome>{contact.name}</TextoNome>
         <TextoMsg numberOfLines={1}> {contact.mail} </TextoMsg>
@@ -41,15 +37,16 @@ function Search() {
 
   return( 
     <Container>
-      <InputSearch value={value} onChange={handlerInput} onKeyPressCapture={search} />
-        <ContainerConversas>      
-        {
-          contacts.map( contact => {
-            <ContactItem contact={contact} />
-          })
-        }
-        </ContainerConversas>
-      
+        <InputSearch value={value} onChange={handlerInput} onKeyPressCapture={search} />
+        <br /><br /><br /><br />
+        <ContainerContatos>
+          <ScrollView>
+          {
+            contacts.map( contact => <ContactItem contact={contact} /> )
+          }            
+          </ScrollView>
+        </ContainerContatos>
+        
     </Container>
   );
 }
