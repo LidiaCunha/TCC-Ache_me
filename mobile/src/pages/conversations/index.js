@@ -1,15 +1,15 @@
 import React from 'react';
-import { Container, ContainerContatos, MenuContatos, HoraMsg, Numero, ImagemUsuario, TextoNome, AreaTextos, TextoMsg, MenuImagem, MenuPesquisar, Pesquisa, ContainerConversas, Texto, Recentes, ContainerMsgs, AreaDetalhes, Hora, Hora_Minha, NumeroMsgs } from './style';
 import {ScrollView, StyleSheet, Animated, TouchableOpacity} from 'react-native';
-//import { useAuth } from '../../contexts/auth';
-import menu from '../../assets/menu.png';
-//import excluir from '../../assets/excluir.png';
-import lupa from '../../assets/lupa.png';
 import Swipeable from 'react-native-gesture-handler/Swipeable';
 import Icon from 'react-native-vector-icons/FontAwesome';
+// IMAGES
+import menu from '../../assets/menu.png';
+import lupa from '../../assets/lupa.png';
 import defaultImage from '../../assets/user.png'
+// STYLES
+import { Container, ContainerContatos, MenuContatos, HoraMsg, Numero, ImagemUsuario, TextoNome, AreaTextos, TextoMsg, MenuImagem, MenuPesquisar, Pesquisa, ContainerConversas, Texto, Recentes, ContainerMsgs, AreaDetalhes, Hora, Hora_Minha, NumeroMsgs } from './style';
 
-function ContactItem({ contact }) {
+function ContactItem({ contact, navigation }) {
 
   const openChat = (contact) => {
     navigation.navigate('chat', contact);
@@ -55,10 +55,24 @@ function ContactItem({ contact }) {
         </AreaTextos>
         <AreaDetalhes>
           <HoraMsg>9:22</HoraMsg>
-          {/* <NumeroMsgs><Numero>1</Numero></NumeroMsgs> */}
+          <NumeroMsgs><Numero>1</Numero></NumeroMsgs>
         </AreaDetalhes>
       </ContainerMsgs>
     </Swipeable>)
+}
+
+function Menu() {
+  const openSearch = () => {
+    navigation.navigate('search')
+  }
+
+  return (
+    <MenuContatos>
+      <MenuImagem source={menu} />
+      <MenuPesquisar onPress={() => openSearch()}>
+        <Pesquisa source={lupa} />
+      </MenuPesquisar>
+    </MenuContatos>)
 }
 
 function Conversations({ navigation }) {
@@ -102,18 +116,9 @@ function Conversations({ navigation }) {
     },
   ]
 
-  const openSearch = () => {
-    navigation.navigate('search')
-  }
-
   return (
     <Container>
-      <MenuContatos>
-        <MenuImagem source={menu} />
-        <MenuPesquisar onPress={() => openSearch()}>
-          <Pesquisa source={lupa} />
-        </MenuPesquisar>
-      </MenuContatos>
+      <Menu />
       <ContainerConversas>
         <Texto>Suas conversas</Texto>
       </ContainerConversas>
@@ -121,7 +126,7 @@ function Conversations({ navigation }) {
         <Recentes>Recentes</Recentes>
         <ScrollView>
           {
-            contacts.map(ctt => <ContactItem contact={ctt} />)
+            contacts.map(ctt => <ContactItem contact={ctt} navigation={navigation}/>)
           }
         </ScrollView>
       </ContainerContatos>
