@@ -40,11 +40,11 @@ export const AreaImagem = styled.View`
 `
 
 export const AreaImagemMembros = styled.View`
-    width: 90px;
-    height: 100px;
+    width: 80px;
+    height: 90px;
     flex-direction: row;
     margin-bottom: 8px;
-    margin-right: 5px;
+    margin-right: 10px;
 `
 
 export const IconeFoto = styled.TouchableOpacity`
@@ -84,9 +84,9 @@ export const ImagemUsuario = styled.Image`
 `
 
 export const ImagemMembros = styled.Image`
-    width: 90px;
-    height: 90px;
-    border-radius: 45px;
+    width: 80px;
+    height: 80px;
+    border-radius: 40px;
     background-color: #0d0d0d;
 `
 
@@ -164,7 +164,7 @@ export const TextoBotao = styled.Text`
 `
 
 export const AreaMembros = styled.ScrollView`
-    max-height: 15%;
+    height: 50%;
     margin: 8px;
 `
 
@@ -174,11 +174,38 @@ export const Border = styled.View`
     height: 1.5px;
 `
 
-export const InputInfos = styled.TouchableHighlight`
+export const InputInfos = styled.TextInput`
     border: solid 2px #6E6F71;
     width: 95%;
     height: 50px;
     padding: 10px;
     border-radius: 5px;
     align-self: center;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: 1.4px;
+`
+
+export const ContainerInputs = styled.View`
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+`
+
+export const AreaInputs = styled.View`
+    width: 50%;
+    height: auto;
+`
+
+export const BotaoSalvar = styled.TouchableOpacity`
+    background-color: #EF5245;
+    width: 50%;
+    height: 40px;
+    border-radius: 5px;
+    align-self: flex-end;
+    justify-content: center;
+    margin: 10px;
+    margin-bottom: 10px;
 `
