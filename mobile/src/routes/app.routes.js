@@ -13,7 +13,7 @@ const AppRoutes = () => {
       <AppStack.Screen name="Dashboard" component={Dashboard}/>
       <AppStack.Screen name="conversations" component={Conversations} />
       <AppStack.Screen name="search" component={Search} />
-      <AppStack.Screen name="chat" component={Chat} />
+      <AppStack.Screen name="chat" component={Chat} options={{headerShown:false}}/>
     </AppStack.Navigator>
   );
 };

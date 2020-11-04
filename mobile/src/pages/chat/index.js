@@ -114,11 +114,11 @@ function Chat({route}) {
             <ViewMensagem>
                 <Mensagem placeholder="Digite sua mensagem" onTouchStart={(e) => setInputHeigth(e.nativeEvent.pageY + e.nativeEvent.locationY)} onChange={handlerInput}/>
                 <Enviar onPress={() =>( image ? sendMessage(route.params , value , image ) : sendMessage(route.params , value )) ?  takeMessages() : Alert.alert("Erro","não foi possivel enviar a mensagem")  } >
-                    <Icone source={EnviarMsg}/>
-                </Enviar>
-                <Enviar onPress={() =>( image ? sendMessage(route.params , value , image ) : sendMessage(route.params , value )) ?  takeMessages() : Alert.alert("Erro","não foi possivel enviar a mensagem")  } >
                     <Icon name="add-a-photo" color="white" size={30}/>
                 </Enviar> 
+                <Enviar onPress={() =>( image ? sendMessage(route.params , value , image ) : sendMessage(route.params , value )) ?  takeMessages() : Alert.alert("Erro","não foi possivel enviar a mensagem")  } >
+                    <Icone source={EnviarMsg}/>
+                </Enviar>
             </ViewMensagem>
         </AreaMensagem>
 

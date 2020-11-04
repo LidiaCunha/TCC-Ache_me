@@ -21,7 +21,8 @@ export const ContainerChat = styled.View`
     background-color: white;
     width: 100%;
     height: 85%;
-    border-radius: 20px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
 `
 
 export const ContainerUsuario = styled.View`
