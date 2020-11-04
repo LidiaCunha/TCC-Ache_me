@@ -28,9 +28,10 @@ import {
 
   } from "./styles";
 
-import React, { useState, useRef } from "react";
+    import React, { useState, useRef } from "react";
 import { api } from '../../services/api';
 import { signIn } from '../../services/security';
+import { ContainerCard } from "../../components/Card_email/styles";
 
 const FormRegister = (props) => {
     
@@ -59,6 +60,7 @@ const FormRegister = (props) => {
 
     const register = async (e) => {
         setLoading(true);
+        
         e.preventDefault();
 
         const data = new FormData();
@@ -110,13 +112,13 @@ const FormRegister = (props) => {
             imgRef.current.style.height = "100%"
             imgRef.current.style.width = "100%"
             imgRef.current.style.margin = "0px"
+            setImage(e.target.files[0]);
         }else {
             imgRef.current.src = `${camera}`;
             imgRef.current.style.height = "70%"
             imgRef.current.style.width = "70%"
             imgRef.current.style.margin = "15px"
         }
-        setImage(e.target.files[0]);
     };
 
     const findAddress = async( e ) =>{
@@ -186,6 +188,7 @@ const FormRegister = (props) => {
           <CadastroConfigInput>
 
           <ContainerDados>
+
                 <ContainerInput>
                     <label>Nome</label>
                     <input type="text" id="name" value={userRegister.name} onChange={handlerInput} placeholder="Insira seu nome" required />
@@ -196,8 +199,7 @@ const FormRegister = (props) => {
                     <label>Alguém te indicou o Ache.me?</label>
                     <input type="text" placeholder="Insira o úsuario"/>
                 </ContainerInput>
-
-                
+             
                 <ContainerInput >
                     <label>E-mail</label>
                     <input type="email" id="mail" value={userRegister.mail} onChange={handlerInput} placeholder="Insira seu e-mail" required />
@@ -209,22 +211,22 @@ const FormRegister = (props) => {
                     <input type="password" id="password" value={userRegister.password} onChange={handlerInput} minLength="8" placeholder="Insira sua senha" required />
                 </ContainerInput>
             </ContainerDados>
-
-            <ContainerDados>
-                  <ContainerInput>
-                      <label>Cep</label>
-                      <input type="text" id="cep" value={userRegister.cep} onChange={handlerInput} onBlur={(e) => findAddress(e)} onKeyUp={( e ) => { maskCep( e ) }} placeholder="Insira seu CEP" required />
-
-                      <label>Bairro</label>
-                      <input type="text" id="bairro" value={userRegister.bairro} onChange={handlerInput} placeholder="Insira seu bairro" required />
-                                
-                      <label>Estado</label>
-                      <input type="text" id="state" value={userRegister.state} onChange={handlerInput} placeholder="Insira seu estado" required />
-                  </ContainerInput>
             
-              <ContainerInput>
-                  <label>Rua</label>
-                  <input type="text" id="street" value={userRegister.street} onChange={handlerInput} placeholder="Insira sua rua" required />
+            <ContainerDados>
+                <ContainerInput>
+                    <label>Cep</label>
+                    <input type="text" id="cep" value={userRegister.cep} onChange={handlerInput} onBlur={(e) => findAddress(e)} onKeyUp={( e ) => { maskCep( e ) }} placeholder="Insira seu CEP" required />
+
+                    <label>Bairro</label>
+                    <input type="text" id="bairro" value={userRegister.bairro} onChange={handlerInput} placeholder="Insira seu bairro" required />
+                            
+                    <label>Estado</label>
+                    <input type="text" id="state" value={userRegister.state} onChange={handlerInput} placeholder="Insira seu estado" required />
+                </ContainerInput>
+                
+                <ContainerInput>
+                    <label>Rua</label>
+                    <input type="text" id="street" value={userRegister.street} onChange={handlerInput} placeholder="Insira sua rua" required />
                             
                   <label>Cidade</label>
                   <input type="text" id="city" value={userRegister.city} onChange={handlerInput} placeholder="Insira sua cidade" required />
@@ -233,7 +235,7 @@ const FormRegister = (props) => {
                     <input type="text" id="number" value={userRegister.number} onChange={handlerInput} placeholder="Insira seu número" required />
               </ContainerInput>
             </ContainerDados>
-
+            
           </CadastroConfigInput>
 
           <Footer>
