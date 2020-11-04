@@ -35,7 +35,7 @@ function Conversations({navigation}) {
   const openChat = (contact) => {
     createConversation(contact)
     selectedConversationIndex(contact.id)
-    navigation.navigate('chat',contact);
+    navigation.navigate('chat' , contact);
   }
 
   const getContactItem = ({item:contact}) => {

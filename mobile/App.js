@@ -11,16 +11,16 @@ import Usuario from './src/pages/usuario/index'
 const App = () => { 
 
    return (
-      <Usuario/>
-    // <NavigationContainer>
-    //   <AuthProvider>
-    //     <SocketProvider>
-    //       <ConversationProvider>
-    //         <Routes />
-    //       </ConversationProvider>
-    //     </SocketProvider>
-    //   </AuthProvider>
-    // </NavigationContainer>
+    //  <Modal/>
+    <NavigationContainer>
+      <AuthProvider>
+        <SocketProvider>
+          <ConversationProvider>
+            <Routes />
+          </ConversationProvider>
+        </SocketProvider>
+      </AuthProvider>
+    </NavigationContainer>
   );
 }
 

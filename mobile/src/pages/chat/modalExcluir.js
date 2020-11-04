@@ -6,8 +6,8 @@ const ModalExcluir = (props) => {
                 <ContainerModal>
                     <Excluir>
                         <TextoModal>Deseja apagar a mensagem?</TextoModal>
-                        <TextoOpcoes>Cancelar</TextoOpcoes>
-                        <TextoOpcoes>Excluir</TextoOpcoes>
+                        <TextoOpcoes>CANCELAR</TextoOpcoes>
+                        <TextoOpcoes>EXCLUIR</TextoOpcoes>
                     </Excluir>
                 </ContainerModal>
     )
