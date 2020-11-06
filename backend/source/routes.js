@@ -93,5 +93,6 @@ routes.get('/found',Found.index);
 
 routes.post('/message/to/:recipient', Multer.single("photo") , imageUpload , Messages.send);
 routes.get('/messages/between/:id/:id2', Messages.seeAllBetween);
+routes.delete('/messages/:id', Messages.delete);
 
 module.exports = routes;
