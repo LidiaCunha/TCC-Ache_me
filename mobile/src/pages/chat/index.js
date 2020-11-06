@@ -84,6 +84,12 @@ function Chat({ route }) {
     setConversations(data)
   }
 
+  const deleteMessage = async ( id ) => {
+    const res = await api.delete(`/messages/${id}`);
+    
+    return res.status === 401 ? false : true;
+  }
+
   Keyboard.addListener('keyboardDidHide', handlerKeyboardDidHide)
   Keyboard.addListener('keyboardDidShow', handlerKeyboardDidShow)
   
@@ -118,7 +124,7 @@ function Chat({ route }) {
           if (conversation.sender === user.id)
             return (
               <>
-                <MessageBubble text={conversation.message} />
+                <MessageBubble text={conversation.message} onPress={ () => deleteMessage(conversation.id) }/>
                 <Hora_Minha>{moment(conversation.createdAt).format('HH:mm')}</Hora_Minha>
               </>
             );

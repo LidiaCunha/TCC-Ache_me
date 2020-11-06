@@ -36,4 +36,11 @@ module.exports = {
 
         return messagesBetweenThey ? res.send(messagesBetweenThey) : res.status(401).send({"error":"não foram encontradas conversas entre eles"});
     },
+    delete: async( req , res ) => {
+        const { id } = req.params;
+        
+        const wasDeleted = await Message.destroy({where:{id}});
+    
+        return wasDeleted ? res.status(301).send({'success':'mensagem deletada com sucesso'}) : res.status(401).send({'error':'not found the message'});
+    }
 }
