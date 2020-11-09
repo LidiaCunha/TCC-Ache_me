@@ -4,7 +4,7 @@ import {ScrollView} from 'react-native';
 import { ImagemUsuario, TextoNome, AreaTextos, TextoMsg, ContainerMsgs, Container, InputSearch, ContainerContatos } from '../style';
 import defaultImage from '../../../assets/user.png';
 
-function ContactItem({contact}){
+function ContactItem({contact, navigation}){
     
   const openChat = (contact) => {
     navigation.navigate('chat' , contact);
@@ -19,7 +19,7 @@ function ContactItem({contact}){
     </ContainerMsgs>)
 }
 
-function Search() {
+function Search({navigation}) {
 
     var [value , setValue] = React.useState("");
 
@@ -42,7 +42,7 @@ function Search() {
         <ContainerContatos>
           <ScrollView>
           {
-            contacts.map( contact => <ContactItem contact={contact} /> )
+            contacts.map( contact => <ContactItem contact={contact} navigation={navigation}/> )
           }            
           </ScrollView>
         </ContainerContatos>

@@ -16,13 +16,11 @@ module.exports = {
         return msg ? res.status(201).send(msg) : res.status(501).send({"error":"não foi possivel enviar a mensagem"})
     },
     seeAllBetween : async( req , res ) => {
-        // pegar 2 ids de usuario
         const {id, id2} = req.params;
 
         if ( id != req.userId && id2 != req.userId )
             return res.send({"error":"um dos usuarios devem ser o que está logado"});
 
-        // organizar a conversa dos usuarios
         // SELECT  * FROM messages WHERE (messages.sender = id or messages.recipient = id) and (messages.sender = id2 or messages.recipient = id2) 
         const messagesBetweenThey = await Message.findAll({
             where:{
@@ -36,7 +34,13 @@ module.exports = {
             ]
         });
 
-        // enviar a conversa
         return messagesBetweenThey ? res.send(messagesBetweenThey) : res.status(401).send({"error":"não foram encontradas conversas entre eles"});
     },
+    delete: async( req , res ) => {
+        const { id } = req.params;
+        
+        const wasDeleted = await Message.destroy({where:{id}});
+    
+        return wasDeleted ? res.status(301).send({'success':'mensagem deletada com sucesso'}) : res.status(401).send({'error':'not found the message'});
+    }
 }
