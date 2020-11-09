@@ -27,10 +27,10 @@ function Post() {
             <p>9:53</p>
             <Linha/>
             <img src={data}/>
-            <p>6 de novembro de 2020</p>
+            <p>6 de nov. de 2020</p>
             <Linha/>
             <img src={local}/>
-            <p>Itapevi</p>
+            <p>SP</p>
             <Linha/>
             <img src={genero}/>
             <p>Masculino</p>
