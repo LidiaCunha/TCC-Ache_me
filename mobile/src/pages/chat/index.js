@@ -10,9 +10,12 @@ import { Animated,StyleSheet , Dimensions, Keyboard, UIManager } from 'react-nat
 import EnviarMsg from "../../assets/enviar-correio.png";
 import { api } from '../../services/api';
 import moment from 'moment';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 function Chat({route}) {
   const { user } = useAuth();
+
+  const { sendMessage } = useConversarion();
 
   const [image, setImage] = useState();
 
@@ -61,11 +64,10 @@ function Chat({route}) {
   const [ value, setValue ] = useState({
     msg:""
   })
+
   const handlerInput = ( e ) => {
     setValue({msg : e.nativeEvent.text})
   } 
-  
-  const { sendMessage } = useConversarion();
   
   const takeMessages = async() => { 
     const res  = await api.get(`/messages/between/${route.params.id}/${user.id}`)
@@ -77,7 +79,7 @@ function Chat({route}) {
 
   React.useEffect(()=>{
     takeMessages()
-  },[conversations])
+  },[])
 
   return (
 
@@ -93,7 +95,7 @@ function Chat({route}) {
                 <NomeUsuario>{route.params.name}</NomeUsuario>
             </ContainerUsuario>
         </ScrollView>
-                    { conversations.map( ( conversation  ) => {
+                    { conversations && conversations.map( ( conversation  ) => {
                           if ( conversation.sender === user.id )
                               return (
                                 <>
@@ -112,9 +114,12 @@ function Chat({route}) {
         <AreaMensagem>
             <ViewMensagem>
                 <Mensagem placeholder="Digite sua mensagem" onTouchStart={(e) => setInputHeigth(e.nativeEvent.pageY + e.nativeEvent.locationY)} onChange={handlerInput}/>
-                <Enviar onPress={() =>( image ? sendMessage(route.params , value , image ) : sendMessage(route.params , value )) ?  takeMessages() : Alert.alert("Erro","não foi possivel enviar a mensagem")  } >
-                    <Icone source={EnviarMsg}/>
+                <Enviar onPress={() => setImage(image)  } >
+                    <Icon name="add-a-photo" color="white" size={30}/>
                 </Enviar> 
+                <Enviar onPress={() =>( image ? sendMessage(route.params , value , image ) ?  takeMessages() : Alert.alert("Erro","não foi possivel enviar a mensagem") : sendMessage(route.params , value )) ?  takeMessages() : Alert.alert("Erro","não foi possivel enviar a mensagem")  } >
+                    <Icone source={EnviarMsg}/>
+                </Enviar>
             </ViewMensagem>
         </AreaMensagem>
 

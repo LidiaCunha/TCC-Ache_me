@@ -6,23 +6,22 @@ import { AuthProvider } from './src/contexts/auth';
 import { ConversationProvider } from './src/contexts/ConversationProvider';
 import { SocketProvider } from './src/contexts/socketProvider';
 import Modal from "./src/pages/chat/modalExcluir";
+import Card from "./src/pages/card_desaparecido/index";
 
 const App = () => { 
 
    return (
-     
-    <NavigationContainer>
-      <AuthProvider>
-      <Modal>
-        <SocketProvider>
-          <ConversationProvider>
-            <Routes/>
-          </ConversationProvider>
-        </SocketProvider>
-        </Modal>
-      </AuthProvider>
-    </NavigationContainer>
-    
+    <Card/>
+
+    // <NavigationContainer>
+    //   <AuthProvider>
+    //     <SocketProvider>
+    //       <ConversationProvider>
+    //         <Routes/>
+    //       </ConversationProvider>
+    //     </SocketProvider>
+    //   </AuthProvider>
+    // </NavigationContainer>
   );
 }
 

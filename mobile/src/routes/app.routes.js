@@ -1,6 +1,6 @@
 import React from 'react';
 import { Image } from 'react-native'
-import {createStackNavigator} from '@react-navigation/stack';
+// import {createStackNavigator} from '@react-navigation/stack';
 import { createAppContainer } from 'react-navigation';
 import { createDrawerNavigator } from 'react-navigation-drawer';
 
@@ -8,6 +8,8 @@ import { createDrawerNavigator } from 'react-navigation-drawer';
 import Dashboard from '../pages/Dashboard';
 import Chat from '../pages/chat';
 import Conversations from '../pages/conversations';
+import Search from '../pages/conversations/search';
+import {createStackNavigator} from '@react-navigation/stack';
 
 //código
 const AppStack = createStackNavigator();
@@ -17,8 +19,8 @@ const AppRoutes = () => {
     <AppStack.Navigator>
       <AppStack.Screen name="Dashboard" component={Dashboard}/>
       <AppStack.Screen name="conversations" component={Conversations} />
-      <AppStack.Screen name="chat" component={Chat} />
-      <AppStack.Screen name="chat" component={Chat} />
+      <AppStack.Screen name="search" component={Search} />
+      <AppStack.Screen name="chat" component={Chat} options={{headerShown:false}}/>
     </AppStack.Navigator>
   );
 };
