@@ -1,4 +1,5 @@
 const Message = require("../models/Message");
+const Users = require("../models/Users");
 const { Op } = require("sequelize");
 
 module.exports = {
@@ -35,6 +36,53 @@ module.exports = {
         });
 
         return messagesBetweenThey ? res.send(messagesBetweenThey) : res.status(401).send({"error":"não foram encontradas conversas entre eles"});
+    },
+    conversations : async( req , res ) => {
+        const { userId } = req;
+    
+        const conversationWithThisUser = await Message.findAll({where:{[Op.or]:[{sender:userId},{recipient:userId}]}})
+    
+        var contacts = [];
+        let contactsWithLastMessage = [];
+
+        conversationWithThisUser.forEach( conversation => {
+            if(contacts.length > 0){ 
+                contacts.map( contact => {     
+                    if(contact !== conversation.recipient && contact !== conversation.sender) {
+                        conversation.dataValues.sender === userId ? 
+                        contacts[contacts.length]=conversation.dataValues.recipient : 
+                        contacts[contacts.length]=conversation.dataValues.sender;
+                    }
+                })
+            }else{
+                conversation.dataValues.sender === userId ? 
+                contacts[contacts.length]=conversation.dataValues.recipient : 
+                contacts[contacts.length]=conversation.dataValues.sender;
+            }
+        });
+
+        for (id of contacts){
+            const contact = await Users.findOne({where:{id}});
+
+            const lastMessage = await Message.findOne({
+                order:[
+                    ['id','DESC']
+                ],
+                where:{
+                    [Op.and]:[
+                        {[Op.or]:[{sender:id},{recipient:id}]},
+                        {[Op.or]:[{sender:userId},{recipient:userId}]}
+                    ]
+                }
+            });
+
+            const contatct = await contact.dataValues;
+            const lastMsg = await lastMessage.dataValues;
+            
+            contactsWithLastMessage[contactsWithLastMessage.length] = {contact:contatct,lastMessage:lastMsg};
+        }
+ 
+        return contactsWithLastMessage ? res.send(contactsWithLastMessage) : res.status(401);
     },
     delete: async( req , res ) => {
         const { id } = req.params;

@@ -26,19 +26,22 @@ function Search({navigation}) {
     var [contacts, setContacts] = React.useState([]);
    
     const handlerInput = (e) => {
-        setValue(e.currentTarget.value)
+        setValue(e.nativeEvent.text)
     }
 
     const search = async( ) => {
         const res = await api.get(`/user/?name=${value}`);
-        
-        res ? setContacts(res.data) : setContacts([])
-    } 
+        res ? setContacts(res.data) : setContacts([]);
+    }
+
+    React.useEffect( ( )=> {
+      search();
+    },[value]); 
 
   return( 
     <Container>
-        <InputSearch value={value} onChange={handlerInput} onKeyPressCapture={search} />
-        <br /><br /><br /><br />
+        <InputSearch value={value} onChange={handlerInput}  />
+        
         <ContainerContatos>
           <ScrollView>
           {
