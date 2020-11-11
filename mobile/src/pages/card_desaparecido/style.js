@@ -4,33 +4,27 @@ export const Text = styled.Text`
     height: auto;
     width: auto;
     color: #fff;
-    font-size: 3.5vw;
-    line-height: 3vh;
+    font-size: 14px;
 `;
 
-export const Container = styled.View`
-    height: 100vh;
-    width: 100vw;
+export const Container = styled.ScrollView`
+    height: 100%;
+    width: 100%;
     background: #292929;
 `;
 
 export const ContainerImg = styled.Image`
     height: 200px;
-    width: 100vw;
+    width: 100%;
     background: chartreuse;
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
-    background-size: cover;
-    > source{
-        height: 100%;
-        width: 100%;
-        background-size: cover;
-    }
+    
 `;
 
 export const ContainerBasicInfo = styled.View`
     height: 50px;
-    width: 100vw;
+    width: 100%;
     background: #292929;
     display: flex;
     justify-content: center;
@@ -52,7 +46,8 @@ export const BasicInfos = styled.Text`
     align-content: center;
     padding-left: 5px;
     padding-right: 5px;
-    font-size: 2.8vw;
+    padding-top: 5px;
+    font-size: 10px;
     color: #fff;
     border-style: solid;
     border-color: rgba(255,255,255,.5);
@@ -68,7 +63,8 @@ export const BasicInfos2 = styled.Text`
     align-content: center;
     padding-left: 5px;
     padding-right: 5px;
-    font-size: 2.8vw;
+    padding-top: 5px;
+    font-size: 10px;
     color: #fff;
 `;
 
@@ -81,7 +77,7 @@ export const BasicInfosImg = styled.Image`
 export const ContainerText = styled.View`
     height: auto;
     min-height: 50px;
-    width: 100vw;
+    width: 100%;
     background: #292929;
     display: flex;
     justify-content: center;
@@ -94,91 +90,65 @@ export const ContainerText = styled.View`
 
 export const ContainerCharacter = styled.View`
     height: auto;
-    width: 100vw;
+    width: 100%;
     background: #292929;
     padding: 20px;
     overflow: hidden;
-`;
-
-export const CardCharacter = styled.Text`
-    height: auto;
-    width: 100%;    
 `;
 
 export const TitleCharacter = styled.Text`
     height: auto;
     width: auto;
     color: #fff;
-    font-size: 4vw;
+    font-size: 16px;
     margin-bottom: 10px;
     margin-top: 5px;
     text-transform: uppercase;
     font-weight: bold;
 `;
 
+export const CardCharacter = styled.View`
+    height: auto;
+    min-height: 10px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+   
+`;
+
 export const CardColor1 = styled.Text`
     height: auto;
-    min-height: 20px;
     width: auto;
-    padding-left: 15px;
-    padding-right: 15px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    border-radius: 5px;
-    font-size: 3.5vw;
+    padding: 10px;
     color: #fff;
-    float: left;
-    display: flex;
-    align-items: center;
-    margin-bottom: 15px;
-    margin-right: 15px;
-    text-transform: capitalize;
+    borderRadius: 5px;
+    margin: 5px;
     background: #E33336;
 `;
 
 export const CardColor2 = styled.Text`
     height: auto;
-    min-height: 20px;
     width: auto;
-    padding-left: 15px;
-    padding-right: 15px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    border-radius: 5px;
-    font-size: 3.5vw;
+    padding: 10px;
     color: #fff;
-    float: left;
-    display: flex;
-    align-items: center;
-    margin-bottom: 15px;
-    margin-right: 15px;
-    text-transform: capitalize;
+    borderRadius: 5px;
+    margin: 5px;
     background: #F53B3F;
 `;
 
 export const CardColor3 = styled.Text`
     height: auto;
-    min-height: 20px;
     width: auto;
-    padding-left: 15px;
-    padding-right: 15px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    border-radius: 5px;
-    font-size: 3.5vw;
+    padding: 10px;
     color: #fff;
-    float: left;
-    display: flex;
-    align-items: center;
-    margin-bottom: 15px;
-    margin-right: 15px;
-    text-transform: capitalize; 
+    borderRadius: 5px;
+    margin: 5px;
     background: #F95F62;
 `;
 
 export const Comment = styled.View`
     height: 50px;
-    width: 100vw;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -190,8 +160,7 @@ export const Comment = styled.View`
 export const PersonImage = styled.Image`
     height: 35px;
     width: 35px;
-    border-radius: 50%;
-    background: blue;
+    border-radius: 50px;
     margin-right: 15px;
 `;
 
@@ -203,40 +172,32 @@ export const Input = styled.TextInput`
     background: #fff;
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
-    outline: none;    
+    padding-left: 20px;
 `;
 
 export const BtnSend = styled.View`
     height: 35px;
     width: 35px;
-    border-radius: 50%;
+    border-radius: 50px;
     background: #fff;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
     padding-top: 3px;
     padding-left: 4px;
-
-
 `;
 
 export const BtnSendImg = styled.Image`
     height: 28px;
     width: 28px;
-    border-radius: 50%;
-    background: red;   
-    
-    >source{
-    height: 20px;
-    width: 20px;
-}
+    border-radius: 50px;
+    background: #E33336;
 `;
 
 export const Options = styled.View`
     height: 40px;
     width: 40px;
-    border-radius: 50%;
+    border-radius: 50px;
     background: orange;
-    position: fixed;
 `;
 
 
