@@ -5,6 +5,11 @@ export const Container = styled.View`
     justify-content: flex-start;
     background-color: #1b1b1b;
 `
+
+export const AreaForm = styled.ScrollView`
+    padding: 15px;
+`
+
 export const MenuVoltar = styled.TouchableOpacity`
     width: 100%;
     height: 5%;
@@ -96,6 +101,8 @@ export const Texto = styled.Text`
     font-size: 20px;
     font-weight: bold;
     letter-spacing: 1.4px;
+    text-align: center;
+    align-self: center;
 `
 
 export const TextoMenor = styled.Text`
@@ -103,14 +110,6 @@ export const TextoMenor = styled.Text`
     text-align: left;
     font-size: 16px;
     letter-spacing: 1.4px;
-`
-
-export const TextoNegrito = styled.Text`
-    color: white;
-    text-align: left;
-    font-size: 16px;
-    letter-spacing: 1.4px;
-    font-weight: bold;
 `
 
 export const AreaTexto = styled.View`
@@ -122,13 +121,16 @@ export const AreaTexto = styled.View`
 export const TextoEmail = styled.Text`
     color: #6E6F71;
     font-size: 17px;
-    text-align: left;
+    text-align: center;
+    letter-spacing: 1.5px;
 `
 
 export const TextoMerito = styled.Text`
-    color: #6E6F71;
+    color: #EF5245;
     font-size: 18px;
     font-weight: bold;
+    text-align: center;
+    letter-spacing: 1.5px;
 `
 
 export const AreaMerito = styled.View`
@@ -192,6 +194,21 @@ export const InputInfos = styled.TextInput`
     font-size: 16px;
     font-weight: bold;
     letter-spacing: 1.4px;
+    margin-bottom: 10px;
+`
+
+export const InputHorario = styled.TextInput`
+    border: solid 2px #6E6F71;
+    width: 30%;
+    height: 50px;
+    padding: 10px;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    letter-spacing: 1.4px;
+    margin-left: 15px;
+    margin-right: 15px;
 `
 
 export const ContainerInputs = styled.View`
@@ -199,11 +216,21 @@ export const ContainerInputs = styled.View`
     height: auto;
     display: flex;
     flex-direction: row;
+    justify-content: space-around;
+    margin-bottom: 10px;
 `
 
 export const AreaInputs = styled.View`
     width: 50%;
     height: auto;
+`
+
+export const AreaInputHorario = styled.View`
+    width: 50%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 `
 
 export const BotaoSalvar = styled.TouchableOpacity`
@@ -214,5 +241,5 @@ export const BotaoSalvar = styled.TouchableOpacity`
     align-self: flex-end;
     justify-content: center;
     margin: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 35px;
 `

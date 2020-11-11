@@ -6,7 +6,7 @@ import foto from '../../assets/oliver.png';
 import estrela from '../../assets/star.png';
 import foto2 from '../../assets/fotoExemplo.jpg';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import { AreaUsuario, TextoEmail, NomeUsuario, BotaoSalvar, AreaInputs, ContainerInputs, AreaImagemMembros, InputInfos, Border, IconeFotoMembros, ImagemMembros, AreaEstrelas, TextoMenor, TextoMerito, IconeFoto, FotoCamera, AreaImagem, AreaMerito, Container, ContainerUsuario, ImagemUsuario, MenuVoltar, Seta, Estrelas, Botao, TextoBotao, AreaTexto, AreaMembros, Texto } from "./styles";
+import { AreaUsuario, TextoEmail, TextoNegrito, BotaoSalvar, AreaInputs, ContainerInputs, AreaImagemMembros, InputInfos, Border, IconeFotoMembros, ImagemMembros, AreaEstrelas, TextoMenor, TextoMerito, IconeFoto, FotoCamera, AreaImagem, AreaMerito, Container, ContainerUsuario, ImagemUsuario, MenuVoltar, Seta, Estrelas, Botao, TextoBotao, AreaTexto, AreaMembros, Texto } from "./styles";
 import { ScrollView } from "react-native";
 
 const Usuario = () => {
@@ -38,7 +38,7 @@ const Usuario = () => {
                 <TextoEmail>oliver.sykes@gmail.com</TextoEmail>
             </AreaTexto>
             <Botao><TextoBotao>Criar Postagem</TextoBotao></Botao>
-            <AreaTexto><TextoMenor>MEMBROS INDICADOS</TextoMenor></AreaTexto>
+            <AreaTexto><TextoNegrito>MEMBROS INDICADOS</TextoNegrito></AreaTexto>
             <AreaMembros horizontal={true}>
                 <AreaImagemMembros>
                     <ImagemMembros source={foto2}></ImagemMembros>
@@ -72,7 +72,7 @@ const Usuario = () => {
                 </AreaImagemMembros>
             </AreaMembros>
             <Border/>
-            <AreaTexto><TextoMenor>INFORMAÇÕES PESSOAIS</TextoMenor></AreaTexto>
+            <AreaTexto><TextoNegrito>INFORMAÇÕES PESSOAIS</TextoNegrito></AreaTexto>
             <ScrollView>
                 <AreaTexto><TextoMenor>Nome</TextoMenor></AreaTexto>
                 <InputInfos></InputInfos>

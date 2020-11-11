@@ -1,0 +1,32 @@
+teste{
+    background-color: chartreuse;
+
+    height: 10;
+    width: 10;
+
+border-radius: 0px 10px;
+border-bottom-left-radius: 0;
+border-top-left-radius: 0;
+
+display: flex;
+justify-content: flex-start;
+align-items: center;
+align-content: center;
+
+padding-left: 10;
+padding-right: 10;
+
+line-height: 1.5em;
+flex-direction: row;
+
+outline: none;    
+    
+border-left: 2px solid #fff;
+border-right: none;
+border-style: solid;
+border-color: #fff;
+border-left-width: 2px;
+
+text-transform: capitalize;
+background-size: cover;
+}
