@@ -250,7 +250,7 @@ export const ContainerModal = styled.View`
 
 export const Excluir = styled.View`
     width: 90%;
-    height: 25%;
+    height: 35%;
     background-color: #0d0d0d;
     padding: 30px;
 `

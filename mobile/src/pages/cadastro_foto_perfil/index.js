@@ -37,7 +37,7 @@ const CadastroFotoPerfil = ({route, navigation}) => {
         console.log(result);
     
         if (!result.cancelled) {
-          setImage(result.uri);
+          setImage(result);
         }
       };
 
@@ -55,7 +55,15 @@ const CadastroFotoPerfil = ({route, navigation}) => {
     const register = async (e) => {
         e.preventDefault();
         
+        const nameImage = image.uri.split('/').pop();
         const data = new FormData();
+        const ext = nameImage.split(".").pop();
+
+        const imageToSend = {
+            uri: image.uri,
+            type:image.type+"/"+ext,
+            name : nameImage
+        }
 
         data.append("name", props.name);
         data.append("mail", props.mail);
@@ -69,7 +77,7 @@ const CadastroFotoPerfil = ({route, navigation}) => {
         data.append("city", props.city);
         data.append("state", props.state);
         data.append("complement", props.complement);
-        data.append("photo", image);
+        data.append("photo", imageToSend)
 
         try {
             const retorno = await api.post("/newUser", data, {
@@ -98,7 +106,7 @@ const CadastroFotoPerfil = ({route, navigation}) => {
                 <ContainerInfos>
                     <Texto>Escolha uma foto para o seu perfil.</Texto>
                     <ContainerFoto>
-                        <FotoImagem source={image ? { uri: image} : defaultImage}/>
+                        <FotoImagem source={image ? { uri: image.uri} : defaultImage}/>
                         <IconeFoto onPressOut={mudarTextoBotao} onPress={pickImage}>
                             <FotoCamera source={Camera}/>
                         </IconeFoto>

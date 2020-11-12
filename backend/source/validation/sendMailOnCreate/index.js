@@ -13,7 +13,7 @@ const sendMailOnCreate = async( req ,res ,next ) => {
         return res.status(401).send({erro:"Usuário já existente"});
 
     const {firebaseUrl} = req.file ? req.file : ''
-    let teste = false;
+    
     const subject = "Confirme seu email para se cadastrar no Ache.me";
     const text = "Clique no botão para se cadastrar no Ache.me, se não foi você que se cadastrou desconsidere este email.";
     const htmlContentMail = `

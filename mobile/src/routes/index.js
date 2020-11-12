@@ -9,7 +9,7 @@ import AppRoutes from './app.routes';
 const Routes = () => {
   const {signed, user} = useAuth();
   console.log(signed && user)
-  return signed ? <AppRoutes/> : <AuthRoutes/>;
+  return signed ? <AuthRoutes/> : <AppRoutes/>;
 };
 
 export default Routes;

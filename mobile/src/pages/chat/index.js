@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ScrollView } from 'react-native'
-import { Animated, Dimensions, Keyboard } from 'react-native';
+import { Animated, Dimensions, TouchableOpacity , Keyboard } from 'react-native';
 import moment from 'moment';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { api } from '../../services/api';
@@ -16,6 +16,7 @@ import { useSocket } from '../../contexts/socketProvider';
 import { Container, Seta, MenuVoltar, BotaoDescer, ContainerUsuario, ContainerChat, ContainerMensagens, ImagemUsuario, NomeUsuario, ViewMensagem, AreaMensagem, Mensagem, Enviar, Icone, Hora, Hora_Minha } from './styles';
 // COMPONENTS
 import MessageBubble from './message';
+import ModalExcluir from './modalExcluir';
 
 function Chat({ route }) {
   // CONTEXTS
@@ -27,6 +28,10 @@ function Chat({ route }) {
   
   // STATES
   const [image, setImage] = useState();
+
+  const [showDeleteMessage, setShowDeleteMessage ] = useState(false);
+
+  const [idToDelete, setIdToDelete ]= useState(0);
 
   const [currentyInputHeigth, setInputHeigth] = useState(0);
 
@@ -47,7 +52,6 @@ function Chat({ route }) {
     const keyboardHeight = e.endCoordinates.height;
 
     const gap = (height - keyboardHeight) - currentyInputHeigth;
-    console.log(gap)
     if (gap >= 0)
       return;
 
@@ -84,13 +88,20 @@ function Chat({ route }) {
     setConversations(data)
   }
 
+
   Keyboard.addListener('keyboardDidHide', handlerKeyboardDidHide)
   Keyboard.addListener('keyboardDidShow', handlerKeyboardDidShow)
   
   // EFFECTS
+  React.useEffect(()=>{
+    if (idToDelete !== 0){
+      setShowDeleteMessage(true);
+    }
+  },[idToDelete])
+
   React.useEffect(() => {
     takeMessages()
-  }, []);
+  }, [showDeleteMessage]);
 
   React.useEffect(() => {
     if (socket == null) return;
@@ -101,8 +112,8 @@ function Chat({ route }) {
   }, [socket, takeMessages]);
 
   return (
-
     <Container>
+    
       <MenuVoltar>
         <Seta source={seta} />
       </MenuVoltar>
@@ -110,17 +121,17 @@ function Chat({ route }) {
 
         <ScrollView>
           <ContainerUsuario>
-            <ImagemUsuario source={route.params.photo ? route.params.photo : defaultImage} />
+            <ImagemUsuario source={route.params.photo ? {uri:route.params.photo} : defaultImage} />
             <NomeUsuario>{route.params.name}</NomeUsuario>
           </ContainerUsuario>
         </ScrollView>
-        {conversations && conversations.map((conversation) => {
+        {conversations.map !== undefined && conversations.map((conversation) => {
           if (conversation.sender === user.id)
             return (
-              <>
+              <TouchableOpacity onPressOut={() => setIdToDelete(conversation.id)} >
                 <MessageBubble text={conversation.message} />
                 <Hora_Minha>{moment(conversation.createdAt).format('HH:mm')}</Hora_Minha>
-              </>
+              </TouchableOpacity>
             );
           else
             return (
@@ -141,7 +152,9 @@ function Chat({ route }) {
             </Enviar>
           </ViewMensagem>
         </AreaMensagem>
-
+        
+        { showDeleteMessage && <ModalExcluir idToDelete={idToDelete} setShowDeleteMessage={setShowDeleteMessage} /> }
+      
       </ContainerChat>
     </Container>
   );
