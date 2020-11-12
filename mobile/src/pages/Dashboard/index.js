@@ -13,6 +13,12 @@ const style = StyleSheet.create({
 const Dashboard = ({route, navigation}) => {
   const {user, logout} = useAuth();
 
+  var userinfo = user;
+
+  if (user.user) {
+    userinfo = user.user;
+  }
+
   function handlerLogout() {
     logout();
   }
@@ -21,11 +27,16 @@ const Dashboard = ({route, navigation}) => {
     navigation.navigate('conversations')
   }
 
+  function openProfile(props){
+    navigation.navigate('profile', props);
+  }
+
    return (
      <View style={style.container}>
-       <Text>{user?.name}</Text>
+       <Text>{userinfo.mail}</Text>
        <Button title="Logout" onPress = {handlerLogout} />
        <Button title="Chat" onPress={openConversations} />
+       <Button title="Profile" onPress={() => {openProfile(userinfo)}} />
      </View>
    ); 
 }

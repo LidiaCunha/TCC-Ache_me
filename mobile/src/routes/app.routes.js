@@ -1,5 +1,6 @@
 import React from 'react';
 import Dashboard from '../pages/Dashboard';
+import Profile from '../pages/usuario';
 import Chat from '../pages/chat';
 import Conversations from '../pages/conversations';
 import Search from '../pages/conversations/search';
@@ -11,6 +12,7 @@ const AppRoutes = () => {
   return (
     <AppStack.Navigator>
       <AppStack.Screen name="Dashboard" component={Dashboard}/>
+      <AppStack.Screen name="profile" component={Profile}/>
       <AppStack.Screen name="conversations" component={Conversations} />
       <AppStack.Screen name="search" component={Search} />
       <AppStack.Screen name="chat" component={Chat} options={{headerShown:false}}/>
