@@ -34,7 +34,7 @@ const MessageBubble = (props) => {
               width={moderateScale(15.5, 0.6)}
               height={moderateScale(17.5, 0.6)}
               TouchableOpacityBox="32.484 17.5 15.515 17.5"
-              enable-background="new 32.485 17.5 15.515 17.5"
+              enableBackground="new 32.485 17.5 15.515 17.5"
             >
               <Path
                   d={ props.mine 

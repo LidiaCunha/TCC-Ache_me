@@ -77,7 +77,7 @@ export const BasicInfos = styled.Text`
     padding-left: 5px;
     padding-right: 5px;
     padding-top: 5px;
-    font-size: 10px;
+    font-size: 12px;
     color: #fff;
     border-style: solid;
     border-color: rgba(255,255,255,.5);
@@ -94,7 +94,7 @@ export const BasicInfos2 = styled.Text`
     padding-left: 5px;
     padding-right: 5px;
     padding-top: 5px;
-    font-size: 10px;
+    font-size: 13px;
     color: #fff;
 `;
 
@@ -179,6 +179,7 @@ export const CardColor3 = styled.Text`
 export const Comment = styled.View`
     height: 70px;
     width: 100%;
+    background-color: red;
     display: flex;
     justify-content: center;
     flex-direction: row;
@@ -186,15 +187,15 @@ export const Comment = styled.View`
 `;
 
 export const PersonImage = styled.Image`
-    height: 35px;
-    width: 35px;
+    height: 40px;
+    width: 40px;
     border-radius: 50px;
-    margin-right: 15px;
+    margin-right: 10px;
 `;
 
 export const Input = styled.TextInput`
-    height: 35px;
-    width: 230px;
+    height: 48px;
+    width: 300px;
     border: none;
     border-radius: 40px;
     background: #fff;
@@ -204,26 +205,26 @@ export const Input = styled.TextInput`
 `;
 
 export const BtnSend = styled.View`
-    height: 35px;
+    height: 48px;
     width: 35px;
     border-radius: 50px;
     background: #fff;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
-    padding-top: 3px;
-    padding-left: 4px;
+    padding-top: 6px;
+    
 `;
 
 export const BtnSendImg = styled.Image`
-    height: 28px;
-    width: 28px;
+    height: 35px;
+    width: 35px;
     border-radius: 50px;
     background: #E33336;
 `;
 
 export const Options = styled.View`
-    height: 40px;
-    width: 40px;
+    height: 45px;
+    width: 45px;
     border-radius: 50px;
     background: orange;
 `;

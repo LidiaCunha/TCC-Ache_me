@@ -286,7 +286,9 @@ export const InputSearch = styled.TextInput`
     height:50px;
     background-color: #777;
     color: white;
+    border-radius:10px;
     display:flex;
-    position:absolute;
     padding:3%;
+    margin:2%;
+    z-index:999;
 `;
