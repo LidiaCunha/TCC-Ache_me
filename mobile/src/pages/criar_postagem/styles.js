@@ -65,7 +65,7 @@ export const ContainerSeletedImg = styled.View`
     justify-content: center;
     align-items: center;
     align-content: center;
-marginBottom: 20px;
+    marginBottom: 20px;
 `;
 
 export const ContainerImg = styled.View`
@@ -88,6 +88,20 @@ export const InputImg = styled.Image`
     width: 50px;
     borderRadius: 50px;
     background: #E33336;
+    marginTop: 10px;
+`;
+
+export const ImageSeleted = styled.Image`
+    height: auto;
+    min-height: 0px;
+    max-height: 180px;
+    width: auto;
+    min-width: 0%;
+    max-width: 97%;
+    borderRadius: 10px;
+    background: #E33336;
+    marginBottom: 8px;
+    marginTop: 5px;
 `;
 
 export const ContainerFilter = styled.View`
@@ -115,7 +129,7 @@ export const ContainerDateTime = styled.Text`
     width: 100%;
     display: flex;
     flex-direction: row;
-marginBottom: 20px;
+    marginBottom: 20px;
 `;
 
 export const ContainerDate = styled.View`
@@ -166,7 +180,6 @@ export const InputTime = styled.TextInput`
     borderRadius: 5px;
     padding-left: 9px;
     color: #fff;
-    
 `;
 
 export const InputGenre = styled.TextInput`
@@ -182,7 +195,7 @@ export const InputGenre = styled.TextInput`
 `;
 
 export const LoremTime = styled.Text`
-    width:100%;
+    width: auto;
     height: auto;
     font-size: 20px;
     font-family: arial;
@@ -194,7 +207,7 @@ export const LoremTime = styled.Text`
 `;
 
 export const ContainerBtnPublicar = styled.View`
-    height: auto;
+    height: 100px;
     width: 100%;
     paddingRight: 15px; 
     display: flex;
