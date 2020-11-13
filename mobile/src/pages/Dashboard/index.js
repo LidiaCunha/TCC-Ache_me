@@ -31,12 +31,17 @@ const Dashboard = ({route, navigation}) => {
     navigation.navigate('profile', props);
   }
 
+  function createPost(props){
+    navigation.navigate('create post', props);
+  }
+
    return (
      <View style={style.container}>
        <Text>{userinfo.mail}</Text>
-       <Button title="Logout" onPress = {handlerLogout} />
+       <Button title="Add Post" onPress = {() => {createPost(userinfo)}} />
        <Button title="Chat" onPress={openConversations} />
        <Button title="Profile" onPress={() => {openProfile(userinfo)}} />
+       <Button title="Logout" onPress = {handlerLogout} />
      </View>
    ); 
 }

@@ -40,7 +40,7 @@ const Usuario = ({reload, props}) => {
         const getUser = async () => {
     
             try {
-              const retorno = await api.get(`/user/${props.id}`);
+              const retorno = await api.get(`/user/${props?.id}`);
     
               const data = retorno.data;
 
@@ -85,7 +85,7 @@ const Usuario = ({reload, props}) => {
     const update = async () => {
 
     try {
-        const retorno = await api.put(`/editUsers/${props.id}`, user);
+        const retorno = await api.put(`/editUsers/${props?.id}`, user);
         
         if (retorno.status === 201) {
 
@@ -176,7 +176,7 @@ const Usuario = ({reload, props}) => {
     });
 
     try {
-        const retorno = await api.put(`/editPhoto/${props.id}`, data, {
+        const retorno = await api.put(`/editPhoto/${props?.id}`, data, {
         headers: {
             "Content-type": `multipart/form-data`,
         },
@@ -229,7 +229,7 @@ const Usuario = ({reload, props}) => {
             </ContainerUsuario>
             <AreaTexto>
                 <Texto>{username}</Texto>
-                <TextoEmail>{props.mail}</TextoEmail>
+                <TextoEmail>{props?.mail}</TextoEmail>
             </AreaTexto>
             <Botao><TextoBotao>Criar Postagem</TextoBotao></Botao>
                 <AreaTexto><TextoMenor>MEMBROS INDICADOS</TextoMenor></AreaTexto>

@@ -11,17 +11,15 @@ import Everson from "./src/pages/criar_postagem/problemas_de_saude";
 const App = () => { 
 
    return (
-    <Everson/>
-
-    // <NavigationContainer>
-    //   <AuthProvider>
-    //     <SocketProvider>
-    //       <ConversationProvider>
-    //         <Routes/>
-    //       </ConversationProvider>
-    //     </SocketProvider>
-    //   </AuthProvider>
-    // </NavigationContainer>
+    <NavigationContainer>
+      <AuthProvider>
+        <SocketProvider>
+          <ConversationProvider>
+            <Routes/>
+          </ConversationProvider>
+        </SocketProvider>
+      </AuthProvider>
+    </NavigationContainer>
   );
 }
 
