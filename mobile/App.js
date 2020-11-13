@@ -6,12 +6,12 @@ import { AuthProvider } from './src/contexts/auth';
 import { ConversationProvider } from './src/contexts/ConversationProvider';
 import { SocketProvider } from './src/contexts/socketProvider';
 import Modal from "./src/pages/chat/modalExcluir";
-import Card from "./src/pages/card_desaparecido/index";
+import Everson from "./src/pages/criar_postagem/index";
 
 const App = () => { 
 
    return (
-    <Card/>
+    <Everson/>
 
     // <NavigationContainer>
     //   <AuthProvider>

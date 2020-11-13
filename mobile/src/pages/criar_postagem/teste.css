@@ -9,11 +9,15 @@ teste{
     border-top-left-radius: 0;
 
     display: flex;
-    justify-content: flex-start;
+    justify-content: flex-end;
     align-items: center;
     align-content: center;
+    flex-direction: row;
 
-    overflow-x: scroll;
+    display: flex;
+    flex-direction: row;
+    
+    overflow-x: visible;
     
     padding-left: 10;
     padding-right: 10;
@@ -32,4 +36,10 @@ teste{
     text-transform: capitalize;
     background-size: cover;
     box-sizing: border-box;
+    
+    font-size: 10px;
+    font-family: arial;
+    font-weight: bold;
+    text-transform: uppercase;
+    
 }

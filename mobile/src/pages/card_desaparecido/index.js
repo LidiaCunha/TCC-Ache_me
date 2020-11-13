@@ -28,12 +28,22 @@ import {
     BtnSend,
     BtnSendImg,
     Options,
-} from './style';
+    ContainerUser,
+    ContainerUserImg,
+    ContainerUserName,
+} from './styles';
 
 const Card_desaparecido = () => {
     return(
         <>
             <Container>
+                
+                <ContainerUser>
+                    <ContainerUserImg/>
+                    <ContainerUserName> Everson Silva de Almeida </ContainerUserName>
+                </ContainerUser>
+        
+               
         
                 <ContainerImg source={Header}/>
 

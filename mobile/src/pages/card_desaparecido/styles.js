@@ -5,12 +5,42 @@ export const Text = styled.Text`
     width: auto;
     color: #fff;
     font-size: 14px;
+    
 `;
 
 export const Container = styled.ScrollView`
-    height: 100%;
+    height: auto;
     width: 100%;
     background: #292929;
+    paddingTop: 20px;
+`;
+
+export const ContainerUser = styled.View`
+    height: 75px;
+    width: 100%;
+    background: #303030;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    align-content: center;
+    flex-direction: row;
+    paddingLeft: 10px;
+    marginBottom: 10px;
+`;
+
+export const ContainerUserImg = styled.Image`
+    height: 45px;
+    width: 45px;
+    background: orange;
+    borderRadius: 50px;
+    marginRight: 10px;
+`;
+
+export const ContainerUserName = styled.Text`
+    height: auto;
+    width: auto;
+    color: #fff;
+    font-size: 16px;
 `;
 
 export const ContainerImg = styled.Image`
@@ -34,7 +64,7 @@ export const ContainerBasicInfo = styled.View`
     padding-top: 8px;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
-    margin-top: -20px;
+    marginTop: -20px;
 `;
 
 export const BasicInfos = styled.Text`
@@ -147,12 +177,10 @@ export const CardColor3 = styled.Text`
 `;
 
 export const Comment = styled.View`
-    height: 50px;
+    height: 70px;
     width: 100%;
     display: flex;
     justify-content: center;
-    align-items: center;
-    align-content: center;
     flex-direction: row;
     background: #292929;
 `;
