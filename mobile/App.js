@@ -6,7 +6,7 @@ import { AuthProvider } from './src/contexts/auth';
 import { ConversationProvider } from './src/contexts/ConversationProvider';
 import { SocketProvider } from './src/contexts/socketProvider';
 import Modal from "./src/pages/chat/modalExcluir";
-import Desaparecido from "./src/pages/criar_postagem/modalCaracteristicas";
+import Everson from "./src/pages/criar_postagem/problemas_de_saude";
 
 const App = () => { 
 
