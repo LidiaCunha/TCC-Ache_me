@@ -11,17 +11,15 @@ import Desaparecido from "./src/pages/criar_postagem/modalCaracteristicas";
 const App = () => { 
 
    return (
-    <Desaparecido/>
-
-    // <NavigationContainer>
-    //   <AuthProvider>
-    //     <SocketProvider>
-    //       <ConversationProvider>
-    //         <Routes/>
-    //       </ConversationProvider>
-    //     </SocketProvider>
-    //   </AuthProvider>
-    // </NavigationContainer>
+    <NavigationContainer>
+      <AuthProvider>
+        <SocketProvider>
+          <ConversationProvider>
+            <Routes/>
+          </ConversationProvider>
+        </SocketProvider>
+      </AuthProvider>
+    </NavigationContainer>
   );
 }
 

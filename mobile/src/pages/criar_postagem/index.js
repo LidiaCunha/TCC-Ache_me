@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 import {  
     Container,
@@ -10,6 +10,7 @@ import {
     ContainerSeletedImg,
     ContainerImg,
     InputImg,
+    ImageSeleted,
     ContainerFilter,
     Title,
     ContainerDateTime,
@@ -26,13 +27,22 @@ import {
     
 } from './styles';
 
-const Criar_postagem = () => {
+import addImage from '../../assets/image.png';
+
+const Criar_postagem = ({route}) => {
+
+    const props = route.params;
+
+    // const [photo, setPhoto] = useState();
+
+    // setPhoto(addImage);
+
     return(
         <>
             <Container>
                 <ContainerUser>
-                    <ContainerUserImg/>
-                    <ContainerUserName> Everson Silva de Almeida </ContainerUserName>
+                    <ContainerUserImg source={addImage}/>
+                    <ContainerUserName>{props.name}</ContainerUserName>
                 </ContainerUser>
 
                 <ContainerText>
@@ -42,6 +52,7 @@ const Criar_postagem = () => {
                 <ContainerSeletedImg>
                     <ContainerImg>
                         <InputImg/>
+                        <ImageSeleted/>
                     </ContainerImg>
                 </ContainerSeletedImg>
                 
