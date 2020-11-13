@@ -231,5 +231,3 @@ export const BtnPublicar = styled.View`
 `;
 
 
-
-
