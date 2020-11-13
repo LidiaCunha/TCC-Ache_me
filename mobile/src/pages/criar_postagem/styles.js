@@ -203,7 +203,7 @@ export const ContainerBtnPublicar = styled.View`
     align-content: flex-end;
 `;
 
-export const BtnPublicar = styled.View`
+export const BtnPublicar = styled.TouchableOpacity`
     height: 40px;
     width: 180px;
     background: #E33336;
@@ -217,6 +217,114 @@ export const BtnPublicar = styled.View`
     paddingTop: 5px;
 `;
 
+export const ContainerModal = styled.View`
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+`
 
+export const Modal = styled.View`
+    width: 90%;
+    min-height: 35%;
+    height: auto;
+    background-color: #0d0d0d;
+    padding: 30px;
+`
 
+export const TextoModal = styled.Text`
+    color: #EF5245;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    text-align: left;
+`
 
+export const ViewMensagem = styled.View`
+  height: 40px;
+  width: 100%;
+  flex-direction: row;
+  background-color: #EDEDED;
+  border-radius: 20px;
+  align-items: center;
+  padding-right: 8px;
+  margin-bottom: 25px;
+`
+
+export const ContainerIcone = styled.TouchableOpacity`
+    width: 35px;
+    height: 35px;
+    border-radius: 17.5px;
+    background-color: #EF5245;
+    padding: 2px;
+    align-items: center;
+    justify-content: center;
+    margin-left: 5px;
+    margin-right: 10px;
+`
+
+export const Icone = styled.Image`
+    width: 25px;
+    height: 25px;
+`
+
+export const TextoCaracteristicas = styled.Text`
+    color: #0d0d0dcc;
+    font-size: 15px;
+    letter-spacing: 1.4px;
+    font-weight: bold;
+`
+
+export const ContainerCaracteristicas = styled.ScrollView`
+    width: 100%;
+    min-height: 60px;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    padding: 8px;
+`
+
+export const Caracteristicas = styled.TouchableOpacity`
+    height: 40px;
+    margin-right: 10px;
+    align-self: center;
+    justify-content: center;
+    padding: 5px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-radius: 5px;
+    margin-bottom: 20px;
+`
+
+export const TextoCards = styled.Text`
+    color: #fff;
+    font-size: 15px;
+    letter-spacing: 1.4px;
+    font-weight: bold;
+    margin-right: 5px;
+`
+
+export const IconeExcluir = styled.TouchableOpacity`
+    width: 25px;
+    height: 25px;
+    border-radius: 12.5px;
+    background-color: #fff;
+    padding: 2px;
+    align-items: center;
+    justify-content: center;
+`
+
+export const Ok = styled.TouchableOpacity`
+    width: 30%;
+    height: 40px;
+    align-self: flex-end;
+    justify-content: center;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    background-color: #F95F62;
+`
