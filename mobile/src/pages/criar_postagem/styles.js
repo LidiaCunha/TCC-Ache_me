@@ -88,6 +88,20 @@ export const InputImg = styled.Image`
     width: 50px;
     border-radius: 50px;
     background: #E33336;
+    margin-top: 10px;
+`;
+
+export const ImageSeleted = styled.Image`
+    height: auto;
+    min-height: 0px;
+    max-height: 180px;
+    width: auto;
+    min-width: 0%;
+    max-width: 97%;
+    border-radius: 10px;
+    background: #E33336;
+    margin-bottom: 8px;
+    margin-top: 5px;
 `;
 
 export const ContainerFilter = styled.View`
@@ -166,7 +180,6 @@ export const InputTime = styled.TextInput`
     border-radius: 5px;
     padding-left: 9px;
     color: #fff;
-    
 `;
 
 export const InputGenre = styled.TextInput`
@@ -182,7 +195,7 @@ export const InputGenre = styled.TextInput`
 `;
 
 export const LoremTime = styled.Text`
-    width:100%;
+    width: auto;
     height: auto;
     font-size: 20px;
     font-family: arial;
@@ -194,7 +207,7 @@ export const LoremTime = styled.Text`
 `;
 
 export const ContainerBtnPublicar = styled.View`
-    height: auto;
+    height: 100px;
     width: 100%;
     padding-right: 15px; 
     display: flex;

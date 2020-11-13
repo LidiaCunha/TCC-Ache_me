@@ -10,6 +10,7 @@ import {
     ContainerSeletedImg,
     ContainerImg,
     InputImg,
+    ImageSeleted,
     ContainerFilter,
     Title,
     ContainerDateTime,
@@ -42,6 +43,7 @@ const Criar_postagem = () => {
                 <ContainerSeletedImg>
                     <ContainerImg>
                         <InputImg/>
+                        <ImageSeleted/>
                     </ContainerImg>
                 </ContainerSeletedImg>
                 
