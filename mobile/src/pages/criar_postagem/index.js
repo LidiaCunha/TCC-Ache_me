@@ -28,14 +28,38 @@ import {
 } from './styles';
 
 import addImage from '../../assets/image.png';
+import {api} from '../../services/api';
 
-const Criar_postagem = ({route}) => {
-
-    const props = route.params;
+const Criar_postagem = (props) => {
 
     // const [photo, setPhoto] = useState();
 
     // setPhoto(addImage);
+
+    const [ post , setPost ] = useState({});
+
+    const createPost = async() => {
+
+        const data = new FormData();
+
+        data.append("name", post.name);
+        data.append("name_of_genre", post.name_of_genre);
+        data.append("borned_at", post.borned_at);
+        data.append("description", post.description);
+        data.append("photo", post.photo);
+
+        const createdPost = await api.post ( '/post' , data);
+    
+        setPost(createdPost.data);
+    }
+
+    const addFeature = async( feature ) => {
+        await api.post( `/features/post/${post.id}` , feature );
+    }
+
+    const addHealthProbelm = async( healthProblem ) => {
+        await api.post( `/healthProblems/post/${post.id}` , healthProblem );
+    }
 
     return(
         <>

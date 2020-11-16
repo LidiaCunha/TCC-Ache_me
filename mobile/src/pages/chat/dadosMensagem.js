@@ -1,18 +1,19 @@
 import React from "react";
 import { ContainerDadosMensagem, MenuVoltarDados, Seta, Data, Texto } from './styles';
 import seta from '../../assets/setaVoltar.png';
+import moment from 'moment';
 
-const DadosMensagem = () => {
+const DadosMensagem = ({time}) => {
     return(
         <ContainerDadosMensagem>
             <MenuVoltarDados>
                 <Seta source={seta}/>
             </MenuVoltarDados>
             <Texto>Data da mensagem</Texto>
-            <Data>28 de outubro de 2020</Data>
+            <Data>{moment(time).format('LLLL')}</Data>
             <Border/>
             <Texto>Hora da mensagem</Texto>
-            <Data>às 08:05</Data>
+            <Data>{moment(time).format('HH:mm:ss')}</Data>
         </ContainerDadosMensagem>
     )
 }

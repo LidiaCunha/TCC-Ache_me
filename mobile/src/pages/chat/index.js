@@ -15,6 +15,7 @@ import { useSocket } from '../../contexts/socketProvider';
 // STYLES
 import { Container, Seta, MenuVoltar, BotaoDescer, ContainerUsuario, ContainerChat, ContainerMensagens, ImagemUsuario, NomeUsuario, ViewMensagem, AreaMensagem, Mensagem, Enviar, Icone, Hora, Hora_Minha } from './styles';
 // COMPONENTS
+import AboutMessage from './dadosMensagem';
 import MessageBubble from './message';
 import ModalExcluir from './modalExcluir';
 
@@ -32,6 +33,8 @@ function Chat({ route }) {
   const [showDeleteMessage, setShowDeleteMessage ] = useState(false);
 
   const [idToDelete, setIdToDelete ]= useState(0);
+
+  const [ AboutMessageTime , showAboutMessageTime ] = useState(0);
 
   const [currentyInputHeigth, setInputHeigth] = useState(0);
 
@@ -128,7 +131,7 @@ function Chat({ route }) {
         {conversations.map !== undefined && conversations.map((conversation) => {
           if (conversation.sender === user.id)
             return (
-              <TouchableOpacity onPressOut={() => setIdToDelete(conversation.id)} >
+              <TouchableOpacity onLongPress={() => setIdToDelete(conversation.id)} onPress={ () => showAboutMessageTime(conversation.createdAt) }>
                 <MessageBubble text={conversation.message} />
                 <Hora_Minha>{moment(conversation.createdAt).format('HH:mm')}</Hora_Minha>
               </TouchableOpacity>
@@ -154,7 +157,8 @@ function Chat({ route }) {
         </AreaMensagem>
         
         { showDeleteMessage && <ModalExcluir idToDelete={idToDelete} setShowDeleteMessage={setShowDeleteMessage} /> }
-      
+        { AboutMessageTime !== 0 && <AboutMessage time={AboutMessageTime} /> }
+        
       </ContainerChat>
     </Container>
   );
