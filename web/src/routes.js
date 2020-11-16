@@ -6,6 +6,7 @@ import Sobre from "./pages/sobre";
 import AreaInformativa from "./pages/Area_Informativa";
 // import Home from "./pages/home";
 import UserInfo from "./pages/user_info";
+import Post from "./pages/post";
 import { isSignedIn } from './services/security';
 
 const PrivateRoute = ({ children, location, ...rest }) => {
@@ -31,6 +32,9 @@ function Routes() {
             <Route path="/area-informativa">
                 <AreaInformativa/>
             </Route>
+            <PrivateRoute path="/post">
+                <Post/>
+            </PrivateRoute>
             <PrivateRoute path="/user_info">
                 <UserInfo/>
             </PrivateRoute>

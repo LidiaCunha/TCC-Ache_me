@@ -2,6 +2,8 @@ import React from 'react';
 import {ScrollView, StyleSheet, Animated, TouchableOpacity} from 'react-native';
 import Swipeable from 'react-native-gesture-handler/Swipeable';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import {api} from '../../services/api';
+import moment from 'moment';
 // IMAGES
 import menu from '../../assets/menu.png';
 import lupa from '../../assets/lupa.png';
@@ -47,29 +49,29 @@ function ContactItem({ contact, navigation }) {
 
   return (
     <Swipeable renderRightActions={(progress, dragX) => <RightActions progress={progress} dragX={dragX} />} >
-      <ContainerMsgs onPress={() => openChat(contact)}>
-        <ImagemUsuario source={ contact.photo ? { uri: contact.photo } : {defaultImage} } />
+      <ContainerMsgs onPress={() => openChat(contact.contact)}>
+        <ImagemUsuario source={ contact.contact.photo ? { uri: contact.contact.photo } : {defaultImage} } />
         <AreaTextos>
-          <TextoNome>{contact.name}</TextoNome>
-          <TextoMsg numberOfLines={2}> msgs com {contact.mail} </TextoMsg>
+          <TextoNome>{contact.contact.name}</TextoNome>
+          <TextoMsg numberOfLines={2}>{contact.lastMessage.message}</TextoMsg>
         </AreaTextos>
         <AreaDetalhes>
-          <HoraMsg>9:22</HoraMsg>
-          <NumeroMsgs><Numero>1</Numero></NumeroMsgs>
+          <HoraMsg>{ moment(contact.lastMessage.createdAt).format("HH:mm")}</HoraMsg>
+          {/* <NumeroMsgs><Numero>1</Numero></NumeroMsgs> */}
         </AreaDetalhes>
       </ContainerMsgs>
     </Swipeable>)
 }
 
-function Menu() {
+function Menu({navigation}) {
   const openSearch = () => {
-    navigation.navigate('search')
+    navigation.navigate('search');
   }
 
   return (
     <MenuContatos>
       <MenuImagem source={menu} />
-      <MenuPesquisar onPress={() => openSearch()}>
+      <MenuPesquisar onPress={openSearch}>
         <Pesquisa source={lupa} />
       </MenuPesquisar>
     </MenuContatos>)
@@ -77,48 +79,19 @@ function Menu() {
 
 function Conversations({ navigation }) {
 
-  const contacts = [
-    {
-      id: 1,
-      name: 'John connor',
-      mail: 'john@babel.com',
-      photo: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse2.mm.bing.net%2Fth%3Fid%3DOIP.fhKli8tQfr69is8htp8mYQHaEK%26pid%3DApi&f=1'
-    },
-    {
-      id: 2,
-      name: 'Joana Sono',
-      mail: 'joana@babel.com',
-      photo: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.fhKli8tQfr69is8htp8mYQHaEK%26pid%3DApi&f=1'
-    },
-    {
-      id: 3,
-      name: 'Joao corno',
-      mail: 'joao@babel.com',
-      photo: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse2.mm.bing.net%2Fth%3Fid%3DOIP.t9E7ZbZ0tkOr09MtPJUP4AHaHa%26pid%3DApi&f=1'
-    },
-    {
-      id: 4,
-      name: 'John connor',
-      mail: 'john@babel.com',
-      photo: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse2.mm.bing.net%2Fth%3Fid%3DOIP.fhKli8tQfr69is8htp8mYQHaEK%26pid%3DApi&f=1'
-    },
-    {
-      id: 5,
-      name: 'Joana Sono',
-      mail: 'joana@babel.com',
-      photo: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.fhKli8tQfr69is8htp8mYQHaEK%26pid%3DApi&f=1'
-    },
-    {
-      id: 6,
-      name: 'Joao corno',
-      mail: 'joao@babel.com',
-      photo: 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse2.mm.bing.net%2Fth%3Fid%3DOIP.t9E7ZbZ0tkOr09MtPJUP4AHaHa%26pid%3DApi&f=1'
-    },
-  ]
+
+  const [contacts,setContacts] = React.useState([]);
+  
+  React.useEffect( ( ) => {
+    (async() => {
+      const contactsAndMessages = await api.get('/messages/conversations');
+      setContacts(contactsAndMessages.data);  
+    })();
+  },[]);
 
   return (
     <Container>
-      <Menu />
+      <Menu navigation={navigation} />
       <ContainerConversas>
         <Texto>Suas conversas</Texto>
       </ContainerConversas>

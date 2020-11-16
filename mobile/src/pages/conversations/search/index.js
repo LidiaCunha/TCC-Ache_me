@@ -1,8 +1,9 @@
 import React from 'react';
 import {api} from '../../../services/api';
 import {ScrollView} from 'react-native';
-import { ImagemUsuario, TextoNome, AreaTextos, TextoMsg, ContainerMsgs, Container, InputSearch, ContainerContatos } from '../style';
+import { ImagemUsuario, TextoNome, AreaTextos, BotaoPesquisa, TextoMsg, ContainerMsgs, Container, InputSearch, ContainerContatos, Pesquisa, ViewInput } from '../style';
 import defaultImage from '../../../assets/user.png';
+import lupa from '../../../assets/lupa.png';
 
 function ContactItem({contact, navigation}){
     
@@ -26,19 +27,27 @@ function Search({navigation}) {
     var [contacts, setContacts] = React.useState([]);
    
     const handlerInput = (e) => {
-        setValue(e.currentTarget.value)
+        setValue(e.nativeEvent.text)
     }
 
     const search = async( ) => {
         const res = await api.get(`/user/?name=${value}`);
-        
-        res ? setContacts(res.data) : setContacts([])
-    } 
+        res ? setContacts(res.data) : setContacts([]);
+    }
+
+    React.useEffect( ( )=> {
+      search();
+    },[value]); 
 
   return( 
     <Container>
-        <InputSearch value={value} onChange={handlerInput} onKeyPressCapture={search} />
-        {/* <br /><br /><br /><br /> */}
+        <ViewInput>
+          <BotaoPesquisa>
+            <Pesquisa source={lupa}/>
+          </BotaoPesquisa>
+          <InputSearch value={value} onChange={handlerInput}/>
+        </ViewInput>
+        
         <ContainerContatos>
           <ScrollView>
           {

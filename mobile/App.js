@@ -11,17 +11,15 @@ import Conversation from "./src/pages/form_encontrado/index";
 const App = () => { 
 
    return (
-     <Conversation/>
-
-    // <NavigationContainer>
-    //   <AuthProvider>
-    //     <SocketProvider>
-    //      <ConversationProvider>
-    //         <Routes/>
-    //       </ConversationProvider>
-    //     </SocketProvider>
-    //   </AuthProvider>
-    // </NavigationContainer>
+    <NavigationContainer>
+      <AuthProvider>
+        <SocketProvider>
+          <ConversationProvider>
+            <Routes/>
+          </ConversationProvider>
+        </SocketProvider>
+      </AuthProvider>
+    </NavigationContainer>
   );
 }
 

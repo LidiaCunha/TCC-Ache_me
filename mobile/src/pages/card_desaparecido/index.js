@@ -5,6 +5,7 @@ import Map from '../../assets/Card_desaparecido/map.png';
 import Genre from '../../assets/Card_desaparecido/genre.png';
 import Header from '../../assets/Card_desaparecido/naruto.jpg';
 import Enviar from '../../assets/Card_desaparecido/enviar-correio.png';
+import Photo from '../../assets/kakashi.jpg';
 
 import {  
     Container,
@@ -26,12 +27,24 @@ import {
     Input,
     BtnSend,
     BtnSendImg,
-} from './style';
+    Options,
+    ContainerUser,
+    ContainerUserImg,
+    ContainerUserName,
+} from './styles';
 
 const Card_desaparecido = () => {
     return(
         <>
             <Container>
+                
+                <ContainerUser>
+                    <ContainerUserImg/>
+                    <ContainerUserName> Everson Silva de Almeida </ContainerUserName>
+                </ContainerUser>
+        
+               
+        
                 <ContainerImg source={Header}/>
 
                 <ContainerBasicInfo>
@@ -58,6 +71,8 @@ const Card_desaparecido = () => {
                         <CardColor1>Cabelo Castanho</CardColor1>
                         <CardColor2>Baixo</CardColor2>
                         <CardColor3>magra</CardColor3>
+                        <CardColor1>ErroErroErro</CardColor1>
+
                     </CardCharacter>
 
                     <TitleCharacter>Problema De saúde</TitleCharacter>
@@ -69,12 +84,13 @@ const Card_desaparecido = () => {
                 </ContainerCharacter>
         
                 <Comment> 
-                    <PersonImage/>
+                    <PersonImage source={Photo}/>
                     <Input/>
                     <BtnSend> 
                         <BtnSendImg source={Enviar}/> 
                     </BtnSend>    
                 </Comment> 
+        
             </Container>
         </>
     );
