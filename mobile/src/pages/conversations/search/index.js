@@ -38,7 +38,7 @@ function Search({navigation}) {
   return( 
     <Container>
         <InputSearch value={value} onChange={handlerInput} onKeyPressCapture={search} />
-        <br /><br /><br /><br />
+        {/* <br /><br /><br /><br /> */}
         <ContainerContatos>
           <ScrollView>
           {
