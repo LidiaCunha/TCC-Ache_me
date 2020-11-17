@@ -53,7 +53,7 @@ const Criar_postagem = ({route}) => {
         setPost({ ...post , description : e});
     }
 
-    const [ post , setPost ] = useState({});
+    //const [ post , setPost ] = useState({});
 
     const createPost = async() => {
 

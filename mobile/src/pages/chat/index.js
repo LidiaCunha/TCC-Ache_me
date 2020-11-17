@@ -133,7 +133,14 @@ function Chat({ route }) {
   React.useEffect(() => {
     if (socket == null) return;
 
-    socket.on('recebe-msg', takeMessages);
+    socket.on('recebe-msg', (some)=>{
+      
+      setImage(some.image)
+      setTimeout(()=>{
+        takeMessages()
+      },700)
+      
+    });
 
     return () => socket.off('recebe-msg');
   }, [socket, takeMessages]);
@@ -157,6 +164,7 @@ function Chat({ route }) {
             return (
               <TouchableOpacity onLongPress={() => setIdToDelete(conversation.id)} onPress={ () => showAboutMessageTime(conversation.createdAt) }>
                 <MessageBubble text={conversation.message} image={ conversation.image ? conversation.image : null }/>
+                
                 <Hora_Minha>{moment(conversation.createdAt).format('HH:mm')}</Hora_Minha>
               </TouchableOpacity>
             );
@@ -168,13 +176,25 @@ function Chat({ route }) {
               </>
             );
         })}
+        { image && <ImagemUsuario source={ { uri : image.uri } } />}
         <AreaMensagem>
           <ViewMensagem>
             <Mensagem placeholder="Digite sua mensagem" onTouchStart={(e) => setInputHeigth(e.nativeEvent.pageY + e.nativeEvent.locationY)} onChange={handlerInput}  value={value.msg} />
             <Enviar onPress={pickImage} >
               <Icon name="add-a-photo" color="white" size={30} />
             </Enviar>
-            <Enviar onPress={() => { sendMessage( route.params , value , image ) && Keyboard.dismiss(); setValue({msg:""}); takeMessages()  }}>
+            <Enviar onPress={() => { 
+                      ( image ? 
+                        sendMessage( route.params , value , image ) : 
+                        sendMessage( route.params , value)
+                      ) && 
+                      Keyboard.dismiss(); 
+                      setValue({msg:""});
+                      setTimeout(()=>{
+                        takeMessages()
+                      },700)  
+                    }}
+            >
               <Icone source={EnviarMsg} />
             </Enviar>
           </ViewMensagem>
