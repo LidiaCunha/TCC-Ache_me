@@ -1,14 +1,20 @@
 import styled from "styled-components/native";
 
+export const Text = styled.Text`
+    height: auto;
+    width: 80%;
+    color: #fff;
+    font-size: 14px; 
+`;
+
 export const Container = styled.ScrollView`
     height: auto;
     width: 100%;
     background: #292929;
-    padding-top: 20px;
 `;
 
 export const ContainerUser = styled.View`
-    height: 75px;
+    height: 80px;
     width: 100%;
     background: #303030;
     display: flex;
@@ -16,23 +22,31 @@ export const ContainerUser = styled.View`
     align-items: center;
     align-content: center;
     flex-direction: row;
-    padding-left: 10px;
+    padding: 10px;
     margin-bottom: 20px;
 `;
 
-export const ContainerUserImg = styled.Image`
-    height: 45px;
-    width: 45px;
-    background: orange;
+export const ContainerUserImg = styled.View`
+    height: 60px;
+    width: 60px;
+    background: #bbbbbb;
     border-radius: 50px;
-    margin-right: 10px;
+    margin-left: 20px;
+    padding: 2px;
+`;
+
+export const UserPhoto = styled.Image`
+    height: 100%;
+    width: 100%;
+    border-radius: 30px;
 `;
 
 export const ContainerUserName = styled.Text`
     height: auto;
     width: auto;
     color: #fff;
-    font-size: 16px;
+    margin-left: 20px;
+    font-size: 20px;
 `;
 
 export const ContainerText = styled.View`
@@ -41,21 +55,22 @@ export const ContainerText = styled.View`
     width: 100%;
     background: #292929;
     display: flex;
-    justify-content: center;
     align-items: center;
-    align-content: center;
-    padding-left: 20px;
-    padding-right: 20px;
     overflow: hidden;
     margin-bottom: 20px;
-    padding-left: 30px;
 `;
 
-export const Text = styled.Text`
+export const Description = styled.TextInput`
     height: auto;
-    width: auto;
+    width: 80%;
+    margin-top: 10px;
+    padding: 5px;
     color: #fff;
-    font-size: 14px;
+    border-radius: 5px;
+    border: solid rgba(255,255,255,.5) 2px;
+    font-size: 20px; 
+    line-height: 20px;  
+
 `;
 
 export const ContainerSeletedImg = styled.View`
@@ -83,12 +98,18 @@ export const ContainerImg = styled.View`
     align-content: center;
 `;
 
-export const InputImg = styled.Image`
+export const InputImg = styled.View`
     height: 50px;
     width: 50px;
     border-radius: 50px;
+    padding: 10px;
     background: #E33336;
     margin-top: 10px;
+`;
+
+export const AddPostImage = styled.Image`
+    height: 100%;
+    width: 100%;
 `;
 
 export const ImageSeleted = styled.Image`
