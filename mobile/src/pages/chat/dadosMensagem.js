@@ -1,5 +1,5 @@
 import React from "react";
-import { ContainerDadosMensagem, MenuVoltarDados, Seta, Data, Texto } from './styles';
+import { ContainerDadosMensagem, MenuVoltarDados, Seta, Data, Texto, Border } from './styles';
 import seta from '../../assets/setaVoltar.png';
 import moment from 'moment';
 
