@@ -1,8 +1,9 @@
 import React from 'react';
 import {api} from '../../../services/api';
 import {ScrollView} from 'react-native';
-import { ImagemUsuario, TextoNome, AreaTextos, TextoMsg, ContainerMsgs, Container, InputSearch, ContainerContatos } from '../style';
+import { ImagemUsuario, TextoNome, AreaTextos, BotaoPesquisa, TextoMsg, ContainerMsgs, Container, InputSearch, ContainerContatos, Pesquisa, ViewInput } from '../style';
 import defaultImage from '../../../assets/user.png';
+import lupa from '../../../assets/lupa.png';
 
 function ContactItem({contact, navigation}){
     
@@ -40,7 +41,12 @@ function Search({navigation}) {
 
   return( 
     <Container>
-        <InputSearch value={value} onChange={handlerInput}  />
+        <ViewInput>
+          <BotaoPesquisa>
+            <Pesquisa source={lupa}/>
+          </BotaoPesquisa>
+          <InputSearch value={value} onChange={handlerInput}/>
+        </ViewInput>
         
         <ContainerContatos>
           <ScrollView>

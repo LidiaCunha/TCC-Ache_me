@@ -9,7 +9,7 @@ teste{
     border-top-left-radius: 0;
 
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: center;
     align-content: center;
     flex-direction: row;
@@ -38,8 +38,11 @@ teste{
     box-sizing: border-box;
     
     font-size: 10px;
-    font-family: arial;
+    font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
     text-transform: uppercase;
+    
+    word-spacing: 1px;
+    
     
 }

@@ -216,7 +216,7 @@ const UserInfo = () => {
         <Home>
           <img src={home} alt="return home"/>
         </Home>
-      </Header>      
+      </Header>
       <Main>
         <Section>
           <BasicInfos>

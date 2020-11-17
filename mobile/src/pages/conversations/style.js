@@ -281,14 +281,33 @@ export const Item = styled.Text`
     background-color: #000;
     display:flex;
 `;
+
+export const ViewInput = styled.View`
+    width: 100%;
+    height: 50px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    display: flex;
+    flex-direction: row;
+    border-radius: 16px;
+    background-color: #bababa;
+    padding: 5px;
+`
+
 export const InputSearch = styled.TextInput`
-    width: 95%;
-    height:50px;
-    background-color: #777;
+    width: 90%;
     color: white;
-    border-radius:10px;
-    display:flex;
-    padding:3%;
-    margin:2%;
-    z-index:999;
+    font-size: 20px;
+    background-color: #bababa;
+    border-radius: 8px;
 `;
+
+export const BotaoPesquisa = styled.View`
+    width: 10%;
+    background-color: #bababa;
+    border-radius: 8px;
+    padding: 5px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+`
