@@ -208,64 +208,64 @@ const Usuario = ({reload, props}) => {
     return(
         <Container>
             <ScrollView>
-            <ContainerUsuario>
-                <AreaUsuario>
-                    <AreaImagem>
-                        <ImagemUsuario>
-                            <Photo source={newImage ? {uri: newImage.uri} : defaultImage}/>
-                        </ImagemUsuario>
-                        <IconeFoto onPress={pickImage}>
-                            <FotoCamera source={camera}/>
-                        </IconeFoto>
-                    </AreaImagem>
-                </AreaUsuario>
-                <AreaMerito>
-                    <AreaEstrelas>
-                        <Estrelas source={estrela}></Estrelas>
-                        <Estrelas source={estrela}></Estrelas>
-                        <Estrelas source={estrela}></Estrelas>
-                    </AreaEstrelas>
-                    <TextoMerito>Seu mérito</TextoMerito>
-                </AreaMerito>
-            </ContainerUsuario>
-            <AreaTexto>
-                <Texto>{username}</Texto>
-                <TextoEmail>{props?.mail}</TextoEmail>
-            </AreaTexto>
-            <Botao><TextoBotao>Criar Postagem</TextoBotao></Botao>
-                <AreaTexto><TextoMenor>MEMBROS INDICADOS</TextoMenor></AreaTexto>
-                <AreaMembros horizontal={true}>
-                <AreaImagemMembros>
-                    <ImagemMembros source={foto2}></ImagemMembros>
-                    <IconeFotoMembros>
-                        <Icon name="add" size={25} color="white"/>
-                    </IconeFotoMembros>
-                </AreaImagemMembros>
-                <AreaImagemMembros>
-                    <ImagemMembros source={foto2}></ImagemMembros>
-                    <IconeFotoMembros>
-                        <Icon name="add" size={25} color="white"/>
-                    </IconeFotoMembros>
-                </AreaImagemMembros>
-                <AreaImagemMembros>
-                    <ImagemMembros source={foto2}></ImagemMembros>
-                    <IconeFotoMembros>
-                        <Icon name="add" size={25} color="white"/>
-                    </IconeFotoMembros>
-                </AreaImagemMembros>
-                <AreaImagemMembros>
-                    <ImagemMembros source={foto2}></ImagemMembros>
-                    <IconeFotoMembros>
-                        <Icon name="add" size={25} color="white"/>
-                    </IconeFotoMembros>
-                </AreaImagemMembros>
-                <AreaImagemMembros>
-                    <ImagemMembros source={foto2}></ImagemMembros>
-                    <IconeFotoMembros>
-                        <Icon name="add" size={25} color="white"/>
-                    </IconeFotoMembros>
-                </AreaImagemMembros>
-            </AreaMembros>
+                <ContainerUsuario>
+                    <AreaUsuario>
+                        <AreaImagem>
+                            <ImagemUsuario>
+                                <Photo source={newImage ? {uri: newImage.uri} : image}/>
+                            </ImagemUsuario>
+                            <IconeFoto onPress={pickImage}>
+                                <FotoCamera source={camera}/>
+                            </IconeFoto>
+                        </AreaImagem>
+                    </AreaUsuario>
+                    <AreaMerito>
+                        <AreaEstrelas>
+                            <Estrelas source={estrela}></Estrelas>
+                            <Estrelas source={estrela}></Estrelas>
+                            <Estrelas source={estrela}></Estrelas>
+                        </AreaEstrelas>
+                        <TextoMerito>Seu mérito</TextoMerito>
+                    </AreaMerito>
+                </ContainerUsuario>
+                <AreaTexto>
+                    <Texto>{username}</Texto>
+                    <TextoEmail>{props?.mail}</TextoEmail>
+                </AreaTexto>
+                <Botao><TextoBotao>Criar Postagem</TextoBotao></Botao>
+                    <AreaTexto><TextoMenor>MEMBROS INDICADOS</TextoMenor></AreaTexto>
+                    <AreaMembros horizontal={true}>
+                    <AreaImagemMembros>
+                        <ImagemMembros source={foto2}></ImagemMembros>
+                        <IconeFotoMembros>
+                            <Icon name="add" size={25} color="white"/>
+                        </IconeFotoMembros>
+                    </AreaImagemMembros>
+                    <AreaImagemMembros>
+                        <ImagemMembros source={foto2}></ImagemMembros>
+                        <IconeFotoMembros>
+                            <Icon name="add" size={25} color="white"/>
+                        </IconeFotoMembros>
+                    </AreaImagemMembros>
+                    <AreaImagemMembros>
+                        <ImagemMembros source={foto2}></ImagemMembros>
+                        <IconeFotoMembros>
+                            <Icon name="add" size={25} color="white"/>
+                        </IconeFotoMembros>
+                    </AreaImagemMembros>
+                    <AreaImagemMembros>
+                        <ImagemMembros source={foto2}></ImagemMembros>
+                        <IconeFotoMembros>
+                            <Icon name="add" size={25} color="white"/>
+                        </IconeFotoMembros>
+                    </AreaImagemMembros>
+                    <AreaImagemMembros>
+                        <ImagemMembros source={foto2}></ImagemMembros>
+                        <IconeFotoMembros>
+                            <Icon name="add" size={25} color="white"/>
+                        </IconeFotoMembros>
+                    </AreaImagemMembros>
+                </AreaMembros>
                 <Border/>
                 <AreaTexto><TextoMenor>INFORMAÇÕES PESSOAIS</TextoMenor></AreaTexto>
                 <AreaTexto><TextoMenor>Nome</TextoMenor></AreaTexto>

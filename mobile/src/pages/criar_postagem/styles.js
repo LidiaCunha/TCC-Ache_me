@@ -7,16 +7,16 @@ export const Text = styled.Text`
     font-size: 14px; 
 `;
 
-export const Container = styled.ScrollView`
+export const Container = styled.View`
     height: auto;
     width: 100%;
-    background: #292929;
+    background:  #1b1b1b;
 `;
 
 export const ContainerUser = styled.View`
     height: 80px;
     width: 100%;
-    background: #303030;
+    background:  #1b1b1b;
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -53,7 +53,6 @@ export const ContainerText = styled.View`
     height: auto;
     min-height: 50px;
     width: 100%;
-    background: #292929;
     display: flex;
     align-items: center;
     overflow: hidden;
@@ -85,26 +84,27 @@ export const ContainerSeletedImg = styled.View`
 
 export const ContainerImg = styled.View`
     height: auto;
-    min-height: 65px;
+    min-height: 50px;
     width: 80%;
     border-radius: 5px;
-    border: 2px;
-    border-style: solid;
-    border-color: rgba(255,255,255,.5);
-    padding-right: 8px; 
+    border: 2px solid rgba(255,255,255,.5);
     display: flex;
-    justify-content: center;
-    align-items: flex-end;
-    align-content: center;
+    flex-direction: column;
 `;
 
-export const InputImg = styled.View`
+export const SelectImage = styled.View`
+    height: 70px;
+    width: 100%;
+    padding: 10px;
+`;
+
+export const InputImg = styled.TouchableOpacity`
     height: 50px;
     width: 50px;
     border-radius: 50px;
     padding: 10px;
     background: #E33336;
-    margin-top: 10px;
+    align-self: flex-end;
 `;
 
 export const AddPostImage = styled.Image`
@@ -112,17 +112,17 @@ export const AddPostImage = styled.Image`
     width: 100%;
 `;
 
-export const ImageSeleted = styled.Image`
+export const ImageSeleted = styled.View`
     height: auto;
-    min-height: 0px;
-    max-height: 180px;
-    width: auto;
-    min-width: 0%;
-    max-width: 97%;
+    width: 100%;
+    padding: 10px;
+    padding-top: 0px;
+`;
+
+export const PostImage = styled.Image`
+    height: 150px;
+    width: 100%;
     border-radius: 10px;
-    background: #E33336;
-    margin-bottom: 8px;
-    margin-top: 5px;
 `;
 
 export const ContainerFilter = styled.View`
@@ -142,6 +142,7 @@ export const Title = styled.Text`
     color: #fff;
     font-size: 16px;
     margin-bottom: 10px;
+    padding-bottom: 10px;
     text-transform: uppercase;
 `;
 

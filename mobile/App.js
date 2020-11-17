@@ -6,7 +6,6 @@ import { AuthProvider } from './src/contexts/auth';
 import { ConversationProvider } from './src/contexts/ConversationProvider';
 import { SocketProvider } from './src/contexts/socketProvider';
 
-
 const App = () => { 
 
    return (
