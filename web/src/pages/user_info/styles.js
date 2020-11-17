@@ -53,6 +53,7 @@ export const Button = styled.div`
     overflow: hidden;
     cursor: pointer;
     text-align: center;
+    float: left;
 `;
 
 // ========= HEADER =========
@@ -182,6 +183,54 @@ export const Merit = styled.div`
 }
 `;
 
+export const ButtonPost = styled.div`
+    width: 125px;
+    height: 38px;
+    border-radius: 5px;
+    background: #fff ;
+    color: #E64F4A;
+    outline: none;
+    padding: 10px;
+    // margin: auto;
+    float: left;
+    margin-left: 80px;
+    box-sizing: border-box;
+    font-size: 0.8em;
+    font-family: arial;
+    font-weight: bold;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    cursor: pointer;
+    text-align: center;
+    border: 1px solid #E64F4A;
+
+`
+
+export const ButtonDenuncia = styled.div`
+    width: 125px;
+    height: 38px;
+    border-radius: 5px;
+    background: red;
+    color: #fff;
+    outline: none;
+    padding: 10px;
+    // margin: auto;
+    float: left;
+    margin-left: 200px;
+    box-sizing: border-box;
+    font-size: 0.8em;
+    font-family: arial;
+    font-weight: bold;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    cursor: pointer;
+    text-align: center;
+    border-color: 5px solid #E64F4A;
+
+`
+
 export const Photo = styled.div`
     width: 120px;
     height: 120px;
@@ -263,6 +312,7 @@ export const Title = styled.p`
     padding: 5px 0px;
     border-bottom: solid 2px #dddddd;
     margin-top: 20px;
+    font-weight: bold;
 
 @media(max-width: 780px){
     width: 90vw;

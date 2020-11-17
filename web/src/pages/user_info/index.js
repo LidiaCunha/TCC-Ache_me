@@ -10,6 +10,8 @@ import {
     
 //  Info,
   Button,
+  ButtonPost,
+  ButtonDenuncia,
 
   // Section 1 
   BasicInfos, 
@@ -214,11 +216,7 @@ const UserInfo = () => {
         <Home>
           <img src={home} alt="return home"/>
         </Home>
-<<<<<<< HEAD
-      </Header>
-=======
       </Header>      
->>>>>>> 3306eb9829905bfd6cb2e5d6cd0b7548b095b85b
       <Main>
         <Section>
           <BasicInfos>
@@ -241,6 +239,8 @@ const UserInfo = () => {
               <Text>Seu mérito:</Text>
               <Text>Data da última publicação:</Text>
               <Text>Hora da última publicação:</Text>
+              <ButtonDenuncia>Denúncias</ButtonDenuncia>
+              <ButtonPost>Postagens</ButtonPost>
             </Merit>
           </BasicInfos>
         </Section>
