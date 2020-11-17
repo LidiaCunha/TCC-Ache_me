@@ -1,12 +1,15 @@
 import React from 'react';
 
-import { Container, ContainerUsuario, FotoDesaparecido, FotoUsuario, Infos, ContainerInfos, Linha, ContainerCardFiltros, CardFiltros } from './styles';
+import { Container, ContainerUsuario, CardOpcoes, FotoDesaparecido, FotoUsuario, Infos, ContainerInfos, Linha, ContainerCardFiltros, CardFiltros, DivBotoesOpcoes, ContainerBotoes, BotoesOpcoes } from './styles';
 import Foto from "../../assets/Sobre/iuri.jpeg";
 import Desaparecido from "../../assets/Post/timothee.jpg";
 import genero from "../../assets/Post/man.png";
 import horario from "../../assets/Post/clock.png";
 import local from "../../assets/Post/place.png";
 import data from "../../assets/Post/calendario.png";
+import denunciar from "../../assets/Post/atencao.png";
+import encontrado from "../../assets/Post/gps.png";
+import visto from "../../assets/Post/visibility.png";
  
 
 function Post() {
@@ -62,6 +65,14 @@ function Post() {
             <CardFiltros className="dois"><p>Tuberculose</p></CardFiltros>
             <CardFiltros className="tres"><p>Escoliose</p></CardFiltros>
           </ContainerCardFiltros>
+          <ContainerBotoes>
+            <DivBotoesOpcoes className="botoes_ocultos">
+                <BotoesOpcoes><img src={encontrado}/></BotoesOpcoes>
+                <BotoesOpcoes><img src={denunciar}/></BotoesOpcoes>
+                <BotoesOpcoes><img src={visto}/></BotoesOpcoes>
+            </DivBotoesOpcoes>
+            <CardOpcoes className="botao_mostrar"><p>Mais opções</p></CardOpcoes>
+          </ContainerBotoes>
         </Infos>
       </Container>
   )

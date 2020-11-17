@@ -460,3 +460,133 @@ export const MemberName = styled.h1`
         font-weight: normal;
     }
 `;
+
+export const ContainerModal = styled.div`
+    width: 100vw;
+    min-height: 100vh;
+    height: auto;
+    box-sizing: border-box;
+    background-color: #0d0d0dcc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+@media(max-width: 780px){
+    overflow-x: hidden;
+}
+`;
+
+export const Modal = styled.div`
+    width: 1000px;
+    height: 500px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    background-color: #efefef;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    padding: 10px;
+
+    ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+    }
+    ::-webkit-scrollbar-button {
+    width: 0px;
+    height: 0px;
+    }
+    ::-webkit-scrollbar-thumb {
+    background: #ef545e;
+    border: 0px none #ef545e;
+    border-radius: 50px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+    background: #ef545e;
+    }
+    ::-webkit-scrollbar-thumb:active {
+    background: #000000;
+    }
+    ::-webkit-scrollbar-track {
+    background: #666666;
+    border: 0px none #ef545e;
+    border-radius: 50px;
+    }
+    ::-webkit-scrollbar-track:hover {
+    background: #666666;
+    }
+    ::-webkit-scrollbar-track:active {
+    background: #333333;
+    }
+    ::-webkit-scrollbar-corner {
+    background: transparent;
+    }
+`;
+
+export const ContainerPosts = styled.div`
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+`;   
+
+export const CardPosts = styled.div`
+    width: 350px;
+    height: 300px;
+    border: solid 2px #777;
+    border-radius: 20px;
+    margin-bottom: 15px;
+    padding: 10px;
+`;
+
+export const AreaFotoNome = styled.div`
+    width: 100%;
+    height: 30%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 15px;
+`
+
+export const TextoData = styled.h1`
+    color: #1d1d1d;
+    font-size: 1.2em;
+    text-align: left;
+    letter-spacing: 1.4px;
+    display: flex;
+    align-self: flex-start;
+    margin-left: 80px;
+    margin-right: auto; 
+    margin-bottom: 10px;
+`;
+
+export const TextoPost = styled.p`
+    color: #1d1d1d;
+    font-size: 1.1em;
+    text-align: left;
+    letter-spacing: 1.4px;
+    margin-bottom: 15px;
+`;
+
+
+export const TextoNome = styled.h1`
+    color: #1d1d1d;
+    font-weight: bold;
+    font-size: 1.18em;
+    letter-spacing: 1.4;
+    word-wrap: break-word;
+`
+
+export const FotoUsuario = styled.div`
+    width: 80px;
+    height: 80px;
+    border-radius: 40px;
+    margin-right: 10px;
+
+    >img{
+        height: 100%;
+        width: 100%;
+        border-radius: inherit;
+    }
+`

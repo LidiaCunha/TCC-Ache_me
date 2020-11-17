@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div` 
-    width: 800px;
+    width: 650px;
     height: auto;
     max-height: 600px;
     position: relative;
@@ -47,9 +47,10 @@ export const FotoDesaparecido = styled.div`
     >img{
         height: 100%;
         width: 100%;
-        border-top-left-radius: 30px;
-        border-top-right-radius: 30px;
-        border-bottom-right-radius: 140px;
+        border-top-left-radius: 15px;
+        border-top-right-radius: 50px;
+        border-bottom-left-radius: 50px;
+        border-bottom-right-radius: 15px;
         transition: 0.5s;
 
         :hover{
@@ -65,7 +66,6 @@ export const Infos = styled.div`
     height: auto;
     border-top-left-radius: 30px;
     background-color: white;
-    margin-top: -30px;
     z-index: 999;
     position: absolute;
 
@@ -78,7 +78,7 @@ export const Infos = styled.div`
         text-align: justify;
         margin-left: auto;
         margin-right: auto;
-        margin-bottom: 15px;
+        margin-bottom: 25px;
     }
     >h1{
         color: #1d1d1d;
@@ -88,7 +88,7 @@ export const Infos = styled.div`
         width: 90%;
         margin-left: auto;
         margin-right: auto;
-        margin-bottom: 15px;
+        margin-bottom: 10px;
     }
 `
 
@@ -100,6 +100,7 @@ export const ContainerInfos = styled.div`
     justify-content: center;
     align-items: center;
     margin-bottom: 15px;
+    padding: 5px;
 
     >img{
         width: 25px;
@@ -109,7 +110,7 @@ export const ContainerInfos = styled.div`
     >p{
         color: #1d1d1d;
         letter-spacing: 1.5px;
-        margin-right: 30px;
+        margin-right: 20px;
         font-size: 1.2em;
         font-weight: 200;
     }
@@ -131,7 +132,7 @@ export const ContainerCardFiltros = styled.div`
     justify-content: center;
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
     column-gap: 15px;
     padding: 15px;
 
@@ -160,10 +161,99 @@ export const CardFiltros = styled.div`
     border-radius: 10px;
 
     >p{
-        color: #141414;
+        color: #fafafa;
         text-align: center;
         font-size: 1.2em;
         letter-spacing: 1.5px;
         font-weight: bold;
+    }
+`
+
+export const CardOpcoes = styled.div`
+    width: 200px;
+    min-height: 30px;
+    height: auto;
+    padding: 15px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    background-color: #F53B3F;
+    margin-top: 10px;
+
+    >p{
+        color: #fafafa;
+        text-align: center;
+        font-size: 1.2em;
+        letter-spacing: 1.5px;
+        font-weight: bold;
+    }
+
+    :hover{
+        cursor: pointer;
+        background-color: black;
+        >p{
+            color: #F53B3F;
+        }
+    }
+`
+
+
+
+export const ContainerBotoes = styled.div`
+    width: 200px;
+    min-height: 80px;
+    height: auto;
+    position: absolute;
+    right: 0px;
+
+    /* >.botoes_ocultos{
+        opacity: 0;
+    } */
+
+    
+`
+
+export const DivBotoesOpcoes = styled.div`
+    width: 200px;
+    height: 40px;
+    border: solid 1px black;
+    border-radius: 40px;
+    padding: 15px;
+    margin-bottom: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    opacity: 0;
+    transition: 0.4s;
+
+    ${ContainerBotoes}:hover & {
+        opacity: 1;
+        transition: 0.4s;
+    }
+`
+
+export const BotoesOpcoes = styled.div`
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    background-color: #F53B3F;
+    margin-right: 10px;
+    margin-left: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    >img{
+        width: 32px;
+        height: 32px;
+    }
+
+    :hover{
+        cursor: pointer;
+        background-color: #F95F62;
     }
 `
