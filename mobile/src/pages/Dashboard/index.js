@@ -32,7 +32,7 @@ const Dashboard = ({route, navigation}) => {
   }
 
   function createPost(props){
-    navigation.navigate('create post', props);
+    navigation.navigate('createpost', props);
   }
 
    return (

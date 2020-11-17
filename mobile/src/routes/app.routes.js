@@ -18,10 +18,18 @@ const AppStack = createStackNavigator();
 
 const AppRoutes = () => {
   return (
-    <AppStack.Navigator>
-      <AppStack.Screen name="Dashboard" component={Dashboard}/>
-      <AppStack.Screen name="profile" component={Profile}/>
-      <AppStack.Screen name="create post" component={CreatePost}/>
+    <AppStack.Navigator screenOptions={{
+      headerStyle: {
+        backgroundColor: '#292929',
+      },
+      headerTintColor: '#fff',
+      headerTitleStyle: {
+        fontWeight: '100',
+      },
+    }}>
+      <AppStack.Screen name="Dashboard" component={Dashboard} options={{title: "Home"}}/>
+      <AppStack.Screen name="profile" component={Profile} options={{title: "Perfil"}}/>
+      <AppStack.Screen name="createpost" component={CreatePost} options={{title: "Criar postagem"}}/>
       <AppStack.Screen name="conversations" component={Conversations} />
       <AppStack.Screen name="search" component={Search} />
       <AppStack.Screen name="chat" component={Chat} options={{headerShown:false}}/>
