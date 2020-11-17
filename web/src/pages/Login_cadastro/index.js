@@ -209,24 +209,7 @@ const FormRegister = (props) => {
                     <input type="password" id="password" value={userRegister.password} onChange={handlerInput} minLength="8" placeholder="Insira sua senha" required />
                 </ContainerInput>
             </ContainerDados>
-
-            <ContainerDados>
-                  <ContainerInput>
-                      <label>Cep</label>
-                      <input type="text" id="cep" value={userRegister.cep} onChange={handlerInput} onBlur={(e) => findAddress(e)} onKeyUp={( e ) => { maskCep( e ) }} placeholder="Insira seu CEP" required />
-                
-                <ContainerInput >
-                    <label>E-mail</label>
-                    <input type="email" id="mail" value={userRegister.mail} onChange={handlerInput} placeholder="Insira seu email" required />
-                                
-                    <label>Telefone</label>
-                    <input type="text" id="telephone" value={userRegister.telephone} onChange={handlerInput} onKeyUp={( e ) => { maskTelephone( e ) }} placeholder="Insira seu telefone" required />
-                                
-                    <label>Senha</label>
-                    <input type="password" id="password" value={userRegister.password} onChange={handlerInput} placeholder="Insira sua senha" required />
-                </ContainerInput>
-            </ContainerDados>
-            
+          
             <ContainerDados>
                 <ContainerInput>
                     <label>Cep</label>
@@ -249,12 +232,6 @@ const FormRegister = (props) => {
                   <label>Número</label>
                     <input type="text" id="number" value={userRegister.number} onChange={handlerInput} placeholder="Insira seu número" required />
               </ContainerInput>
-            </ContainerDados>
-
-
-                    <label>Número</label>
-                    <input type="text" id="number" value={userRegister.number} onChange={handlerInput} placeholder="Insira seu número" required />
-                </ContainerInput>
             </ContainerDados>
             
           </CadastroConfigInput>
