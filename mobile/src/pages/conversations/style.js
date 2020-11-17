@@ -43,6 +43,7 @@ export const ContainerMensagens = styled.View`
 export const ImagemUsuario = styled.Image`
     width: 70px;
     height: 70px;
+    background-color: #222222;
     border-radius: 35px;
 `
 

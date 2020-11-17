@@ -10,6 +10,8 @@ import {
     
 //  Info,
   Button,
+  ButtonPost,
+  ButtonDenuncia,
 
   // Section 1 
   BasicInfos, 
@@ -237,6 +239,8 @@ const UserInfo = () => {
               <Text>Seu mérito:</Text>
               <Text>Data da última publicação:</Text>
               <Text>Hora da última publicação:</Text>
+              <ButtonDenuncia>Denúncias</ButtonDenuncia>
+              <ButtonPost>Postagens</ButtonPost>
             </Merit>
           </BasicInfos>
         </Section>

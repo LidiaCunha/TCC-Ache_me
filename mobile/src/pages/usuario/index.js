@@ -7,6 +7,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import { Photo, UnChanged, AreaUsuario, TextoEmail, NomeUsuario, BotaoSalvar, AreaInputs, ContainerInputs, AreaImagemMembros, InputInfos, Border, IconeFotoMembros, ImagemMembros, AreaEstrelas, TextoMenor, TextoMerito, IconeFoto, FotoCamera, AreaImagem, AreaMerito, Container, ContainerUsuario, ImagemUsuario, MenuVoltar, Seta, Estrelas, Botao, TextoBotao, AreaTexto, AreaMembros, Texto } from "./styles";
 import { ScrollView } from "react-native";
 import {api} from "../../services/api";
+import defaultImage from "../../../src/assets/user.png";
 import * as ImagePicker from 'expo-image-picker';
 
 const Profile = ({route}) => {

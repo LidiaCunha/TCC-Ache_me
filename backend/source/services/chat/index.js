@@ -6,9 +6,9 @@ io.on('connection', socket => {
     const id = socket.handshake.query.id;
     socket.join(id);
 
-    socket.on( 'envia-msg' , ({ recipient , text })=>{
+    socket.on( 'envia-msg' , ({ recipient , text , image})=>{
 
-        socket.to(recipient).emit( 'recebe-msg' , { recipient, sender: id , text } );
-
+        socket.to(recipient).emit( 'recebe-msg' , { recipient, sender: id , text, image } );
+        console.log({ recipient, sender: id , text , image})
     } )
 })
