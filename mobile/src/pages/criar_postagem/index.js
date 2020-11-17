@@ -6,7 +6,7 @@ import {
     ContainerUserImg,
     ContainerUserName,
     ContainerText,
-    Text,
+    Description,
     ContainerSeletedImg,
     ContainerImg,
     InputImg,
@@ -24,17 +24,34 @@ import {
     LoremTime,
     ContainerBtnPublicar,
     BtnPublicar,
+    UserPhoto,
+    AddPostImage,
+    Text,
     
 } from './styles';
 
 import addImage from '../../assets/image.png';
-import {api} from '../../services/api';
+import newImage from '../../assets/newImage.png';
 
-const Criar_postagem = (props) => {
+const Criar_postagem = ({route}) => {
 
-    // const [photo, setPhoto] = useState();
+    const [post, setPost] = useState({
+        "description": "",
+        "date": "",
+        "hours": "",
+    });
 
-    // setPhoto(addImage);
+    const props = route.params;
+
+    var userPhoto = addImage;
+
+    if (props.photo) {
+        userPhoto = {uri: props.photo};
+    }
+
+    function handlerDescription(e) {
+        setPost({ ...post , description : e});
+    }
 
     const [ post , setPost ] = useState({});
 
@@ -65,17 +82,28 @@ const Criar_postagem = (props) => {
         <>
             <Container>
                 <ContainerUser>
-                    <ContainerUserImg source={addImage}/>
+                    <ContainerUserImg>
+                        <UserPhoto source={userPhoto}/>
+                    </ContainerUserImg>
                     <ContainerUserName>{props.name}</ContainerUserName>
                 </ContainerUser>
 
                 <ContainerText>
-                    <Text>lorem lorem lorem lorem lorem lorem lorem ola lorem lorem lorem lorem loremlorem  oi lorem lorem loremloremlorem loremloremloremlorem loremlorem lorem loremloremloremloremlorem loremlorem loremlorem loremloremlorem loremloremlorem lorem loremloremlorem loremloremloremloremlorem loremloremloremloremvlorem loremlorem</Text>
+                    <Text>Descrição</Text>
+                    <Description
+                        multiline={true}
+                        numberOfLines={6}   
+                        maxLength={150}
+                        textAlignVertical="top"
+                        onChangeText={handlerDescription}
+                        value={post.description}/>
                 </ContainerText>
         
                 <ContainerSeletedImg>
                     <ContainerImg>
-                        <InputImg/>
+                        <InputImg>
+                            <AddPostImage source={newImage}/>
+                        </InputImg>
                         <ImageSeleted/>
                     </ContainerImg>
                 </ContainerSeletedImg>
@@ -86,15 +114,21 @@ const Criar_postagem = (props) => {
                     <ContainerDateTime>
                         <ContainerDate>
                             <Lorem>Data</Lorem>
-                            <InputDate placeholder="DD/MM/AAAA"/>
+                            <InputDate 
+                                placeholderTextColor="gray"
+                                placeholder="DD/MM/AAAA"/>
                         </ContainerDate>
 
                         <ContainerTime>
                             <Lorem>Horário</Lorem>
                             <Center>
-                                <InputTime placeholder="HH"/>
+                                <InputTime 
+                                    placeholderTextColor="gray"
+                                    placeholder="HH"/>
                                 <LoremTime>:</LoremTime>
-                                <InputTime placeholder="MM"/>
+                                <InputTime 
+                                    placeholderTextColor="gray"
+                                    placeholder="MM"/>
                             </Center>
                         </ContainerTime>
                     </ContainerDateTime>
@@ -103,8 +137,12 @@ const Criar_postagem = (props) => {
                         <ContainerDate>
                             <Lorem>Gênero</Lorem>
                             <Center>
-                                <InputGenre placeholder="Masculino"/>
-                                <InputGenre placeholder="Feminino"/>
+                                <InputGenre 
+                                    placeholderTextColor="gray"
+                                    placeholder="Masculino"/>
+                                <InputGenre 
+                                    placeholderTextColor="gray"
+                                    placeholder="Feminino"/>
                             </Center>
                         </ContainerDate>
                     </ContainerDateTime>
