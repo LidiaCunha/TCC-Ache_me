@@ -7,14 +7,11 @@ const Modal_problemas_de_saude = () => {
            <Container>
                 <ContainerCard>
                     <Title>problemas de saúde</Title>
-
                     <ContainerInput>
                         <ContainerImgInput>
                         </ContainerImgInput>
-
                         <Input placeholder="Problemas De Saúde"/>
                     </ContainerInput>
-
                    <ContainerCars>
                        <Cards>
                            <Card_text>conjutivite</Card_text> 
@@ -25,18 +22,14 @@ const Modal_problemas_de_saude = () => {
                            <Card_close>X</Card_close> 
                         </Cards>
                    </ContainerCars>
-
                    <ContainerBtn>
                        <Btn><Card_text>ok</Card_text></Btn>
                    </ContainerBtn>
-
                 </ContainerCard>
            </Container>
         </>
     );
 }
-
-export default Modal_problemas_de_saude;
 
 export const Container = styled.View`
     height: 100%;
@@ -169,3 +162,5 @@ export const Btn = styled.View`
     align-content: center;
     flex-direction: row;
 `;
+
+export default Modal_problemas_de_saude;

@@ -6,20 +6,22 @@ import { AuthProvider } from './src/contexts/auth';
 import { ConversationProvider } from './src/contexts/ConversationProvider';
 import { SocketProvider } from './src/contexts/socketProvider';
 import Modal from "./src/pages/chat/modalExcluir";
-import Everson from "./src/pages/criar_postagem/problemas_de_saude";
+import Everson from "./src/pages/criar_postagem/filtro_localizacao";
+import Card_desaparecido from "./src/pages/card_desaparecido/index";
 
 const App = () => { 
 
    return (
-    <NavigationContainer>
-      <AuthProvider>
-        <SocketProvider>
-          <ConversationProvider>
-            <Routes/>
-          </ConversationProvider>
-        </SocketProvider>
-      </AuthProvider>
-    </NavigationContainer>
+       <Everson/>
+//    <NavigationContainer>
+//      <AuthProvider>
+//        <SocketProvider>
+//          <ConversationProvider>
+//            <Routes/>
+//          </ConversationProvider>
+//        </SocketProvider>
+//      </AuthProvider>
+//    </NavigationContainer>
   );
 }
 

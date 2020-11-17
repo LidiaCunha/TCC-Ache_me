@@ -198,7 +198,6 @@ export const LoremTime = styled.Text`
     width: auto;
     height: auto;
     font-size: 20px;
-    /* font-family: arial; */
     color: #fff;
     margin-bottom: 5px;
     margin-top: 8px;
