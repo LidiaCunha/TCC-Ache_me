@@ -12,8 +12,8 @@ export const ConversationProvider = ({children}) => {
     const socket = useSocket();
  
     async function sendMessage( recipient, message , image ){
-      socket.emit('envia-msg', { recipient: recipient.id, text:message});
-
+      socket.emit('envia-msg', { recipient: recipient.id, text:message, image});
+        
       const data = new FormData();
 
       data.append( "message" , message.msg );
@@ -24,7 +24,7 @@ export const ConversationProvider = ({children}) => {
             "Content-type": `multipart/form-data`,
         }
       });
-
+      
       return res.status == 201 ? true : false;
     }
     

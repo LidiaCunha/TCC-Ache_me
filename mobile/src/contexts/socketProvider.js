@@ -18,7 +18,7 @@ export function SocketProvider({ children }) {
         'http://localhost:5000',
         {query:{ id }}
       )
-      //console.log(newSocket)
+      
       setSocket(newSocket)
 
       return () => newSocket.close()

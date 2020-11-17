@@ -13,7 +13,7 @@ const MessageBubble = (props) => {
                 borderRadius={10}
                 marginTop={6}
                 marginBottom={6}
-                source={props.image}
+                source={{uri:props.image}}
                 width={500}
                 height={500}
               />
