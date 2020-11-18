@@ -640,3 +640,31 @@ export const FotoUsuario = styled.div`
         border-radius: inherit;
     }
 `
+
+export const VerMais = styled.div`
+    width: 90%;
+    height: 50px;
+    background-color: #ef545e;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+
+    >p{
+        color: white;
+        letter-spacing: 1.4px;
+        font-size: 1.2em;
+    }
+
+    :hover{
+        background-color: black;
+        cursor: pointer;
+
+        >p{
+            color: #ef545e;
+        }
+    }
+`
