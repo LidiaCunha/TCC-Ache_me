@@ -46,6 +46,8 @@ import photo from "../../assets/userTest.png";
 import addImage from "../../assets/image.png";
 import share from "../../assets/user_info/compartilhar.png";
 import Spinner from "../../components/Spinner";
+import ModalPostagem from "./modalPostagem";
+import CreatePost from "../../components/CreatePost";
 
 import {api} from "../../services/api";
 import {getUsers} from "../../services/security";
@@ -150,6 +152,10 @@ const UserInfo = () => {
 
   const imgRef = useRef();
 
+  const [showModalPost, setShowModalPost] = useState(false);
+  
+  const [showCreatePost, setShowCreatePost] = useState(false);
+
   const [image, setImage] = useState(null);
 
   const [newImage, setNewImage] = useState(null);
@@ -211,7 +217,10 @@ const UserInfo = () => {
 
   return (
     <Container>
-      {loading &&  <Spinner/>}
+      { showCreatePost && <CreatePost /> }
+      {/* <CreatePost /> */}
+      { showModalPost && <ModalPostagem /> }
+      { loading && <Spinner/>}
       <Header>
         <Home>
           <img src={home} alt="return home"/>
@@ -240,7 +249,7 @@ const UserInfo = () => {
               <Text>Data da última publicação:</Text>
               <Text>Hora da última publicação:</Text>
               <ButtonDenuncia>Denúncias</ButtonDenuncia>
-              <ButtonPost>Postagens</ButtonPost>
+              <ButtonPost onClick={()=>{setShowModalPost(true)}} >Postagens</ButtonPost>
             </Merit>
           </BasicInfos>
         </Section>
@@ -309,7 +318,7 @@ const UserInfo = () => {
                 <img src={share} alt="compartilhar"/>
                 <h1>Compartilhar Postagem</h1>
                 <p>Realize uma nova postagem aqui</p>
-                <Button>Criar Postagem</Button>
+                <Button onClick={()=>{setShowCreatePost(true)}} >Criar Postagem</Button>
               </Share>
               <Indicated>
                 <TitleMember>MEMBROS INDICADOS</TitleMember>
