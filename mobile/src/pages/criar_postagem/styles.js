@@ -7,10 +7,10 @@ export const Text = styled.Text`
     font-size: 14px; 
 `;
 
-export const Container = styled.View`
+export const Container = styled.ScrollView`
     height: auto;
     width: 100%;
-    background:  #1b1b1b;
+    background:  #1d1d1d;
 `;
 
 export const ContainerUser = styled.View`
@@ -23,7 +23,7 @@ export const ContainerUser = styled.View`
     align-content: center;
     flex-direction: row;
     padding: 10px;
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
 `;
 
 export const ContainerUserImg = styled.View`
@@ -228,7 +228,7 @@ export const LoremTime = styled.Text`
 `;
 
 export const ContainerBtnPublicar = styled.View`
-    height: 100px;
+    height: 70px;
     width: 100%;
     padding-right: 15px; 
     display: flex;
@@ -248,7 +248,7 @@ export const BtnPublicar = styled.TouchableOpacity`
     align-items: center;
     align-content: center;
     border-radius: 5px;
-    padding-top: 5px;
+    line-height: 40px;
 `;
 
 export const ContainerModal = styled.View`
