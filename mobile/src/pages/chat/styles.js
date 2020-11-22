@@ -17,6 +17,12 @@ export const Seta = styled.Image`
     width: 40px;
 `
 
+export const ImageToSend = styled.Image`
+    width: 30px;
+    height: 30px;
+    border-radius:22px;
+`;
+
 export const ContainerChat = styled.View`
     background-color: white;
     width: 100%;

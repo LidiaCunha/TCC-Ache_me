@@ -84,7 +84,7 @@ export const Home = styled.div`
     border-radius: 50%;
     background-color:#E64F4A;
     cursor: pointer;
-margin-left: 190px;
+    margin-left: 190px;
     
     :hover{
         background-color: #e6352f;
@@ -638,5 +638,33 @@ export const FotoUsuario = styled.div`
         height: 100%;
         width: 100%;
         border-radius: inherit;
+    }
+`
+
+export const VerMais = styled.div`
+    width: 90%;
+    height: 50px;
+    background-color: #ef545e;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+
+    >p{
+        color: white;
+        letter-spacing: 1.4px;
+        font-size: 1.2em;
+    }
+
+    :hover{
+        background-color: black;
+        cursor: pointer;
+
+        >p{
+            color: #ef545e;
+        }
     }
 `

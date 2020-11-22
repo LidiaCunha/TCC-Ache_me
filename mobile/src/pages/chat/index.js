@@ -14,7 +14,7 @@ import { useConversarion } from '../../contexts/ConversationProvider'
 import { useAuth } from '../../contexts/auth'
 import { useSocket } from '../../contexts/socketProvider';
 // STYLES
-import { Container, Seta, MenuVoltar, BotaoDescer, ContainerUsuario, ContainerChat, ContainerMensagens, ImagemUsuario, NomeUsuario, ViewMensagem, AreaMensagem, Mensagem, Enviar, Icone, Hora, Hora_Minha } from './styles';
+import { ImageToSend, Container, Seta, MenuVoltar, BotaoDescer, ContainerUsuario, ContainerChat, ContainerMensagens, ImagemUsuario, NomeUsuario, ViewMensagem, AreaMensagem, Mensagem, Enviar, Icone, Hora, Hora_Minha } from './styles';
 // COMPONENTS
 import AboutMessage from './dadosMensagem';
 import MessageBubble from './message';
@@ -93,17 +93,7 @@ function Chat({ route }) {
     });
 
     if (!result.cancelled) {
-
-      const nameImage = result.uri.split('/').pop();
-      const ext = nameImage.split(".").pop();
-
-      const imageToSend = {
-        uri: result.uri,
-        type: result.type + "/" + ext,
-        name: nameImage
-      }
-      
-      setImage(imageToSend);
+      setImage(result);
     }
   };
   
@@ -133,13 +123,10 @@ function Chat({ route }) {
   React.useEffect(() => {
     if (socket == null) return;
 
-    socket.on('recebe-msg', (some)=>{
-      
-      setImage(some.image)
-      setTimeout(()=>{
+    socket.on('recebe-msg', ( ) => {
+      setTimeout( ( ) => {
         takeMessages()
       },700)
-      
     });
 
     return () => socket.off('recebe-msg');
@@ -154,42 +141,42 @@ function Chat({ route }) {
       <ContainerChat>
 
         <ScrollView>
+
+
           <ContainerUsuario>
             <ImagemUsuario source={route.params.photo ? {uri:route.params.photo} : defaultImage} />
             <NomeUsuario>{route.params.name}</NomeUsuario>
           </ContainerUsuario>
         </ScrollView>
         {conversations.map !== undefined && conversations.map((conversation) => {
+          console.log(conversation)
           if (conversation.sender === user.id)
             return (
               <TouchableOpacity onLongPress={() => setIdToDelete(conversation.id)} onPress={ () => showAboutMessageTime(conversation.createdAt) }>
-                <MessageBubble text={conversation.message} image={ conversation.image ? conversation.image : null }/>
-                
+                <MessageBubble text={conversation.message} image={ conversation.photo }/>
                 <Hora_Minha>{moment(conversation.createdAt).format('HH:mm')}</Hora_Minha>
               </TouchableOpacity>
             );
           else
             return (
               <>
-                <MessageBubble mine text={conversation.message} image={ conversation.image ? conversation.image : null } />
+                <MessageBubble mine text={conversation.message} image={ conversation.photo } />
                 <Hora>{moment(conversation.createdAt).format('HH:mm')}</Hora>
               </>
             );
         })}
-        { image && <ImagemUsuario source={ { uri : image.uri } } />}
         <AreaMensagem>
           <ViewMensagem>
             <Mensagem placeholder="Digite sua mensagem" onTouchStart={(e) => setInputHeigth(e.nativeEvent.pageY + e.nativeEvent.locationY)} onChange={handlerInput}  value={value.msg} />
             <Enviar onPress={pickImage} >
-              <Icon name="add-a-photo" color="white" size={30} />
+                {image ? <ImageToSend source={image} /> :<Icon name="add-a-photo" color="white" size={30} />}
             </Enviar>
             <Enviar onPress={() => { 
-                      ( image ? 
-                        sendMessage( route.params , value , image ) : 
-                        sendMessage( route.params , value)
-                      ) && 
+                      sendMessage( route.params , value , image ) 
+                      &&
                       Keyboard.dismiss(); 
                       setValue({msg:""});
+                      setImage(null);
                       setTimeout(()=>{
                         takeMessages()
                       },700)  
