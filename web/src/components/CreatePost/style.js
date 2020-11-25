@@ -304,6 +304,7 @@ export const ConteinerPhoto = styled.div`
     width:95em;
     margin:2.5em;
     min-height:40px;
+    margin-bottom:5em;
     height:auto;
     max-height: 600px;
     border: solid 1px #1e1e1e;
@@ -413,6 +414,7 @@ export const ConteinerInput = styled.div`
 `;
 export const Input = styled.input.attrs(()=>({
     type: 'text',
+    placeholder: "Precione enter para adiconar um item"
 }))`
     width:100%;
     height:95%;
@@ -423,26 +425,64 @@ export const Input = styled.input.attrs(()=>({
     background-color:transparent;
     border:none;
 `;
-export const ButtonPublicar = styled.button`
+export const ButtonPublicar = styled.input.attrs(()=>({
+    type:"submit",
+    value:"Publicar"
+}))`
     border:solid 1px #ef5245;
     color:white;
-    width:10em;
+    width:13em;
+    height:2.5em;
+    font-size:1.3rem;
+    border-radius:5px;
     background-color:#ef5245;
 `;
 export const ContainerItem = styled.div`
-    width:70px;
-    height:20px;
+    width:140px;
+    height:35px;
     background-color:#ef5245;
     display:flex;
     flex-direction: row;
     justify-content:space-between;
     align-items:center;
+    padding:5px;
 `;
 export const LabelItem = styled.span`
     color:aliceblue;
-    font:300 Arial 16px;
+    font-weight:300;
+    margin-left:1em;
+    height:18px;
+    align-self: center;
+    justify-self: center;
+    font-size:16px;
+    font-family:Arial;
 `;
-export const ButtonExcluir = styled.img`
-    font: 900 Arial 18px;
-    color: #fff;
+export const ButtonExcluir = styled.button`
+    border:none;
+    -moz-appearance:none;
+    -webkit-appearance:none;
+    appearance:none;
+    outline: none;
+    width:18px;
+    height:18px;
+    margin:0;
+    font-weight:900;
+    font-size:18px;
+    border-radius:5px;
+    margin-bottom:-1em;
+    font-family:Arial;
+    padding:0;
+    :hover{
+        cursor:pointer;
+    }
+`;
+export const ConteinerFeatures = styled.div`
+    width:100%;
+    height:auto;
+    min-height:10px;
+    margin:10px;
+    display:flex;
+    flex-direction: row;
+    justify-content:space-around;
+    align-items:center;
 `;
