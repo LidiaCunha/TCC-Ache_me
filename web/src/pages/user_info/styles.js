@@ -84,7 +84,7 @@ export const Home = styled.div`
     border-radius: 50%;
     background-color:#E64F4A;
     cursor: pointer;
-margin-left: 190px;
+    margin-left: 190px;
     
     :hover{
         background-color: #e6352f;
