@@ -59,6 +59,18 @@ export const ContainerText = styled.View`
     margin-bottom: 20px;
 `;
 
+export const InputName = styled.TextInput`
+    height: auto;
+    width: 80%;
+    margin-top: 10px;
+    padding: 5px;
+    color: #fff;
+    border-radius: 5px;
+    border: solid rgba(255,255,255,.5) 2px;
+    font-size: 20px; 
+    line-height: 20px;  
+`;
+
 export const Description = styled.TextInput`
     height: auto;
     width: 80%;

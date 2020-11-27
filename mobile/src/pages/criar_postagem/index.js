@@ -6,6 +6,7 @@ import {
     ContainerUserImg,
     ContainerUserName,
     ContainerText,
+    InputName,
     Description,
     ContainerSeletedImg,
     ContainerImg,
@@ -36,6 +37,10 @@ import defaltImage from '../../assets/image.png';
 import addImage from '../../assets/newImage.png';
 import * as ImagePicker from 'expo-image-picker';
 
+import {Popup} from '../../components/Popup';
+import HealthProblem from './healthProblem';
+import Characteristics from './modalCaracteristicas';
+
 const Criar_postagem = ({route}) => {
 
     const props = route.params;
@@ -46,35 +51,29 @@ const Criar_postagem = ({route}) => {
         userPhoto = {uri: props.photo};
     }
 
-    var radio_props = [
-        {label: 'masculino', value: 0 },
-        {label: 'feminino', value: 1 }
-    ];
-
     const [ post , setPost ] = useState({});
 
     const addFeature = async( feature ) => {
         await api.post( `/features/post/${post.id}` , feature );
     }
 
-    const addHealthProbelm = async( healthProblem ) => {
-        await api.post( `/healthProblems/post/${post.id}` , healthProblem );
+    function handlerName(e) {
+        setPost({ ...post , name : e});
     }
-
     function handlerDescription(e) {
         setPost({ ...post , description : e});
     }
-
     function handlerDate(e) {
         setPost({ ...post , date : e});
     }
-
     function handlerHours(e) {
         setPost({ ...post , hours : e});
     }
-
     function handlerMinute(e) {
         setPost({ ...post , minute : e});
+    }
+    function handlerBirthDate(e) {
+        setPost({ ...post , birthDate : e});
     }
 
     const [postImage, setPostImage] = useState(null);
@@ -97,33 +96,45 @@ const Criar_postagem = ({route}) => {
         }
     };
 
-    const createPost = async() => {
+    // const createPost = async() => {
 
-        const data = new FormData();
+    //     const data = new FormData();
 
-        data.append("name", props.name);
-        data.append("name_of_genre", post.name_of_genre);
-        data.append("borned_at", post.borned_at);
-        data.append("description", post.description);
+    //     data.append("name", props.name);
+    //     data.append("name_of_genre", post.name_of_genre);
+    //     data.append("borned_at", post.birthDate);
+    //     data.append("description", post.description);
 
-        if (postImage) {
-            const path = postImage.uri.split('/');
-            const name = path[path.length - 1];
-            const ext = name.split(".").pop();
+    //     if (postImage) {
+    //         const path = postImage.uri.split('/');
+    //         const name = path[path.length - 1];
+    //         const ext = name.split(".").pop();
 
-            data.append("photo", {
-                name : name,
-                uri: postImage.uri,
-                type: postImage.type+"/"+ext,
-            });   
-        }
+    //         data.append("photo", {
+    //             name : name,
+    //             uri: postImage.uri,
+    //             type: postImage.type+"/"+ext,
+    //         });   
+    //     }
 
-        console.log(post.date+" "+post.hours+":"+post.minute+":00");
+    //     console.log(post.date+" "+post.hours+":"+post.minute+":00");
 
-        // const createdPost = await api.post ( '/post' , data);
+    //     const createdPost = await api.post ( '/post' , data);
     
-        // setPost(createdPost.data);
+    //     setPost(createdPost.data);
+    // }
+
+    let PopupRef = React.createRef()
+
+    const onShowPopup = () => {
+        PopupRef.show()
     }
+
+    const onClosePopup = () => {
+        PopupRef.close()
+    }
+
+    const [popup, setPopup] = useState();
 
     return(
         <Container>
@@ -133,6 +144,14 @@ const Criar_postagem = ({route}) => {
                 </ContainerUserImg>
                 <ContainerUserName>{props.name}</ContainerUserName>
             </ContainerUser>
+            
+            <ContainerText>
+                <InputName
+                    placeholder="Nome do desparecido:"
+                    placeholderTextColor="gray"
+                    onChangeText={handlerName}
+                    value={post.name}/>
+            </ContainerText>
             
             <ContainerText>
                 <Description
@@ -173,7 +192,6 @@ const Criar_postagem = ({route}) => {
                             onChangeText={handlerDate}
                             value={post.date}/>
                     </ContainerDate>
-
                     <ContainerTime>
                         <Lorem>Horário</Lorem>
                         <Center>
@@ -197,7 +215,7 @@ const Criar_postagem = ({route}) => {
                 <ContainerDateTime>
                     <ContainerDate>
                         <Lorem>Gênero</Lorem>
-                        <RadioForm
+                        {/* <RadioForm
                             formHorizontal={true}
                             animation={true}
                         >
@@ -227,17 +245,44 @@ const Criar_postagem = ({route}) => {
                             </RadioButton>
                             ))
                             }  
-                        </RadioForm>
+                        </RadioForm> */}
+                    </ContainerDate>
+                </ContainerDateTime>
+
+                <ContainerDateTime>
+                    <ContainerDate>
+                        <Lorem>Data de Nascimento</Lorem>
+                        <InputDate 
+                            placeholderTextColor="gray"
+                            placeholder="DD/MM/AAAA"
+                            keyboardType="numeric"
+                            onChangeText={handlerBirthDate}
+                            value={post.birthDate}/>
                     </ContainerDate>
                 </ContainerDateTime>
             </ContainerFilter>    
     
             <ContainerBtnPublicar>
-                <BtnPublicar onPress={createPost}>  
+                {/* <BtnPublicar onPress={createPost}>  
                     <Lorem>Publicar</Lorem>
+                </BtnPublicar> */}
+                <BtnPublicar onPress={()=> {
+                    setPopup(<HealthProblem/>)
+                    onShowPopup()}}>
+                    <Lorem>Problemas</Lorem>
+                </BtnPublicar> 
+                <BtnPublicar onPress={()=>{
+                    setPopup(<Characteristics/>)
+                    onShowPopup()}}>
+                    <Lorem>Characteristics</Lorem>
                 </BtnPublicar>  
             </ContainerBtnPublicar>
 
+            <Popup 
+                title="Problemas de Saúde"
+                content={popup}
+                ref={(target) => PopupRef = target}
+                onTouchOutside = {onClosePopup}/>
         </Container>
     );
 }
