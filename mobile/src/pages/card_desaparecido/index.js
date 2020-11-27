@@ -7,7 +7,7 @@ import Genre from '../../assets/Card_desaparecido/genre.png';
 import Header from '../../assets/Card_desaparecido/naruto.jpg';
 import Enviar from '../../assets/Card_desaparecido/enviar-correio.png';
 import Photo from '../../assets/kakashi.jpg';
-import MenuIcon from '../../assets/menu_desaparecido/kakashi.jpg';
+
 
 
 import {  
