@@ -9,6 +9,6 @@ io.on('connection', socket => {
     socket.on( 'envia-msg' , ({ recipient , text , image})=>{
 
         socket.to(recipient).emit( 'recebe-msg' , { recipient, sender: id , text, image } );
-        console.log({ recipient, sender: id , text , image})
+      
     } )
 })

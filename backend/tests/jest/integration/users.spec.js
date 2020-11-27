@@ -1,6 +1,6 @@
 const req = require('supertest');
-const connection = require('../../source/database/');
-const app = require('../../source/app');
+const connection = require('../../../source/database');
+const app = require('../../../source/app');
 const truncate = require('./truncate');
 
 describe('USERS', ( ) => {
