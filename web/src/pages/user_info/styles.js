@@ -582,7 +582,7 @@ export const ContainerPosts = styled.div`
 
 export const CardPosts = styled.div`
     width: 350px;
-    height: 300px;
+    height: 350px;
     border: solid 2px #777;
     border-radius: 20px;
     margin-bottom: 15px;
@@ -609,6 +609,7 @@ export const TextoData = styled.h1`
     margin-left: 80px;
     margin-right: auto; 
     margin-bottom: 10px;
+    font-family: "Arial";
 `;
 
 export const TextoPost = styled.p`
@@ -617,6 +618,7 @@ export const TextoPost = styled.p`
     text-align: left;
     letter-spacing: 1.4px;
     margin-bottom: 15px;
+    font-family: "Arial";
 `;
 
 
@@ -626,6 +628,7 @@ export const TextoNome = styled.h1`
     font-size: 1.18em;
     letter-spacing: 1.4;
     word-wrap: break-word;
+    font-family: "Arial";
 `
 
 export const FotoUsuario = styled.div`
@@ -656,7 +659,8 @@ export const VerMais = styled.div`
     >p{
         color: white;
         letter-spacing: 1.4px;
-        font-size: 1.2em;
+        font-size: 1.1em;
+        font-family: "Arial";
     }
 
     :hover{
