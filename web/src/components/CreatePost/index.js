@@ -83,7 +83,7 @@ function CreatePost() {
         return (
             <ContainerItem>
                 <LabelItem>{item}</LabelItem>
-                <ButtonExcluir onClick={deleteItem} >x</ButtonExcluir>
+                <ButtonExcluir onClick={deleteItem} ><p>x</p></ButtonExcluir>
             </ContainerItem>
         );
     }
