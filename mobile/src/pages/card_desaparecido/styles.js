@@ -224,11 +224,11 @@ export const BtnSendImg = styled.Image`
     background: #E33336;
 `;
 
-export const Options = styled.View`
+export const Options = styled.Image`
     height: 45px;
     width: 45px;
     border-radius: 50px;
-    background: orange;
+    background: #E33336;
 `;
 
 

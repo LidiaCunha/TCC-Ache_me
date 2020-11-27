@@ -122,6 +122,7 @@ export const TextoMerito = styled.Text`
     color: #BDBEC0;
     font-size: 18px;
     font-weight: bold;
+    marginBottom: 10px;
 `
 
 export const AreaMerito = styled.View`
@@ -130,6 +131,18 @@ export const AreaMerito = styled.View`
     justify-content: center;
     align-items: center;
     padding: 8px;
+`
+
+export const Btn_denuncia = styled.Text`
+    width: 70%;
+    height: 40px;
+    border: 2px;
+    border-color: #EF5245;
+    color: #EF5245;
+    font-size: 16px;
+    borderRadius: 5px;
+    text-align: center;
+    paddingTop: 8px;
 `
 
 export const AreaEstrelas = styled.View`

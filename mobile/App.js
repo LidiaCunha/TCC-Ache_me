@@ -6,22 +6,22 @@ import { AuthProvider } from './src/contexts/auth';
 import { ConversationProvider } from './src/contexts/ConversationProvider';
 import { SocketProvider } from './src/contexts/socketProvider';
 
-
+import Everson from "./src/pages/card_desaparecido/index";
 
 const App = () => { 
 
    return (
-       
-//       <Everson/>
-   <NavigationContainer>
-     <AuthProvider>
-       <SocketProvider>
-         <ConversationProvider>
-           <Routes/>
-         </ConversationProvider>
-       </SocketProvider>
-     </AuthProvider>
-   </NavigationContainer>
+
+    <Everson/>
+  //  <NavigationContainer>
+  //    <AuthProvider>
+  //      <SocketProvider>
+  //        <ConversationProvider>
+  //          <Routes/>
+  //        </ConversationProvider>
+  //      </SocketProvider>
+  //    </AuthProvider>
+  //  </NavigationContainer>
   );
 }
 

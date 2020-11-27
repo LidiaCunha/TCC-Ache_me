@@ -1,4 +1,5 @@
 import React from 'react';
+import { View, StyleSheet, Image, Button } from 'react-native';
 import Clock from '../../assets/Card_desaparecido/clock.png';
 import Calendar from '../../assets/Card_desaparecido/calendar.png';
 import Map from '../../assets/Card_desaparecido/map.png';
@@ -6,6 +7,8 @@ import Genre from '../../assets/Card_desaparecido/genre.png';
 import Header from '../../assets/Card_desaparecido/naruto.jpg';
 import Enviar from '../../assets/Card_desaparecido/enviar-correio.png';
 import Photo from '../../assets/kakashi.jpg';
+import MenuIcon from '../../assets/menu_desaparecido/kakashi.jpg';
+
 
 import {  
     Container,
@@ -31,6 +34,8 @@ import {
     ContainerUser,
     ContainerUserImg,
     ContainerUserName,
+
+    
 } from './styles';
 
 const Card_desaparecido = () => {
@@ -62,7 +67,7 @@ const Card_desaparecido = () => {
                 </ContainerBasicInfo>
 
                 <ContainerText>
-                    <Text>loremloremlorem loremlorem loremloremloremloremlorem lorem loremloremlorem loremloremloremlorem loremloremloremlorem loremlorem lorem loremloremloremloremlorem loremlorem loremlorem loremloremlorem loremloremlorem lorem loremloremlorem loremloremloremloremlorem loremloremloremloremvlorem loremlorem</Text>
+                    <Text>oi</Text>
                 </ContainerText>
 
                 <ContainerCharacter>
@@ -91,6 +96,12 @@ const Card_desaparecido = () => {
                     </BtnSend>    
                 </Comment> 
         
+                <View style={{flex:1}}>
+                    <View style={{position:'absolut',bottom:100,right:30,alignSelf:'flex-end'}}>
+                        <Options source={MenuIcon}/>
+                    </View>
+                </View>
+
             </Container>
         </>
     );
