@@ -6,6 +6,8 @@ import { AuthProvider } from './src/contexts/auth';
 import { ConversationProvider } from './src/contexts/ConversationProvider';
 import { SocketProvider } from './src/contexts/socketProvider';
 
+import Visto from './src/pages/form_visto/index';
+
 const App = () => { 
 
    return (

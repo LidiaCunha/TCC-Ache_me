@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Container, ContainerUsuario, CardOpcoes, FotoDesaparecido, FotoUsuario, Infos, ContainerInfos, Linha, ContainerCardFiltros, CardFiltros, DivBotoesOpcoes, ContainerBotoes, BotoesOpcoes } from './styles';
+import { Container, ContainerUsuario, CardOpcoes, FotoDesaparecido, FotoUsuario, Infos, ContainerInfos, Linha, ContainerCardFiltros, CardFiltros, DivBotoesOpcoes, ContainerBotoes, BotoesOpcoes, ContainerTexto, InputNome } from './styles';
 import Foto from "../../assets/Sobre/iuri.jpeg";
 import Desaparecido from "../../assets/Post/timothee.jpg";
 import genero from "../../assets/Post/man.png";
@@ -19,7 +19,10 @@ function Post() {
           <FotoUsuario>
             <img src={Foto}></img>
           </FotoUsuario>
-          <h1>Iuri Oliveira Carvalho Sampaio</h1>
+          <ContainerTexto>
+            <h1>Iuri Oliveira Carvalho Sampaio</h1>
+            <p>6 de nov. de 2020</p>
+          </ContainerTexto>
         </ContainerUsuario>
         <FotoDesaparecido>
           <img src={Desaparecido}></img>
@@ -38,6 +41,8 @@ function Post() {
             <img src={genero}/>
             <p>Masculino</p>
           </ContainerInfos>
+          <h1>TIMOTHEÉ CHALAMET</h1>
+          <InputNome placeholder="Digite o nome do desaparecido..."/>
           <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been 
             the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type 
             and scrambled it to make a type specimen book. 
