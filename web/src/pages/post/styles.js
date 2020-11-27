@@ -18,6 +18,14 @@ export const ContainerUsuario = styled.div`
     align-items: center;
     padding: 20px;
     box-sizing: border-box;
+`
+
+export const ContainerTexto = styled.div`
+    width: 80%;
+    height: inherit;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 
     >h1{
         color: #1d1d1d;
@@ -25,6 +33,31 @@ export const ContainerUsuario = styled.div`
         font-size: 1.6em;
         letter-spacing: 1.4;
     }
+    >p{
+        color: #1d1d1d;
+        letter-spacing: 1.5px;
+        font-size: 1.2em;
+        font-weight: 200;
+    }
+`
+
+export const InputNome = styled.input`
+    width: 90%;
+    height: 40px;
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 15px;
+    margin-top: 15px;
+    outline: none;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: solid 2px #787878;
+    padding-left: 10px;
+    color: #1d1d1d;
+    font-weight: bold;
+    font-size: 1em;
+    letter-spacing: 1.4;
 `
 
 export const FotoUsuario = styled.div`

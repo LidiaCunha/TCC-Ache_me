@@ -139,15 +139,11 @@ function Chat({ route }) {
         <Seta source={seta} />
       </MenuVoltar>
       <ContainerChat>
-
-        <ScrollView>
-
-
           <ContainerUsuario>
             <ImagemUsuario source={route.params.photo ? {uri:route.params.photo} : defaultImage} />
             <NomeUsuario>{route.params.name}</NomeUsuario>
           </ContainerUsuario>
-        </ScrollView>
+          <ScrollView>
         {conversations.map !== undefined && conversations.map((conversation) => {
           console.log(conversation)
           if (conversation.sender === user.id)
@@ -165,6 +161,7 @@ function Chat({ route }) {
               </>
             );
         })}
+        </ScrollView>
         <AreaMensagem>
           <ViewMensagem>
             <Mensagem placeholder="Digite sua mensagem" onTouchStart={(e) => setInputHeigth(e.nativeEvent.pageY + e.nativeEvent.locationY)} onChange={handlerInput}  value={value.msg} />

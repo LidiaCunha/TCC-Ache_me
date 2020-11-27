@@ -28,7 +28,7 @@ const AppRoutes = () => {
       <AppStack.Screen name="Dashboard" component={Dashboard} options={{title: "Home"}}/>
       <AppStack.Screen name="profile" component={Profile} options={{title: "Perfil"}}/>
       <AppStack.Screen name="createpost" component={Create_post} options={{title: "Criar postagem"}}/>
-      <AppStack.Screen name="conversations" component={Conversations} />
+      <AppStack.Screen name="conversations" component={Conversations} options={{headerShown:false}} />
       <AppStack.Screen name="search" component={Search} />
       <AppStack.Screen name="chat" component={Chat} options={{headerShown:false}}/>
     </AppStack.Navigator>
