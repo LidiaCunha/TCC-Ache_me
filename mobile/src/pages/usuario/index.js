@@ -4,7 +4,7 @@ import addImage from '../../assets/image.png';
 import estrela from '../../assets/star.png';
 import foto2 from '../../assets/fotoExemplo.jpg';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import { Photo, UnChanged, AreaUsuario, TextoEmail, NomeUsuario, BotaoSalvar, AreaInputs, ContainerInputs, AreaImagemMembros, InputInfos, Border, IconeFotoMembros, ImagemMembros, AreaEstrelas, TextoMenor, TextoMerito, IconeFoto, FotoCamera, AreaImagem, AreaMerito, Container, ContainerUsuario, ImagemUsuario, MenuVoltar, Seta, Estrelas, Botao, TextoBotao, AreaTexto, AreaMembros, Texto } from "./styles";
+import { Photo, UnChanged, AreaUsuario, TextoEmail, NomeUsuario, BotaoSalvar, AreaInputs, ContainerInputs, AreaImagemMembros, InputInfos, Border, IconeFotoMembros, ImagemMembros, AreaEstrelas, TextoMenor, TextoMerito, IconeFoto, FotoCamera, AreaImagem, AreaMerito, Container, ContainerUsuario, ImagemUsuario, MenuVoltar, Seta, Estrelas, Botao, TextoBotao, AreaTexto, AreaMembros, Texto, Btn_denuncia } from "./styles";
 import { ScrollView } from "react-native";
 import {api} from "../../services/api";
 import defaultImage from "../../../src/assets/user.png";
@@ -226,6 +226,7 @@ const Usuario = ({reload, props}) => {
                             <Estrelas source={estrela}></Estrelas>
                         </AreaEstrelas>
                         <TextoMerito>Seu mérito</TextoMerito>
+                        <Btn_denuncia>Denúncias</Btn_denuncia>
                     </AreaMerito>
                 </ContainerUsuario>
                 <AreaTexto>
