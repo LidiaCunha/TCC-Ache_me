@@ -120,12 +120,13 @@ module.exports = {
 
         const { firebaseUrl } = req.file ? req.file : "";
 
-        if ( !(name && description && borned_at && firebaseUrl) ) {
-            return res.status(401).send({"error":"Você precisa preencher todos os campos"})
-        }
+
+        // if ( !(name && description && borned_at && firebaseUrl) ) {
+        //     return res.status(401).send({"error":"Você precisa preencher todos os campos"})
+        // }
     
         const gengeAlreadyExists = await Genre.findOne({where:{genre:name_of_genre}});
-
+        console.log(firebaseUrl)
         let genre_id = '';
         if ( gengeAlreadyExists ){
             genre_id = gengeAlreadyExists.dataValues.id;
@@ -139,7 +140,7 @@ module.exports = {
             return res.status(400).send({"error":"Futuramente será adicionado uma inteligência artificial para a análise das fotos"})
         }
 
-        const Post = await LostedPost.create({name,description,borned_at: moment(borned_at,'ddd, D MMM YYYY H:mm:ss Z').format(),photo:firebaseUrl,id_user, genre_id});
+        const Post = await LostedPost.create({ name, description, borned_at: moment(borned_at,'ddd, D MMM YYYY H:mm:ss Z').format(), photo:firebaseUrl , id_user, genre_id});
     
         if ( !Post ){
             return res.status(401).send({"error":"Erro no sequelize"})

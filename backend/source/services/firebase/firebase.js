@@ -13,6 +13,7 @@ const imageUpload = (req, res, next) => {
 	if(! req.file ) return next();
 
 	const photo = req.file;
+	console.log(photo)
 	//criando um array dividido pelo ponto e tirando o primeiro elemento do array    
     const name = Date.now()+"."+photo.originalname.split(".").pop();
     
