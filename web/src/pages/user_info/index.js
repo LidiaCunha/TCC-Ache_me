@@ -217,8 +217,7 @@ const UserInfo = () => {
 
   return (
     <Container>
-      {/* { showCreatePost && <CreatePost /> } */}
-      <CreatePost />
+      { showCreatePost && <CreatePost showCreatePost={setShowCreatePost} /> }
       { showModalPost && <ModalPostagem /> }
       { loading && <Spinner/>}
       <Header>

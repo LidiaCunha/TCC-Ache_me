@@ -508,3 +508,8 @@ export const ConteinerFeatures = styled.div`
     justify-content:space-around;
     align-items:center;
 `;
+export const LabelLocation = styled.span`
+    font-family:Arial, Helvetica, sans-serif;
+    font-weight:bolder;
+    font-size:2rem;
+`;
