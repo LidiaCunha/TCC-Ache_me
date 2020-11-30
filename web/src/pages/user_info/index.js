@@ -160,6 +160,8 @@ const UserInfo = () => {
 
   const [newImage, setNewImage] = useState(null);
 
+  const [lastPost, setLastPost] = useState({});
+
   const photoUpdate = async () => {
 
     setLoading(true);
@@ -194,6 +196,13 @@ const UserInfo = () => {
     }
   }
 
+  useEffect(()=>{
+    (async ( ) => {
+      const res = await api.get('/posts/my/last');
+      setLastPost(res.data)
+    })();
+  },[])
+  
   const handlerImage = (e) => {
     if (e.target.files[0]) {
         imgRef.current.src = URL.createObjectURL(e.target.files[0])
@@ -217,7 +226,7 @@ const UserInfo = () => {
 
   return (
     <Container>
-      { showCreatePost && <CreatePost showCreatePost={setShowCreatePost} /> }
+      { showCreatePost && <CreatePost showCreatePost={setShowCreatePost} user={{user,image}} /> }
       { showModalPost && <ModalPostagem /> }
       { loading && <Spinner/>}
       <Header>
@@ -244,9 +253,9 @@ const UserInfo = () => {
               </Login>
             </PhotoProfile>
             <Merit>
-              <Text>Seu mérito:</Text>
-              <Text>Data da última publicação:</Text>
-              <Text>Hora da última publicação:</Text>
+              <Text>Seu mérito: { !user.merit || user.merit == null ? "0 (indique pessoas para aumentar seu mérito)" : user.merit} </Text>
+              <Text>Data da última publicação: {lastPost.createdAt && lastPost.createdAt.split("T")[0]}</Text>
+              <Text>Hora da última publicação: {lastPost.createdAt && lastPost.createdAt.split("T")[1].split(".")[0]}</Text>
               <ButtonDenuncia>Denúncias</ButtonDenuncia>
               <ButtonPost onClick={()=>{setShowModalPost(true)}} >Postagens</ButtonPost>
             </Merit>

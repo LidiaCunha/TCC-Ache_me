@@ -98,7 +98,7 @@ const Card_desaparecido = () => {
         
                 <View style={{flex:1}}>
                     <View style={{position:'absolut',bottom:100,right:30,alignSelf:'flex-end'}}>
-                        <Options source={MenuIcon}/>
+                        {/* <Options source={MenuIcon}/> */}
                     </View>
                 </View>
 

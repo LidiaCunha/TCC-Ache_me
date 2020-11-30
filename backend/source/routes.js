@@ -54,6 +54,7 @@ routes.delete('/state/:stateId', States.delete);
 routes.get('/posts', LostedPost.index);
 routes.get('/post/filterby/', filters.filterByGenre , filters.filterByFeatures , filters.filterByAge , filters.filterByDate , filters.filterByHour , filters.filterByLocale , filters.filterByProblems );
 routes.get('/posts/:PostId', LostedPost.show);
+routes.get('/posts/my/last',LostedPost.takeLastOfThisUser);
 routes.post('/posts', Multer.single("photo"), imageUpload, LostedPost.store);
 routes.delete('/posts/:idPost', LostedPost.delete);
 routes.put('/posts/:idPost', Multer.single("photo") , imageUpload , LostedPost.update);

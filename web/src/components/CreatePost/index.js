@@ -4,7 +4,7 @@ import { api } from '../../services/api'
 import camera from "../../assets/camera.png";
 import { Container,ConteinerFeatures, ContainerModal, Header, Creator, Photo , LabelLocation , ConteinerInput, Input , Name, ExitButton, ContainerRadio,LostedPhoto ,ConteinerPhoto, ButtonPhoto , Body, TextArea, Line, InputName, InputBorned ,Label, Date, Time, RadioGenre, Column, RadioGroup, RadioStyled,ButtonPublicar,ContainerItem,LabelItem,ButtonExcluir } from './style';
 
-function CreatePost({showCreatePost}) {
+function CreatePost({showCreatePost, user}) {
 
     const [photo, setPhoto] = useState(null);
 
@@ -146,10 +146,6 @@ function CreatePost({showCreatePost}) {
         }else{
             window.alert("erro ao criar a postagem");
         }
-
-
-        
-    
     };
 
     function Item({ item , isFeature }){
@@ -176,11 +172,11 @@ function CreatePost({showCreatePost}) {
             
             <Header>
                 <Creator>
-                    <Photo alt="foto do usuario" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.L0MNPgLV6IWoihSTt0NPNwHaF7%26pid%3DApi&f=1" />
-                    <Name>Algum Nome De Alguem</Name>
+                    <Photo alt="foto do usuario" src={user.image} />
+                    <Name>{user.user.name}</Name>
                 </Creator>
             
-                <ExitButton />
+                <ExitButton onClick={()=>showCreatePost(false)} />
             </Header>
             
             <Body>

@@ -8,6 +8,8 @@ import Chat from '../pages/chat';
 import Conversations from '../pages/conversations';
 import Search from '../pages/conversations/search';
 import {createStackNavigator} from '@react-navigation/stack';
+import CreateSeen from '../pages/form_visto/';
+import CreateFind from '../pages/form_encontrado/';
 
 //código
 const AppStack = createStackNavigator();
@@ -31,6 +33,8 @@ const AppRoutes = () => {
       <AppStack.Screen name="conversations" component={Conversations} options={{headerShown:false}} />
       <AppStack.Screen name="search" component={Search} />
       <AppStack.Screen name="chat" component={Chat} options={{headerShown:false}}/>
+      <AppStack.Screen name="seen" component={CreateSeen} />
+      <AppStack.Screen name="find" component={CreateFind} />
     </AppStack.Navigator>
   );
 };

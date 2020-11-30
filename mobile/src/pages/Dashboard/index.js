@@ -35,11 +35,21 @@ const Dashboard = ({navigation}) => {
     navigation.navigate('createpost', props);
   }
 
+  const openCreateSeen = () => {
+    navigation.navigate('seen')
+  }
+
+  const openCreateFind = () => {
+    navigation.navigate('find')
+  }
+
    return (
      <View style={style.container}>
        <Text>{userinfo.mail}</Text>
        <Button title="Add Post" onPress = {() => {createPost(userinfo)}} />
        <Button title="Chat" onPress={openConversations} />
+       <Button title="Add Seen" onPress={openCreateSeen}/>
+       <Button title="Add Find" onPress={openCreateFind}/>
        <Button title="Profile" onPress={() => {openProfile(userinfo)}} />
        <Button title="Logout" onPress = {handlerLogout} />
      </View>
