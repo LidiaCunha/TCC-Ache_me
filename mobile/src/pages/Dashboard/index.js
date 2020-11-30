@@ -10,7 +10,7 @@ const style = StyleSheet.create({
   },
 });
 
-const Dashboard = ({route, navigation}) => {
+const Dashboard = ({navigation}) => {
   const {user, logout} = useAuth();
 
   var userinfo = user;

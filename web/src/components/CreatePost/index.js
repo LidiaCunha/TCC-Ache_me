@@ -1,9 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState , useRef} from 'react';
 
+import { api } from '../../services/api'
 import camera from "../../assets/camera.png";
-import { Container,ConteinerFeatures, ContainerModal, Header, Creator, Photo, ConteinerInput, Input , Name, ExitButton, ContainerRadio,LostedPhoto ,ConteinerPhoto, ButtonPhoto , Body, TextArea, Line, InputName, InputBorned ,Label, Date, Time, RadioGenre, Column, RadioGroup, RadioStyled,ButtonPublicar,ContainerItem,LabelItem,ButtonExcluir } from './style';
+import caracteristicas from "../../assets/user_info/caracteristicas.png";
+import saude from "../../assets/user_info/saude.png";
+import { Container,ConteinerFeatures, ContainerModal, Header, Creator, Photo , LabelLocation , ConteinerInput, Input , Name, ExitButton, ContainerRadio,LostedPhoto ,ConteinerPhoto, ButtonPhoto , Body, TextArea, Line, InputName, InputBorned ,Label, Date, Time, RadioGenre, Column, RadioGroup, RadioStyled,ButtonPublicar,ContainerItem,LabelItem,ButtonExcluir, Linha, InputEndereco } from './style';
 
-function CreatePost() {
+function CreatePost({showCreatePost}) {
 
     const [photo, setPhoto] = useState(null);
 
@@ -26,10 +29,21 @@ function CreatePost() {
         feature: "",
     });
 
+    const [location, setLocation ] = useState({});
+
+    const [cep, setCep] = useState("");
+
+    const imgRef = useRef();
+
     const handlerImage = (e) => {
         if (e.target.files[0]) {
-            setPhoto(URL.createObjectURL(e.target.files[0]));
+            imgRef.current.src = URL.createObjectURL(e.target.files[0])
+            setPhoto(e.target.files[0]);
         }
+    };
+
+    const handlerCep = (e) => {
+        setCep(e.target.value );
     };
 
     const handlerFeatures = (e) => {
@@ -70,6 +84,76 @@ function CreatePost() {
         setItem({ ...item , [e.target.id] : e.target.value });
     };
 
+    const handlerRefPoint = (e) => {
+        setLocation({ location , reference_point:e.target.value });
+    }
+
+    const createPost = async ( ) => {
+
+        await api.post('/genre',{genre});    
+        
+        const data = new FormData();
+
+        data.append("name", name);
+        data.append("description", description);
+        data.append("borned_at", bornedAt);
+        data.append("name_of_genre",genre);
+        data.append("photo",photo);
+        
+        try{
+            var postCreated = await api.post('/posts', data, {
+                headers: {
+                    "Content-type": `multipart/form-data`,
+                }
+            });
+        }catch(err){
+            console.log(err)
+        }
+        if (postCreated.status === 201) {
+
+            const url = `https://api.postmon.com.br/v1/cep/${cep}`;
+
+            const address = await fetch(url).then(res => res.json());
+           
+            const data = {
+                street:address.logradouro, 
+                bairro: address.bairro, 
+                cep:cep, 
+                reference_point:location.reference_point,  
+                city: address.cidade, 
+                state: address.estado_info.nome, 
+                seen_at_date: seen.date, 
+                seen_at_hours: seen.time
+            };
+            const seenCreated = await api.post(`/seen/${postCreated.data.id}`,data);
+
+            if (seenCreated.status === 201){
+
+                problems.map( problem => {
+                    (async()=>{
+                        await api.post(`/healthProblems/post/${postCreated.data.id}`,{problem});
+                    })();
+                });
+                features.map( feature => {
+                    (async()=>{
+                        await api.post(`/features/post/${postCreated.data.id}`,{feature});
+                    })();
+                });
+
+                showCreatePost(false);
+                window.alert("Post criado com sucesso!");
+
+            }
+
+        }else{
+            window.alert("erro ao criar a postagem");
+        }
+
+
+        
+    
+    };
+
     function Item({ item , isFeature }){
 
         const deleteItem = () => {
@@ -88,10 +172,6 @@ function CreatePost() {
         );
     }
 
-    useEffect(()=>{
-        console.log({name,description,bornedAt, genre, problems,features, photo, seen})
-    },[genre])
-
     return (
     <ContainerModal>
         <Container>
@@ -106,6 +186,7 @@ function CreatePost() {
             </Header>
             
             <Body>
+
                 <Line>
                     
                     <Column>
@@ -114,12 +195,12 @@ function CreatePost() {
                     </Column>
 
                     <Column>
-                        <Label>Ultima Data que foi Visto</Label>
+                        <Label>Ultima data que foi visto</Label>
                         <Date onChange={handlerSeen} value={seen.date} id="date" />
                     </Column>
 
                     <Column>
-                        <Label>Ultimo Horário que foi Visto</Label>
+                        <Label>Ultimo horário que foi visto</Label>
                         <Time onChange={handlerSeen} value={seen.time} id="time" />
                     </Column>
 
@@ -129,11 +210,11 @@ function CreatePost() {
                     
                     <Column>
                         <InputName value={name} onChange={handlerName} />
-                        <Label>Nome Do Desaparecido</Label>
+                        <Label>Nome do desaparecido</Label>
                     </Column>
 
                     <Column>
-                        <Label>Genero</Label>
+                        <Label>Gênero</Label>
                         
                         <RadioGroup>
                         
@@ -166,11 +247,14 @@ function CreatePost() {
                     </Column>    
                 </Line>
 
+                <Linha>
+                    <Label>Foto do desaparecido</Label>
+                </Linha>
+
                 <Line>
 
                     <ConteinerPhoto>
-
-                        { photo && <LostedPhoto src={photo}  alt="LostedPhoto"/> }
+                        <LostedPhoto ref={imgRef}  />  
                         <label>
                             <img src={camera} alt="camera" />
                             <ButtonPhoto onChange={handlerImage}  />
@@ -184,7 +268,7 @@ function CreatePost() {
                     <Column>
                         <Label>Características Físicas</Label>
                         <ConteinerInput>
-                            <span></span> 
+                            <span><img src={caracteristicas}/></span> 
                             <Input id="feature" onChange={handlerItem} value={item.feature} onKeyPress={handlerFeatures}/>
                         </ConteinerInput>    
                         <ConteinerFeatures>
@@ -199,7 +283,7 @@ function CreatePost() {
                     <Column>
                         <Label>Problemas de Saúde</Label>
                         <ConteinerInput>
-                            <span></span>  
+                            <span><img src={saude}/></span>  
                             <Input onChange={handlerItem} id="problem" value={item.problem} onKeyPress={handlerProblems} />
                         </ConteinerInput>
                         <ConteinerFeatures>
@@ -211,7 +295,21 @@ function CreatePost() {
                 </Line>
 
                 <Line>
-                    <ButtonPublicar onClick={()=>console.log("n")} />
+                    <LabelLocation>Localização da última vez que foi visto:</LabelLocation>
+                </Line>
+                    <Line>
+                        <Column>
+                            <Label>CEP</Label>
+                            <InputEndereco value={location.cep} onChange={handlerCep}/>
+                        </Column>
+                        <Column>
+                            <Label>Ponto de referência</Label>
+                            <InputEndereco value={location.reference_point} onChange={handlerRefPoint}/>
+                        </Column>
+                    </Line>
+
+                <Line>
+                    <ButtonPublicar onClick={createPost} />
                 </Line>
 
             </Body>

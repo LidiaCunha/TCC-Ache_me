@@ -10,9 +10,12 @@ module.exports = {
         const { firebaseUrl } = req.file ? req.file : "";
 
         if ( sender == recipient )
-            return res.status(400).send({"erro": "impossivel mandar mensagens para voce mesmo"})
+            return res.status(400).send({"erro": "Impossivel mandar mensagens para voce mesmo"})
 
-        const msg = (message && recipient && sender ) && await Message.create({sender, recipient , message, photo:firebaseUrl})
+        if ( !message && !firebaseUrl )
+            return res.status(400).send({"erro": "Impossivel enviar uma mensagem sem conteúdo"})
+
+        const msg = (recipient && sender ) && await Message.create({sender, recipient , message, photo:firebaseUrl})
 
         return msg ? res.status(201).send(msg) : res.status(501).send({"error":"não foi possivel enviar a mensagem"})
     },

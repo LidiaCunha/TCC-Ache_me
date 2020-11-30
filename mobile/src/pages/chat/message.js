@@ -7,26 +7,22 @@ const MessageBubble = (props) => {
       <TouchableOpacity style={[ styles.message, props.mine ? styles.mine : styles.not_mine ]} >
         <TouchableOpacity style={[ styles.cloud, { backgroundColor: props.mine ? '#EDEDED' : '#f37e74'} ]} >
         {
-          props.image ?
+          props.image &&
               <Image
                 style={{ width: 300, height: 300, alignSelf: props.mine ? 'flex-start' : 'flex-end' }}
                 borderRadius={10}
                 marginTop={6}
                 marginBottom={6}
-                source={{uri:props.image}}
+                source={{uri:props.image.uri}}
                 width={500}
                 height={500}
-              />
-          :
-              null
-          }
+              />          
+        }
           {
             props.text ?
               <Text style={[ styles.text, {color: props.mine ? 'black' : 'white'} ]} >
                 {props.text}
-              </Text>
-            :
-              null
+              </Text>  : <Text></Text>
           }
           <TouchableOpacity style={[ styles.arrow_container, props.mine ? styles.arrow_left_container : styles.arrow_right_container ]}>
             <Svg

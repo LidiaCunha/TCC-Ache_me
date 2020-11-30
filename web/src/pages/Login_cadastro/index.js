@@ -283,7 +283,7 @@ const FormLogin = (props) => {
 
                 signIn(retorno.data);
 
-                return history.push("/post");
+                return history.push("/user_info");
             };
 
         } catch (erro) {

@@ -35,7 +35,7 @@ export const Container = styled.div`
     background: #ef545e;
     }
     ::-webkit-scrollbar-thumb:active {
-    background: #000000;
+    background: #ef545e;
     }
     ::-webkit-scrollbar-track {
     background: #666666;
@@ -69,7 +69,7 @@ export const Creator = styled.div`
     margin-top:5px;
 `;
 export const Photo = styled.img`
-    border-radius:50px;
+    border-radius:25px;
     width:50px;
     height:50px;
     margin-left:5px;
@@ -101,12 +101,26 @@ export const Line = styled.div`
     box-sizing: border-box;
     margin-top:25px;
     margin-bottom:20px;
-    height:100px;
+    min-height: 10px;
+    height:auto;
     display:flex;
     align-items:center;
     flex-direction:row;
     justify-content:space-around;
 `;
+
+export const Linha = styled.div`
+    width:100%;
+    box-sizing: border-box;
+    margin-bottom:-65px;
+    min-height: 10px;
+    height:auto;
+    display:flex;
+    align-items:center;
+    flex-direction:row;
+    justify-content:space-around;
+`;
+
 export const InputName = styled.input.attrs(() => ({
     type: "text",
     required: true,
@@ -148,16 +162,21 @@ export const InputBorned = styled.input.attrs(() => ({
     outline: none;
     padding: 5px;
     margin-left:15px;
-    width: 250px;
+    width: 320px;
     height:25px;
     border:solid 1px #232323;
     background-color:fafafa;
     border-radius:5px;
+    margin-left: auto;
+    margin-right: auto;
 `;
 export const Label = styled.label`
-    font-size:1rem;
+    font-size:1.1em;
     font-weight:300;
     font-family: Arial, Helvetica, sans-serif;
+    margin-left: auto;
+    margin-right: auto;
+    letter-spacing: 1.1px;
 `;
 export const Date = styled.input.attrs(() => ({
     type: "date"
@@ -235,10 +254,11 @@ export const RadioStyled = styled.span`
 
     border: 3px solid #ef5245;
     border-radius: 100%;
-    margin-right: 16px;
-    margin-left: 6px;
+    margin-right: auto;
+    margin-left: auto;
 
     position: relative;
+
 
     ::before , ::after{
         content: "";
@@ -265,7 +285,8 @@ export const RadioStyled = styled.span`
     }
 `;
 export const RadioGroup = styled.form`
-    width:500px;
+    width: auto;
+    min-width:500px;
     height:60px;
     display:flex;
     flex-direction:row;
@@ -281,24 +302,29 @@ export const Column = styled.div`
     margin-bottom: 35px;
 `;
 export const ContainerRadio = styled.div`
-    width : 150px;
+    min-width : 160px;
+    width: auto;
     height: 45px;
     display:flex;
     align-items:center;
     flex-wrap: nowrap;
-    margin: 12px 0;
+    margin: 12px 10px;
     cursor: pointer;
     position: relative;
     border: solid 0.5px #000;
     border-radius:5px;
 `;
 export const LostedPhoto = styled.img`
-    height:110px;
-    width:900px;
+    max-height: 800px;
+    max-width: 800px;
+    border-radius: 15px;
     margin :20px;
-    margin-bottom:10px;
+    margin-bottom:20px;
+    margin-top: 70px;
     box-sizing:border-box;
     background-attachment:fixed;
+    margin-left: auto;
+    margin-right: auto;
 `; 
 export const ConteinerPhoto = styled.div`
     width:95em;
@@ -306,12 +332,12 @@ export const ConteinerPhoto = styled.div`
     min-height:40px;
     margin-bottom:5em;
     height:auto;
-    max-height: 600px;
     border: solid 1px #1e1e1e;
     border-radius:5px;
     display: flex;
     justify-content:space-between;
     flex-direction: row;
+    z-index: 889;
     :hover{
         > label {
             background-color:#1e1e1e;
@@ -348,7 +374,7 @@ export const ButtonPhoto = styled.input.attrs(()=> ({
 export const TextArea = styled.textarea.attrs(() => ({
     placeholder: "Digite detalhes sobre o desaparecido para ajudar em sua identificação"
 }))`
-    width:69em;
+    width:65em;
     margin:2.5em;
     padding:0.5em;
     font-size:1.1rem;
@@ -396,7 +422,7 @@ export const TextArea = styled.textarea.attrs(() => ({
     }
 `;
 export const ConteinerInput = styled.div`
-    width  : 63em;
+    width  : 60em;
     height : 3em;
     border : solid 1px #1e1e1e;
     border-radius : 5px;
@@ -410,6 +436,15 @@ export const ConteinerInput = styled.div`
         margin:1em;
         border-radius:50%;
         background-color:#ef5245;
+        padding: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        >img{
+            width: 100%;
+            height: 100%;
+        }
     }
 `;
 export const Input = styled.input.attrs(()=>({
@@ -438,40 +473,42 @@ export const ButtonPublicar = styled.input.attrs(()=>({
     background-color:#ef5245;
 `;
 export const ContainerItem = styled.div`
-    width:140px;
+    min-width:20px;
+    width: auto;
     height:35px;
     background-color:#ef5245;
     display:flex;
     flex-direction: row;
-    justify-content:space-between;
+    justify-content: center;
     align-items:center;
     padding:5px;
+    box-sizing: border-box;
+    border-radius: 10px;
+    margin-bottom: 10px;
 `;
 export const LabelItem = styled.span`
     color:aliceblue;
     font-weight:300;
-    margin-left:1em;
+    margin-left:10px;
+    margin-right: 10px;
     height:18px;
     align-self: center;
     justify-self: center;
     font-size:16px;
     font-family:Arial;
 `;
-export const ButtonExcluir = styled.button`
-    border:none;
-    -moz-appearance:none;
-    -webkit-appearance:none;
-    appearance:none;
-    outline: none;
-    width:18px;
-    height:18px;
-    margin:0;
-    font-weight:900;
-    font-size:18px;
-    border-radius:5px;
-    margin-bottom:-1em;
+export const ButtonExcluir = styled.div`
+    width:20px;
+    height:20px;
+    border-radius: 100%;
+    background-color: white;
+    display: flex;
     font-family:Arial;
-    padding:0;
+    color: #ef545e;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    
     :hover{
         cursor:pointer;
     }
@@ -485,4 +522,60 @@ export const ConteinerFeatures = styled.div`
     flex-direction: row;
     justify-content:space-around;
     align-items:center;
+    overflow-x: auto;
+
+    ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+    }
+    ::-webkit-scrollbar-button {
+    width: 0px;
+    height: 0px;
+    }
+    ::-webkit-scrollbar-thumb {
+    background: #ef545e;
+    border: 0px none #ef545e;
+    border-radius: 50px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+    background: #ef545e;
+    }
+    ::-webkit-scrollbar-thumb:active {
+    background: #000000;
+    }
+    ::-webkit-scrollbar-track {
+    background: #666666;
+    border: 0px none #ef545e;
+    border-radius: 50px;
+    }
+    ::-webkit-scrollbar-track:hover {
+    background: #666666;
+    }
+    ::-webkit-scrollbar-track:active {
+    background: #333333;
+    }
+    ::-webkit-scrollbar-corner {
+    background: transparent;
+    }
 `;
+export const LabelLocation = styled.span`
+    font-family:Arial, Helvetica, sans-serif;
+    font-weight:bold;
+    font-size:1.5em;
+    text-align: center;
+`;
+
+export const InputEndereco = styled.input.attrs(()=>({
+    type: 'text',
+    placeholder: "Precione enter para adiconar o endereço"
+}))`
+    width: 300px;
+    height: 20px;
+    padding: 5px;
+    -moz-appearance:none;
+    -webkit-appearance:none;
+    appearance:none;
+    outline: none;
+    background-color:transparent;
+    border: solid 1px #1d1d1d;
+`

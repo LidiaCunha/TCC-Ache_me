@@ -145,7 +145,6 @@ function Chat({ route }) {
           </ContainerUsuario>
           <ScrollView>
         {conversations.map !== undefined && conversations.map((conversation) => {
-          console.log(conversation)
           if (conversation.sender === user.id)
             return (
               <TouchableOpacity onLongPress={() => setIdToDelete(conversation.id)} onPress={ () => showAboutMessageTime(conversation.createdAt) }>
@@ -176,7 +175,7 @@ function Chat({ route }) {
                       setImage(null);
                       setTimeout(()=>{
                         takeMessages()
-                      },700)  
+                      },500)  
                     }}
             >
               <Icone source={EnviarMsg} />

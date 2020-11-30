@@ -13,7 +13,7 @@ export const ConversationProvider = ({children}) => {
  
     async function sendMessage( recipient, message , image ){
       socket.emit('envia-msg', { recipient: recipient.id, text:message, image});
-        
+      
       if(image){
         const nameImage = image.uri.split('/').pop();
         const ext = nameImage.split(".").pop();
@@ -21,6 +21,7 @@ export const ConversationProvider = ({children}) => {
         var imageToSend = {
             uri: image.uri,
             type: image.type + "/" + ext,
+  //          type:"jpeg/"+ext,
             name: nameImage
         }
       }

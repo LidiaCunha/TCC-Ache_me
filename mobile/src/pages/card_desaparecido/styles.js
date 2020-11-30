@@ -47,8 +47,10 @@ export const ContainerImg = styled.Image`
     height: 200px;
     width: 100%;
     background: chartreuse;
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 5px;
     
 `;
 
@@ -194,8 +196,8 @@ export const PersonImage = styled.Image`
 `;
 
 export const Input = styled.TextInput`
-    height: 48px;
-    width: 300px;
+    height: 45px;
+    width: 260px;
     border: none;
     border-radius: 40px;
     background: #fff;
@@ -205,7 +207,7 @@ export const Input = styled.TextInput`
 `;
 
 export const BtnSend = styled.View`
-    height: 48px;
+    height: 45px;
     width: 35px;
     border-radius: 50px;
     background: #fff;
@@ -222,11 +224,11 @@ export const BtnSendImg = styled.Image`
     background: #E33336;
 `;
 
-export const Options = styled.View`
+export const Options = styled.Image`
     height: 45px;
     width: 45px;
     border-radius: 50px;
-    background: orange;
+    background: #E33336;
 `;
 
 
