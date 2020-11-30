@@ -12,16 +12,15 @@ const App = () => {
 
    return (
 
-    <Everson/>
-  //  <NavigationContainer>
-  //    <AuthProvider>
-  //      <SocketProvider>
-  //        <ConversationProvider>
-  //          <Routes/>
-  //        </ConversationProvider>
-  //      </SocketProvider>
-  //    </AuthProvider>
-  //  </NavigationContainer>
+   <NavigationContainer>
+     <AuthProvider>
+       <SocketProvider>
+         <ConversationProvider>
+           <Routes/>
+         </ConversationProvider>
+       </SocketProvider>
+     </AuthProvider>
+   </NavigationContainer>
   );
 }
 

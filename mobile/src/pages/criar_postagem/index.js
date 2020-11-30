@@ -43,6 +43,12 @@ import Characteristics from './modalCaracteristicas';
 
 const Criar_postagem = ({route}) => {
 
+    var radio_props = [
+        {label: 'Masculino', value: 'male' },
+        {label: 'Feminino', value: 'female' },
+        {label: 'Outro', value: 'other' }
+      ];
+
     const props = route.params;
 
     var userPhoto = defaltImage;
@@ -96,44 +102,88 @@ const Criar_postagem = ({route}) => {
         }
     };
 
-    // const createPost = async() => {
+    const createPost = async() => {
+        if (!postImage) {
+            return window.alert("imagem obrigatoria!!!")
+        }
 
-    //     const data = new FormData();
+        const data = new FormData();
 
-    //     data.append("name", props.name);
-    //     data.append("name_of_genre", post.name_of_genre);
-    //     data.append("borned_at", post.birthDate);
-    //     data.append("description", post.description);
+        data.append("name", props.name);
+        data.append("name_of_genre", post.name_of_genre);
+        data.append("borned_at", post.birthDate);
+        data.append("description", post.description);
 
-    //     if (postImage) {
-    //         const path = postImage.uri.split('/');
-    //         const name = path[path.length - 1];
-    //         const ext = name.split(".").pop();
+        const path = postImage.uri.split('/');
+        const name = path[path.length - 1];
+        const ext = name.split(".").pop();
 
-    //         data.append("photo", {
-    //             name : name,
-    //             uri: postImage.uri,
-    //             type: postImage.type+"/"+ext,
-    //         });   
-    //     }
+        data.append("photo", {
+            name : name,
+            uri: postImage.uri,
+            type: postImage.type+"/"+ext,
+        });
+        
+        try {
+            const retorno = await api.post ( '/post' , data, {
+                headers: {
+                    "Content-type": `multipart/form-data`,
+                }
+            });
 
-    //     console.log(post.date+" "+post.hours+":"+post.minute+":00");
+            
+            if (retorno.status === 201) {
 
-    //     const createdPost = await api.post ( '/post' , data);
-    
-    //     setPost(createdPost.data);
-    // }
+                const url = `https://api.postmon.com.br/v1/cep/${cep}`;
+
+                const address = await fetch(url).then(res => res.json());
+            
+                const data = {
+                    street:address.logradouro, 
+                    bairro: address.bairro, 
+                    cep:cep, 
+                    reference_point:location.reference_point,  
+                    city: address.cidade, 
+                    state: address.estado_info.nome, 
+                    seen_at_date: seen.date, 
+                    seen_at_hours: seen.time
+                };
+                const seenCreated = await api.post(`/seen/${postCreated.data.id}`,data);
+
+                if (seenCreated.status === 201){
+
+                    problems.map( problem => {
+                        (async()=>{
+                            await api.post(`/healthProblems/post/${postCreated.data.id}`,{problem});
+                        })();
+                    });
+                    features.map( feature => {
+                        (async()=>{
+                            await api.post(`/features/post/${postCreated.data.id}`,{feature});
+                        })();
+                    });
+
+                    showCreatePost(false);
+                    window.alert("Post criado com sucesso!");
+
+                }
+            }
+        } catch (error) {
+            if(erro.response){
+                return window.alert(erro.response.data.erro);
+            }
+            
+            window.alert("Ops, algo deu errado, tente novamente mais tarde.");            
+        }
+    }
 
     let PopupRef = React.createRef()
-
     const onShowPopup = () => {
         PopupRef.show()
     }
-
     const onClosePopup = () => {
         PopupRef.close()
     }
-
     const [popup, setPopup] = useState();
 
     return(
@@ -215,37 +265,16 @@ const Criar_postagem = ({route}) => {
                 <ContainerDateTime>
                     <ContainerDate>
                         <Lorem>Gênero</Lorem>
-                        {/* <RadioForm
-                            formHorizontal={true}
+                        <RadioForm
+                            radio_props={radio_props}
+                            initial={0}
+                            formHorizontal={false}
+                            labelHorizontal={true}
+                            buttonColor={'#999'}
+                            selectedButtonColor={'#E33336'}
+                            labelStyle={{fontSize: 15, color: '#999'}}
                             animation={true}
-                        >
-                        {
-                            radio_props.map((obj, i) => (
-                            <RadioButton labelHorizontal={true} key={i} >
-                                <RadioButtonInput
-                                    obj={obj}
-                                    index={i}
-                                    borderWidth={1}
-                                    buttonInnerColor={'#ef5245'}
-                                    buttonOuterColor={'#ef5245'}
-                                    buttonSize={20}
-                                    buttonOuterSize={40}
-                                    initial={0}
-                                    onPress={(value) => {this.setState({value:value})}}
-                                    buttonWrapStyle={{}}
-                                />
-                                <RadioButtonLabel
-                                    obj={obj}
-                                    index={i}
-                                    labelHorizont   al={true}
-                                    labelStyle={{fontSize: 18, color: '#fff'}}
-                                    labelWrapStyle={{marginRight: 40}}
-                                    onPress={(value) => {this.setState({value:value})}}
-                                />
-                            </RadioButton>
-                            ))
-                            }  
-                        </RadioForm> */}
+                            onPress={(value) => setPost({...post , name_of_genre : value})}/>
                     </ContainerDate>
                 </ContainerDateTime>
 
@@ -263,9 +292,9 @@ const Criar_postagem = ({route}) => {
             </ContainerFilter>    
     
             <ContainerBtnPublicar>
-                {/* <BtnPublicar onPress={createPost}>  
+                <BtnPublicar onPress={()=>{console.log(post)}}>  
                     <Lorem>Publicar</Lorem>
-                </BtnPublicar> */}
+                </BtnPublicar>
                 <BtnPublicar onPress={()=> {
                     setPopup(<HealthProblem/>)
                     onShowPopup()}}>
