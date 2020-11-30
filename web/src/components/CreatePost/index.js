@@ -2,7 +2,9 @@ import React, { useEffect, useState , useRef} from 'react';
 
 import { api } from '../../services/api'
 import camera from "../../assets/camera.png";
-import { Container,ConteinerFeatures, ContainerModal, Header, Creator, Photo , LabelLocation , ConteinerInput, Input , Name, ExitButton, ContainerRadio,LostedPhoto ,ConteinerPhoto, ButtonPhoto , Body, TextArea, Line, InputName, InputBorned ,Label, Date, Time, RadioGenre, Column, RadioGroup, RadioStyled,ButtonPublicar,ContainerItem,LabelItem,ButtonExcluir } from './style';
+import caracteristicas from "../../assets/user_info/caracteristicas.png";
+import saude from "../../assets/user_info/saude.png";
+import { Container,ConteinerFeatures, ContainerModal, Header, Creator, Photo , LabelLocation , ConteinerInput, Input , Name, ExitButton, ContainerRadio,LostedPhoto ,ConteinerPhoto, ButtonPhoto , Body, TextArea, Line, InputName, InputBorned ,Label, Date, Time, RadioGenre, Column, RadioGroup, RadioStyled,ButtonPublicar,ContainerItem,LabelItem,ButtonExcluir, Linha, InputEndereco } from './style';
 
 function CreatePost({showCreatePost, user}) {
 
@@ -161,7 +163,7 @@ function CreatePost({showCreatePost, user}) {
         return (
             <ContainerItem>
                 <LabelItem>{item}</LabelItem>
-                <ButtonExcluir onClick={deleteItem} ><p>x</p></ButtonExcluir>
+                <ButtonExcluir onClick={deleteItem} >x</ButtonExcluir>
             </ContainerItem>
         );
     }
@@ -189,12 +191,12 @@ function CreatePost({showCreatePost, user}) {
                     </Column>
 
                     <Column>
-                        <Label>Ultima Data que foi Visto</Label>
+                        <Label>Ultima data que foi visto</Label>
                         <Date onChange={handlerSeen} value={seen.date} id="date" />
                     </Column>
 
                     <Column>
-                        <Label>Ultimo Horário que foi Visto</Label>
+                        <Label>Ultimo horário que foi visto</Label>
                         <Time onChange={handlerSeen} value={seen.time} id="time" />
                     </Column>
 
@@ -204,11 +206,11 @@ function CreatePost({showCreatePost, user}) {
                     
                     <Column>
                         <InputName value={name} onChange={handlerName} />
-                        <Label>Nome Do Desaparecido</Label>
+                        <Label>Nome do desaparecido</Label>
                     </Column>
 
                     <Column>
-                        <Label>Genero</Label>
+                        <Label>Gênero</Label>
                         
                         <RadioGroup>
                         
@@ -241,10 +243,13 @@ function CreatePost({showCreatePost, user}) {
                     </Column>    
                 </Line>
 
+                <Linha>
+                    <Label>Foto do desaparecido</Label>
+                </Linha>
+
                 <Line>
 
                     <ConteinerPhoto>
-
                         <LostedPhoto ref={imgRef}  />  
                         <label>
                             <img src={camera} alt="camera" />
@@ -259,7 +264,7 @@ function CreatePost({showCreatePost, user}) {
                     <Column>
                         <Label>Características Físicas</Label>
                         <ConteinerInput>
-                            <span></span> 
+                            <span><img src={caracteristicas}/></span> 
                             <Input id="feature" onChange={handlerItem} value={item.feature} onKeyPress={handlerFeatures}/>
                         </ConteinerInput>    
                         <ConteinerFeatures>
@@ -274,7 +279,7 @@ function CreatePost({showCreatePost, user}) {
                     <Column>
                         <Label>Problemas de Saúde</Label>
                         <ConteinerInput>
-                            <span></span>  
+                            <span><img src={saude}/></span>  
                             <Input onChange={handlerItem} id="problem" value={item.problem} onKeyPress={handlerProblems} />
                         </ConteinerInput>
                         <ConteinerFeatures>
@@ -286,17 +291,18 @@ function CreatePost({showCreatePost, user}) {
                 </Line>
 
                 <Line>
-
-                    <LabelLocation>Localização da ultima vez que foi visto</LabelLocation>
-                    <Column>
-                        <Label>Cep</Label>
-                        <Input value={location.cep} onChange={handlerCep} ></Input>
-                    </Column>
-                    <Column>
-                        <Label>Ponto de referencia</Label>
-                        <Input value={location.reference_point} onChange={handlerRefPoint}></Input>
-                    </Column>
+                    <LabelLocation>Localização da última vez que foi visto:</LabelLocation>
                 </Line>
+                    <Line>
+                        <Column>
+                            <Label>CEP</Label>
+                            <InputEndereco value={location.cep} onChange={handlerCep}/>
+                        </Column>
+                        <Column>
+                            <Label>Ponto de referência</Label>
+                            <InputEndereco value={location.reference_point} onChange={handlerRefPoint}/>
+                        </Column>
+                    </Line>
 
                 <Line>
                     <ButtonPublicar onClick={createPost} />
