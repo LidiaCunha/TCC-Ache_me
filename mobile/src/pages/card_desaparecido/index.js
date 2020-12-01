@@ -1,5 +1,10 @@
 import React from 'react';
-import { View, StyleSheet, Image, Button } from 'react-native';
+import { StyleSheet, View, TouchableWithoutFeedback, Image, Button } from 'react-native';
+
+// pagina
+import Btn_Options from '../btn_card_desaparecido/index';
+
+// imagens
 import Clock from '../../assets/Card_desaparecido/clock.png';
 import Calendar from '../../assets/Card_desaparecido/calendar.png';
 import Map from '../../assets/Card_desaparecido/map.png';
@@ -7,8 +12,6 @@ import Genre from '../../assets/Card_desaparecido/genre.png';
 import Header from '../../assets/Card_desaparecido/naruto.jpg';
 import Enviar from '../../assets/Card_desaparecido/enviar-correio.png';
 import Photo from '../../assets/kakashi.jpg';
-
-
 
 import {  
     Container,
@@ -34,14 +37,11 @@ import {
     ContainerUser,
     ContainerUserImg,
     ContainerUserName,
-
-    
 } from './styles';
 
-const Card_desaparecido = () => {
+export default function Criar_postagem() {
     return(
-        <>
-            <Container>
+        <Container>
                 
                 <ContainerUser>
                     <ContainerUserImg/>
@@ -96,15 +96,18 @@ const Card_desaparecido = () => {
                     </BtnSend>    
                 </Comment> 
         
-                <View style={{flex:1}}>
-                    <View style={{position:'absolut',bottom:100,right:30,alignSelf:'flex-end'}}>
-                        <Options source={MenuIcon}/>
-                    </View>
-                </View>
-
+                
+                    <Btn_Options
+                        style={{bottom: 140, right: 50}}
+                    />
+        
             </Container>
-        </>
     );
-}
+};
 
-export default Card_desaparecido;
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+    }
+    
+});

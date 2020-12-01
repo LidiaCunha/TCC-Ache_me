@@ -4,8 +4,7 @@ export const Text = styled.Text`
     height: auto;
     width: auto;
     color: #fff;
-    font-size: 14px;
-    
+    font-size: 14px; 
 `;
 
 export const Container = styled.ScrollView`
@@ -111,10 +110,6 @@ export const ContainerText = styled.View`
     min-height: 50px;
     width: 100%;
     background: #292929;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    align-content: center;
     padding-left: 20px;
     padding-right: 20px;
     overflow: hidden;
@@ -228,7 +223,7 @@ export const Options = styled.Image`
     height: 45px;
     width: 45px;
     border-radius: 50px;
-    background: #E33336;
+    background: aqua;
 `;
 
 
