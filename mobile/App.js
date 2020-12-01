@@ -11,8 +11,6 @@ import Everson from "./src/pages/card_desaparecido/index";
 const App = () => { 
 
    return (
-
-   // <Everson/>
    <NavigationContainer>
      <AuthProvider>
        <SocketProvider>

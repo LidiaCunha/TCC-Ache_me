@@ -7,8 +7,7 @@ import Genre from '../../assets/Card_desaparecido/genre.png';
 import Header from '../../assets/Card_desaparecido/naruto.jpg';
 import Enviar from '../../assets/Card_desaparecido/enviar-correio.png';
 import Photo from '../../assets/kakashi.jpg';
-
-
+import Menu from '../../assets/menu.png'; 
 
 import {  
     Container,
@@ -40,70 +39,67 @@ import {
 
 const Card_desaparecido = () => {
     return(
-        <>
-            <Container>
-                
-                <ContainerUser>
-                    <ContainerUserImg/>
-                    <ContainerUserName> Everson Silva de Almeida </ContainerUserName>
-                </ContainerUser>
-        
-               
-        
-                <ContainerImg source={Header}/>
+        <Container>
+            
+            <ContainerUser>
+                <ContainerUserImg/>
+                <ContainerUserName> Everson Silva de Almeida </ContainerUserName>
+            </ContainerUser>
+    
+            
+    
+            <ContainerImg source={Header}/>
 
-                <ContainerBasicInfo>
-                    <BasicInfosImg source={Clock}/>
-                    <BasicInfos> às 22:45 </BasicInfos>
+            <ContainerBasicInfo>
+                <BasicInfosImg source={Clock}/>
+                <BasicInfos> às 22:45 </BasicInfos>
 
-                    <BasicInfosImg source={Calendar}/>
-                    <BasicInfos> 15 de fev de 2003 </BasicInfos>
+                <BasicInfosImg source={Calendar}/>
+                <BasicInfos> 15 de fev de 2003 </BasicInfos>
 
-                    <BasicInfosImg source={Map}/>
-                    <BasicInfos> SP </BasicInfos>
+                <BasicInfosImg source={Map}/>
+                <BasicInfos> SP </BasicInfos>
 
-                    <BasicInfosImg source={Genre}/>
-                    <BasicInfos2> masculino </BasicInfos2>
-                </ContainerBasicInfo>
+                <BasicInfosImg source={Genre}/>
+                <BasicInfos2> masculino </BasicInfos2>
+            </ContainerBasicInfo>
 
-                <ContainerText>
-                    <Text>oi</Text>
-                </ContainerText>
+            <ContainerText>
+                <Text>oi</Text>
+            </ContainerText>
 
-                <ContainerCharacter>
-                    <TitleCharacter>Características Físicas</TitleCharacter>
-                    <CardCharacter>
-                        <CardColor1>Cabelo Castanho</CardColor1>
-                        <CardColor2>Baixo</CardColor2>
-                        <CardColor3>magra</CardColor3>
-                        <CardColor1>ErroErroErro</CardColor1>
+            <ContainerCharacter>
+                <TitleCharacter>Características Físicas</TitleCharacter>
+                <CardCharacter>
+                    <CardColor1>Cabelo Castanho</CardColor1>
+                    <CardColor2>Baixo</CardColor2>
+                    <CardColor3>magra</CardColor3>
+                    <CardColor1>ErroErroErro</CardColor1>
 
-                    </CardCharacter>
+                </CardCharacter>
 
-                    <TitleCharacter>Problema De saúde</TitleCharacter>
-                    <CardCharacter>
-                        <CardColor1>Problema cardíaco</CardColor1>
-                        <CardColor2>Câncer</CardColor2>
-                        <CardColor3>pedra nos rins</CardColor3>
-                    </CardCharacter>
-                </ContainerCharacter>
-        
-                <Comment> 
-                    <PersonImage source={Photo}/>
-                    <Input/>
-                    <BtnSend> 
-                        <BtnSendImg source={Enviar}/> 
-                    </BtnSend>    
-                </Comment> 
-        
-                <View style={{flex:1}}>
-                    <View style={{position:'absolut',bottom:100,right:30,alignSelf:'flex-end'}}>
-                        {/* <Options source={MenuIcon}/> */}
-                    </View>
+                <TitleCharacter>Problema De saúde</TitleCharacter>
+                <CardCharacter>
+                    <CardColor1>Problema cardíaco</CardColor1>
+                    <CardColor2>Câncer</CardColor2>
+                    <CardColor3>pedra nos rins</CardColor3>
+                </CardCharacter>
+            </ContainerCharacter>
+    
+            <Comment> 
+                <PersonImage source={Photo}/>
+                <Input/>
+                <BtnSend> 
+                    <BtnSendImg source={Enviar}/> 
+                </BtnSend>    
+            </Comment> 
+    
+            <View style={{flex:1}}>
+                <View style={{position:'absolut',bottom:100,right:30,alignSelf:'flex-end'}}>
+                    <Options source={Menu}/>
                 </View>
-
-            </Container>
-        </>
+            </View>
+        </Container>
     );
 }
 
