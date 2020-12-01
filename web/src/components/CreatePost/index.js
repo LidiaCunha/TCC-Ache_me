@@ -4,7 +4,7 @@ import { api } from '../../services/api'
 import camera from "../../assets/camera.png";
 import caracteristicas from "../../assets/user_info/caracteristicas.png";
 import saude from "../../assets/user_info/saude.png";
-import { Container,ConteinerFeatures, ContainerModal, Header, Creator, Photo , LabelLocation , ConteinerInput, Input , Name, ExitButton, ContainerRadio,LostedPhoto ,ConteinerPhoto, ButtonPhoto , Body, TextArea, Line, InputName, InputBorned ,Label, Date, Time, RadioGenre, Column, RadioGroup, RadioStyled,ButtonPublicar,ContainerItem,LabelItem,ButtonExcluir, Linha, InputEndereco } from './style';
+import { Container,ConteinerFeatures, ContainerModal, LabelGenero, Header, Creator, Photo , LabelLocation , ConteinerInput, Input , Name, ExitButton, ContainerRadio,LostedPhoto ,ConteinerPhoto, ButtonPhoto , Body, TextArea, Line, InputName, InputBorned ,Label, Date, Time, RadioGenre, Column, RadioGroup, RadioStyled,ButtonPublicar,ContainerItem,LabelItem,ButtonExcluir, Linha, InputEndereco } from './style';
 
 function CreatePost({showCreatePost, user}) {
 
@@ -191,12 +191,12 @@ function CreatePost({showCreatePost, user}) {
                     </Column>
 
                     <Column>
-                        <Label>Ultima data que foi visto</Label>
+                        <Label>Última data que foi visto</Label>
                         <Date onChange={handlerSeen} value={seen.date} id="date" />
                     </Column>
 
                     <Column>
-                        <Label>Ultimo horário que foi visto</Label>
+                        <Label>Último horário que foi visto</Label>
                         <Time onChange={handlerSeen} value={seen.time} id="time" />
                     </Column>
 
@@ -210,7 +210,7 @@ function CreatePost({showCreatePost, user}) {
                     </Column>
 
                     <Column>
-                        <Label>Gênero</Label>
+                        <LabelGenero>Gênero</LabelGenero>
                         
                         <RadioGroup>
                         
@@ -301,6 +301,26 @@ function CreatePost({showCreatePost, user}) {
                         <Column>
                             <Label>Ponto de referência</Label>
                             <InputEndereco value={location.reference_point} onChange={handlerRefPoint}/>
+                        </Column>
+                    </Line>
+                    <Line>
+                        <Column>
+                            <Label>Bairro</Label>
+                            <InputEndereco onChange={handlerCep}/>
+                        </Column>
+                        <Column>
+                            <Label>Rua</Label>
+                            <InputEndereco onChange={handlerCep}/>
+                        </Column>
+                    </Line>
+                    <Line>
+                        <Column>
+                            <Label>Cidade</Label>
+                            <InputEndereco onChange={handlerCep}/>
+                        </Column>
+                        <Column>
+                            <Label>Estado</Label>
+                            <InputEndereco onChange={handlerCep}/>
                         </Column>
                     </Line>
 

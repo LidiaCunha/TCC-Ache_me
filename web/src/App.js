@@ -1,7 +1,7 @@
 
 import React from "react";
 import { GlobalStyles } from "./styles/GlobalStyles";
-import Post from "./components/CreatePost/index";
+import Post from "./pages/form_visto/index";
 
 import Routes from "./routes";
 
