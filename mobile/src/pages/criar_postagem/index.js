@@ -125,7 +125,7 @@ const Criar_postagem = ({route}) => {
         });
         
         try {
-            const retorno = await api.post ( '/post' , data, {
+            const postCreated = await api.post ( '/post' , data, {
                 headers: {
                     "Content-type": `multipart/form-data`,
                 }
@@ -164,7 +164,7 @@ const Criar_postagem = ({route}) => {
                     });
 
                     showCreatePost(false);
-                    window.alert("Post criado com sucesso!");
+                    return window.alert("Post criado com sucesso!");
 
                 }
             }
@@ -292,7 +292,7 @@ const Criar_postagem = ({route}) => {
             </ContainerFilter>    
     
             <ContainerBtnPublicar>
-                <BtnPublicar onPress={()=>{console.log(post)}}>  
+                <BtnPublicar onPress={()=>{createPost}}>  
                     <Lorem>Publicar</Lorem>
                 </BtnPublicar>
                 <BtnPublicar onPress={()=> {
