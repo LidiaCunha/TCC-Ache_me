@@ -101,13 +101,26 @@ export const Line = styled.div`
     box-sizing: border-box;
     margin-top:25px;
     margin-bottom:20px;
-    min-height: 30px;
+    min-height: 10px;
     height:auto;
     display:flex;
     align-items:center;
     flex-direction:row;
     justify-content:space-around;
 `;
+
+export const Linha = styled.div`
+    width:100%;
+    box-sizing: border-box;
+    margin-bottom:-65px;
+    min-height: 10px;
+    height:auto;
+    display:flex;
+    align-items:center;
+    flex-direction:row;
+    justify-content:space-around;
+`;
+
 export const InputName = styled.input.attrs(() => ({
     type: "text",
     required: true,
@@ -361,7 +374,7 @@ export const ButtonPhoto = styled.input.attrs(()=> ({
 export const TextArea = styled.textarea.attrs(() => ({
     placeholder: "Digite detalhes sobre o desaparecido para ajudar em sua identificação"
 }))`
-    width:69em;
+    width:65em;
     margin:2.5em;
     padding:0.5em;
     font-size:1.1rem;
@@ -409,7 +422,7 @@ export const TextArea = styled.textarea.attrs(() => ({
     }
 `;
 export const ConteinerInput = styled.div`
-    width  : 63em;
+    width  : 60em;
     height : 3em;
     border : solid 1px #1e1e1e;
     border-radius : 5px;
@@ -423,6 +436,15 @@ export const ConteinerInput = styled.div`
         margin:1em;
         border-radius:50%;
         background-color:#ef5245;
+        padding: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        >img{
+            width: 100%;
+            height: 100%;
+        }
     }
 `;
 export const Input = styled.input.attrs(()=>({
@@ -457,10 +479,12 @@ export const ContainerItem = styled.div`
     background-color:#ef5245;
     display:flex;
     flex-direction: row;
-    justify-content:space-between;
+    justify-content: center;
     align-items:center;
     padding:5px;
+    box-sizing: border-box;
     border-radius: 10px;
+    margin-bottom: 10px;
 `;
 export const LabelItem = styled.span`
     color:aliceblue;
@@ -473,29 +497,20 @@ export const LabelItem = styled.span`
     font-size:16px;
     font-family:Arial;
 `;
-export const ButtonExcluir = styled.button`
-    border:none;
-    -moz-appearance:none;
-    -webkit-appearance:none;
-    appearance:none;
-    outline: none;
-    width:18px;
-    height:18px;
-    margin:0;
-    font-weight:900;
-    font-size:18px;
-    border-radius:5px;
-    margin-bottom:-1em;
+export const ButtonExcluir = styled.div`
+    width:20px;
+    height:20px;
+    border-radius: 100%;
+    background-color: white;
+    display: flex;
     font-family:Arial;
-    padding:0;
+    color: #ef545e;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    
     :hover{
         cursor:pointer;
-    }
-
-    >p{
-        color: #ef545e;
-        background-color: white;
-        border-radius: 50%;
     }
 `;
 export const ConteinerFeatures = styled.div`
@@ -507,9 +522,60 @@ export const ConteinerFeatures = styled.div`
     flex-direction: row;
     justify-content:space-around;
     align-items:center;
+    overflow-x: auto;
+
+    ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+    }
+    ::-webkit-scrollbar-button {
+    width: 0px;
+    height: 0px;
+    }
+    ::-webkit-scrollbar-thumb {
+    background: #ef545e;
+    border: 0px none #ef545e;
+    border-radius: 50px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+    background: #ef545e;
+    }
+    ::-webkit-scrollbar-thumb:active {
+    background: #000000;
+    }
+    ::-webkit-scrollbar-track {
+    background: #666666;
+    border: 0px none #ef545e;
+    border-radius: 50px;
+    }
+    ::-webkit-scrollbar-track:hover {
+    background: #666666;
+    }
+    ::-webkit-scrollbar-track:active {
+    background: #333333;
+    }
+    ::-webkit-scrollbar-corner {
+    background: transparent;
+    }
 `;
 export const LabelLocation = styled.span`
     font-family:Arial, Helvetica, sans-serif;
-    font-weight:bolder;
-    font-size:2rem;
+    font-weight:bold;
+    font-size:1.5em;
+    text-align: center;
 `;
+
+export const InputEndereco = styled.input.attrs(()=>({
+    type: 'text',
+    placeholder: "Precione enter para adiconar o endereço"
+}))`
+    width: 300px;
+    height: 20px;
+    padding: 5px;
+    -moz-appearance:none;
+    -webkit-appearance:none;
+    appearance:none;
+    outline: none;
+    background-color:transparent;
+    border: solid 1px #1d1d1d;
+`
