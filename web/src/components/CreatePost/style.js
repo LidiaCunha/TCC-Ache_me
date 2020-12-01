@@ -178,6 +178,16 @@ export const Label = styled.label`
     margin-right: auto;
     letter-spacing: 1.1px;
 `;
+
+export const LabelGenero = styled.label`
+    font-size:1.1em;
+    font-weight:300;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: left;
+    margin-left: 10px;
+    letter-spacing: 1.1px;
+`;
+
 export const Date = styled.input.attrs(() => ({
     type: "date"
   }))`
@@ -327,7 +337,7 @@ export const LostedPhoto = styled.img`
     margin-right: auto;
 `; 
 export const ConteinerPhoto = styled.div`
-    width:95em;
+    width:60em;
     margin:2.5em;
     min-height:40px;
     margin-bottom:5em;
@@ -335,7 +345,7 @@ export const ConteinerPhoto = styled.div`
     border: solid 1px #1e1e1e;
     border-radius:5px;
     display: flex;
-    justify-content:space-between;
+    justify-content:center;
     flex-direction: row;
     z-index: 889;
     :hover{
@@ -569,13 +579,20 @@ export const InputEndereco = styled.input.attrs(()=>({
     type: 'text',
     placeholder: "Precione enter para adiconar o endereço"
 }))`
-    width: 300px;
-    height: 20px;
     padding: 5px;
     -moz-appearance:none;
     -webkit-appearance:none;
-    appearance:none;
+    width: 500px;
+    height: 20px;
     outline: none;
-    background-color:transparent;
-    border: solid 1px #1d1d1d;
+    border: solid 2px #eaeaea;
+    border-radius: 5px;
+    padding-left: 10px;
+    font:14px Arial, Helvetica, sans-serif;
+    color: #555555;
+    line-height: 20px;
+
+    :hover{
+        background-color: #f6f6f6;
+    }
 `
