@@ -10,7 +10,8 @@ export const Container = styled.ScrollView`
     border-style: solid;
     border-color: #fff;
     marginTop: 29px;
-  
+    position: absolute;
+    z-index:999;
 `;
 
 export const Back = styled.View`

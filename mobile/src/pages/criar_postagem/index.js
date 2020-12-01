@@ -40,6 +40,7 @@ import * as ImagePicker from 'expo-image-picker';
 import {Popup} from '../../components/Popup';
 import HealthProblem from './healthProblem';
 import Characteristics from './modalCaracteristicas';
+import {api} from '../../services/api';
 
 const Criar_postagem = ({route}) => {
 
@@ -59,9 +60,6 @@ const Criar_postagem = ({route}) => {
 
     const [ post , setPost ] = useState({});
 
-    const addFeature = async( feature ) => {
-        await api.post( `/features/post/${post.id}` , feature );
-    }
 
     function handlerName(e) {
         setPost({ ...post , name : e});
@@ -70,16 +68,16 @@ const Criar_postagem = ({route}) => {
         setPost({ ...post , description : e});
     }
     function handlerDate(e) {
-        setPost({ ...post , date : e});
+        setPost({ ...post , date : e.replace(/[^0-9]/g,'').replace(/(.{2})(.{2})(.{4})/, '$1/$2/$3').replace(/(.{10})(.*)/,'$1')});
     }
     function handlerHours(e) {
-        setPost({ ...post , hours : e});
+        setPost({ ...post , hours : e.replace(/(.{2})(.*)/,'$1')});
     }
     function handlerMinute(e) {
-        setPost({ ...post , minute : e});
+        setPost({ ...post , minute : e.replace(/(.{2})(.*)/,'$1')});
     }
     function handlerBirthDate(e) {
-        setPost({ ...post , birthDate : e});
+        setPost({ ...post , birthDate : e.replace(/[^0-9]/g,'').replace(/(.{2})(.{2})(.{4})/, '$1/$2/$3').replace(/(.{10})(.*)/,'$1')});
     }
 
     const [postImage, setPostImage] = useState(null);
@@ -184,7 +182,7 @@ const Criar_postagem = ({route}) => {
     const onClosePopup = () => {
         PopupRef.close()
     }
-    const [popup, setPopup] = useState();
+    const [popup, setPopup] = useState()
 
     return(
         <Container>

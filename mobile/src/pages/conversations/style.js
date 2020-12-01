@@ -16,7 +16,12 @@ export const Seta = styled.Image`
     height: 40px;
     width: 40px;
 `
-
+export const ConteinerVolta = styled.View`
+    width:auto;
+    height:auto;
+    border:none;
+    background-color:transparent;
+`;
 export const ContainerChat = styled.View`
     background-color: white;
     width: 100%;
