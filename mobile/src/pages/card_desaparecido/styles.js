@@ -35,21 +35,31 @@ export const ContainerUserImg = styled.Image`
     marginRight: 10px;
 `;
 
-export const ContainerUserName = styled.Text`
+export const ContainerUserNameData = styled.View`
     height: auto;
-    width: auto;
+    width: auto;    
+`;
+
+export const Name = styled.Text`
     color: #fff;
     font-size: 16px;
 `;
 
+export const Data = styled.Text`
+    color: rgba(255 , 255 , 255 , .6);
+    font-size: 11px;
+`;
+
+
+
+
+
 export const ContainerImg = styled.Image`
-    height: 200px;
+    height: 240px;
     width: 100%;
     background: chartreuse;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 5px;
+    border-top-right-radius: 20px;
     border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 5px;
     
 `;
 
@@ -62,10 +72,8 @@ export const ContainerBasicInfo = styled.View`
     align-items: center;
     align-content: center;
     flex-direction: row;
-    padding-top: 8px;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
-    marginTop: -20px;
+    padding-left: 10px;
+    padding-right: 10px;
 `;
 
 export const BasicInfos = styled.Text`
@@ -107,7 +115,7 @@ export const BasicInfosImg = styled.Image`
 
 export const ContainerText = styled.View`
     height: auto;
-    min-height: 50px;
+    min-height: 5px;
     width: 100%;
     background: #292929;
     padding-left: 20px;
@@ -120,6 +128,7 @@ export const ContainerCharacter = styled.View`
     width: 100%;
     background: #292929;
     padding: 20px;
+    paddingTop: 10px;
     overflow: hidden;
 `;
 
@@ -134,47 +143,24 @@ export const TitleCharacter = styled.Text`
     font-weight: bold;
 `;
 
-export const CardCharacter = styled.View`
+export const CardCharacter = styled.ScrollView`
     height: auto;
     min-height: 10px;
-    width: 100%;
     display: flex;
     flex-direction: row;
-   
 `;
 
-export const CardColor1 = styled.Text`
+export const CardColor = styled.Text`
     height: auto;
     width: auto;
     padding: 10px;
     color: #fff;
     borderRadius: 5px;
     margin: 5px;
-    background: #E33336;
-`;
-
-export const CardColor2 = styled.Text`
-    height: auto;
-    width: auto;
-    padding: 10px;
-    color: #fff;
-    borderRadius: 5px;
-    margin: 5px;
-    background: #F53B3F;
-`;
-
-export const CardColor3 = styled.Text`
-    height: auto;
-    width: auto;
-    padding: 10px;
-    color: #fff;
-    borderRadius: 5px;
-    margin: 5px;
-    background: #F95F62;
 `;
 
 export const Comment = styled.View`
-    height: 70px;
+    height: 80px;
     width: 100%;
     background-color: red;
     display: flex;
@@ -203,7 +189,7 @@ export const Input = styled.TextInput`
 
 export const BtnSend = styled.View`
     height: 45px;
-    width: 35px;
+    width: 43px;
     border-radius: 50px;
     background: #fff;
     border-top-left-radius: 0;
@@ -212,20 +198,16 @@ export const BtnSend = styled.View`
     
 `;
 
-export const BtnSendImg = styled.Image`
+export const BtnSendImg = styled.View`
     height: 35px;
     width: 35px;
     border-radius: 50px;
     background: #E33336;
-`;
+    justifyContent: center;
+    alignItems: center;
+        
 
-export const Options = styled.Image`
-    height: 45px;
-    width: 45px;
-    border-radius: 50px;
-    background: aqua;
 `;
-
 
 
 

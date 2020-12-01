@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, View, TouchableWithoutFeedback, Image, Button } from 'react-native';
 
 // pagina
-import Btn_Options from '../btn_card_desaparecido/index';
+import Btn_Options from '../../components/btn_card_desaparecido/index';
 
 // imagens
 import Clock from '../../assets/Card_desaparecido/clock.png';
@@ -10,12 +10,8 @@ import Calendar from '../../assets/Card_desaparecido/calendar.png';
 import Map from '../../assets/Card_desaparecido/map.png';
 import Genre from '../../assets/Card_desaparecido/genre.png';
 import Header from '../../assets/Card_desaparecido/naruto.jpg';
-import Enviar from '../../assets/Card_desaparecido/enviar-correio.png';
 import Photo from '../../assets/kakashi.jpg';
-<<<<<<< HEAD
-=======
-import Menu from '../../assets/menu.png'; 
->>>>>>> 36a43697b030c32aeb2bdd135a767d551fb6deff
+import { FontAwesome } from '@expo/vector-icons';
 
 import {  
     Container,
@@ -28,45 +24,32 @@ import {
     Text,
     ContainerCharacter,
     CardCharacter,
-    CardColor1,
-    CardColor2,
-    CardColor3,
+    CardColor,
     TitleCharacter,
     Comment,
     PersonImage,
     Input,
     BtnSend,
     BtnSendImg,
-    Options,
     ContainerUser,
     ContainerUserImg,
-    ContainerUserName,
+    ContainerUserNameData,  
+    Name,
+    Data,
 } from './styles';
 
 export default function Criar_postagem() {
     return(
-        <Container>
-<<<<<<< HEAD
-                
+        <Container>                
                 <ContainerUser>
-                    <ContainerUserImg/>
-                    <ContainerUserName> Everson Silva de Almeida </ContainerUserName>
+                    <ContainerUserImg source={Photo}/>
+                    <ContainerUserNameData> 
+                        <Name> Everson Silva de Almeida </Name>   
+                        <Data> 15 de fevereiro de 2003</Data>   
+                    </ContainerUserNameData>
                 </ContainerUser>
-        
-               
-        
+    
                 <ContainerImg source={Header}/>
-=======
-            
-            <ContainerUser>
-                <ContainerUserImg/>
-                <ContainerUserName> Everson Silva de Almeida </ContainerUserName>
-            </ContainerUser>
-    
-            
-    
-            <ContainerImg source={Header}/>
->>>>>>> 36a43697b030c32aeb2bdd135a767d551fb6deff
 
             <ContainerBasicInfo>
                 <BasicInfosImg source={Clock}/>
@@ -83,48 +66,27 @@ export default function Criar_postagem() {
             </ContainerBasicInfo>
 
             <ContainerText>
-                <Text>oi</Text>
+                <Text>loremloremlorem loremlorem loremloremlorem loremloremlorem loremlorem loremloremloremloremloremlorem loremlorem loremloremlorem</Text>
             </ContainerText>
 
             <ContainerCharacter>
                 <TitleCharacter>Características Físicas</TitleCharacter>
-                <CardCharacter>
-                    <CardColor1>Cabelo Castanho</CardColor1>
-                    <CardColor2>Baixo</CardColor2>
-                    <CardColor3>magra</CardColor3>
-                    <CardColor1>ErroErroErro</CardColor1>
+                <CardCharacter  style={{ width: '100%' }} horizontal={true}>
+                    <CardColor style={styles.cor1}>Cabelo Castanho</CardColor>
+                    <CardColor style={styles.cor2}>Baixo</CardColor>
+                    <CardColor style={styles.cor3}>magra</CardColor>
+                    <CardColor style={styles.cor1}>ErroErroErro</CardColor>
+                    <CardColor style={styles.cor2}>teste</CardColor>
 
                 </CardCharacter>
 
-<<<<<<< HEAD
-                    <TitleCharacter>Problema De saúde</TitleCharacter>
-                    <CardCharacter>
-                        <CardColor1>Problema cardíaco</CardColor1>
-                        <CardColor2>Câncer</CardColor2>
-                        <CardColor3>pedra nos rins</CardColor3>
-                    </CardCharacter>
-                </ContainerCharacter>
-        
-                <Comment> 
-                    <PersonImage source={Photo}/>
-                    <Input/>
-                    <BtnSend> 
-                        <BtnSendImg source={Enviar}/> 
-                    </BtnSend>    
-                </Comment> 
-        
-                
-                    <Btn_Options
-                        style={{bottom: 140, right: 50}}
-                    />
-        
-            </Container>
-=======
+
                 <TitleCharacter>Problema De saúde</TitleCharacter>
-                <CardCharacter>
-                    <CardColor1>Problema cardíaco</CardColor1>
-                    <CardColor2>Câncer</CardColor2>
-                    <CardColor3>pedra nos rins</CardColor3>
+                <CardCharacter style={{ width: '80%' }}  horizontal={true}>
+                    <CardColor style={styles.cor1}>Problema cardíaco</CardColor>
+                    <CardColor style={styles.cor2}>Câncer</CardColor>
+                    <CardColor style={styles.cor3}>Câncer</CardColor>
+                    <CardColor style={styles.cor1}>errorrororo</CardColor>
                 </CardCharacter>
             </ContainerCharacter>
     
@@ -132,23 +94,33 @@ export default function Criar_postagem() {
                 <PersonImage source={Photo}/>
                 <Input/>
                 <BtnSend> 
-                    <BtnSendImg source={Enviar}/> 
+                    <BtnSendImg > 
+                        <FontAwesome name="send" size={19} color="#fff"/>
+                    </BtnSendImg > 
                 </BtnSend>    
             </Comment> 
     
-            <View style={{flex:1}}>
-                <View style={{position:'absolut',bottom:100,right:30,alignSelf:'flex-end'}}>
-                    <Options source={Menu}/>
-                </View>
-            </View>
+            <Btn_Options style={{bottom: 150, right: 50}}/>
         </Container>
->>>>>>> 36a43697b030c32aeb2bdd135a767d551fb6deff
     );
 };
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-    }
+    },
+
+    cor1: {
+        backgroundColor:'#E33336',
+    },
+
+    cor2: {
+        backgroundColor:'#F53B3F',
+    },
+
+    cor3: {
+        backgroundColor:'#F95F62',
+    },
+
     
 });

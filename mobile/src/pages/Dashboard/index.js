@@ -5,9 +5,14 @@ import {useAuth} from '../../contexts/auth';
 const style = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: 'space-around',
     alignItems: 'center',
+
   },
+
+  Text: {
+     fontSize: 30,
+  }
 });
 
 const Dashboard = ({navigation}) => {
