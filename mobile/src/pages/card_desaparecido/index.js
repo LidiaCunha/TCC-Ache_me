@@ -12,8 +12,7 @@ import Genre from '../../assets/Card_desaparecido/genre.png';
 import Header from '../../assets/Card_desaparecido/naruto.jpg';
 import Enviar from '../../assets/Card_desaparecido/enviar-correio.png';
 import Photo from '../../assets/kakashi.jpg';
-import Menu from '../../assets/menu.png'; 
-
+import Menu from '../../assets/menu.png';
 import {  
     Container,
     ContainerImg,
@@ -40,28 +39,25 @@ import {
     ContainerUserName,
 } from './styles';
 
-export default function Criar_postagem() {
+export default function Criar_postagem({post}) {
     return(
         <Container>
             
             <ContainerUser>
                 <ContainerUserImg/>
-                <ContainerUserName> Everson Silva de Almeida </ContainerUserName>
-            </ContainerUser>
-    
-            
+                <ContainerUserName>{post.name}</ContainerUserName>
+            </ContainerUser>            
     
             <ContainerImg source={Header}/>
-
             <ContainerBasicInfo>
                 <BasicInfosImg source={Clock}/>
-                <BasicInfos> às 22:45 </BasicInfos>
+                <BasicInfos> {post.createdAt}</BasicInfos>
 
                 <BasicInfosImg source={Calendar}/>
-                <BasicInfos> 15 de fev de 2003 </BasicInfos>
+                <BasicInfos>{post.createdAt}</BasicInfos>
 
                 <BasicInfosImg source={Map}/>
-                <BasicInfos> SP </BasicInfos>
+                <BasicInfos></BasicInfos>
 
                 <BasicInfosImg source={Genre}/>
                 <BasicInfos2> masculino </BasicInfos2>

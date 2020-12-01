@@ -52,6 +52,7 @@ routes.get('/state', States.index);
 routes.delete('/state/:stateId', States.delete);
 
 routes.get('/posts', LostedPost.index);
+routes.get('/posts/my', LostedPost.takeMyPosts);
 routes.get('/post/filterby/', filters.filterByGenre , filters.filterByFeatures , filters.filterByAge , filters.filterByDate , filters.filterByHour , filters.filterByLocale , filters.filterByProblems );
 routes.get('/posts/:PostId', LostedPost.show);
 routes.get('/posts/my/last',LostedPost.takeLastOfThisUser);

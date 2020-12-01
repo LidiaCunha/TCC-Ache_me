@@ -10,6 +10,8 @@ import Search from '../pages/conversations/search';
 import {createStackNavigator} from '@react-navigation/stack';
 import CreateSeen from '../pages/form_visto/';
 import CreateFind from '../pages/form_encontrado/';
+import MyPosts from '../pages/listagem_de_postagem';
+import LostedCard from '../pages/card_desaparecido';
 
 //código
 const AppStack = createStackNavigator();
@@ -35,6 +37,8 @@ const AppRoutes = () => {
       <AppStack.Screen name="chat" component={Chat} options={{headerShown:false}}/>
       <AppStack.Screen name="seen" component={CreateSeen} />
       <AppStack.Screen name="find" component={CreateFind} />
+      <AppStack.Screen name="MyPosts" component={MyPosts} />
+      <AppStack.Screen name="lostedCard" component={LostedCard} />
     </AppStack.Navigator>
   );
 };

@@ -1,15 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {ScrollView, StyleSheet, Animated, TouchableOpacity} from 'react-native';
 import Swipeable from 'react-native-gesture-handler/Swipeable';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {api} from '../../services/api';
 import moment from 'moment';
+import MenuLateral from '../menu/index';
 // IMAGES
 import menu from '../../assets/menu.png';
 import lupa from '../../assets/lupa.png';
 import defaultImage from '../../assets/user.png'
 // STYLES
-import { Container, ContainerContatos, MenuContatos, HoraMsg, Numero, ImagemUsuario, TextoNome, AreaTextos, TextoMsg, MenuImagem, MenuPesquisar, Pesquisa, ContainerConversas, Texto, Recentes, ContainerMsgs, AreaDetalhes, Hora, Hora_Minha, NumeroMsgs } from './style';
+import { Container,ConteinerVolta, ContainerContatos, MenuContatos, HoraMsg, Numero, ImagemUsuario, TextoNome, AreaTextos, TextoMsg, MenuImagem, MenuPesquisar, Pesquisa, ContainerConversas, Texto, Recentes, ContainerMsgs, AreaDetalhes, Hora, Hora_Minha, NumeroMsgs } from './style';
 
 function ContactItem({ contact, navigation }) {
 
@@ -63,22 +64,27 @@ function ContactItem({ contact, navigation }) {
     </Swipeable>)
 }
 
-function Menu({navigation}) {
-  const openSearch = () => {
-    navigation.navigate('search');
-  }
 
-  return (
-    <MenuContatos>
-      <MenuImagem source={menu} />
-      <MenuPesquisar onPress={openSearch}>
-        <Pesquisa source={lupa} />
-      </MenuPesquisar>
-    </MenuContatos>)
-}
 
 function Conversations({ navigation }) {
 
+  function Menu({navigation}) {
+    const openSearch = () => {
+      navigation.navigate('search');
+    }
+
+    return (
+      <MenuContatos>
+        <ConteinerVolta onTouchMove={() => setShowSideMenu(true)} >
+          <MenuImagem source={menu}  />
+        </ConteinerVolta>
+        <MenuPesquisar onPress={openSearch}>
+          <Pesquisa source={lupa} />
+        </MenuPesquisar>
+      </MenuContatos>)
+  }
+
+  const [showSideMenu, setShowSideMenu] = useState(false);
 
   const [contacts,setContacts] = React.useState([]);
   
@@ -90,7 +96,10 @@ function Conversations({ navigation }) {
   },[]);
 
   return (
+    <>
+    { showSideMenu && <MenuLateral  navigation={navigation} DisplayNone={setShowSideMenu} /> }
     <Container>
+      
       <Menu navigation={navigation} />
       <ContainerConversas>
         <Texto>Suas conversas</Texto>
@@ -104,6 +113,7 @@ function Conversations({ navigation }) {
         </ScrollView>
       </ContainerContatos>
     </Container>
+  </>
   );
 }
 
