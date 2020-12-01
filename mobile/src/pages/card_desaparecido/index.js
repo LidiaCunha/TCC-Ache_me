@@ -39,25 +39,25 @@ import {
     ContainerUserName,
 } from './styles';
 
-export default function Criar_postagem() {
+export default function Criar_postagem({post}) {
     return(
         <Container>
             
             <ContainerUser>
                 <ContainerUserImg/>
-                <ContainerUserName> Everson Silva de Almeida </ContainerUserName>
+                <ContainerUserName>{post.name}</ContainerUserName>
             </ContainerUser>            
     
             <ContainerImg source={Header}/>
             <ContainerBasicInfo>
                 <BasicInfosImg source={Clock}/>
-                <BasicInfos> às 22:45 </BasicInfos>
+                <BasicInfos> {post.createdAt}</BasicInfos>
 
                 <BasicInfosImg source={Calendar}/>
-                <BasicInfos> 15 de fev de 2003 </BasicInfos>
+                <BasicInfos>{post.createdAt}</BasicInfos>
 
                 <BasicInfosImg source={Map}/>
-                <BasicInfos> SP </BasicInfos>
+                <BasicInfos></BasicInfos>
 
                 <BasicInfosImg source={Genre}/>
                 <BasicInfos2> masculino </BasicInfos2>
