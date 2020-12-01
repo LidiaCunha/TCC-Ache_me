@@ -36,7 +36,7 @@ const Dashboard = ({navigation}) => {
   }
 
   const openCreateSeen = () => {
-    navigation.navigate('seen')
+    navigation.navigate('seen',{postId:1})
   }
 
   const openCreateFind = () => {

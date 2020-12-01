@@ -2,11 +2,17 @@ import React,{useState} from "react";
 import seta from "../../assets/setaVoltar.png"
 import { AreaForm, TextoEmail, InputHorario, BotaoSalvar, AreaInputs, ContainerInputs, AreaInputHorario, InputInfos, Border, IconeFotoMembros, ImagemMembros, AreaEstrelas, TextoMenor, TextoMerito, IconeFoto, FotoCamera, AreaImagem, AreaMerito, Container, ContainerUsuario, ImagemUsuario, MenuVoltar, Seta, Estrelas, Botao, TextoBotao, AreaTexto, AreaMembros, Texto } from "./styles";
 import RadioForm, {RadioButton, RadioButtonInput, RadioButtonLabel} from 'react-native-simple-radio-button';
+import {api} from '../../services/api';
+import { Alert } from "react-native";
 
-
-const Visto = () => {
+const Visto = ({postId, navigation}) => {
 
     const [date, setDate] = useState("");
+
+    const radio_props = [
+        {label: 'Afirmo', value: 0 },
+        {label: 'Não Afirmo', value: 1 }
+    ];
 
     const [hour, setHour]=useState("");
 
@@ -24,7 +30,7 @@ const Visto = () => {
 
     const [number, setNumber] = useState("");
 
-    const [confirm, setConfirm] = useState("");
+    const [confirm, setConfirm] = useState(false);
 
     const handlerDate = (e) => {
         setDate(e.nativeEvent.text.replace(/[^0-9]/g,'').replace(/(.{2})(.{2})(.{4})/, '$1/$2/$3').replace(/(.{10})(.*)/,'$1'));
@@ -42,18 +48,17 @@ const Visto = () => {
         setStreet(e.nativeEvent.text);
     }
     const handlerCity = (e) => {
-        setCity(e.nativeEvent.text)
+        setCity(e.nativeEvent.text);
     }
     const handlerState = (e) => {
-        setState(e.nativeEvent.text)
+        setState(e.nativeEvent.text);
     }
     const handlerBairro = (e) => {
-        setBairro(e.nativeEvent.text)
+        setBairro(e.nativeEvent.text);
     }
     const handlerNumber = (e) => {
-        setNumber(e.nativeEvent.text)
+        setNumber(e.nativeEvent.text);
     }
-
     const autoCompleteByCep = async( e ) => {
 
         const setForm = (data) =>{
@@ -68,11 +73,27 @@ const Visto = () => {
         
         setForm(endereco)
     }
-
-    var radio_props = [
-        {label: 'Afirmo', value: 0 },
-        {label: 'Não Afirmo', value: 1 }
-    ];
+    const createSeen = async( ) => {
+        
+        const data = {
+            street, 
+            bairro, 
+            cep, 
+            reference_point:confirm,  
+            city, 
+            state, 
+            seen_at_date: date, 
+            seen_at_hours: `${hour}:${minutes}`
+        };
+        
+        const seenCreated = await api.post(`/seen/${postId ? postId : 1}` , data );
+        
+        if (seenCreated.status === 201){
+            navigation.navigate('Dashboard');
+        }else{
+            Alert.alert("ERRO AO ENVIAR O VISTO PARA SEU CRIADOR");
+        }
+    };
 
     return(
         <Container>
@@ -155,7 +176,7 @@ const Visto = () => {
                         }  
                     </RadioForm>
                 </ContainerInputs>
-                <BotaoSalvar><TextoBotao>Enviar</TextoBotao></BotaoSalvar>
+                <BotaoSalvar onPress={createSeen} ><TextoBotao>Enviar</TextoBotao></BotaoSalvar>
             </AreaForm>
         </Container>
     )
