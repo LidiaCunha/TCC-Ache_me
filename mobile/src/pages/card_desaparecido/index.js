@@ -12,11 +12,7 @@ import Genre from '../../assets/Card_desaparecido/genre.png';
 import Header from '../../assets/Card_desaparecido/naruto.jpg';
 import Enviar from '../../assets/Card_desaparecido/enviar-correio.png';
 import Photo from '../../assets/kakashi.jpg';
-<<<<<<< HEAD
-=======
-import Menu from '../../assets/menu.png'; 
->>>>>>> 36a43697b030c32aeb2bdd135a767d551fb6deff
-
+import Menu from '../../assets/menu.png';
 import {  
     Container,
     ContainerImg,
@@ -46,28 +42,13 @@ import {
 export default function Criar_postagem() {
     return(
         <Container>
-<<<<<<< HEAD
-                
-                <ContainerUser>
-                    <ContainerUserImg/>
-                    <ContainerUserName> Everson Silva de Almeida </ContainerUserName>
-                </ContainerUser>
-        
-               
-        
-                <ContainerImg source={Header}/>
-=======
             
             <ContainerUser>
                 <ContainerUserImg/>
                 <ContainerUserName> Everson Silva de Almeida </ContainerUserName>
-            </ContainerUser>
-    
-            
+            </ContainerUser>            
     
             <ContainerImg source={Header}/>
->>>>>>> 36a43697b030c32aeb2bdd135a767d551fb6deff
-
             <ContainerBasicInfo>
                 <BasicInfosImg source={Clock}/>
                 <BasicInfos> às 22:45 </BasicInfos>
@@ -96,30 +77,6 @@ export default function Criar_postagem() {
 
                 </CardCharacter>
 
-<<<<<<< HEAD
-                    <TitleCharacter>Problema De saúde</TitleCharacter>
-                    <CardCharacter>
-                        <CardColor1>Problema cardíaco</CardColor1>
-                        <CardColor2>Câncer</CardColor2>
-                        <CardColor3>pedra nos rins</CardColor3>
-                    </CardCharacter>
-                </ContainerCharacter>
-        
-                <Comment> 
-                    <PersonImage source={Photo}/>
-                    <Input/>
-                    <BtnSend> 
-                        <BtnSendImg source={Enviar}/> 
-                    </BtnSend>    
-                </Comment> 
-        
-                
-                    <Btn_Options
-                        style={{bottom: 140, right: 50}}
-                    />
-        
-            </Container>
-=======
                 <TitleCharacter>Problema De saúde</TitleCharacter>
                 <CardCharacter>
                     <CardColor1>Problema cardíaco</CardColor1>
@@ -142,7 +99,6 @@ export default function Criar_postagem() {
                 </View>
             </View>
         </Container>
->>>>>>> 36a43697b030c32aeb2bdd135a767d551fb6deff
     );
 };
 
