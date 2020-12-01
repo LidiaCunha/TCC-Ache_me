@@ -292,9 +292,6 @@ const Criar_postagem = ({route}) => {
             </ContainerFilter>    
     
             <ContainerBtnPublicar>
-                <BtnPublicar onPress={()=>{createPost}}>  
-                    <Lorem>Publicar</Lorem>
-                </BtnPublicar>
                 <BtnPublicar onPress={()=> {
                     setPopup(<HealthProblem/>)
                     onShowPopup()}}>
@@ -304,7 +301,10 @@ const Criar_postagem = ({route}) => {
                     setPopup(<Characteristics/>)
                     onShowPopup()}}>
                     <Lorem>Characteristics</Lorem>
-                </BtnPublicar>  
+                </BtnPublicar> 
+                <BtnPublicar onPress={()=>{createPost}}>  
+                    <Lorem>Publicar</Lorem>
+                </BtnPublicar>
             </ContainerBtnPublicar>
 
             <Popup 

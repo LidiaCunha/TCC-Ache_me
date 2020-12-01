@@ -1,6 +1,6 @@
 import {StyleSheet, View, Text, Image, TextInput, TouchableOpacity} from 'react-native'
 
-import React, {useEffect, useState} from 'react'
+import React, {useState} from 'react'
 
 const HealthProblem = () => {
 
@@ -8,17 +8,30 @@ const HealthProblem = () => {
 
     const [item, setItem] = useState({
         problem:"",
-        feature: "",
     });
 
     const handlerProblems = (e) => {
-        setProblems({...problems, problems : e });
+        setProblems([...problems, e ]);
         setItem({...item, problem:""});
     };
 
     const handlerItem = (e) => {
-        setItem({ ...item , item : e});
+        setItem({ ...item , problem : e});
     };
+
+    function Item({ item}){
+
+        const deleteItem = () => {
+            setProblems( problems.filter(( problem ) => problem !== item ) );
+        };
+
+        return (
+            <View style={styles.Cards}>
+                <Text style={styles.Card_text}>{item}</Text>
+                <Text style={styles.Card_close} onPress={deleteItem} >x</Text>
+            </View>
+        );
+    }
 
     return(
         <View style={styles.Container}>
@@ -29,16 +42,17 @@ const HealthProblem = () => {
                     <TextInput 
                         style={styles.Input} 
                         placeholder="Problemas De Saúde"
-                        onChange={handlerItem}/>
+                        onChangeText={handlerItem}
+                        value={item.problem}/>
                     <TouchableOpacity 
                         style={styles.Enter}
-                        onPress={handlerProblems}/>
+                        onPress={()=>{handlerProblems(item.problem)}}/>
                 </View>
                 <View style={styles.ContainerCars}>
-                    {useEffect=( problems.map( problem => <View item={problem} style={styles.Cards}/> ))}
+                    {problems.map(problem => <Item key={problem} item={problem} />)}
                 </View>
                 <View style={styles.ContainerBtn}>
-                    <View style={styles.Btn}><Text style={styles.Card_text}>ok</Text></View>
+                    <TouchableOpacity  style={styles.Btn}><Text style={styles.Card_text}>ok</Text></TouchableOpacity >
                 </View>
             </View>
         </View>
@@ -133,14 +147,12 @@ const styles = StyleSheet.create({
     Card_close:{
         height: 25,
         width: 25,
-        fontSize: 16,
+        fontSize: 25,
+        lineHeight:25,
+        paddingLeft:6,
         color: '#E33336',
         borderRadius: 50,
         backgroundColor: 'rgba(255,255,255,.9)',
-        paddingLeft: 7,
-        paddingRight: 2,
-        paddingTop: 2,
-        paddingBottom: 2,
         fontWeight: 'bold',
     },
     ContainerBtn:{
