@@ -1,12 +1,24 @@
-import {StyleSheet, View, Text, Image, TextInput} from 'react-native'
+import {StyleSheet, View, Text, Image, TextInput, TouchableOpacity} from 'react-native'
 
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 
 const HealthProblem = () => {
 
-    const addHealthProbelm = async( healthProblem ) => {
-        await api.post( `/healthProblems/post/${post.id}` , healthProblem );
-    }
+    const [problems , setProblems] = useState([]);
+
+    const [item, setItem] = useState({
+        problem:"",
+        feature: "",
+    });
+
+    const handlerProblems = (e) => {
+        setProblems({...problems, problems : e });
+        setItem({...item, problem:""});
+    };
+
+    const handlerItem = (e) => {
+        setItem({ ...item , item : e});
+    };
 
     return(
         <View style={styles.Container}>
@@ -14,17 +26,16 @@ const HealthProblem = () => {
                 <Text style={styles.Title}>problemas de saúde</Text>
                 <View style={styles.ContainerInput}>
                     <Image style={styles.ContainerImgInput}/>
-                    <TextInput style={styles.Input} placeholder="Problemas De Saúde"/>
+                    <TextInput 
+                        style={styles.Input} 
+                        placeholder="Problemas De Saúde"
+                        onChange={handlerItem}/>
+                    <TouchableOpacity 
+                        style={styles.Enter}
+                        onPress={handlerProblems}/>
                 </View>
                 <View style={styles.ContainerCars}>
-                    <View style={styles.Cards}>
-                        <Text style={styles.Card_text}>conjutivite</Text> 
-                        <Text style={styles.Card_close}>X</Text> 
-                    </View>
-                    <View style={styles.Cards}>
-                        <Text style={styles.Card_text}>asma</Text> 
-                        <Text style={styles.Card_close}>X</Text> 
-                    </View>
+                    {useEffect=( problems.map( problem => <View item={problem} style={styles.Cards}/> ))}
                 </View>
                 <View style={styles.ContainerBtn}>
                     <View style={styles.Btn}><Text style={styles.Card_text}>ok</Text></View>
@@ -66,11 +77,9 @@ const styles = StyleSheet.create({
     ContainerInput:{
         height: 'auto',
         width: '100%',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        alignContent: 'center',
+        flex: 3,
         flexDirection: 'row',
+        justifyContent: 'center',
         marginBottom: 20,
     },
     ContainerImgInput:{
@@ -80,12 +89,17 @@ const styles = StyleSheet.create({
         borderBottomLeftRadius: 50,
         borderTopLeftRadius: 50,
     },
-    Input:{
+    Enter:{
         height: 50,
-        width: 260,
-        backgroundColor: '#fff',
+        width: 50,
+        backgroundColor: '#E33336',
         borderBottomRightRadius: 50,
         borderTopRightRadius: 50,
+    },
+    Input:{
+        height: 50,
+        width: 200,
+        backgroundColor: '#fff',
         paddingLeft: 10,
         fontSize: 16,
         color: '#292929',

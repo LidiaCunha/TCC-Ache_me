@@ -1,14 +1,14 @@
 
 import React from "react";
 import { GlobalStyles } from "./styles/GlobalStyles";
-import Post from "./pages/user_info/index";
+import Post from "./components/CreatePost/index";
 
 import Routes from "./routes";
 
 function App() {  
   return (
     <>
-      <Routes />
+      <Post />
       <GlobalStyles/>
     </>
   );
