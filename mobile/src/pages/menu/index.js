@@ -7,6 +7,7 @@ import Member from '../../assets/menu/group.png';
 import User from '../../assets/james.jpeg';
 import Sair from '../../assets/menu/logout.png';
 import Seta from '../../assets/setaVoltar.png';
+import defaltImage from '../../assets/user.png';
 
 import {  
     Container,
@@ -21,39 +22,53 @@ import {
     ContainerItemMenu,
     Exit,
 } from './styles';
+import { useAuth } from '../../contexts/auth';
 
-const Menu = () => {
+const Menu = ({DisplayNone, navigation}) => {
+
+    const user = useAuth();
+    
+    const openPosts = () => {
+        navigation.navigate('MyPosts')
+    }
+    const openFeed =() => {
+        navigation.navigate('Dashboard')
+    }
+    const openProfile = () => {
+        navigation.navigate('profile', {id:user.user.id})
+    }
+
     return(
         <Container>
-            <Back>
+            <Back onTouchStart={()=>DisplayNone(false)}>
                 <Icon2 source={Seta} />
             </Back>
         
             <ContainerPhoto>
-                <Photo source={User}/>
-                <Name>James Paixão</Name>
+                <Photo source={user.user.photo ? user.user.photo : defaltImage}/>
+                <Name>{user.user.name}</Name>
             </ContainerPhoto>
         
         
             <ContainerItemMenu>
-                <ContainerItem>
+                <ContainerItem onTouchStart={openFeed}>
                     <Icon source={Home}/>
                     <Text>Feed</Text>
                 </ContainerItem>
 
-                <ContainerItem>
+                <ContainerItem onTouchStart={openProfile}>
                     <Icon source={Key}/>
                     <Text>Conta</Text>
                 </ContainerItem>
 
-                <ContainerItem>
+                <ContainerItem onTouchStart={()=>DisplayNone(false)}>
                     <Icon source={Chat}/>
                     <Text>conversa</Text>
                 </ContainerItem>
 
-                <ContainerItem>
+                <ContainerItem  onTouchStart={openPosts} >
                     <Icon source={Sharing}/>
-                    <Text>postagem</Text>
+                    <Text>postagens</Text>
                 </ContainerItem>
 
                 <ContainerItem>

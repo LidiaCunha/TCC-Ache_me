@@ -161,6 +161,60 @@ module.exports = {
         
         return res.status(200).send(completePost);  
     },
+    takeMyPosts : async( req, res ) => {
+        const posts = await LostedPost.findAll({where:{id_user : req.userId}});
+        
+        const AllPosts = [];
+
+        const takeFeatures = async( post ) => {
+            const featuresOfPost = await FeatureOfPost.findAll({where: {losted_id:post.id}});
+            
+            let thisPost;
+
+            let featuresCreateds = [];
+
+            for ( feature of featuresOfPost ){
+                const fet = await Features.findByPk(feature.dataValues.feature_id)
+            
+                featuresCreateds[featuresCreateds.length]=fet.dataValues;
+            
+                if (featuresCreateds.length == featuresOfPost.length){
+                    thisPost = {...post, features: featuresCreateds };
+                }
+            }
+            return thisPost;
+        };
+
+        const takeHealthProblems = async( post ) => {
+            const healthProblemsOfPost = await HealthProblemsOfPost.findAll({where:{LostedPostId: post.id}});
+            let HealthProblemsArr =[];
+            let thisPost;
+            for ( problem of healthProblemsOfPost ){
+               
+                const thisProblem = await HealthProblems.findByPk(problem.dataValues.HealthProblemId);
+
+                HealthProblemsArr[HealthProblemsArr.length]=thisProblem.dataValues;
+
+                if( healthProblemsOfPost.length == HealthProblemsArr.length ){
+                    thisPost = {...post, HealthProblem: HealthProblemsArr};
+                }
+            }
+            return thisPost;
+        };
+
+        posts.forEach( async post => {
+            const postWithFeatures = await takeFeatures(post.dataValues);
+            const postWithProblems = await takeHealthProblems(postWithFeatures ? postWithFeatures : post.dataValues);
+            
+            postWithProblems ?
+                AllPosts [ AllPosts.length ] = postWithProblems : 
+                    AllPosts [ AllPosts.length ] = ( postWithFeatures ? postWithFeatures : post.dataValues ); 
+            
+            if ( posts.length == AllPosts.length ){
+                return res.status(200).send(AllPosts);
+            }
+        });
+    },
     store  : async( req, res) => {
         const  id_user  = req.userId;
 

@@ -13,6 +13,7 @@ import Header from '../../assets/Card_desaparecido/naruto.jpg';
 import Photo from '../../assets/kakashi.jpg';
 import { FontAwesome } from '@expo/vector-icons';
 
+
 import {  
     Container,
     ContainerImg,
@@ -38,7 +39,7 @@ import {
     Data,
 } from './styles';
 
-export default function Criar_postagem() {
+export default function Criar_postagem({post}) {
     return(
         <Container>                
                 <ContainerUser>
@@ -53,13 +54,13 @@ export default function Criar_postagem() {
 
             <ContainerBasicInfo>
                 <BasicInfosImg source={Clock}/>
-                <BasicInfos> às 22:45 </BasicInfos>
+                <BasicInfos> {post.createdAt}</BasicInfos>
 
                 <BasicInfosImg source={Calendar}/>
-                <BasicInfos> 15 de fev de 2003 </BasicInfos>
+                <BasicInfos>{post.createdAt}</BasicInfos>
 
                 <BasicInfosImg source={Map}/>
-                <BasicInfos> SP </BasicInfos>
+                <BasicInfos></BasicInfos>
 
                 <BasicInfosImg source={Genre}/>
                 <BasicInfos2> masculino </BasicInfos2>
@@ -79,7 +80,6 @@ export default function Criar_postagem() {
                     <CardColor style={styles.cor2}>teste</CardColor>
 
                 </CardCharacter>
-
 
                 <TitleCharacter>Problema De saúde</TitleCharacter>
                 <CardCharacter style={{ width: '80%' }}  horizontal={true}>
