@@ -9,6 +9,7 @@
     "axios": "^0.20.0",
     "bootstrap": "^4.5.2",
     "formik": "^2.1.5",
+    "moment": "^2.29.1",
     "node-modules": "^1.0.1",
     "react": "^16.13.1",
     "react-bootstrap": "^1.3.0",
