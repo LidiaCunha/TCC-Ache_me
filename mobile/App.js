@@ -2,19 +2,21 @@
 // import { createAppContainer } from 'react-navigation';
 // import { createDrawerNavigator } from 'react-navigation-drawer';
 
-// import Teste1 from './src/pages/teste1/index';
-// import Teste2 from './src/pages/teste2/index';
-// import menu from './src/pages/menu/index';
+// import listarPostagem from './src/pages/listagem_de_postagem/index';
+// import chat from './src/pages/chat/index';
+// import listarDenuncias from './src/pages/listar_denuncias/index';
+// import usuario from './src/pages/usuario/index';
 
 // import Menu from './src/components/menu/index';
 
 // const Routes = createAppContainer(
 //     createDrawerNavigator({
-//         Teste1,
-//         Teste2,
-//         menu,
+//         usuario,
+//         chat,
+//         listarPostagem,
+//         listarDenuncias,
 //     }, {
-//         initialRouteName: 'Teste1',
+//         initialRouteName: 'usuario',
 //         contentComponent: Menu
 //     })
 // );
