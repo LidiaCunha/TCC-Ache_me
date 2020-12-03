@@ -48,6 +48,8 @@ import share from "../../assets/user_info/compartilhar.png";
 import Spinner from "../../components/Spinner";
 import ModalPostagem from "./modalPostagem";
 import CreatePost from "../../components/CreatePost";
+import Denunciations from "./modal_denuncia";
+
 import moment from 'moment';
 import {api} from "../../services/api";
 import {getUsers} from "../../services/security";
@@ -156,6 +158,8 @@ const UserInfo = () => {
   
   const [showCreatePost, setShowCreatePost] = useState(false);
 
+  const [showDenunciations, setShowDenunciations] = useState(false);
+
   const [image, setImage] = useState(null);
 
   const [newImage, setNewImage] = useState(null);
@@ -229,6 +233,7 @@ const UserInfo = () => {
       { showCreatePost && <CreatePost showCreatePost={setShowCreatePost} user={{user,image}} /> }
       { showModalPost && <ModalPostagem /> }
       { loading && <Spinner/>}
+      { showDenunciations && <Denunciations setShowDenunciations={setShowDenunciations}/>}
       <Header>
         <Home>
           <img src={home} alt="return home"/>
@@ -256,7 +261,7 @@ const UserInfo = () => {
               <Text>Seu mérito: { !user.merit || user.merit == null ? "0 (indique pessoas para aumentar seu mérito)" : user.merit} </Text>
               <Text>Data da última publicação: {moment(lastPost.createdAt).format('DD/MM/YYYY')}</Text>
               <Text>Hora da última publicação: {moment(lastPost.createdAt).format('HH:mm')}</Text>
-              <ButtonDenuncia>Denúncias</ButtonDenuncia>
+              <ButtonDenuncia onClick={()=>{setShowDenunciations(true)}}>Denúncias</ButtonDenuncia>
               <ButtonPost onClick={()=>{setShowModalPost(true)}} >Postagens</ButtonPost>
             </Merit>
           </BasicInfos>

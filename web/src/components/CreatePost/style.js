@@ -18,6 +18,8 @@ export const Container = styled.div`
     z-index:1000;
     overflow-x: hidden;
     overflow-y: auto;
+    border-radius:5px;
+
     ::-webkit-scrollbar {
     width: 8px;
     height: 8px;

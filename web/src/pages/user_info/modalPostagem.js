@@ -1,5 +1,8 @@
 import React,{useEffect, useState} from "react";
 import { CardPosts, Container, ContainerModal, ContainerPosts, TextoData, TextoPost, Modal, FotoUsuario, TextoNome, AreaFotoNome, VerMais } from "./styles";
+import foto from "../../assets/Sobre/everson.jpeg";
+import Popup from "../../components/PopUp";
+
 import { api } from "../../services/api";
 import moment from 'moment';
 
@@ -17,7 +20,7 @@ const ModalPostagem = () => {
     } , [ ]);
 
     return (
-        <ContainerModal>
+        <Popup>
             <Modal>
                 { posts?.map !== undefined && posts.map(post => {
                     return (
@@ -36,7 +39,7 @@ const ModalPostagem = () => {
 
                 })}
             </Modal>
-        </ContainerModal>
+        </Popup>
     )
 }
 

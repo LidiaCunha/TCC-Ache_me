@@ -43,7 +43,9 @@ const HealthProblem = () => {
                         style={styles.Input} 
                         placeholder="Problemas De Saúde"
                         onChangeText={handlerItem}
-                        value={item.problem}/>
+                        value={item.problem}
+                        returnKeyType = {"next"}
+                        onSubmitEditing={()=>{handlerProblems(item.problem)}}/>
                     <TouchableOpacity 
                         style={styles.Enter}
                         onPress={()=>{handlerProblems(item.problem)}}/>

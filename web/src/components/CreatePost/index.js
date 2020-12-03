@@ -1,9 +1,10 @@
 import React, { useEffect, useState , useRef} from 'react';
 
-import { api } from '../../services/api'
+import { api } from '../../services/api';
 import camera from "../../assets/camera.png";
 import caracteristicas from "../../assets/user_info/caracteristicas.png";
 import saude from "../../assets/user_info/saude.png";
+import Popup from "../PopUp";
 import { Container,ConteinerFeatures, ContainerModal, LabelGenero, Header, Creator, Photo , LabelLocation , ConteinerInput, Input , Name, ExitButton, ContainerRadio,LostedPhoto ,ConteinerPhoto, ButtonPhoto , Body, TextArea, Line, InputName, InputBorned ,Label, Date, Time, RadioGenre, Column, RadioGroup, RadioStyled,ButtonPublicar,ContainerItem,LabelItem,ButtonExcluir, Linha, InputEndereco } from './style';
 
 function CreatePost({showCreatePost, user}) {
@@ -184,19 +185,20 @@ function CreatePost({showCreatePost, user}) {
     }
 
     return (
-    <ContainerModal>
-        <Container>
-            
-            <Header>
-                <Creator>
-                    <Photo alt="foto do usuario" src={user.image} />
-                    <Name>{user.user.name}</Name>
-                </Creator>
-            
-                <ExitButton onClick={()=>showCreatePost(false)} />
-            </Header>
-            
-            <Body>
+    <Popup>    
+        <ContainerModal>
+            <Container>
+                
+                <Header>
+                    <Creator>
+                        <Photo alt="foto do usuario" src={user.image} />
+                        <Name>{user.user.name}</Name>
+                    </Creator>
+                
+                    <ExitButton onClick={()=>showCreatePost(false)} />
+                </Header>
+                
+                <Body>
 
                 <Line>
                     
@@ -347,7 +349,9 @@ function CreatePost({showCreatePost, user}) {
 
             </Container>
         </ContainerModal>
-    );
+    </Popup>
+
+  );
 }
 
 export default CreatePost;
