@@ -49,7 +49,6 @@ const Menu = ({DisplayNone, navigation}) => {
                 <Name>{user.user.name}</Name>
             </ContainerPhoto>
         
-        
             <ContainerItemMenu>
                 <ContainerItem onTouchStart={openFeed}>
                     <Icon source={Home}/>

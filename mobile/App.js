@@ -1,28 +1,22 @@
 import React from 'react';
+import { createAppContainer } from 'react-navigation';
+import { createDrawerNavigator } from 'react-navigation-drawer';
 
-import Routes from './src/routes';
-import { NavigationContainer } from '@react-navigation/native';
-import { AuthProvider } from './src/contexts/auth';
-import { ConversationProvider } from './src/contexts/ConversationProvider';
-import { SocketProvider } from './src/contexts/socketProvider';
-import Everson from "./src/pages/card_desaparecido/index";
+import Teste1 from './src/pages/teste1/index';
+import Teste2 from './src/pages/teste2/index';
+import menu from './src/pages/menu/index';
 
-const App = () => { 
+import Menu from './src/components/menu/index';
 
-   return (
+const Routes = createAppContainer(
+    createDrawerNavigator({
+        Teste1,
+        Teste2,
+        menu,
+    }, {
+        initialRouteName: 'Teste1',
+        contentComponent: Menu
+    })
+);
 
-    <Everson/>
-
-  //  <NavigationContainer>
-  //    <AuthProvider>
-  //      <SocketProvider>
-  //        <ConversationProvider>
-  //          <Routes/>
-  //        </ConversationProvider>
-  //      </SocketProvider>
-  //    </AuthProvider>
-  //  </NavigationContainer>
-  );
-}
-
-export default App; 
+export default Routes;
