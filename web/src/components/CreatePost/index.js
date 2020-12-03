@@ -1,9 +1,10 @@
 import React, { useEffect, useState , useRef} from 'react';
 
-import { api } from '../../services/api'
+import { api } from '../../services/api';
 import camera from "../../assets/camera.png";
 import caracteristicas from "../../assets/user_info/caracteristicas.png";
 import saude from "../../assets/user_info/saude.png";
+import Popup from "../PopUp";
 import { Container,ConteinerFeatures, ContainerModal, LabelGenero, Header, Creator, Photo , LabelLocation , ConteinerInput, Input , Name, ExitButton, ContainerRadio,LostedPhoto ,ConteinerPhoto, ButtonPhoto , Body, TextArea, Line, InputName, InputBorned ,Label, Date, Time, RadioGenre, Column, RadioGroup, RadioStyled,ButtonPublicar,ContainerItem,LabelItem,ButtonExcluir, Linha, InputEndereco } from './style';
 
 function CreatePost({showCreatePost, user}) {
@@ -169,169 +170,172 @@ function CreatePost({showCreatePost, user}) {
     }
 
     return (
-    <ContainerModal>
-        <Container>
-            
-            <Header>
-                <Creator>
-                    <Photo alt="foto do usuario" src={user.image} />
-                    <Name>{user.user.name}</Name>
-                </Creator>
-            
-                <ExitButton onClick={()=>showCreatePost(false)} />
-            </Header>
-            
-            <Body>
-
-                <Line>
-                    
-                    <Column>
-                        <Label>Data de nascimento do desaparecido</Label>
-                        <InputBorned value={bornedAt} onChange={handlerBornedInput} />
-                    </Column>
-
-                    <Column>
-                        <Label>Última data que foi visto</Label>
-                        <Date onChange={handlerSeen} value={seen.date} id="date" />
-                    </Column>
-
-                    <Column>
-                        <Label>Último horário que foi visto</Label>
-                        <Time onChange={handlerSeen} value={seen.time} id="time" />
-                    </Column>
-
-                </Line>
-
-                <Line>
-                    
-                    <Column>
-                        <InputName value={name} onChange={handlerName} />
-                        <Label>Nome do desaparecido</Label>
-                    </Column>
-
-                    <Column>
-                        <LabelGenero>Gênero</LabelGenero>
-                        
-                        <RadioGroup>
-                        
-                            <ContainerRadio>
-                                <RadioGenre onChange={handlerGenre} id="Masculino" />
-                                <RadioStyled />
-                                <Label>Masculino</Label> 
-                            </ContainerRadio>
-                            
-                            <ContainerRadio>
-                                <RadioGenre onChange={handlerGenre} id="Feminino" />
-                                <RadioStyled />
-                                <Label>Feminino</Label>
-                            </ContainerRadio>
-                            
-                            <ContainerRadio>
-                                <RadioGenre onChange={handlerGenre} id="LGBT" />
-                                <RadioStyled />
-                                <Label>Não binario</Label> 
-                            </ContainerRadio>
-                        
-                        </RadioGroup>
-                    </Column>
+    <Popup>    
+        <ContainerModal>
+            <Container>
                 
-                </Line>                
-
-                <Line>
-                    <Column>
-                        <TextArea value={description} onChange={handlerDescription}/>
-                    </Column>    
-                </Line>
-
-                <Linha>
-                    <Label>Foto do desaparecido</Label>
-                </Linha>
-
-                <Line>
-
-                    <ConteinerPhoto>
-                        <LostedPhoto ref={imgRef}  />  
-                        <label>
-                            <img src={camera} alt="camera" />
-                            <ButtonPhoto onChange={handlerImage}  />
-                        </label>
-
-                    </ConteinerPhoto>
-
-                </Line>
-
-                <Line>
-                    <Column>
-                        <Label>Características Físicas</Label>
-                        <ConteinerInput>
-                            <span><img src={caracteristicas}/></span> 
-                            <Input id="feature" onChange={handlerItem} value={item.feature} onKeyPress={handlerFeatures}/>
-                        </ConteinerInput>    
-                        <ConteinerFeatures>
-                            {
-                                features.map( feature =>  <Item item={feature} isFeature={true} /> )
-                            }
-                        </ConteinerFeatures>
-                    </Column>
-                </Line>
+                <Header>
+                    <Creator>
+                        <Photo alt="foto do usuario" src={user.image} />
+                        <Name>{user.user.name}</Name>
+                    </Creator>
                 
-                <Line>
-                    <Column>
-                        <Label>Problemas de Saúde</Label>
-                        <ConteinerInput>
-                            <span><img src={saude}/></span>  
-                            <Input onChange={handlerItem} id="problem" value={item.problem} onKeyPress={handlerProblems} />
-                        </ConteinerInput>
-                        <ConteinerFeatures>
-                            {
-                                problems.map( problem => <Item item={problem} /> )
-                            }
-                        </ConteinerFeatures>
-                    </Column>
-                </Line>
+                    <ExitButton onClick={()=>showCreatePost(false)} />
+                </Header>
+                
+                <Body>
 
-                <Line>
-                    <LabelLocation>Localização da última vez que foi visto:</LabelLocation>
-                </Line>
                     <Line>
+                        
                         <Column>
-                            <Label>CEP</Label>
-                            <InputEndereco value={location.cep} onChange={handlerCep}/>
+                            <Label>Data de nascimento do desaparecido</Label>
+                            <InputBorned value={bornedAt} onChange={handlerBornedInput} />
                         </Column>
+
                         <Column>
-                            <Label>Ponto de referência</Label>
-                            <InputEndereco value={location.reference_point} onChange={handlerRefPoint}/>
+                            <Label>Última data que foi visto</Label>
+                            <Date onChange={handlerSeen} value={seen.date} id="date" />
                         </Column>
-                    </Line>
-                    <Line>
+
                         <Column>
-                            <Label>Bairro</Label>
-                            <InputEndereco onChange={handlerCep}/>
+                            <Label>Último horário que foi visto</Label>
+                            <Time onChange={handlerSeen} value={seen.time} id="time" />
                         </Column>
-                        <Column>
-                            <Label>Rua</Label>
-                            <InputEndereco onChange={handlerCep}/>
-                        </Column>
-                    </Line>
-                    <Line>
-                        <Column>
-                            <Label>Cidade</Label>
-                            <InputEndereco onChange={handlerCep}/>
-                        </Column>
-                        <Column>
-                            <Label>Estado</Label>
-                            <InputEndereco onChange={handlerCep}/>
-                        </Column>
+
                     </Line>
 
-                <Line>
-                    <ButtonPublicar onClick={createPost} />
-                </Line>
+                    <Line>
+                        
+                        <Column>
+                            <InputName value={name} onChange={handlerName} />
+                            <Label>Nome do desaparecido</Label>
+                        </Column>
 
-            </Body>
+                        <Column>
+                            <LabelGenero>Gênero</LabelGenero>
+                            
+                            <RadioGroup>
+                            
+                                <ContainerRadio>
+                                    <RadioGenre onChange={handlerGenre} id="Masculino" />
+                                    <RadioStyled />
+                                    <Label>Masculino</Label> 
+                                </ContainerRadio>
+                                
+                                <ContainerRadio>
+                                    <RadioGenre onChange={handlerGenre} id="Feminino" />
+                                    <RadioStyled />
+                                    <Label>Feminino</Label>
+                                </ContainerRadio>
+                                
+                                <ContainerRadio>
+                                    <RadioGenre onChange={handlerGenre} id="LGBT" />
+                                    <RadioStyled />
+                                    <Label>Não binario</Label> 
+                                </ContainerRadio>
+                            
+                            </RadioGroup>
+                        </Column>
+                    
+                    </Line>                
 
-        </Container>
-    </ContainerModal>
+                    <Line>
+                        <Column>
+                            <TextArea value={description} onChange={handlerDescription}/>
+                        </Column>    
+                    </Line>
+
+                    <Linha>
+                        <Label>Foto do desaparecido</Label>
+                    </Linha>
+
+                    <Line>
+
+                        <ConteinerPhoto>
+                            <LostedPhoto ref={imgRef}  />  
+                            <label>
+                                <img src={camera} alt="camera" />
+                                <ButtonPhoto onChange={handlerImage}  />
+                            </label>
+
+                        </ConteinerPhoto>
+
+                    </Line>
+
+                    <Line>
+                        <Column>
+                            <Label>Características Físicas</Label>
+                            <ConteinerInput>
+                                <span><img src={caracteristicas}/></span> 
+                                <Input id="feature" onChange={handlerItem} value={item.feature} onKeyPress={handlerFeatures}/>
+                            </ConteinerInput>    
+                            <ConteinerFeatures>
+                                {
+                                    features.map( feature =>  <Item item={feature} isFeature={true} /> )
+                                }
+                            </ConteinerFeatures>
+                        </Column>
+                    </Line>
+                    
+                    <Line>
+                        <Column>
+                            <Label>Problemas de Saúde</Label>
+                            <ConteinerInput>
+                                <span><img src={saude}/></span>  
+                                <Input onChange={handlerItem} id="problem" value={item.problem} onKeyPress={handlerProblems} />
+                            </ConteinerInput>
+                            <ConteinerFeatures>
+                                {
+                                    problems.map( problem => <Item item={problem} /> )
+                                }
+                            </ConteinerFeatures>
+                        </Column>
+                    </Line>
+
+                    <Line>
+                        <LabelLocation>Localização da última vez que foi visto:</LabelLocation>
+                    </Line>
+                        <Line>
+                            <Column>
+                                <Label>CEP</Label>
+                                <InputEndereco value={location.cep} onChange={handlerCep}/>
+                            </Column>
+                            <Column>
+                                <Label>Ponto de referência</Label>
+                                <InputEndereco value={location.reference_point} onChange={handlerRefPoint}/>
+                            </Column>
+                        </Line>
+                        <Line>
+                            <Column>
+                                <Label>Bairro</Label>
+                                <InputEndereco onChange={handlerCep}/>
+                            </Column>
+                            <Column>
+                                <Label>Rua</Label>
+                                <InputEndereco onChange={handlerCep}/>
+                            </Column>
+                        </Line>
+                        <Line>
+                            <Column>
+                                <Label>Cidade</Label>
+                                <InputEndereco onChange={handlerCep}/>
+                            </Column>
+                            <Column>
+                                <Label>Estado</Label>
+                                <InputEndereco onChange={handlerCep}/>
+                            </Column>
+                        </Line>
+
+                    <Line>
+                        <ButtonPublicar onClick={createPost} />
+                    </Line>
+
+                </Body>
+
+            </Container>
+        </ContainerModal>
+    </Popup>
+
   );
 }
 

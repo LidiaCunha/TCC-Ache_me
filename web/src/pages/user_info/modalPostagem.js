@@ -1,10 +1,11 @@
 import React from "react";
 import { CardPosts, Container, ContainerModal, ContainerPosts, TextoData, TextoPost, Modal, FotoUsuario, TextoNome, AreaFotoNome, VerMais } from "./styles";
-import foto from "../../assets/Sobre/everson.jpeg"
+import foto from "../../assets/Sobre/everson.jpeg";
+import Popup from "../../components/PopUp";
 
 const ModalPostagem = () => {
     return(
-        <ContainerModal>
+        <Popup>
             <Modal>
                 <ContainerPosts id="impar">
                     <TextoData>20 de nov. de 2020</TextoData>
@@ -59,7 +60,7 @@ const ModalPostagem = () => {
                     </CardPosts>
                 </ContainerPosts>
             </Modal>
-        </ContainerModal>
+        </Popup>
     )
 }
 
