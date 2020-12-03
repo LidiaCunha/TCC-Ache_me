@@ -30,7 +30,14 @@ function CreatePost({showCreatePost, user}) {
         feature: "",
     });
 
-    const [location, setLocation ] = useState({});
+    const [location, setLocation ] = useState({
+        cep:"",
+        street:"",
+        bairro:"",
+        state:"",
+        city:"",
+        reference_point: "",
+    });
 
     const [cep, setCep] = useState("");
 
@@ -43,8 +50,10 @@ function CreatePost({showCreatePost, user}) {
         }
     };
 
-    const handlerCep = (e) => {
-        setCep(e.target.value );
+    const handlerLocation = (e) => {
+        e.target.id === 'cep' ? 
+            setLocation({ ...location , cep: e.target.value.replace(/[^0-9]/g,'').replace(/(.{5})(.{3})/,'$1-$2').replace(/(.{9})(.*)/,'$1') }) :
+            setLocation({ ...location , [e.target.id]: e.target.value });
     };
 
     const handlerFeatures = (e) => {
@@ -85,10 +94,6 @@ function CreatePost({showCreatePost, user}) {
         setItem({ ...item , [e.target.id] : e.target.value });
     };
 
-    const handlerRefPoint = (e) => {
-        setLocation({ location , reference_point:e.target.value });
-    }
-
     const createPost = async ( ) => {
 
         await api.post('/genre',{genre});    
@@ -112,20 +117,17 @@ function CreatePost({showCreatePost, user}) {
         }
         if (postCreated.status === 201) {
 
-            const url = `https://api.postmon.com.br/v1/cep/${cep}`;
-
-            const address = await fetch(url).then(res => res.json());
-           
             const data = {
-                street:address.logradouro, 
-                bairro: address.bairro, 
-                cep:cep, 
+                street:location.logradouro, 
+                bairro: location.bairro, 
+                cep:location.cep, 
                 reference_point:location.reference_point,  
-                city: address.cidade, 
-                state: address.estado_info.nome, 
+                city: location.cidade, 
+                state: location.estado_info.nome, 
                 seen_at_date: seen.date, 
                 seen_at_hours: seen.time
             };
+            
             const seenCreated = await api.post(`/seen/${postCreated.data.id}`,data);
 
             if (seenCreated.status === 201){
@@ -150,6 +152,19 @@ function CreatePost({showCreatePost, user}) {
             window.alert("erro ao criar a postagem");
         }
     };
+
+    const getAddress = async( e ) => {
+        const url = `https://api.postmon.com.br/v1/cep/${location.cep}`;
+
+        const address = await fetch(url).then(res => res.json());
+    
+        setLocation({ ...location ,
+            street:address.logradouro,
+            bairro: address.bairro,
+            city: address.cidade,
+            state: address.estado_info.nome,
+        })
+    }
 
     function Item({ item , isFeature }){
 
@@ -185,146 +200,146 @@ function CreatePost({showCreatePost, user}) {
                 
                 <Body>
 
-                    <Line>
-                        
-                        <Column>
-                            <Label>Data de nascimento do desaparecido</Label>
-                            <InputBorned value={bornedAt} onChange={handlerBornedInput} />
-                        </Column>
-
-                        <Column>
-                            <Label>Última data que foi visto</Label>
-                            <Date onChange={handlerSeen} value={seen.date} id="date" />
-                        </Column>
-
-                        <Column>
-                            <Label>Último horário que foi visto</Label>
-                            <Time onChange={handlerSeen} value={seen.time} id="time" />
-                        </Column>
-
-                    </Line>
-
-                    <Line>
-                        
-                        <Column>
-                            <InputName value={name} onChange={handlerName} />
-                            <Label>Nome do desaparecido</Label>
-                        </Column>
-
-                        <Column>
-                            <LabelGenero>Gênero</LabelGenero>
-                            
-                            <RadioGroup>
-                            
-                                <ContainerRadio>
-                                    <RadioGenre onChange={handlerGenre} id="Masculino" />
-                                    <RadioStyled />
-                                    <Label>Masculino</Label> 
-                                </ContainerRadio>
-                                
-                                <ContainerRadio>
-                                    <RadioGenre onChange={handlerGenre} id="Feminino" />
-                                    <RadioStyled />
-                                    <Label>Feminino</Label>
-                                </ContainerRadio>
-                                
-                                <ContainerRadio>
-                                    <RadioGenre onChange={handlerGenre} id="LGBT" />
-                                    <RadioStyled />
-                                    <Label>Não binario</Label> 
-                                </ContainerRadio>
-                            
-                            </RadioGroup>
-                        </Column>
+                <Line>
                     
-                    </Line>                
+                    <Column>
+                        <Label>Data de nascimento do desaparecido</Label>
+                        <InputBorned value={bornedAt} onChange={handlerBornedInput} />
+                    </Column>
 
-                    <Line>
-                        <Column>
-                            <TextArea value={description} onChange={handlerDescription}/>
-                        </Column>    
-                    </Line>
+                    <Column>
+                        <Label>Última data que foi visto</Label>
+                        <Date onChange={handlerSeen} value={seen.date} id="date" />
+                    </Column>
 
-                    <Linha>
-                        <Label>Foto do desaparecido</Label>
-                    </Linha>
+                    <Column>
+                        <Label>Último horário que foi visto</Label>
+                        <Time onChange={handlerSeen} value={seen.time} id="time" />
+                    </Column>
 
-                    <Line>
+                </Line>
 
-                        <ConteinerPhoto>
-                            <LostedPhoto ref={imgRef}  />  
-                            <label>
-                                <img src={camera} alt="camera" />
-                                <ButtonPhoto onChange={handlerImage}  />
-                            </label>
-
-                        </ConteinerPhoto>
-
-                    </Line>
-
-                    <Line>
-                        <Column>
-                            <Label>Características Físicas</Label>
-                            <ConteinerInput>
-                                <span><img src={caracteristicas}/></span> 
-                                <Input id="feature" onChange={handlerItem} value={item.feature} onKeyPress={handlerFeatures}/>
-                            </ConteinerInput>    
-                            <ConteinerFeatures>
-                                {
-                                    features.map( feature =>  <Item item={feature} isFeature={true} /> )
-                                }
-                            </ConteinerFeatures>
-                        </Column>
-                    </Line>
+                <Line>
                     
-                    <Line>
-                        <Column>
-                            <Label>Problemas de Saúde</Label>
-                            <ConteinerInput>
-                                <span><img src={saude}/></span>  
-                                <Input onChange={handlerItem} id="problem" value={item.problem} onKeyPress={handlerProblems} />
-                            </ConteinerInput>
-                            <ConteinerFeatures>
-                                {
-                                    problems.map( problem => <Item item={problem} /> )
-                                }
-                            </ConteinerFeatures>
-                        </Column>
-                    </Line>
+                    <Column>
+                        <InputName value={name} onChange={handlerName} />
+                        <Label>Nome do desaparecido</Label>
+                    </Column>
+
+                    <Column>
+                        <LabelGenero>Gênero</LabelGenero>
+                        
+                        <RadioGroup>
+                        
+                            <ContainerRadio>
+                                <RadioGenre onChange={handlerGenre} id="Masculino" />
+                                <RadioStyled />
+                                <Label>Masculino</Label> 
+                            </ContainerRadio>
+                            
+                            <ContainerRadio>
+                                <RadioGenre onChange={handlerGenre} id="Feminino" />
+                                <RadioStyled />
+                                <Label>Feminino</Label>
+                            </ContainerRadio>
+                            
+                            <ContainerRadio>
+                                <RadioGenre onChange={handlerGenre} id="LGBT" />
+                                <RadioStyled />
+                                <Label>Não binario</Label> 
+                            </ContainerRadio>
+                        
+                        </RadioGroup>
+                    </Column>
+                
+                </Line>                
+
+                <Line>
+                    <Column>
+                        <TextArea value={description} onChange={handlerDescription}/>
+                    </Column>    
+                </Line>
+
+                <Linha>
+                    <Label>Foto do desaparecido</Label>
+                </Linha>
+
+                <Line>
+
+                    <ConteinerPhoto>
+                        <LostedPhoto ref={imgRef}  />  
+                        <label>
+                            <img src={camera} alt="camera" />
+                            <ButtonPhoto onChange={handlerImage}  />
+                        </label>
+
+                    </ConteinerPhoto>
+
+                </Line>
+
+                <Line>
+                    <Column>
+                        <Label>Características Físicas</Label>
+                        <ConteinerInput>
+                            <span><img src={caracteristicas}/></span> 
+                            <Input id="feature" onChange={handlerItem} value={item.feature} onKeyPress={handlerFeatures}/>
+                        </ConteinerInput>    
+                        <ConteinerFeatures>
+                            {
+                                features.map( feature =>  <Item item={feature} isFeature={true} /> )
+                            }
+                        </ConteinerFeatures>
+                    </Column>
+                </Line>
+                
+                <Line>
+                    <Column>
+                        <Label>Problemas de Saúde</Label>
+                        <ConteinerInput>
+                            <span><img src={saude}/></span>  
+                            <Input onChange={handlerItem} id="problem" value={item.problem} onKeyPress={handlerProblems} />
+                        </ConteinerInput>
+                        <ConteinerFeatures>
+                            {
+                                problems.map( problem => <Item item={problem} /> )
+                            }
+                        </ConteinerFeatures>
+                    </Column>
+                </Line>
 
                     <Line>
                         <LabelLocation>Localização da última vez que foi visto:</LabelLocation>
                     </Line>
-                        <Line>
-                            <Column>
-                                <Label>CEP</Label>
-                                <InputEndereco value={location.cep} onChange={handlerCep}/>
-                            </Column>
-                            <Column>
-                                <Label>Ponto de referência</Label>
-                                <InputEndereco value={location.reference_point} onChange={handlerRefPoint}/>
-                            </Column>
-                        </Line>
-                        <Line>
-                            <Column>
-                                <Label>Bairro</Label>
-                                <InputEndereco onChange={handlerCep}/>
-                            </Column>
-                            <Column>
-                                <Label>Rua</Label>
-                                <InputEndereco onChange={handlerCep}/>
-                            </Column>
-                        </Line>
-                        <Line>
-                            <Column>
-                                <Label>Cidade</Label>
-                                <InputEndereco onChange={handlerCep}/>
-                            </Column>
-                            <Column>
-                                <Label>Estado</Label>
-                                <InputEndereco onChange={handlerCep}/>
-                            </Column>
-                        </Line>
+                    <Line>
+                        <Column>
+                            <Label>CEP</Label>
+                            <InputEndereco id="cep" onBlur={getAddress} value={location.cep} onChange={handlerLocation} />
+                        </Column>
+                        <Column>
+                            <Label>Ponto de referência</Label>
+                            <InputEndereco value={location.reference_point} onChange={handlerLocation} id="reference_point" />
+                        </Column>
+                    </Line>
+                    <Line>
+                        <Column>
+                            <Label>Bairro</Label>
+                            <InputEndereco onChange={handlerLocation} value={location.bairro} id="bairro" />
+                        </Column>
+                        <Column>
+                            <Label>Rua</Label>
+                            <InputEndereco onChange={handlerLocation} value={location.street} id="street"/>
+                        </Column>
+                    </Line>
+                    <Line>
+                        <Column>
+                            <Label>Cidade</Label>
+                            <InputEndereco onChange={handlerLocation} value={location.city} id="city"/>
+                        </Column>
+                        <Column>
+                            <Label>Estado</Label>
+                            <InputEndereco onChange={handlerLocation} value={location.state} id="state"/>
+                        </Column>
+                    </Line>
 
                     <Line>
                         <ButtonPublicar onClick={createPost} />

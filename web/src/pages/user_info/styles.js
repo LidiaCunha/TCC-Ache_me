@@ -196,7 +196,7 @@ export const ButtonPost = styled.div`
     padding: 10px;
     // margin: auto;
     float: left;
-    margin-left: 80px;
+    margin-left: 50px;
     box-sizing: border-box;
     font-size: 0.8em;
     font-family: arial;
