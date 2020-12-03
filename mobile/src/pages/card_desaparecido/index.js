@@ -54,10 +54,10 @@ export default function Criar_postagem({post}) {
 
             <ContainerBasicInfo>
                 <BasicInfosImg source={Clock}/>
-                <BasicInfos> {post.createdAt}</BasicInfos>
+                <BasicInfos></BasicInfos>
 
                 <BasicInfosImg source={Calendar}/>
-                <BasicInfos>{post.createdAt}</BasicInfos>
+                <BasicInfos></BasicInfos>
 
                 <BasicInfosImg source={Map}/>
                 <BasicInfos></BasicInfos>

@@ -1,9 +1,10 @@
 import React, { useEffect, useState , useRef} from 'react';
 
-import { api } from '../../services/api'
+import { api } from '../../services/api';
 import camera from "../../assets/camera.png";
 import caracteristicas from "../../assets/user_info/caracteristicas.png";
 import saude from "../../assets/user_info/saude.png";
+import Popup from "../PopUp";
 import { Container,ConteinerFeatures, ContainerModal, LabelGenero, Header, Creator, Photo , LabelLocation , ConteinerInput, Input , Name, ExitButton, ContainerRadio,LostedPhoto ,ConteinerPhoto, ButtonPhoto , Body, TextArea, Line, InputName, InputBorned ,Label, Date, Time, RadioGenre, Column, RadioGroup, RadioStyled,ButtonPublicar,ContainerItem,LabelItem,ButtonExcluir, Linha, InputEndereco } from './style';
 
 function CreatePost({showCreatePost, user}) {
@@ -29,7 +30,14 @@ function CreatePost({showCreatePost, user}) {
         feature: "",
     });
 
-    const [location, setLocation ] = useState({});
+    const [location, setLocation ] = useState({
+        cep:"",
+        street:"",
+        bairro:"",
+        state:"",
+        city:"",
+        reference_point: "",
+    });
 
     const [cep, setCep] = useState("");
 
@@ -42,8 +50,10 @@ function CreatePost({showCreatePost, user}) {
         }
     };
 
-    const handlerCep = (e) => {
-        setCep(e.target.value );
+    const handlerLocation = (e) => {
+        e.target.id === 'cep' ? 
+            setLocation({ ...location , cep: e.target.value.replace(/[^0-9]/g,'').replace(/(.{5})(.{3})/,'$1-$2').replace(/(.{9})(.*)/,'$1') }) :
+            setLocation({ ...location , [e.target.id]: e.target.value });
     };
 
     const handlerFeatures = (e) => {
@@ -84,10 +94,6 @@ function CreatePost({showCreatePost, user}) {
         setItem({ ...item , [e.target.id] : e.target.value });
     };
 
-    const handlerRefPoint = (e) => {
-        setLocation({ location , reference_point:e.target.value });
-    }
-
     const createPost = async ( ) => {
 
         await api.post('/genre',{genre});    
@@ -111,20 +117,17 @@ function CreatePost({showCreatePost, user}) {
         }
         if (postCreated.status === 201) {
 
-            const url = `https://api.postmon.com.br/v1/cep/${cep}`;
-
-            const address = await fetch(url).then(res => res.json());
-           
             const data = {
-                street:address.logradouro, 
-                bairro: address.bairro, 
-                cep:cep, 
+                street:location.logradouro, 
+                bairro: location.bairro, 
+                cep:location.cep, 
                 reference_point:location.reference_point,  
-                city: address.cidade, 
-                state: address.estado_info.nome, 
+                city: location.cidade, 
+                state: location.estado_info.nome, 
                 seen_at_date: seen.date, 
                 seen_at_hours: seen.time
             };
+            
             const seenCreated = await api.post(`/seen/${postCreated.data.id}`,data);
 
             if (seenCreated.status === 201){
@@ -150,6 +153,19 @@ function CreatePost({showCreatePost, user}) {
         }
     };
 
+    const getAddress = async( e ) => {
+        const url = `https://api.postmon.com.br/v1/cep/${location.cep}`;
+
+        const address = await fetch(url).then(res => res.json());
+    
+        setLocation({ ...location ,
+            street:address.logradouro,
+            bairro: address.bairro,
+            city: address.cidade,
+            state: address.estado_info.nome,
+        })
+    }
+
     function Item({ item , isFeature }){
 
         const deleteItem = () => {
@@ -169,19 +185,20 @@ function CreatePost({showCreatePost, user}) {
     }
 
     return (
-    <ContainerModal>
-        <Container>
-            
-            <Header>
-                <Creator>
-                    <Photo alt="foto do usuario" src={user.image} />
-                    <Name>{user.user.name}</Name>
-                </Creator>
-            
-                <ExitButton onClick={()=>showCreatePost(false)} />
-            </Header>
-            
-            <Body>
+    <Popup>    
+        <ContainerModal>
+            <Container>
+                
+                <Header>
+                    <Creator>
+                        <Photo alt="foto do usuario" src={user.image} />
+                        <Name>{user.user.name}</Name>
+                    </Creator>
+                
+                    <ExitButton onClick={()=>showCreatePost(false)} />
+                </Header>
+                
+                <Body>
 
                 <Line>
                     
@@ -290,48 +307,50 @@ function CreatePost({showCreatePost, user}) {
                     </Column>
                 </Line>
 
-                <Line>
-                    <LabelLocation>Localização da última vez que foi visto:</LabelLocation>
-                </Line>
+                    <Line>
+                        <LabelLocation>Localização da última vez que foi visto:</LabelLocation>
+                    </Line>
                     <Line>
                         <Column>
                             <Label>CEP</Label>
-                            <InputEndereco value={location.cep} onChange={handlerCep}/>
+                            <InputEndereco id="cep" onBlur={getAddress} value={location.cep} onChange={handlerLocation} />
                         </Column>
                         <Column>
                             <Label>Ponto de referência</Label>
-                            <InputEndereco value={location.reference_point} onChange={handlerRefPoint}/>
+                            <InputEndereco value={location.reference_point} onChange={handlerLocation} id="reference_point" />
                         </Column>
                     </Line>
                     <Line>
                         <Column>
                             <Label>Bairro</Label>
-                            <InputEndereco onChange={handlerCep}/>
+                            <InputEndereco onChange={handlerLocation} value={location.bairro} id="bairro" />
                         </Column>
                         <Column>
                             <Label>Rua</Label>
-                            <InputEndereco onChange={handlerCep}/>
+                            <InputEndereco onChange={handlerLocation} value={location.street} id="street"/>
                         </Column>
                     </Line>
                     <Line>
                         <Column>
                             <Label>Cidade</Label>
-                            <InputEndereco onChange={handlerCep}/>
+                            <InputEndereco onChange={handlerLocation} value={location.city} id="city"/>
                         </Column>
                         <Column>
                             <Label>Estado</Label>
-                            <InputEndereco onChange={handlerCep}/>
+                            <InputEndereco onChange={handlerLocation} value={location.state} id="state"/>
                         </Column>
                     </Line>
 
-                <Line>
-                    <ButtonPublicar onClick={createPost} />
-                </Line>
+                    <Line>
+                        <ButtonPublicar onClick={createPost} />
+                    </Line>
 
-            </Body>
+                </Body>
 
-        </Container>
-    </ContainerModal>
+            </Container>
+        </ContainerModal>
+    </Popup>
+
   );
 }
 

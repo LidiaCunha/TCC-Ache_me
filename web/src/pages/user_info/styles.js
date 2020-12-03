@@ -8,6 +8,7 @@ export const Container = styled.div`
     background-color: #efefef;
 
 @media(max-width: 780px){
+    width: 100%;
     overflow-x: hidden;
 }
 `;
@@ -65,12 +66,13 @@ export const Header = styled.div`
     box-sizing: border-box;
     background-color: #fff;
     position: fixed;
-    z-index: 999;
+    z-index: 888;
     top: 0;
     overflow: hidden;
     
 @media(max-width: 780px){
-    height: 10vh;
+    height: 50px;
+    width: 100%;
 }
 `;
 
@@ -106,6 +108,7 @@ export const Main = styled.div`
     box-sizing:border-box;
 
 @media(max-width: 780px){
+    width: 100%;
     grid-template-rows: 18%;
 }
 `;
@@ -160,7 +163,7 @@ export const PhotoProfile = styled.div`
     grid-template-columns: 100%;
     border-right: solid 2px transparent;
     width: 100%;
-    height: auto;
+    height: 600px;
     display: flex;
     justify-content: center;
     align-content: center;
@@ -177,7 +180,12 @@ export const Merit = styled.div`
 
 @media(max-width: 780px){
     width: 100%;
+<<<<<<< HEAD
     height: auto;
+=======
+    height: 500px;
+
+>>>>>>> 9a7b05df341183f253cf4fbf9dd2913f875b7eab
     padding: 15px 15px;
 }
 `;
@@ -192,7 +200,7 @@ export const ButtonPost = styled.div`
     padding: 10px;
     // margin: auto;
     float: left;
-    margin-left: 80px;
+    margin-left: 50px;
     box-sizing: border-box;
     font-size: 0.8em;
     font-family: arial;
@@ -508,21 +516,6 @@ export const MemberName = styled.h1`
         line-height: 30px;
         font-weight: normal;
     }
-`;
-
-export const ContainerModal = styled.div`
-    width: 100vw;
-    min-height: 100vh;
-    height: auto;
-    box-sizing: border-box;
-    background-color: #0d0d0dcc;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-@media(max-width: 780px){
-    overflow-x: hidden;
-}
 `;
 
 export const Modal = styled.div`
