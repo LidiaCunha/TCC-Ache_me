@@ -9,7 +9,7 @@ export const Container = styled.ScrollView`
     border-right-width: 2px;
     border-style: solid;
     border-color: #fff;
-    marginTop: 29px;
+    margin-top: 29px;
     position: absolute;
     z-index:999;
 `;
@@ -18,7 +18,7 @@ export const Back = styled.View`
     height: 50px;
     width: 100%;
     padding-left: 30px;
-    marginBottom: 30px;
+    margin-bottom: 30px;
     border-top-right-radius: 40px;
     display: flex;
     justify-content: center;
@@ -32,15 +32,15 @@ export const ContainerPhoto = styled.View`
     justify-content: center;
     align-items: center;
     align-content: center;
-    marginBottom: 10px;
+    margin-bottom: 10px;
 `;
 
 export const Photo = styled.Image`
     height: 85px;
     width: 85px;
     background: orange;
-    borderRadius: 50px;
-    marginBottom: 10px;
+    border-radius: 50px;
+    margin-bottom: 10px;
     border: 2px;
     border-style: solid;
     border-color: #fff;
@@ -53,7 +53,7 @@ export const Name = styled.Text`
     font-size: 16px;
     font-weight: bold;
     color: #fff;
-    marginBottom: 20px;
+    margin-bottom: 20px;
 `;  
 
 export const ContainerItemMenu = styled.View`
@@ -75,7 +75,7 @@ export const ContainerItem = styled.View`
     display: flex;
     flex-direction: row;
     padding-left: 10px;
-    marginBottom: 20px;
+    margin-bottom: 20px;
 `;
 
 export const Icon = styled.Image`

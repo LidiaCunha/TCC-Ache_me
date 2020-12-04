@@ -5,7 +5,7 @@ import {useAuth} from '../../contexts/auth';
 const style = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'space-around',
+    justifyContent: 'center',
     alignItems: 'center',
 
   },
