@@ -2,7 +2,7 @@ const Squelize = require('sequelize');
 // pegando o obj de configuração exportado pelo arquivo 
 const dbConfig = require('../config/config');
 // criando a conexão com banco pelo sequelize passando o objeto de conexão criado 
-const conection  = new Squelize(dbConfig);
+const conection  = new Squelize( dbConfig.url , dbConfig.config );
 // AQUI DEVESE IMPORTAR OS MODELS
 const Users = require('../models/Users');
 const States = require('../models/States');
