@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useContext, createContext} from 'react';
 
 import {  
     Container,
@@ -41,6 +41,36 @@ import {Popup} from '../../components/Popup';
 import HealthProblem from './healthProblem';
 import Characteristics from './modalCaracteristicas';
 import {api} from '../../services/api';
+
+const FilterContext = createContext({
+    filter: false,
+    type: {},
+  });
+
+export const getFilters = () => {
+
+    const [healthProblems, setHealthProblems] = useState([])
+
+    async function getHealthProblems() {
+        const response = problems;
+
+        console.log(response)
+    }
+
+    return (
+        <FilterContext.Provider value={{ filter: getHealthProblems}}>
+          {children}
+        </FilterContext.Provider>
+    );
+    
+    // await AsyncStorage.setItem('PROBLEMS', JSON.stringify(response));
+}
+
+export function useFilter(){
+    const context = useContext(FilterContext);
+    
+    return context;
+  };
 
 const Criar_postagem = ({route}) => {
 
