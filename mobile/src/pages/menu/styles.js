@@ -107,17 +107,3 @@ export const Exit = styled.View`
 `;
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
