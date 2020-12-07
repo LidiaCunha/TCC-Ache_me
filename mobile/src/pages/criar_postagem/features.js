@@ -1,9 +1,65 @@
-import React from "react";
-import {StyleSheet, View, TouchableOpacity, Text, ScrollView, Image,} from "react-native";
+import React, {useState, useEffect} from "react";
+import {StyleSheet, View, TouchableOpacity, Text, ScrollView, Image, TextInput} from "react-native";
 import Foto from "../../assets/foto.png";
 import Icon from 'react-native-vector-icons/Feather';
+import AsyncStorage from '@react-native-community/async-storage';
 
 const ModalCaracteristicas = () => {
+    useEffect(()=> {
+        const getData = async () => {
+            try {
+              const jsonValue = await AsyncStorage.getItem('@features')
+              if (jsonValue != null) {
+                return setfeatures(JSON.parse(jsonValue));
+              }
+            } catch(e) {
+              console.log("erro!")
+            }
+        }
+
+        getData()
+    }, [])
+
+    const [features , setfeatures] = useState([]);
+
+    const [item, setItem] = useState({
+        feature:"",
+    });
+
+    const handlerfeatures = (e) => {
+        setfeatures([...features, e ]);
+        setItem({...item, feature:""});
+    };
+
+    const handlerItem = (e) => {
+        setItem({ ...item , feature : e});
+    };
+
+    function Item({ item}){
+
+        const deleteItem = () => {
+            setfeatures( features.filter(( feature ) => feature !== item ) );
+        };
+
+        return (
+            <View style={styles.Caracteristicas}>
+                <Text style={styles.TextoCards}>{item}</Text>
+                <Icon style={styles.Delete_icon} name="x" color="red" size={20} onPress={deleteItem}/>
+            </View>
+        );
+    }
+
+    const storeData = async () => {
+        
+        try {
+          const jsonValue = JSON.stringify(features)
+          await AsyncStorage.setItem('@features', jsonValue)
+          return window.alert("success")
+        } catch (e) {
+          window.alert("erro!")
+        }
+    }
+
     return (
         <View style={styles.ContainerModal}>
             <View style={styles.Modal}>
@@ -12,29 +68,18 @@ const ModalCaracteristicas = () => {
                     <TouchableOpacity style={styles.ContainerIcone}>
                         <Image style={styles.Icone} source={Foto}/>
                     </TouchableOpacity>
-                    <Text style={styles.TextoCaracteristicas}>Cabelos longos</Text>
+                    <TextInput 
+                        style={styles.TextoCaracteristicas} 
+                        placeholder="featureas De Saúde"
+                        onChangeText={handlerItem}
+                        value={item.feature}
+                        returnKeyType = {"next"}
+                        onSubmitEditing={()=>{handlerfeatures(item.feature)}}/>
                 </View>
                 <ScrollView style={styles.ContainerCaracteristicas} horizontal={true}>
-                    <TouchableOpacity style={styles.Caracteristicas}>
-                        <Text style={styles.TextoCards}>Cabelo castanho</Text>
-                        <TouchableOpacity style={styles.IconeExcluir}>
-                            <Icon name="x" color="red" size={20}/>
-                        </TouchableOpacity>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.Caracteristicas}>
-                        <Text style={styles.TextoCards}>Baixa</Text>
-                        <TouchableOpacity style={styles.IconeExcluir}>
-                            <Icon name="x" color="red" size={20}/>
-                        </TouchableOpacity>
-                    </TouchableOpacity>
-                    <TouchableOpacity style={styles.Caracteristicas}>
-                        <Text style={styles.TextoCards}>Magra</Text>
-                        <TouchableOpacity style={styles.IconeExcluir}>
-                            <Icon name="x" color="red" size={20}/>
-                        </TouchableOpacity>
-                    </TouchableOpacity>
+                    {features.map(feature => <Item key={feature} item={feature} />)}
                 </ScrollView>
-                <TouchableOpacity style={styles.Ok}><Text style={styles.TextoCards}>OK</Text></TouchableOpacity>
+                <TouchableOpacity style={styles.Ok} onPress={storeData}><Text style={styles.TextoCards}>OK</Text></TouchableOpacity>
             </View>
         </View>
     )
@@ -86,7 +131,7 @@ const styles = StyleSheet.create({
         width: 35,
         height: 35,
         borderRadius: 17.5,
-        backgroundColor: '#EF5245',
+        backgroundColor: '#E33336',
         padding: 2,
         alignItems: 'center',
         justifyContent: 'center',
@@ -100,19 +145,17 @@ const styles = StyleSheet.create({
     },
 
     TextoCaracteristicas: {
+        width: '100%',
         color: '#0d0d0dcc',
-        fontSize: 15,
-        letterSpacing: 1.4,
-        fontWeight: 'bold',
+        fontSize: 16,
     },
 
     ContainerCaracteristicas: {
         width: '100%',
-        minHeight: 60,
-        height: 'auto',
+        height: 50,
         display: 'flex',
         flexDirection: 'row',
-        padding: 8,
+        marginBottom: 60,
     },
 
     Caracteristicas: {
@@ -125,19 +168,26 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         borderRadius: 5,
-        marginBottom: 20,
-        backgroundColor: '#EF5245',
+        backgroundColor: '#E33336',
     },
 
     TextoCards: {
         color: '#fff',
-        fontSize: 15,
-        letterSpacing: 1.4,
-        fontWeight: 'bold',
+        fontSize: 16,
         marginRight: 5,
     },
 
     IconeExcluir: {
+        width: 25,
+        height: 25,
+        borderRadius: 12.5,
+        backgroundColor: '#fff',
+        padding: 2,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+
+    Delete_icon: {
         width: 25,
         height: 25,
         borderRadius: 12.5,
@@ -156,7 +206,7 @@ const styles = StyleSheet.create({
         display: 'flex',
         alignItems: 'center',
         borderRadius: 5,
-        backgroundColor: '#F95F62',
+        backgroundColor: '#E33336',
     },
 })
 

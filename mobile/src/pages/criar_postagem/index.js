@@ -1,4 +1,4 @@
-import React, {useState, useContext, createContext} from 'react';
+import React, {useEffect, useState} from 'react';
 
 import {  
     Container,
@@ -37,42 +37,43 @@ import defaltImage from '../../assets/image.png';
 import addImage from '../../assets/newImage.png';
 import * as ImagePicker from 'expo-image-picker';
 
-import {Popup} from '../../components/Popup';
+import {Popup} from '../../components/Popup/Popup';
+import FabButton from '../../components/fabButton/FabButton';
 import HealthProblem from './healthProblem';
-import Characteristics from './modalCaracteristicas';
+import Characteristics from './features';
+import Location from './location';
 import {api} from '../../services/api';
-
-const FilterContext = createContext({
-    filter: false,
-    type: {},
-  });
-
-export const getFilters = () => {
-
-    const [healthProblems, setHealthProblems] = useState([])
-
-    async function getHealthProblems() {
-        const response = problems;
-
-        console.log(response)
-    }
-
-    return (
-        <FilterContext.Provider value={{ filter: getHealthProblems}}>
-          {children}
-        </FilterContext.Provider>
-    );
-    
-    // await AsyncStorage.setItem('PROBLEMS', JSON.stringify(response));
-}
-
-export function useFilter(){
-    const context = useContext(FilterContext);
-    
-    return context;
-  };
+import AsyncStorage from '@react-native-community/async-storage';
 
 const Criar_postagem = ({route}) => {
+
+    const [problems, setProblems] = useState(null)
+    const [features, setFeatures] = useState(null)
+
+    const getInfos = () => {
+        const getProblems = async () => {
+            try {
+                const jsonValue = await AsyncStorage.getItem('@health_problems')
+                setProblems(JSON.parse(jsonValue));
+                return console.log(problems)
+            } catch(e) {
+                window.alert("erro!")
+            }
+        }
+
+        const getFeatures = async () => {
+            try {
+                const jsonValue = await AsyncStorage.getItem('@features')
+                setFeatures(JSON.parse(jsonValue));
+                return console.log(features)
+            } catch(e) {
+                window.alert("erro!")
+            }
+        }
+
+        getProblems()
+        getFeatures()
+    }
 
     var radio_props = [
         {label: 'Masculino', value: 'male' },
@@ -84,8 +85,10 @@ const Criar_postagem = ({route}) => {
 
     var userPhoto = defaltImage;
 
-    if (props.photo !== "undefined") {
-        userPhoto = {uri: props.photo};
+    if (props != null) {
+        if (props.photo !== "undefined") {
+            userPhoto = {uri: props.photo};
+        }   
     }
 
     const [ post , setPost ] = useState({});
@@ -131,6 +134,8 @@ const Criar_postagem = ({route}) => {
     };
 
     const createPost = async() => {
+        return getInfos()
+
         if (!postImage) {
             return window.alert("imagem obrigatoria!!!")
         }
@@ -220,7 +225,7 @@ const Criar_postagem = ({route}) => {
                 <ContainerUserImg>
                     <UserPhoto source={userPhoto}/>
                 </ContainerUserImg>
-                <ContainerUserName>{props.name}</ContainerUserName>
+                <ContainerUserName>{props != null ? props.name : "test"}</ContainerUserName>
             </ContainerUser>
             
             <ContainerText>
@@ -258,6 +263,7 @@ const Criar_postagem = ({route}) => {
             </ContainerSeletedImg>
             
             <ContainerFilter> 
+                <FabButton style={{bottom: 100, right: 60}}/>
                 <Title> Filtros </Title> 
                 
                 <ContainerDateTime>
@@ -290,7 +296,6 @@ const Criar_postagem = ({route}) => {
                     </ContainerTime>
                 </ContainerDateTime>
     
-                <ContainerDateTime>
                     <ContainerDate>
                         <Lorem>Gênero</Lorem>
                         <RadioForm
@@ -304,9 +309,7 @@ const Criar_postagem = ({route}) => {
                             animation={true}
                             onPress={(value) => setPost({...post , name_of_genre : value})}/>
                     </ContainerDate>
-                </ContainerDateTime>
 
-                <ContainerDateTime>
                     <ContainerDate>
                         <Lorem>Data de Nascimento</Lorem>
                         <InputDate 
@@ -316,7 +319,6 @@ const Criar_postagem = ({route}) => {
                             onChangeText={handlerBirthDate}
                             value={post.birthDate}/>
                     </ContainerDate>
-                </ContainerDateTime>
             </ContainerFilter>    
     
             <ContainerBtnPublicar>
@@ -328,9 +330,14 @@ const Criar_postagem = ({route}) => {
                 <BtnPublicar onPress={()=>{
                     setPopup(<Characteristics/>)
                     onShowPopup()}}>
-                    <Lorem>Characteristics</Lorem>
+                    <Lorem>Caracteristicas</Lorem>
+                </BtnPublicar>
+                <BtnPublicar onPress={()=>{
+                    setPopup(<Location/>)
+                    onShowPopup()}}>
+                    <Lorem>localização</Lorem>
                 </BtnPublicar> 
-                <BtnPublicar onPress={()=>{createPost}}>  
+                <BtnPublicar onPress={createPost}>  
                     <Lorem>Publicar</Lorem>
                 </BtnPublicar>
             </ContainerBtnPublicar>

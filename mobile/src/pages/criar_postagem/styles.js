@@ -138,11 +138,14 @@ export const PostImage = styled.Image`
 `;
 
 export const ContainerFilter = styled.View`
-    height: auto;
+    height: 450px;
     min-height: 50px;
     width: 100%;
     padding-left: 20px;    
-    padding-right: 20px;    
+    padding-right: 20px;
+    padding-bottom: 50px;
+    flex: 1;
+    justify-content: space-between;
 `;
 
 export const Title = styled.Text`
@@ -153,17 +156,15 @@ export const Title = styled.Text`
     border-color: #E33336;
     color: #fff;
     font-size: 16px;
-    margin-bottom: 10px;
     padding-bottom: 10px;
     text-transform: uppercase;
 `;
 
 export const ContainerDateTime = styled.Text`
     height: auto;
-    width: 100%;
+    width: auto;
     display: flex;
     flex-direction: row;
-    margin-bottom: 20px;
 `;
 
 export const ContainerDate = styled.View`
@@ -240,7 +241,7 @@ export const LoremTime = styled.Text`
 `;
 
 export const ContainerBtnPublicar = styled.View`
-    height: 70px;
+    height: 200px;
     width: 100%;
     padding-right: 15px; 
     display: flex;

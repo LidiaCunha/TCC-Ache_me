@@ -17,7 +17,7 @@ const Profile = ({route}) => {
     return <Usuario reload={reload} key={key} props={props}/>;
 }
 
-const Usuario = ({reload, props}) => {
+const Usuario = ({reload, props}) => {  
 
     const [user, setUser] = useState({
         name: "",
@@ -39,9 +39,9 @@ const Usuario = ({reload, props}) => {
 
     useEffect(() => {
         const getUser = async () => {
-    
+
             try {
-              const retorno = await api.get(`/user/${props?.id}`);
+              const retorno = await api.get(`/user/${props.id}`);
     
               const data = retorno.data;
 
@@ -86,7 +86,7 @@ const Usuario = ({reload, props}) => {
     const update = async () => {
 
     try {
-        const retorno = await api.put(`/editUsers/${props?.id}`, user);
+        const retorno = await api.put(`/editUsers/${props.id}`, user);
         
         if (retorno.status === 201) {
 

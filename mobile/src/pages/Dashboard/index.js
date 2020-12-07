@@ -18,11 +18,15 @@ const style = StyleSheet.create({
 const Dashboard = ({navigation}) => {
   const {user, logout} = useAuth();
 
-  var userinfo = user;
+  var userinfo = null;
 
-  if (user.user) {
-    userinfo = user.user;
+  if (user) {
+    userinfo= user
+    if (user.user) {
+      userinfo = user.user;
+    }
   }
+  
 
   function handlerLogout() {
     logout();
@@ -50,7 +54,7 @@ const Dashboard = ({navigation}) => {
 
    return (
      <View style={style.container}>
-       <Text>{userinfo.mail}</Text>
+       {/* <Text>{userinfo.mail}</Text> */}
        <Button title="Add Post" onPress = {() => {createPost(userinfo)}} />
        <Button title="Chat" onPress={openConversations} />
        <Button title="Add Seen" onPress={openCreateSeen}/>
