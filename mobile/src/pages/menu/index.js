@@ -45,7 +45,7 @@ const Menu = ({DisplayNone, navigation}) => {
             </Back>
         
             <ContainerPhoto>
-                <Photo source={user?.photo ? user?.photo : defaltImage}/>
+                <Photo source={user.user.photo ? user.user.photo : defaltImage}/>
                 <Name>{user.user.name}</Name>
             </ContainerPhoto>
         

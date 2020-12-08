@@ -37,7 +37,7 @@ import defaltImage from '../../assets/image.png';
 import addImage from '../../assets/newImage.png';
 import * as ImagePicker from 'expo-image-picker';
 
-import {Popup} from '../../components/Popup/Popup';
+import {Popup} from '../../components/popup/Popup';
 import FabButton from '../../components/fabButton/FabButton';
 import HealthProblem from './healthProblem';
 import Characteristics from './features';
@@ -52,8 +52,7 @@ const Criar_postagem = ({route}) => {
 
     const getInfos = () => {
         const getProblems = async () => {
-            try {
-                const jsonValue = await AsyncStorage.getItem('@health_problems')
+            try {                const jsonValue = await AsyncStorage.getItem('@health_problems')
                 setProblems(JSON.parse(jsonValue));
                 return console.log(problems)
             } catch(e) {

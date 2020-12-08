@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, View, TouchableWithoutFeedback, Image, Button } from 'react-native';
 
 // pagina
@@ -12,7 +12,7 @@ import Genre from '../../assets/Card_desaparecido/genre.png';
 import Header from '../../assets/Card_desaparecido/naruto.jpg';
 import Photo from '../../assets/kakashi.jpg';
 import { FontAwesome } from '@expo/vector-icons';
-
+import moment from 'moment';
 
 import {  
     Container,
@@ -38,55 +38,71 @@ import {
     Name,
     Data,
 } from './styles';
+import { api } from '../../services/api';
 
-export default function Criar_postagem({post}) {
+export default function Criar_postagem(props) {
+    const [ post , setPost ] = useState({});
+    
+    const genres = ['Maculino','Feminino','LGBT','Outros']
+
+    useEffect(()=>{
+        (async ( ) => {
+            const es = await api.get('/posts/'+props.route.params.post.id);
+        
+            setPost(es.data)
+        })();
+    },[])
+    
     return(
         <Container>                
                 <ContainerUser>
-                    <ContainerUserImg source={Photo}/>
+                    <ContainerUserImg source={{uri:post.photo}}/>
                     <ContainerUserNameData> 
-                        <Name> Everson Silva de Almeida </Name>   
-                        <Data> 15 de fevereiro de 2003</Data>   
+                        <Name> {post.name} </Name>   
+                        <Data> {moment(post.createdAt).format('LLLL')} </Data>   
                     </ContainerUserNameData>
                 </ContainerUser>
     
-                <ContainerImg source={Header}/>
+                <ContainerImg source={{uri:post.photo}}/>
 
             <ContainerBasicInfo>
                 <BasicInfosImg source={Clock}/>
-                <BasicInfos></BasicInfos>
+                <BasicInfos>{moment(post.borned_at).format('HH:mm')}</BasicInfos>
 
                 <BasicInfosImg source={Calendar}/>
-                <BasicInfos></BasicInfos>
+                <BasicInfos>{moment(post.borned_at).format('DD/MM/YYYY')}</BasicInfos>
 
                 <BasicInfosImg source={Map}/>
                 <BasicInfos></BasicInfos>
 
                 <BasicInfosImg source={Genre}/>
-                <BasicInfos2> masculino </BasicInfos2>
+                <BasicInfos2> {genres[post.genre_id-1]} </BasicInfos2>
             </ContainerBasicInfo>
 
             <ContainerText>
-                <Text>loremloremlorem loremlorem loremloremlorem loremloremlorem loremlorem loremloremloremloremloremlorem loremlorem loremloremlorem</Text>
+            <Text>{post.description}</Text>
             </ContainerText>
 
             <ContainerCharacter>
-                <TitleCharacter>Características Físicas</TitleCharacter>
+            <TitleCharacter>Características Físicas</TitleCharacter>
+                
                 <CardCharacter  style={{ width: '100%' }} horizontal={true}>
-                    <CardColor style={styles.cor1}>Cabelo Castanho</CardColor>
-                    <CardColor style={styles.cor2}>Baixo</CardColor>
-                    <CardColor style={styles.cor3}>magra</CardColor>
-                    <CardColor style={styles.cor1}>ErroErroErro</CardColor>
-                    <CardColor style={styles.cor2}>teste</CardColor>
-
+                        
+                    {
+                        post.features && post.features.map( feature => 
+                            <CardColor style={styles.cor1}>{feature.feature}</CardColor>
+                        )
+                    }
+                    
                 </CardCharacter>
 
-                <TitleCharacter>Problema De saúde</TitleCharacter>
+            <TitleCharacter>Problema De saúde</TitleCharacter>
                 <CardCharacter style={{ width: '80%' }}  horizontal={true}>
-                    <CardColor style={styles.cor1}>Problema cardíaco</CardColor>
-                    <CardColor style={styles.cor2}>Câncer</CardColor>
-                    <CardColor style={styles.cor3}>Câncer</CardColor>
-                    <CardColor style={styles.cor1}>errorrororo</CardColor>
+                    {
+                        post.HealthProblem && post.HealthProblem.map( problem => 
+                            <CardColor style={styles.cor1}>{problem.problem}</CardColor>
+                        )
+                    }
                 </CardCharacter>
             </ContainerCharacter>
     
