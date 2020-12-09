@@ -1,19 +1,30 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {StyleSheet, View, Text, Image, TextInput, TouchableOpacity, ScrollView} from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 import styled from "styled-components/native";
 
 const Modal_localizacao = () => {
-    const [location, setLocation ] = useState({
-        cep:"",
-        street:"",
-        bairro:"",
-        state:"",
-        city:"",
-        reference_point: "",
-    })
+
+    useEffect(()=> {
+        const getData = async () => {
+            try {
+              const jsonValue = await AsyncStorage.getItem('@location')
+              if (jsonValue != null) {
+                return setLocation(JSON.parse(jsonValue));
+              }
+            } catch(e) {
+              // error reading value
+            }
+        }
+
+        getData()
+    }, [])
+
+
+    const [location, setLocation ] = useState({})
 
     function handlerCep(e) {
-        setLocation({ ...location , cep : e});
+        setLocation({ ...location , cep : e.nativeEvent.text.replace(/[^0-9]/g,'').replace(/(.{5})(.{3})/,'$1-$2').replace(/(.{9})(.*)/,'$1') });
     }
     function handlerStreet(e) {
         setLocation({ ...location , street : e});
@@ -31,6 +42,34 @@ const Modal_localizacao = () => {
         setLocation({ ...location , reference_point : e});
     }
 
+    const autoCompleteByCep = async( e ) => {
+        const cep = location.cep;
+
+        const setForm = async(data) =>{
+            setLocation({...location, 
+                'street': data.logradouro,
+                'bairro' : data.bairro,
+                'city' : data.cidade,
+                'state': data.estado_info.nome,
+            });
+        }
+
+        const url = `https://api.postmon.com.br/v1/cep/${cep}`;
+        const endereco = await fetch(url).then(res => res.json());
+        await setForm(endereco)
+    }
+
+    const storeData = async () => {
+        
+        try {
+          const jsonValue = JSON.stringify(location)
+          await AsyncStorage.setItem('@location', jsonValue)
+          console.log("success")
+        } catch (e) {
+          window.alert("erro!")
+        }
+    }
+
 
     return(
         <View style={styles.Container}>
@@ -40,37 +79,63 @@ const Modal_localizacao = () => {
                 
                 <View style={styles.ContainerInput}>
                     <Text style={styles.Lorem}>CEP (Opcional)</Text>
-                    <TextInput style={styles.Input}/>
+                    <TextInput 
+                        style={styles.Input}
+                        onChange={handlerCep}
+                        onBlur={autoCompleteByCep}
+                        returnKeyType="next"
+                        maxLength={9}
+                        keyboardType="numeric"
+                        value={location.cep}/>
+                </View>
+
+                <View style={styles.ContainerInput}>
+                    <Text style={styles.Lorem}>Ponto de Referencia</Text>
+                    <TextInput 
+                        style={styles.Input}
+                        onChangeText={handlerRefPoint}
+                        value={location.reference_point}/>
                 </View>
 
                 <View style={styles.ContainerInput}>
                     <Text style={styles.Lorem}>Rua</Text>
-                    <TextInput style={styles.Input}/>
+                    <TextInput 
+                        style={styles.Input}
+                        onChangeText={handlerStreet}
+                        value={location.street}/>
                 </View>
 
                 <View style={styles.ContainerInput}>
                     <Text style={styles.Lorem}>Bairro</Text>
-                    <TextInput style={styles.Input}/>
-                </View>
-
-                <View style={styles.ContainerInput}>
-                    <Text style={styles.Lorem}>Cidade</Text>
-                    <TextInput style={styles.Input}/>
+                    <TextInput 
+                        style={styles.Input}
+                        onChangeText={handlerNeighborhood}
+                        value={location.bairro}/>
                 </View>
 
                 <View style={styles.ContainerBubbleInput}>
                     <View style={styles.ContainerLoremInput}>
+                        <Text style={styles.LoremDubble}>Cidade</Text>
                         <Text style={styles.LoremDubble}>Estado</Text>
-                        <Text style={styles.LoremDubble}>Número (Opcional)</Text>
                     </View>
                     <View style={styles.ContainerLoremInput}>
-                        <TextInput style={styles.InputDubble}/>
-                        <TextInput style={styles.InputDubble}/>
+                        <TextInput 
+                            style={styles.InputDubble}
+                            onChangeText={handlerCity}
+                            value={location.city}/>
+                        <TextInput 
+                            style={styles.InputDubble}
+                            onChangeText={handlerState}
+                            value={location.state}/>
                     </View>
                 </View>
 
                 <View style={styles.ContainerBtn}>
-                    <TouchableOpacity style={styles.Btn}><Text style={styles.Card_text}>Salvar</Text></TouchableOpacity>
+                    <TouchableOpacity 
+                        style={styles.Btn}
+                        onPress={storeData}>
+                        <Text style={styles.Card_text}>Salvar</Text>
+                    </TouchableOpacity>
                 </View>
             </View>
         </View>
@@ -79,13 +144,13 @@ const Modal_localizacao = () => {
 
 const styles = StyleSheet.create({
     Container: {
-        height: '100%',
+        height: 'auto',
         width: '100%',
-        paddingTop: 20,
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
         alignContent: 'center',
+        flexDirection: 'row',
     },
     ContainerCard:{
         height: 'auto',

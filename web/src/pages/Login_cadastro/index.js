@@ -218,7 +218,7 @@ const FormRegister = (props) => {
 
           <CadastroConfigInput>
 
-          <ContainerDados>
+           <ContainerDados>
 
                 <ContainerInput>
                     <label>Nome</label>

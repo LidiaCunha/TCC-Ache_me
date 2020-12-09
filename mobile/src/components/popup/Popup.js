@@ -55,7 +55,7 @@ export class Popup extends React.Component {
                   }}>
                     {this.renderOutsideTouchable(onTouchOutside)}
                     <View style={{
-                        flex: 1,
+                        height: 'auto',
                         alignSelf: 'center',
                         position: 'relative',
                     }}>

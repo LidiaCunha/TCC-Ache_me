@@ -246,7 +246,8 @@ export const CadastroConfigInput = styled.div`
     align-items: center;
     padding-top: 7vh;
     box-sizing: border-box;
-
+    margin: 0 auto;
+    
    
     @media (max-width: 780px){
       height: auto;

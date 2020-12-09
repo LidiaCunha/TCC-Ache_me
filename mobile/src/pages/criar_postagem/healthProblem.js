@@ -55,7 +55,7 @@ const HealthProblem = () => {
         try {
           const jsonValue = JSON.stringify(problems)
           await AsyncStorage.setItem('@health_problems', jsonValue)
-          console.log("success")
+          window.alert("success")
         } catch (e) {
           window.alert("erro!")
         }
@@ -88,7 +88,7 @@ const HealthProblem = () => {
 
 const styles = StyleSheet.create({
     Container: {
-        height: '100%',
+        height: 'auto',
         width: '100%',
         display: 'flex',
         justifyContent: 'center',
