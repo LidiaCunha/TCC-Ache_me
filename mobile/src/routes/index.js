@@ -10,12 +10,7 @@ const Routes = () => {
   const {signed, user} = useAuth();
   console.log(signed && user);
 
-  if (signed === false) {
-    return <AuthRoutes/>;
-  }else{
-    return <AppRoutes/>
-  }
-  // return signed ? <AuthRoutes/> : <AppRoutes/>;
+  return signed ? <AppRoutes/> : <AuthRoutes/>;
 };
 
 export default Routes;

@@ -6,8 +6,7 @@
 // import chat from './src/pages/chat/index';
 // import listarDenuncias from './src/pages/listar_denuncias/index';
 // import usuario from './src/pages/usuario/index';
-
-// import Menu from './src/components/menu/index';
+// import Dashboard from './src/pages/Dashboard/index';
 
 // const Routes = createAppContainer(
 //     createDrawerNavigator({
@@ -15,11 +14,14 @@
 //         chat,
 //         listarPostagem,
 //         listarDenuncias,
+//         Dashboard,
 //     }, {
 //         initialRouteName: 'usuario',
 //         contentComponent: Menu
 //     })
 // );
+//
+//export default Routes; 
 
 import React from 'react';
 
@@ -29,14 +31,11 @@ import { NavigationContainer } from '@react-navigation/native';
 import { AuthProvider } from './src/contexts/auth';
 import { ConversationProvider } from './src/contexts/ConversationProvider';
 import { SocketProvider } from './src/contexts/socketProvider';
-import Everson from "./src/pages/menu/index";
 
 const App = () => { 
-
-   return (
-       
+  return (
    <NavigationContainer>
-     <AuthProvider>
+     <AuthProvider> 
        <SocketProvider>
          <ConversationProvider>
            <Routes/>
@@ -44,8 +43,22 @@ const App = () => {
        </SocketProvider>
      </AuthProvider>
    </NavigationContainer>
-  );
+ );
 }
 
 export default App; 
 
+
+// // menu horizontal
+// import React from 'react';
+// import Menu_horizontal from './src/component/menu_horizontal';
+// import { NavigationContainer } from '@react-navigation/native';
+
+
+// const App = () => { 
+//    return (
+//     <NavigationContainer>
+//       <Menu_horizontal/>
+//     </NavigationContainer>
+//   );
+// }

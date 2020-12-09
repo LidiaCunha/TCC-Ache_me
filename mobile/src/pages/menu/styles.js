@@ -105,19 +105,3 @@ export const Exit = styled.View`
     display: flex;
     flex-direction: row;
 `;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

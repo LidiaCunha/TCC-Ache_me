@@ -4,6 +4,7 @@ import {useHistory} from "react-router-dom";
 
 // ======= CABEÇALHO ========
 import Background from "../../assets/Sobre/background.jpg";
+import Mobile from "../../assets/Area_Informativa/divulgacao_mobile.png";
 
 
 // ======= SEÇÃO 2 ========
@@ -57,10 +58,6 @@ import {
     Texto,
     TextoVermelho,
     Copyright,
-    
-
-    
-
 } from "./styles";
 
 const Area_informativa = () => {
@@ -70,23 +67,20 @@ const Area_informativa = () => {
     return (
         <>
         <Header name="inicio">
-            <img src={Background} alt="Background"/>
+            <img src={Mobile} alt="Background"/>
             <ContainerHeader>
                 <ContainerMenu>
                     <img src={Logo} alt="logo ache.me"/>
                     <ContainerItensMenu>
                         <ul>
                             <li onClick={() => {history.push("/sobre");}}>Sobre a empresa</li>
-                            <li><Link to="inicio" offset={-180} smooth={true} duration={500}>Inicio</Link></li>
+                            <li><Link to="inicio" offset={-180} smooth={true} duration={500}>Aplicativo</Link></li>
                             <li><Link to="apoio" offset={-180} smooth={true} duration={500}>Apoio</Link></li>
                             <li><Link to="video" offset={-180} smooth={true} duration={500}>Video</Link></li>
-                            
                         </ul>
                     </ContainerItensMenu>
                 </ContainerMenu>
-        
             </ContainerHeader>
-        
         </Header>
 
         <Container>
@@ -218,8 +212,6 @@ const Area_informativa = () => {
                 </Copyright>
             </Container>
         </Footer>
-
-
         </>
     );
 };
