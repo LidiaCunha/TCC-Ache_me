@@ -62,6 +62,7 @@ const UserInfo = () => {
     name: "",
     mail: "",
     CPF: "",
+    merit:"",
     telephone: "",
     password : "",
     newPassword : "",
@@ -86,7 +87,7 @@ const UserInfo = () => {
           
           const where_live = data.where_live;
 
-          const newForm = await {
+          const newForm =  {
             name: data.name,
             mail: data.mail,
             CPF: data.cpf,
@@ -97,7 +98,7 @@ const UserInfo = () => {
             number: where_live.number,
             city: where_live.city,
             state: where_live.state,
-
+            merit:data.merit
           }
 
           setUser(newForm);
@@ -221,6 +222,10 @@ const UserInfo = () => {
     }
   };
 
+  const calcStarts = ( merit ) => {
+    return merit%5;
+  };
+
   const member = (
     <Member>
       <img src={photo} alt="membro"/>
@@ -258,7 +263,7 @@ const UserInfo = () => {
               </Login>
             </PhotoProfile>
             <Merit>
-              <Text>Seu mérito: { !user.merit || user.merit == null ? "0 (indique pessoas para aumentar seu mérito)" : user.merit} </Text>
+              <Text>Seu mérito: { calcStarts(user.merit)} </Text>
               <Text>Data da última publicação: {moment(lastPost.createdAt).format('DD/MM/YYYY')}</Text>
               <Text>Hora da última publicação: {moment(lastPost.createdAt).format('HH:mm')}</Text>
               <ButtonDenuncia onClick={()=>{setShowDenunciations(true)}}>Denúncias</ButtonDenuncia>

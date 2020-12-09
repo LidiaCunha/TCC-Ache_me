@@ -37,6 +37,8 @@ const FormRegister = (props) => {
     
     const [ShowCheckEmail, setShowCheckEmail] = useState(false);
     
+    const [indication, setIndication] = useState('');
+
     const [userRegister, setUserRegister] = useState({
         name: "",
         mail: "",
@@ -57,6 +59,10 @@ const FormRegister = (props) => {
     const [image, setImage] = useState(null);
 
     const [loading, setLoading] = useState(false);
+
+    const handlerIndication = (e) => {
+        setIndication(e.target.value)
+    }
 
     const register = async (e) => {
         setLoading(true);
@@ -101,6 +107,31 @@ const FormRegister = (props) => {
         }
 
     };
+
+    const addMeritToIndication = async() => {
+        try {
+            if (indication){
+                const res = await api.get('/users',{headers: { 
+                    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTYwMTM5MTE0Nn0.k5GTAvKniY9_34pNT6PBF7gvJUqMKWGn2iicYVj2SJI'
+                  }});
+                
+                const existUser = res.data.find( user => user.mail === indication ? user : false );
+                
+                if (existUser) {
+                    const newMerit = existUser.merit + 1;
+
+                    await api.put(`/users/${existUser.id}`, {field:'merit',contentOfField:newMerit},{headers: { 
+                        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTYwMTM5MTE0Nn0.k5GTAvKniY9_34pNT6PBF7gvJUqMKWGn2iicYVj2SJI'
+                      }});
+
+                    console.log("MERITO "+newMerit+" ADICIONADO AO USUARIO "+existUser.name);
+                }
+            
+            }
+        } catch (error) {
+            console.log(error)    
+        }
+    }
 
     const handlerInput = (e) => {
         setUserRegister({...userRegister, [e.target.id]: e.target.value});
@@ -197,7 +228,7 @@ const FormRegister = (props) => {
                     <input type="text" id="CPF" value={userRegister.CPF} onChange={handlerInput} onKeyUp={( e ) => { maskCpf( e ) }} placeholder="Insira seu CPF" required />
                                 
                     <label>Alguém te indicou o Ache.me?</label>
-                    <input type="text" placeholder="Insira o úsuario"/>
+                    <input onBlur={addMeritToIndication} type="text" value={indication} onChange={handlerIndication} placeholder="Insira o email do úsuario"/>
                 </ContainerInput>
              
                 <ContainerInput >
