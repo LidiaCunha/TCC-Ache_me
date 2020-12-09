@@ -4,8 +4,9 @@
   "description": "TCC - SENAI",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon source/server.js",
-    "chat": "nodemon source/services/chat/index.js",
+    "dev": "nodemon source/server.js",
+    "start":"node source/server.js | node source/services/chat/index.js",
+    "chat": "node source/services/chat/index.js",
     "test": "jest"
   },
   "repository": {
@@ -33,6 +34,8 @@
     "node-fetch": "^2.6.1",
     "nodemailer": "^6.4.11",
     "nodemon": "^2.0.4",
+    "pg": "^8.5.1",
+    "pg-hstore": "^2.3.3",
     "sequelize": "^6.3.5",
     "sequelize-cli": "^6.2.0",
     "socket.io": "^2.3.0",

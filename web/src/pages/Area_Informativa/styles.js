@@ -12,7 +12,7 @@ export const Container = styled.div`
 `;
 
 export const Header = styled.div`
-    height: 600px;
+    height: 800px;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -40,7 +40,7 @@ export const ContainerHeader = styled.div`
     width: 100%;
     position: absolute;
     top: 0px;
-    background: rgba(0,0,0,.6);
+    
 `;
 
 export const ContainerMenu = styled.div`

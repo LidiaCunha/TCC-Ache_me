@@ -15,7 +15,7 @@ export const GlobalStyles = createGlobalStyle`
             padding: auto;
             box-sizing: border-box;
             overflow-x: hidden;
-            background-color: black;
+            background-color: #fff;
         }
     }
 

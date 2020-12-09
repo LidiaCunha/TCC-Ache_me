@@ -1,8 +1,11 @@
 import {StyleSheet, View, Text, Image, TextInput, TouchableOpacity} from 'react-native'
 
 import React, {useState} from 'react'
+import {useFilter} from './index';
 
 const HealthProblem = () => {
+
+    const {getHealthProblems} = useFilter()
 
     const [problems , setProblems] = useState([]);
 
@@ -33,6 +36,12 @@ const HealthProblem = () => {
         );
     }
 
+    const save = () => {
+        const allProblems = problems.map(problem);
+
+        return console.log(allProblems)
+    }
+
     return(
         <View style={styles.Container}>
             <View style={styles.ContainerCard}>
@@ -54,7 +63,7 @@ const HealthProblem = () => {
                     {problems.map(problem => <Item key={problem} item={problem} />)}
                 </View>
                 <View style={styles.ContainerBtn}>
-                    <TouchableOpacity  style={styles.Btn}><Text style={styles.Card_text}>ok</Text></TouchableOpacity >
+                    <TouchableOpacity  style={styles.Btn} onPress={save}><Text style={styles.Card_text}>ok</Text></TouchableOpacity >
                 </View>
             </View>
         </View>

@@ -162,7 +162,7 @@ export const CardColor = styled.Text`
 export const Comment = styled.View`
     height: 80px;
     width: 100%;
-    background-color: red;
+    background-color: #E33336;
     display: flex;
     justify-content: center;
     flex-direction: row;
