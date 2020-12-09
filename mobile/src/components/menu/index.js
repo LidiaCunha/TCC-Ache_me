@@ -33,11 +33,6 @@ const styles = StyleSheet.create({
         height: '100%',
         width: '100%',
         backgroundColor: '#242426',
-//        borderRightWidth: 2,
-//        borderStyle: 'solid',
-//        borderColor: '#fff',
-//        borderBottomRightRadius: 35,
-//        borderTopRightRadius: 35,
     },
     
     ContainerPhoto: {
@@ -56,9 +51,6 @@ const styles = StyleSheet.create({
         backgroundColor: '#EF5245',
         borderRadius: 50,
         marginBottom: 10,
-        // borderWidth: 2,
-        // borderStyle: 'solid',
-        // borderColor: '#fff',
     },
     
     Name: {
@@ -83,9 +75,6 @@ const styles = StyleSheet.create({
         height: 'auto',
         width: '80%',
         flex: 1,
-        // borderBottomWidth: 2,
-        // borderStyle: 'solid',
-        // borderColor: '#EF5245',
         marginLeft: 25,
         paddingBottom: 20,
         marginBottom: 65,
@@ -103,9 +92,6 @@ const styles = StyleSheet.create({
         height: 50,
         width: 50,
     },
-    
 })
 
 export default Menu;
-
-

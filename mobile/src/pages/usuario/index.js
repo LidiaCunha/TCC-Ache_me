@@ -17,7 +17,7 @@ const Profile = ({route}) => {
     return <Usuario reload={reload} key={key} props={props}/>;
 }
 
-const Usuario = ({reload, props}) => {
+const Usuario = ({reload, props}) => {  
 
     const [user, setUser] = useState({
         name: "",
@@ -37,56 +37,55 @@ const Usuario = ({reload, props}) => {
     
     const [username, setUsername] = useState();
 
-    useEffect(() => {
-        const getUser = async () => {
-    
-            try {
-              const retorno = await api.get(`/user/${props?.id}`);
-    
-              const data = retorno.data;
+    const getUser = async () => {
 
-              const where_live = data.where_live;
-    
-              const newForm = await {
-                name: data.name,
-                mail: data.mail,
-                CPF: data.cpf,
-                telephone: data.telephone,
-                cep: where_live.cep,
-                bairro: where_live.bairro,
-                street: where_live.street,
-                number: where_live.number,
-                city: where_live.city,
-                state: where_live.state,
-    
-              }
-    
-              setUser(newForm);
+        try {
+          const retorno = await api.get(`/user/${props.id}`);
 
-              setUsername(data.name);
+          const data = retorno.data;
 
-              if (data.photo === "undefined"){
-                setImage(addImage);
-              }else{
-                setImage({uri:data.photo});
-              }
-    
-            } catch (erro) {
-              if(erro.response){
-                  return window.alert(erro.response.data.erro);
-              }
-    
-              window.alert("Ops, algo deu errado, tente novamente.")
-            }
+          const where_live = data.where_live;
+
+          const newForm = await {
+            name: data.name,
+            mail: data.mail,
+            CPF: data.cpf,
+            telephone: data.telephone,
+            cep: where_live.cep,
+            bairro: where_live.bairro,
+            street: where_live.street,
+            number: where_live.number,
+            city: where_live.city,
+            state: where_live.state,
+          }
+
+          setUser(newForm);
+
+          setUsername(data.name);
+          
+          if (data.photo === "undefined"){
+            setImage(addImage);
+          }else{
+            setImage({uri:data.photo});
+          }
+
+        } catch (erro) {
+          if(erro.response){
+              return window.alert(erro.response.data.erro);
+          }
+
+          window.alert("Ops, algo deu errado, tente novamente.")
         }
-    
-       getUser();
-      },[]);
+    }
+
+    useEffect(() => {
+       ( async ( ) => await getUser() )();
+    },[]);
       
     const update = async () => {
 
     try {
-        const retorno = await api.put(`/editUsers/${props?.id}`, user);
+        const retorno = await api.put(`/editUsers/${props.id}`, user);
         
         if (retorno.status === 201) {
 
@@ -212,7 +211,7 @@ const Usuario = ({reload, props}) => {
                     <AreaUsuario>
                         <AreaImagem>
                             <ImagemUsuario>
-                                <Photo source={newImage ? {uri: newImage.uri} : image}/>
+                                <Photo source={newImage ? {uri:newImage.uri} : image}/>
                             </ImagemUsuario>
                             <IconeFoto onPress={pickImage}>
                                 <FotoCamera source={camera}/>
@@ -230,7 +229,7 @@ const Usuario = ({reload, props}) => {
                     </AreaMerito>
                 </ContainerUsuario>
                 <AreaTexto>
-                    <Texto>{username}</Texto>
+                    <Texto>{props.name}</Texto>
                     <TextoEmail>{props?.mail}</TextoEmail>
                 </AreaTexto>
                 <Botao><TextoBotao>Criar Postagem</TextoBotao></Botao>

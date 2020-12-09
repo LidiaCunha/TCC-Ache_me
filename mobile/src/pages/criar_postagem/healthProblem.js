@@ -1,11 +1,25 @@
-import {StyleSheet, View, Text, Image, TextInput, TouchableOpacity} from 'react-native'
+import {StyleSheet, View, Text, Image, TextInput, TouchableOpacity, ScrollView} from 'react-native';
 
-import React, {useState} from 'react'
-import {useFilter} from './index';
+import AsyncStorage from '@react-native-community/async-storage';
+import Icon from 'react-native-vector-icons/Feather';
+
+import React, {useEffect, useState} from 'react'
 
 const HealthProblem = () => {
+    useEffect(()=> {
+        const getData = async () => {
+            try {
+              const jsonValue = await AsyncStorage.getItem('@health_problems')
+              if (jsonValue != null) {
+                return setProblems(JSON.parse(jsonValue));
+              }
+            } catch(e) {
+              // error reading value
+            }
+        }
 
-    const {getHealthProblems} = useFilter()
+        getData()
+    }, [])
 
     const [problems , setProblems] = useState([]);
 
@@ -31,15 +45,20 @@ const HealthProblem = () => {
         return (
             <View style={styles.Cards}>
                 <Text style={styles.Card_text}>{item}</Text>
-                <Text style={styles.Card_close} onPress={deleteItem} >x</Text>
+                <Icon style={styles.Delete_icon} name="x" color="red" size={20} onPress={deleteItem}/>
             </View>
         );
     }
 
-    const save = () => {
-        const allProblems = problems.map(problem);
-
-        return console.log(allProblems)
+    const storeData = async () => {
+        
+        try {
+          const jsonValue = JSON.stringify(problems)
+          await AsyncStorage.setItem('@health_problems', jsonValue)
+          console.log("success")
+        } catch (e) {
+          window.alert("erro!")
+        }
     }
 
     return(
@@ -55,15 +74,12 @@ const HealthProblem = () => {
                         value={item.problem}
                         returnKeyType = {"next"}
                         onSubmitEditing={()=>{handlerProblems(item.problem)}}/>
-                    <TouchableOpacity 
-                        style={styles.Enter}
-                        onPress={()=>{handlerProblems(item.problem)}}/>
                 </View>
-                <View style={styles.ContainerCars}>
+                <ScrollView style={styles.ContainerCars} horizontal={true}>
                     {problems.map(problem => <Item key={problem} item={problem} />)}
-                </View>
+                </ScrollView>
                 <View style={styles.ContainerBtn}>
-                    <TouchableOpacity  style={styles.Btn} onPress={save}><Text style={styles.Card_text}>ok</Text></TouchableOpacity >
+                    <TouchableOpacity  style={styles.Btn} onPress={storeData}><Text style={styles.Card_text}>ok</Text></TouchableOpacity >
                 </View>
             </View>
         </View>
@@ -102,52 +118,57 @@ const styles = StyleSheet.create({
     ContainerInput:{
         height: 'auto',
         width: '100%',
-        flex: 3,
+        flex: 1,
         flexDirection: 'row',
         justifyContent: 'center',
         marginBottom: 20,
     },
     ContainerImgInput:{
-        height: 50,
+        height: 40,
         width: 50,
         backgroundColor: '#E33336',
         borderBottomLeftRadius: 50,
         borderTopLeftRadius: 50,
     },
-    Enter:{
-        height: 50,
-        width: 50,
-        backgroundColor: '#E33336',
-        borderBottomRightRadius: 50,
-        borderTopRightRadius: 50,
-    },
     Input:{
-        height: 50,
-        width: 200,
+        height: 40,
+        width: 250,
         backgroundColor: '#fff',
         paddingLeft: 10,
         fontSize: 16,
         color: '#292929',
+        borderBottomRightRadius: 50,
+        borderTopRightRadius: 50,
     },
     ContainerCars:{
-        height: 'auto',
+        height: 50,
         width: '100%', 
         display: 'flex',
         flexDirection: 'row',
-        marginBottom: 70,
+        marginTop: 50,
+        marginBottom: 40,
     },
     Cards:{
-        height: 'auto',
-        width: 'auto',
-        backgroundColor: '#E33336',
-        paddingLeft: 25,
-        paddingRight: 25,
-        paddingTop: 10,
-        paddingBottom: 10,
-        borderRadius: 5,
-        marginLeft: 10,
+        height: 40,
+        marginRight: 10,
+        alignSelf: 'center',
+        justifyContent: 'center',
+        padding: 5,
         display: 'flex',
         flexDirection: 'row',
+        alignItems: 'center',
+        borderRadius: 5,
+        marginBottom: 20,
+        backgroundColor: '#E33336',
+    },
+    Delete_icon: {
+        width: 25,
+        height: 25,
+        borderRadius: 12.5,
+        backgroundColor: '#fff',
+        padding: 2,
+        alignItems: 'center',
+        justifyContent: 'center',
     },
     Card_text:{
         fontSize: 17,
@@ -176,17 +197,15 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
     },
     Btn:{
-        height: 50,
-        width: 100,
-        paddingLeft: 10,
-        paddingRight: 10,
-        backgroundColor: '#E33336',
-        borderRadius: 5,
-        display: 'flex',
+        width: '30%',
+        height: 40,
+        alignSelf: 'flex-end',
         justifyContent: 'center',
+        padding: 10,
+        display: 'flex',
         alignItems: 'center',
-        alignContent: 'center',
-        flexDirection: 'row',
+        borderRadius: 5,
+        backgroundColor: '#E33336',
     },
 })
 

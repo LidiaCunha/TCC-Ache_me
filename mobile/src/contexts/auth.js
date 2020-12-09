@@ -11,7 +11,7 @@ const AuthContext = createContext({
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setloading] = useState(true);
-
+  console.log(user)
   useEffect(() => {
     async function loadStorageData(){
       const storagedUser = await AsyncStorage.getItem('@AMAuth:user');
