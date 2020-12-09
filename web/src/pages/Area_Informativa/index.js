@@ -17,7 +17,7 @@ import Crianca from "../../assets/Area_Informativa/criancas.jpg";
 import Homem from "../../assets/Area_Informativa/homens.jpg";
 import Mulher from "../../assets/Area_Informativa/mulheres.jpg";
 import Adolescente from "../../assets/Area_Informativa/adolescentes.jpeg";
-import Button from "../../components/button/index";
+import Button from "../../components/Button/index";
 
 // ====== VIDEO =======
 import Video from "../../assets/Area_Informativa/video.mp4";
