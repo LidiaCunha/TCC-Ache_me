@@ -93,8 +93,8 @@ import {
                         <h2 name="inicio">Nós somos como você, preocupados<br/>com o próximo.</h2>
                     </ContainerTextMaior>
                     <ContainerTextMenor>
-                        <h2>Aqui você pode conhecer mais sobre a empresa, nossa equipe e propósitos.<br/>
-                        Fazemos parte de iniciativas do bem e esperamos que você também faça.</h2>
+                        <p>Aqui você pode conhecer mais sobre a empresa, nossa equipe e propósitos.<br/>
+                        Fazemos parte de iniciativas do bem e esperamos que você também faça.</p>
                     </ContainerTextMenor>
                     <ContainerBtn>
                         <Link to="valores" offset={-180} smooth={true} duration={500}>Conhecer Valores</Link>
