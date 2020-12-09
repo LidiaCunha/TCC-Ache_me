@@ -23,8 +23,8 @@
 
 import React from 'react';
 
-// import Routes from './src/routes';
-import Routes from './src/routes/app.routes';
+import Routes from './src/routes';
+// import Routes from './src/routes/app.routes';
 import { NavigationContainer } from '@react-navigation/native';
 import { AuthProvider } from './src/contexts/auth';
 import { ConversationProvider } from './src/contexts/ConversationProvider';
