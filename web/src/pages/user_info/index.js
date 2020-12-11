@@ -1,42 +1,41 @@
-import React, { useState, useEffect, useRef } from 'react';
+ import React, { useState, useEffect, useRef } from 'react';
 
-import {
-  Text, 
-  Container, 
-  Header, 
-  Home, 
-  Main,
-  Section,
+ import {
+   Text, 
+   Container, 
+   Header, 
+   Home, 
+   Main,
+   Section,
     
-//  Info,
-  Button,
-  ButtonPost,
-  ButtonDenuncia,
+   Info,
+   Button,
+   ButtonPost,
+   ButtonDenuncia,
 
-  // Section 1 
-  BasicInfos, 
-  PhotoProfile, 
-  Merit,
-  Photo,
-  NewPhoto,
-  Login,
-  Name,
+   // Section 1 
+   BasicInfos, 
+   PhotoProfile, 
+   Merit,
+   Photo,
+   NewPhoto,
+   Login,
+   Name,
 
-  // Section 2
-  Title,
-  AdvancedInfos,
-  Profile,
-  ShareIndicated,
-  Input,
-  Share,
-  Indicated,
-  Members,
-  Member,
-  MemberName,
+//   // Section 2
+   Title,
+   AdvancedInfos,
+   Profile,
+   ShareIndicated,
+   Input,
+   Share,
+   Indicated,
+   Members,
+   Member,
+   MemberName,
     
-  //Everson
-  TitleMember,
-      
+//   //Everson
+   TitleMember,
       
 } from './styles';
 
@@ -142,80 +141,79 @@ const UserInfo = () => {
 
   const update = async () => {
 
-    setLoading(true);
+     setLoading(true);
 
-    try {
-        const retorno = await api.put(`/editUsers/${users.id}`, user);
+     try {
+         const retorno = await api.put(`/editUsers/${users.id}`, user);
         
-        if (retorno.status === 201) {
-            setLoading(false);
+         if (retorno.status === 201) {
+             setLoading(false);
 
-            window.alert(retorno.data.sucess);
+             window.alert(retorno.data.sucess);
 
-            return document.location.reload();
-        };
+             return document.location.reload();
+         };
 
-    } catch (erro) {
+     } catch (erro) {
 
-      setLoading(false);
+       setLoading(false);
 
-        if(erro.response){
-            return window.alert(erro.response.data.erro);
-        }
+         if(erro.response){
+             return window.alert(erro.response.data.erro);
+         }
         
-        window.alert("Ops, algo deu errado, tente novamente mais tarde.");
-    }
+         window.alert("Ops, algo deu errado, tente novamente mais tarde.");
+     }
 
-  };
+   };
 
-  const handlerInput = (e) => {
-    setUser({...user, [e.target.id]: e.target.value});
-  };
+   const handlerInput = (e) => {
+     setUser({...user, [e.target.id]: e.target.value});
+   };
 
-  const imgRef = useRef();
+   const imgRef = useRef();
 
-  const [showModalPost, setShowModalPost] = useState(false);
+   const [showModalPost, setShowModalPost] = useState(false);
   
-  const [showCreatePost, setShowCreatePost] = useState(false);
+   const [showCreatePost, setShowCreatePost] = useState(false);
 
-  const [showDenunciations, setShowDenunciations] = useState(false);
+   const [showDenunciations, setShowDenunciations] = useState(false);
 
-  const [image, setImage] = useState(null);
+   const [image, setImage] = useState(null);
 
-  const [newImage, setNewImage] = useState(null);
+   const [newImage, setNewImage] = useState(null);
 
-  const [lastPost, setLastPost] = useState({});
+   const [lastPost, setLastPost] = useState({});
 
-  const photoUpdate = async () => {
+   const photoUpdate = async () => {
 
-    setLoading(true);
+     setLoading(true);
 
-    const data = new FormData();
+     const data = new FormData();
 
-    data.append("photo", newImage);
+     data.append("photo", newImage);
 
-    try {
-      const retorno = await api.put(`/editPhoto/${users.id}`, data, {
-        headers: {
-          "Content-type": `multipart/form-data`,
-        },
-      });
+     try {
+       const retorno = await api.put(`/editPhoto/${users.id}`, data, {
+         headers: {
+           "Content-type": `multipart/form-data`,
+         },
+       });
       
-      if (retorno.status === 201) {
-          setLoading(false);
+       if (retorno.status === 201) {
+           setLoading(false);
 
-          window.alert(retorno.data.sucess);
+           window.alert(retorno.data.sucess);
 
-          return document.location.reload();
-      };
+           return document.location.reload();
+       };
 
-    } catch (erro) {
-      setLoading(false);
+     } catch (erro) {
+       setLoading(false);
 
-      if(erro.response){
-          return window.alert(erro.response.data.erro);
-      }
-      
+       if(erro.response){
+           return window.alert(erro.response.data.erro);
+       }
       window.alert("Ops, algo deu errado, tente novamente mais tarde.");
     }
   }
