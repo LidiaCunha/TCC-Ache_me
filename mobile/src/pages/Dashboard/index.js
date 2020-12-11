@@ -13,7 +13,8 @@ const style = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     flexDirection:'row',
-    width:100
+    width: 100,
+//    bottom: 80,
   },
 
   Text: { 
@@ -86,9 +87,10 @@ const Dashboard = ({ navigation }) => {
         <Button title="Chat" onPress={openConversations} />
         <Button title="AddSeen" onPress={openCreateSeen} />
         <Button title="AddFind" onPress={openCreateFind} />
+            <Button title="Logout" onPress={handlerLogout} />
         <Button title="Profile" onPress={() => { openProfile(userinfo) }} />
         <Button title="TERMOS" onPress={() => { navigation.navigate('termos') }} />
-        <Button title="Logout" onPress={handlerLogout} />
+        
       </View>
 
     </>

@@ -262,7 +262,7 @@ const UserInfo = () => {
               <Text>Data da última publicação: {moment(lastPost.createdAt).format('DD/MM/YYYY')}</Text>
               <Text>Hora da última publicação: {moment(lastPost.createdAt).format('HH:mm')}</Text>
               <ButtonDenuncia onClick={()=>{setShowDenunciations(true)}}>Denúncias</ButtonDenuncia>
-              <ButtonPost onClick={()=>{setShowModalPost(true)}} >Postagens</ButtonPost>
+              <ButtonPost onClick={()=>{setShowModalPost(true)}}>Postagens</ButtonPost>
             </Merit>
           </BasicInfos>
         </Section>

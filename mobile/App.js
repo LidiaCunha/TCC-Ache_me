@@ -46,18 +46,3 @@ const App = () => {
 }
 
 export default App; 
-
-
-// // menu horizontal
-// import React from 'react';
-// import Menu_horizontal from './src/component/menu_horizontal';
-// import { NavigationContainer } from '@react-navigation/native';
-
-
-// const App = () => { 
-//    return (
-//     <NavigationContainer>
-//       <Menu_horizontal/>
-//     </NavigationContainer>
-//   );
-// }
