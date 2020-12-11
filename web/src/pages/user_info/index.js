@@ -54,9 +54,21 @@ import moment from 'moment';
 import {api} from "../../services/api";
 import {getUsers} from "../../services/security";
 
-const UserInfo = () => {
 
+
+
+const UserInfo = () => {
+  function MemberItem({member}) {
+      return( 
+        <Member>
+          <img src={ member.photo && member.photo !== 'undefined' ? member.photo : photo } alt="membro"/>
+          <MemberName>{member.name}  <span>{member.mail}</span></MemberName>
+        </Member>
+      );
+  };
   const [loading, setLoading] = useState(false);
+
+  const [members , setMembers] = useState([]);
 
   const [user, setUser] = useState({
     name: "",
@@ -100,9 +112,15 @@ const UserInfo = () => {
             state: where_live.state,
             merit:data.merit
           }
-
+	  const res = await api.get('/users',{ headers: {
+	            		'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTYwMTM5MTE0Nn0.k5GTAvKniY9_34pNT6PBF7gvJUqMKWGn2iicYVj2SJI'
+			          }});
+	  const allUsers = res.data;
+		        
+          const filtredUsers =  allUsers.filter(member =>   member.indication === users.mail );
+		        console.log(filtredUsers)
+          setMembers(filtredUsers);
           setUser(newForm);
-
           if (data.photo === "undefined"){
             setImage(addImage);
           }else{
@@ -119,8 +137,9 @@ const UserInfo = () => {
     }
 
    getUser();
-  },[]);
-  
+  },[ ])
+ 
+
   const update = async () => {
 
     setLoading(true);
@@ -200,15 +219,15 @@ const UserInfo = () => {
       window.alert("Ops, algo deu errado, tente novamente mais tarde.");
     }
   }
-
+  
   useEffect(()=>{
     (async ( ) => {
       const res = await api.get('/posts/my/last');
       setLastPost(res.data)
     })();
-  },[])
+  },[ ])
   
-  const handlerImage = (e) => {
+const handlerImage = (e) => {
     if (e.target.files[0]) {
         imgRef.current.src = URL.createObjectURL(e.target.files[0])
         imgRef.current.style.height = "100%"
@@ -226,12 +245,7 @@ const UserInfo = () => {
     return merit%5;
   };
 
-  const member = (
-    <Member>
-      <img src={photo} alt="membro"/>
-      <MemberName>Member Name <span>member@gmail.com</span></MemberName>
-    </Member>
-  );
+
 
   return (
     <Container>
@@ -341,12 +355,8 @@ const UserInfo = () => {
               <Indicated>
                 <TitleMember>MEMBROS INDICADOS</TitleMember>
                 <Members>
-                  {member}
-                  {member}
-                  {member}
-                  {member}
-                  {member}
-                </Members>
+			{ members && members.length > 0 ? members.map( user => <MemberItem member={user} /> ) : "Você ainda não indicou o app para ninguem" }
+	  	</Members>
               </Indicated>
             </ShareIndicated>
           </AdvancedInfos>

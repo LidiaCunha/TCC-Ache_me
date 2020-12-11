@@ -113,7 +113,7 @@ function CreatePost({showCreatePost, user}) {
                 }
             });
 
-            if (postCreated.status === 201) {
+            if ( postCreated ) {
 
                 console.log("postCreated")
 
@@ -131,7 +131,7 @@ function CreatePost({showCreatePost, user}) {
                 
                 const seenCreated = await api.post(`/seen/${postCreated.data.id}`,data);
     
-                if (seenCreated.status === 201){
+                if ( seenCreated ){
     
                     problems.map( problem => {
                         (async()=>{

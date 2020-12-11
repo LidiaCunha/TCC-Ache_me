@@ -11,12 +11,12 @@ const AuthContext = createContext({
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setloading] = useState(true);
-  console.log(user)
+  
   useEffect(() => {
     async function loadStorageData(){
       const storagedUser = await AsyncStorage.getItem('@AMAuth:user');
       const storagedToken = await AsyncStorage.getItem('@AMAuth:token');
-
+      await AsyncStorage.setItem('@FIRST?','true')
       if (storagedUser && storagedToken) {
         api.defaults.headers.Authorization = `Bearer ${storagedToken}`;
 
@@ -33,7 +33,7 @@ export const AuthProvider = ({ children }) => {
     setUser(response); 
 
     api.defaults.headers.Authorization = `Bearer ${response.token}`;
-    
+
     await AsyncStorage.setItem('@AMAuth:user', JSON.stringify(response.user));
     await AsyncStorage.setItem('@AMAuth:token', response.token);
   }
@@ -44,8 +44,15 @@ export const AuthProvider = ({ children }) => {
     });
   };
 
+  const setFirstTimeOnApp = async( isFirst ) => {
+  	await AsyncStorage.setItem('@FIRST?',  `${isFirst}`);
+  }
+  const isFirstTimeOnApp = async() => {
+	return await AsyncStorage.getItem('@FIRST?');
+  }
+
   return (
-    <AuthContext.Provider value={{ signed: !!user, user, login, logout}}>
+    <AuthContext.Provider value={{ signed: !!user, user, isFirstTimeOnApp, setFirstTimeOnApp , login, logout}}>
       {children}
     </AuthContext.Provider>
   );
