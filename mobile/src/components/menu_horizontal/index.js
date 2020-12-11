@@ -4,14 +4,23 @@ import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
 import { StyleSheet, Text, View } from 'react-native';
 import Routes from '../../routes';
 
+// pages
 import Home from '../../pages/Dashboard';
 import Chat from '../../pages/chat';
 import Usuario from '../../pages/usuario';
 import Postagens from '../../pages/listagem_de_postagem';
 
+// testes
+import { useAuth } from '../../contexts/auth';
+
+
 const Tab = createMaterialBottomTabNavigator();
 
 const Menu_horizontal = () => {
+    
+    const { user, logout } = useAuth();
+
+    
     return(
         <Tab.Navigator initialRouteName="Home" activeColor="#fff" barStyle={{ backgroundColor: '#EF5245' }}>
         
@@ -19,7 +28,6 @@ const Menu_horizontal = () => {
                 name="Home" 
                 component={Home} 
                 options={{
-        
                     tabBarLabel: "Home",
                     tabBarIcon: ({ color }) => (
                         <MaterialCommunityIcons name="home" color={ color } size={24}/>
