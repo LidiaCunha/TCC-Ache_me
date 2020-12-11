@@ -105,9 +105,11 @@ export const CriarPost = styled.div`
 `
 
 export const Post = styled.div`
-    width: 80%;
+    width: 95%;
     height: auto;
+    box-sizing:border-box;
     min-height: 500px;
+    max-height: 800px;
     background-color: #fff;
     margin-bottom: 20px;
 `
@@ -565,3 +567,13 @@ export const GridNumero = styled.div`
         letter-spacing: 1.4px;
     }
 `
+export const FilterButton = styled.input.attrs({
+    type: 'button',
+    value: 'Filtrar'
+})`
+    width:200px;
+    height:30px;
+    color:white;
+    background-color: #e2453f;
+    border-radius:2px;
+`;

@@ -91,48 +91,54 @@ const UserInfo = () => {
   useEffect(() => {
     const getUser = async () => {
 
-        try {
-          const retorno = await api.get(`/user/${users.id}`);
+      try {
+        const retorno = await api.get(`/user/${users.id}`);
 
-          const data = retorno.data;
-          
-          const where_live = data.where_live;
+        const data = retorno.data;
 
-          const newForm =  {
-            name: data.name,
-            mail: data.mail,
-            CPF: data.cpf,
-            telephone: data.telephone,
-            cep: where_live.cep,
-            bairro: where_live.bairro,
-            street: where_live.street,
-            number: where_live.number,
-            city: where_live.city,
-            state: where_live.state,
-            merit:data.merit
-          }
-	  const res = await api.get('/users',{ headers: {
-	            		'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTYwMTM5MTE0Nn0.k5GTAvKniY9_34pNT6PBF7gvJUqMKWGn2iicYVj2SJI'
-			          }});
-	  const allUsers = res.data;
-		        
-          const filtredUsers =  allUsers.filter(member =>   member.indication === users.mail );
-		        console.log(filtredUsers)
-          setMembers(filtredUsers);
-          setUser(newForm);
-          if (data.photo === "undefined"){
-            setImage(addImage);
-          }else{
-            setImage(data.photo);
-          }
+        const where_live = data.where_live;
 
-        } catch (erro) {
-          if(erro.response){
-              return window.alert(erro.response.data.erro);
-          }
-
-          window.alert("Ops, algo deu errado, tente novamente.")
+        const newForm = {
+          name: data.name,
+          mail: data.mail,
+          CPF: data.cpf,
+          telephone: data.telephone,
+          cep: where_live.cep,
+          bairro: where_live.bairro,
+          street: where_live.street,
+          number: where_live.number,
+          city: where_live.city,
+          state: where_live.state,
+          merit: data.merit
         }
+
+        const res = await api.get('/users', {
+          headers: {
+            'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTYwMTM5MTE0Nn0.k5GTAvKniY9_34pNT6PBF7gvJUqMKWGn2iicYVj2SJI'
+          }
+        });
+
+        const allUsers = res.data;
+
+        const filtredUsers = allUsers.filter(member => member.indication === users.mail);
+
+        setMembers(filtredUsers);
+
+        setUser(newForm);
+
+        if (data.photo === "undefined") {
+          setImage(addImage);
+        } else {
+          setImage(data.photo);
+        }
+
+      } catch (erro) {
+        if (erro.response) {
+          return window.alert(erro.response.data.erro);
+        }
+
+        window.alert("Ops, algo deu errado, tente novamente.")
+      }
     }
 
    getUser();

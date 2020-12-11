@@ -5,6 +5,7 @@ import Login from "./pages/Login_cadastro/index.js";
 import Sobre from "./pages/sobre";
 import AreaInformativa from "./pages/Area_Informativa";
 // import Home from "./pages/home";
+import Feed from "./pages/feed";
 import UserInfo from "./pages/user_info";
 import Post from "./pages/post";
 import Seen from './pages/form_visto';
@@ -34,6 +35,9 @@ function Routes() {
             <Route path="/area-informativa">
                 <AreaInformativa/>
             </Route>
+	    <PrivateRoute path="/feed">
+		<Feed />
+	    </PrivateRoute>
             <PrivateRoute path="/post">
                 <Post/>
             </PrivateRoute>
