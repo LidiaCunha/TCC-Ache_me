@@ -247,7 +247,7 @@ const Usuario = ({reload, props}) => {
                     </AreaMerito>
                 </ContainerUsuario>
                 <AreaTexto>
-                    <Texto>{props.name}</Texto>
+                    <Texto>{props?.name}</Texto>
                     <TextoEmail>{props?.mail}</TextoEmail>
                 </AreaTexto>
                 <Botao><TextoBotao>Criar Postagem</TextoBotao></Botao>

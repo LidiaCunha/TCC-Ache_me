@@ -30,7 +30,7 @@ export const ContainerUser = styled.View`
 export const ContainerUserImg = styled.Image`
     height: 45px;
     width: 45px;
-    background: orange;
+    background: #EF5245;
     borderRadius: 50px;
     marginRight: 10px;
 `;
@@ -53,10 +53,9 @@ export const Data = styled.Text`
 export const ContainerImg = styled.Image`
     height: 240px;
     width: 100%;
-    background: chartreuse;
+    background: #EF5245;
     border-top-right-radius: 20px;
     border-bottom-left-radius: 20px;
-    
 `;
 
 export const ContainerBasicInfo = styled.View`
@@ -158,7 +157,7 @@ export const CardColor = styled.Text`
 export const Comment = styled.View`
     height: 80px;
     width: 100%;
-    background-color: red;
+    background-color: #E33336;
     display: flex;
     justify-content: center;
     flex-direction: row;

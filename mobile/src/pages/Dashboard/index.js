@@ -5,7 +5,6 @@ import { api } from '../../services/api';
 import { Container, ContainerBack, Back } from '../listagem_de_postagem/styles';
 import Post from '../../components/Post';
 
-
 const style = StyleSheet.create({
   container: {
     position:'absolute',
@@ -13,7 +12,8 @@ const style = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     flexDirection:'row',
-    width:100
+    width: 100,
+//    bottom: 80,
   },
 
   Text: { 
@@ -32,7 +32,6 @@ const Dashboard = ({ navigation }) => {
       userinfo = user.user;
     }
   }
-
 
   function handlerLogout() {
     logout();
@@ -57,7 +56,6 @@ const Dashboard = ({ navigation }) => {
   const openCreateFind = () => {
     navigation.navigate('find')
   }
-
 
   const [posts, setPosts] = useState([]);
 

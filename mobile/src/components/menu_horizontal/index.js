@@ -1,25 +1,33 @@
 import React from 'react';
 import { createMaterialBottomTabNavigator  } from '@react-navigation/material-bottom-tabs';
 import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
-import { StyleSheet, Text, View, tou } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
+import Routes from '../../routes';
 
-
-import Dashboard from '../../pages/Dashboard';
+// pages
+import Home from '../../pages/Dashboard';
 import Chat from '../../pages/chat';
 import Usuario from '../../pages/usuario';
-import Card_desaparecido from '../../pages/card_desaparecido';
+import Postagens from '../../pages/listagem_de_postagem';
+
+// testes
+import { useAuth } from '../../contexts/auth';
+
 
 const Tab = createMaterialBottomTabNavigator();
 
 const Menu_horizontal = () => {
+    
+    const { user, logout } = useAuth();
+
+    
     return(
         <Tab.Navigator initialRouteName="Home" activeColor="#fff" barStyle={{ backgroundColor: '#EF5245' }}>
         
             <Tab.Screen 
                 name="Home" 
-                component={Dashboard} 
+                component={Home} 
                 options={{
-        
                     tabBarLabel: "Home",
                     tabBarIcon: ({ color }) => (
                         <MaterialCommunityIcons name="home" color={ color } size={24}/>
@@ -28,34 +36,34 @@ const Menu_horizontal = () => {
             />
         
             <Tab.Screen 
-                name="Profile" 
-                component={Profile} 
+                name="Chat" 
+                component={Chat} 
                 options={{
-                    tabBarLabel: "Profile",
+                    tabBarLabel: "Chat",
                     tabBarIcon: ({ color }) => (
-                        <MaterialCommunityIcons name="account" color={ color } size={28}/>
+                        <MaterialCommunityIcons name="chat" color={ color } size={24}/>
                     )
                 }} 
             />
 
             <Tab.Screen 
-                name="Search" 
-                component={Search} 
+                name="Usuario" 
+                component={Usuario} 
                 options={{
-                    tabBarLabel: "Search",
+                    tabBarLabel: "Usuario",
                     tabBarIcon: ({ color }) => (
-                        <MaterialIcons name="search" color={ color } size={24}/>
+                        <MaterialIcons name="person" color={ color } size={28}/>
                     )
                 }} 
             />
         
             <Tab.Screen 
-                name="Music" 
-                component={Music} 
+                name="Postagens" 
+                component={Postagens} 
                 options={{
-                    tabBarLabel: "Music",
+                    tabBarLabel: "Postagens",
                     tabBarIcon: ({ color }) => (
-                        <MaterialCommunityIcons name="music" color={ color } size={24}/>
+                        <MaterialIcons name="list" color={ color } size={30}/>
                     )
                 }} 
             />

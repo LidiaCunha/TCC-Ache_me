@@ -189,7 +189,7 @@ export const ContainerTextMenor = styled.div`
 
 `;
 
-export const ContainerBtn = styled.button`
+export const ContainerBtnValores = styled.button`
     min-height: 6vh;
     height: auto;
     width: auto;
@@ -216,6 +216,7 @@ export const ContainerBtn = styled.button`
         height: 0;
         width: 0;
         background: transparent;
+        color: #E64F4A;
     }
 
     @media(max-width: 780px){

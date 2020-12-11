@@ -249,8 +249,6 @@ const handlerImage = (e) => {
     return merit%5;
   };
 
-
-
   return (
     <Container>
       { showCreatePost && <CreatePost showCreatePost={setShowCreatePost} user={{user,image}} /> }
@@ -281,11 +279,11 @@ const handlerImage = (e) => {
               </Login>
             </PhotoProfile>
             <Merit>
-              <Text>Seu mérito: { calcStarts(user.merit)} </Text>
+              <Text>Seu mérito: { !user.merit || user.merit == null ? "0 (indique pessoas para aumentar seu mérito)" :  calcStarts(user.merit)} </Text>
               <Text>Data da última publicação: {moment(lastPost.createdAt).format('DD/MM/YYYY')}</Text>
               <Text>Hora da última publicação: {moment(lastPost.createdAt).format('HH:mm')}</Text>
               <ButtonDenuncia onClick={()=>{setShowDenunciations(true)}}>Denúncias</ButtonDenuncia>
-              <ButtonPost onClick={()=>{setShowModalPost(true)}} >Postagens</ButtonPost>
+              <ButtonPost onClick={()=>{setShowModalPost(true)}}>Postagens</ButtonPost>
             </Merit>
           </BasicInfos>
         </Section>
@@ -359,8 +357,8 @@ const handlerImage = (e) => {
               <Indicated>
                 <TitleMember>MEMBROS INDICADOS</TitleMember>
                 <Members>
-			{ members && members.length > 0 ? members.map( user => <MemberItem member={user} /> ) : "Você ainda não indicou o app para ninguem" }
-	  	</Members>
+            			{ members && members.length > 0 ? members.map( user => <MemberItem member={user} /> ) : "Você ainda não indicou o app para ninguem" }
+	  	          </Members>
               </Indicated>
             </ShareIndicated>
           </AdvancedInfos>
