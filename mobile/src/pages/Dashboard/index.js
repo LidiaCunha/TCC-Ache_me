@@ -83,14 +83,13 @@ const Dashboard = ({ navigation }) => {
       </Container>
     
       <View style={style.container}>
-        <Button title="AddPost" onPress={() => { createPost(userinfo) }} />
+        <Button title="Post" onPress={() => { createPost(userinfo) }} />
         <Button title="Chat" onPress={openConversations} />
-        <Button title="AddSeen" onPress={openCreateSeen} />
-        <Button title="AddFind" onPress={openCreateFind} />
-            <Button title="Logout" onPress={handlerLogout} />
-        <Button title="Profile" onPress={() => { openProfile(userinfo) }} />
-        <Button title="TERMOS" onPress={() => { navigation.navigate('termos') }} />
-        
+        <Button title="Seen" onPress={openCreateSeen} />
+        <Button title="Find" onPress={openCreateFind} />
+        <Button title="User" onPress={() => { openProfile(userinfo) }} />
+        <Button title="Terms" onPress={() => { navigation.navigate('termos') }} />
+        <Button title="Logout" onPress={handlerLogout} />
       </View>
 
     </>

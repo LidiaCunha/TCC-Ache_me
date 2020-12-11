@@ -37,7 +37,7 @@ import defaltImage from '../../assets/image.png';
 import addImage from '../../assets/newImage.png';
 import * as ImagePicker from 'expo-image-picker';
 
-import {Popup} from '../../components/popup/Popup';
+import {Popup} from '../../components/Popup/Popup';
 import FabButton from '../../components/fabButton/FabButton';
 import HealthProblem from './healthProblem';
 import Characteristics from './features';
@@ -47,38 +47,55 @@ import AsyncStorage from '@react-native-community/async-storage';
 
 const Criar_postagem = ({route}) => {
 
-    const [problems, setProblems] = useState(null)
-    const [features, setFeatures] = useState(null)
+    const [problems, setProblems] = useState()
+    const [features, setFeatures] = useState()
+    const [location, setLocation] = useState()
 
-    const getInfos = () => {
-        const getProblems = async () => {
-            try {                const jsonValue = await AsyncStorage.getItem('@health_problems')
+    const getProblems = async () => {
+        try {
+            const jsonValue = await AsyncStorage.getItem('@health_problems')
+            if (jsonValue.length != 2) {
                 setProblems(JSON.parse(jsonValue));
-                return console.log(problems)
-            } catch(e) {
-                window.alert("erro!")
+            }else{
+                setProblems(null)
             }
-        }
 
-        const getFeatures = async () => {
-            try {
-                const jsonValue = await AsyncStorage.getItem('@features')
+        } catch(e) {
+            window.alert("erro!")
+        }
+    }
+
+    const getFeatures = async () => {
+        try {
+            const jsonValue = await AsyncStorage.getItem('@features')
+            if (jsonValue.length != 2) {
                 setFeatures(JSON.parse(jsonValue));
-                return console.log(features)
-            } catch(e) {
-                window.alert("erro!")
+            }else{
+                setFeatures(null)
             }
+        } catch(e) {
+            window.alert("erro!")
         }
+    }
 
-        getProblems()
-        getFeatures()
+    const getLocation = async () => {
+        try {
+            const jsonValue = await AsyncStorage.getItem('@location')
+            if (jsonValue.length != 2) {
+                setLocation(JSON.parse(jsonValue));
+            }else{
+                setLocation(null)
+            }
+        } catch(e) {
+            window.alert("erro!")
+        }
     }
 
     var radio_props = [
-        {label: 'Masculino', value: 'male' },
-        {label: 'Feminino', value: 'female' },
-        {label: 'Outro', value: 'other' }
-      ];
+        {label: 'Masculino', value: 'Masculino' },
+        {label: 'Feminino', value: 'Feminino' },
+        {label: 'Outro', value: 'LGBT' }
+    ];
 
     const props = route.params;
 
@@ -90,7 +107,13 @@ const Criar_postagem = ({route}) => {
         }   
     }
 
-    const [ post , setPost ] = useState({});
+    const [ post , setPost ] = useState({
+        "name": "",
+        "name_of_genre": "Masculino",
+        "borned_at": "",
+        "description": "",   
+    });
+    const [seen, setSeen] = useState({}); 
 
 
     function handlerName(e) {
@@ -100,16 +123,16 @@ const Criar_postagem = ({route}) => {
         setPost({ ...post , description : e});
     }
     function handlerDate(e) {
-        setPost({ ...post , date : e.replace(/[^0-9]/g,'').replace(/(.{2})(.{2})(.{4})/, '$1/$2/$3').replace(/(.{10})(.*)/,'$1')});
+        setSeen({ ...seen , date : e.nativeEvent.text.replace(/[^0-9]/g,'').replace(/(.{2})(.{2})(.{4})/,'$1/$2/$3').replace(/(.{10})(.*)/,'$1') });
     }
     function handlerHours(e) {
-        setPost({ ...post , hours : e.replace(/(.{2})(.*)/,'$1')});
+        setSeen({ ...seen , hours : e.replace(/(.{2})(.*)/,'$1')});
     }
     function handlerMinute(e) {
-        setPost({ ...post , minute : e.replace(/(.{2})(.*)/,'$1')});
+        setSeen({ ...seen , minute : e.replace(/(.{2})(.*)/,'$1')});
     }
     function handlerBirthDate(e) {
-        setPost({ ...post , birthDate : e.replace(/[^0-9]/g,'').replace(/(.{2})(.{2})(.{4})/, '$1/$2/$3').replace(/(.{10})(.*)/,'$1')});
+        setPost({ ...post , birthDate : e.nativeEvent.text.replace(/[^0-9]/g,'').replace(/(.{2})(.{2})(.{4})/,'$1/$2/$3').replace(/(.{10})(.*)/,'$1')});
     }
 
     const [postImage, setPostImage] = useState(null);
@@ -133,7 +156,10 @@ const Criar_postagem = ({route}) => {
     };
 
     const createPost = async() => {
-        return getInfos()
+
+        await getProblems()
+        await getFeatures()
+        await getLocation()
 
         if (!postImage) {
             return window.alert("imagem obrigatoria!!!")
@@ -141,7 +167,7 @@ const Criar_postagem = ({route}) => {
 
         const data = new FormData();
 
-        data.append("name", props.name);
+        data.append("name", post.name);
         data.append("name_of_genre", post.name_of_genre);
         data.append("borned_at", post.birthDate);
         data.append("description", post.description);
@@ -156,34 +182,35 @@ const Criar_postagem = ({route}) => {
             type: postImage.type+"/"+ext,
         });
         
-        try {
-            const postCreated = await api.post ( '/post' , data, {
+        try{
+            var postCreated = await api.post('/posts', data, {
                 headers: {
                     "Content-type": `multipart/form-data`,
                 }
             });
 
-            
-            if (retorno.status === 201) {
+            if (postCreated.status === 201) {
 
-                const url = `https://api.postmon.com.br/v1/cep/${cep}`;
+                console.log(postCreated.data.id)
 
-                const address = await fetch(url).then(res => res.json());
-            
                 const data = {
-                    street:address.logradouro, 
-                    bairro: address.bairro, 
-                    cep:cep, 
+                    street:location.street, 
+                    bairro: location.bairro, 
+                    cep:location.cep, 
                     reference_point:location.reference_point,  
-                    city: address.cidade, 
-                    state: address.estado_info.nome, 
+                    city: location.city, 
+                    state: location.state,
+                    complement: "test", 
                     seen_at_date: seen.date, 
-                    seen_at_hours: seen.time
+                    seen_at_hours: seen.hours+":"+seen.minute
                 };
+                
                 const seenCreated = await api.post(`/seen/${postCreated.data.id}`,data);
-
+    
                 if (seenCreated.status === 201){
 
+                    console.log("seenCreated")
+    
                     problems.map( problem => {
                         (async()=>{
                             await api.post(`/healthProblems/post/${postCreated.data.id}`,{problem});
@@ -194,15 +221,13 @@ const Criar_postagem = ({route}) => {
                             await api.post(`/features/post/${postCreated.data.id}`,{feature});
                         })();
                     });
-
-                    showCreatePost(false);
-                    return window.alert("Post criado com sucesso!");
-
+    
+                    window.alert("Post criado com sucesso!");
                 }
             }
-        } catch (error) {
+        } catch (erro) {
             if(erro.response){
-                return window.alert(erro.response.data.erro);
+                return window.alert(erro.response.data.error);
             }
             
             window.alert("Ops, algo deu errado, tente novamente mais tarde.");            
@@ -212,7 +237,7 @@ const Criar_postagem = ({route}) => {
     let PopupRef = React.createRef()
     const onShowPopup = () => {
         PopupRef.show()
-    }
+    } 
     const onClosePopup = () => {
         PopupRef.close()
     }
@@ -272,8 +297,9 @@ const Criar_postagem = ({route}) => {
                             placeholderTextColor="gray"
                             placeholder="DD/MM/AAAA"
                             keyboardType="numeric"
-                            onChangeText={handlerDate}
-                            value={post.date}/>
+                            onChange={handlerDate}
+                            maxLength={10}
+                            value={seen.date}/>
                     </ContainerDate>
                     <ContainerTime>
                         <Lorem>Horário</Lorem>
@@ -283,14 +309,14 @@ const Criar_postagem = ({route}) => {
                                 placeholder="HH"
                                 keyboardType="numeric"
                                 onChangeText={handlerHours}
-                                value={post.hours}/>
+                                value={seen.hours}/>
                             <LoremTime>:</LoremTime>
                             <InputTime 
                                 placeholderTextColor="gray"
                                 placeholder="MM"
                                 keyboardType="numeric"
                                 onChangeText={handlerMinute}
-                                value={post.minute}/>
+                                value={seen.minute}/>
                         </Center>
                     </ContainerTime>
                 </ContainerDateTime>
@@ -299,7 +325,6 @@ const Criar_postagem = ({route}) => {
                         <Lorem>Gênero</Lorem>
                         <RadioForm
                             radio_props={radio_props}
-                            initial={0}
                             formHorizontal={false}
                             labelHorizontal={true}
                             buttonColor={'#999'}
@@ -315,7 +340,8 @@ const Criar_postagem = ({route}) => {
                             placeholderTextColor="gray"
                             placeholder="DD/MM/AAAA"
                             keyboardType="numeric"
-                            onChangeText={handlerBirthDate}
+                            maxLength={10}
+                            onChange={handlerBirthDate}
                             value={post.birthDate}/>
                     </ContainerDate>
             </ContainerFilter>    

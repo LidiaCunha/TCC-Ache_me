@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { View, Text, StyleSheet, TouchableWithoutFeedback, Animated, Image } from 'react-native';
-import { AntDesign, Entypo, FontAwesome} from '@expo/vector-icons';
+import { AntDesign, Entypo, FontAwesome, MaterialIcons} from '@expo/vector-icons';
 import feature from '../../assets/foto.png';
 import {OpenPopup} from '../../pages/criar_postagem';
 import HealthProblem from '../../pages/criar_postagem/healthProblem';
@@ -61,7 +61,7 @@ export default class FabButton extends Component {
         {
           rotate: this.animation.interpolate({
             inputRange: [0, 1],
-            outputRange:["0deg", "45deg"]
+            outputRange:["0deg", "90deg"]
           })
         }
       ]
@@ -71,12 +71,12 @@ export default class FabButton extends Component {
       <View style={[styles.container, this.props.style]}>
         <TouchableWithoutFeedback onPress={()=>{window.alert("test1")}}>
           <Animated.View style={[styles.button, styles.submenu, locationStyle]}>
-            <Entypo name="location-pin" size={50} color="#000"/>
+            <Entypo name="location-pin" size={50} color="#fff"/>
           </Animated.View>
         </TouchableWithoutFeedback>
         <TouchableWithoutFeedback onPress={()=>{window.alert("test2")}}>
           <Animated.View style={[styles.button, styles.submenu, healthStyle]}>
-            <AntDesign name="heart" size={30} color="#000"/>
+            <AntDesign name="heart" size={30} color="#fff"/>
           </Animated.View>
         </TouchableWithoutFeedback>
         <TouchableWithoutFeedback onPress={()=>{OpenPopup(<HealthProblem/>)}}>
@@ -87,7 +87,7 @@ export default class FabButton extends Component {
 
         <TouchableWithoutFeedback onPress={this.toggleMenu}>
           <Animated.View style={[styles.button, styles.menu, rotation]}>
-            <AntDesign name="plus" size={35} color="#000"/>
+            <MaterialIcons name="more-vert" size={35} color="#fff"/>
           </Animated.View>
         </TouchableWithoutFeedback>
       </View>

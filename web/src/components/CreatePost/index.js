@@ -112,44 +112,45 @@ function CreatePost({showCreatePost, user}) {
                     "Content-type": `multipart/form-data`,
                 }
             });
+
+            if (postCreated.status === 201) {
+
+                console.log("postCreated")
+
+                const data = {
+                    street:location.street, 
+                    bairro: location.bairro, 
+                    cep:location.cep, 
+                    reference_point:location.reference_point,  
+                    city: location.city, 
+                    state: location.state,
+                    complement: "test",
+                    seen_at_date: seen.date, 
+                    seen_at_hours: seen.time
+                };
+                
+                const seenCreated = await api.post(`/seen/${postCreated.data.id}`,data);
+    
+                if (seenCreated.status === 201){
+    
+                    problems.map( problem => {
+                        (async()=>{
+                            await api.post(`/healthProblems/post/${postCreated.data.id}`,{problem});
+                        })();
+                    });
+                    features.map( feature => {
+                        (async()=>{
+                            await api.post(`/features/post/${postCreated.data.id}`,{feature});
+                        })();
+                    });
+    
+                    showCreatePost(false);
+                    window.alert("Post criado com sucesso!");
+    
+                }
+            }
         }catch(err){
             console.log(err)
-        }
-        if (postCreated.status === 201) {
-
-            const data = {
-                street:location.logradouro, 
-                bairro: location.bairro, 
-                cep:location.cep, 
-                reference_point:location.reference_point,  
-                city: location.cidade, 
-                state: location.estado_info.nome, 
-                seen_at_date: seen.date, 
-                seen_at_hours: seen.time
-            };
-            
-            const seenCreated = await api.post(`/seen/${postCreated.data.id}`,data);
-
-            if (seenCreated.status === 201){
-
-                problems.map( problem => {
-                    (async()=>{
-                        await api.post(`/healthProblems/post/${postCreated.data.id}`,{problem});
-                    })();
-                });
-                features.map( feature => {
-                    (async()=>{
-                        await api.post(`/features/post/${postCreated.data.id}`,{feature});
-                    })();
-                });
-
-                showCreatePost(false);
-                window.alert("Post criado com sucesso!");
-
-            }
-
-        }else{
-            window.alert("erro ao criar a postagem");
         }
     };
 
