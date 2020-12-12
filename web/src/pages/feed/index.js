@@ -1,9 +1,16 @@
 import React, { useState, useEffect, useRef } from 'react';
-import {AreaTextos,Container,FilterButton, ContainerFiltros, GridContainers, ImagemUsuario, Menu, ContainerPosts,ContainerContrib,CriarPost,Post, Texto, ContainerInputs, ContainerDuplo, Icone, RadioGenre, RadioGroup, RadioStyled, ContainerRadio,ContainerItem, LabelItem, ButtonExcluir, Linha, Contribuidor, LinhaMerito, AreaGrid, GridFotos, GridNumero, Flex} from './styles';
+import {AreaTextos,Container,FilterButton, IconeAcoes, ContainerFiltros, GridContainers, ImagemUsuario, Menu, ContainerPosts,ContainerContrib,CriarPost,Post, Texto, ContainerInputs, ContainerDuplo, Icone, RadioGenre, RadioGroup, RadioStyled, ContainerRadio,ContainerItem, LabelItem, ButtonExcluir, Linha, Contribuidor, LinhaMerito, AreaGrid, GridFotos, GridNumero, Flex, Acoes, Botao} from './styles';
 import home from "../../assets/user_info/home.png";
 import camera from "../../assets/camera.png";
 import estrela from "../../assets/star.png";
 import photo from "../../assets/userTest.png";
+import foto from "../../assets/users.png";
+import share from "../../assets/compartilhar.png";
+import denuncia from "../../assets/atencao.png";
+import compartilhar from "../../assets/opcao-de-compartilhamento.png";
+import placa from "../../assets/placa.png";
+import pegadas from "../../assets/pegadas.png";
+import sair from "../../assets/opcao-de-sair.png";
 import {getUsers} from '../../services/security'
 import { api } from '../../services/api';
 import LostedPost from "../post";
@@ -162,7 +169,9 @@ const Feed = () => {
     return (
         <Container>
             <Menu>
-                <ImagemUsuario>
+                <Icone id="foto"><img src={foto}/></Icone>
+                <Icone><img src={sair}/></Icone>
+                <ImagemUsuario id="usuario">
                     <img src={user.photo === 'undefined' ? photo : user.photo } />
                 </ImagemUsuario>
             </Menu>
@@ -173,7 +182,7 @@ const Feed = () => {
             <GridContainers>
                 <ContainerFiltros>
                     <ContainerInputs>
-                        <Icone></Icone>
+                        <Icone><img src={placa}/></Icone>
                         <p>DESAPARECIMENTO</p>
                     </ContainerInputs>
                     <ContainerInputs>
@@ -220,7 +229,7 @@ const Feed = () => {
                     <Linha />
 
                     <ContainerInputs>
-                        <Icone></Icone>
+                        <Icone><img src={pegadas}/></Icone>
                         <p>DESAPARECIDO</p>
                     </ContainerInputs>
                     <ContainerDuplo>
@@ -240,6 +249,13 @@ const Feed = () => {
                             <p>Feminino</p>
                         </ContainerRadio>
                     </RadioGroup>
+                    <RadioGroup>
+                        <ContainerRadio id="outro">
+                            <RadioGenre onChange={handlerRadio} id="Outro" />
+                            <RadioStyled />
+                            <p>Outro</p>
+                        </ContainerRadio>
+                    </RadioGroup>
                     <ContainerDuplo>
                         <Texto>Características Físicas</Texto>
                         <input onKeyPress={handlerFeatures} id="feature" onChange={handlerItem} value={item.feature} type="text" />
@@ -255,11 +271,20 @@ const Feed = () => {
                         {problems.map(problem => <Item item={problem} />)}
                     </ContainerInputs>
                 
-                    <FilterButton onClick={filter} />
+                    <Botao id="filtrar" onClick={filter}><p>Filtrar</p></Botao>
                 </ContainerFiltros>
 
                 <ContainerPosts>
-                    <CriarPost></CriarPost>
+                    <CriarPost>
+                        <p>Aqui <span>{user.name}</span>, você pode compartilhar pessoas desaparecidas e buscá-las também fazendo assim com que a rede de apoio entre os membros Ache.me cresça.</p>
+                        <Acoes>
+                            <p>SUAS AÇÕES:</p>
+                            <IconeAcoes id="share"><img src={share}/></IconeAcoes>
+                            <IconeAcoes id="denuncia"><img src={denuncia}/></IconeAcoes>
+                            <IconeAcoes id="compartilhar"><img src={compartilhar}/></IconeAcoes>
+                            <Botao><p>Minhas conversas</p></Botao>
+                        </Acoes>
+                    </CriarPost>
                     { posts.map( post => <Post> <LostedPost post={post} /> </Post> ) }
                 </ContainerPosts>
 
