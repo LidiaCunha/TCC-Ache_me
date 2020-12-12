@@ -36,15 +36,20 @@ import RadioForm, {RadioButton, RadioButtonInput, RadioButtonLabel} from 'react-
 import defaltImage from '../../assets/image.png';
 import addImage from '../../assets/newImage.png';
 import * as ImagePicker from 'expo-image-picker';
-import {Popup} from '../../components/popup/Popup';
+import {Popup} from '../../components/Popup';
 import FabButton from '../../components/fabButton/FabButton';
 import HealthProblem from './healthProblem';
 import Characteristics from './features';
 import Location from './location';
 import {api} from '../../services/api';
+import { useAuth } from '../../contexts/auth';
 import AsyncStorage from '@react-native-community/async-storage';
 
-const Criar_postagem = ({route}) => {
+
+
+const Criar_postagem = () => {
+
+    const { user} = useAuth();
 
     const [problems, setProblems] = useState()
     const [features, setFeatures] = useState()
@@ -96,13 +101,12 @@ const Criar_postagem = ({route}) => {
         {label: 'Outro', value: 'LGBT' }
     ];
 
-    const props = route.params;
-
     var userPhoto = defaltImage;
 
-    if (props != null) {
-        if (props.photo !== "undefined") {
-            userPhoto = {uri: props.photo};
+    if (user != null) {
+        if (user?.photo != 'undefined') {
+            console.log(user?.photo)
+            userPhoto = {uri: user?.photo};
         }   
     }
 
@@ -242,13 +246,17 @@ const Criar_postagem = ({route}) => {
     }
     const [popup, setPopup] = useState()
 
+    useEffect(()=>{
+        onShowPopup()
+    },[popup])
+
     return(
         <Container>
             <ContainerUser>
                 <ContainerUserImg>
                     <UserPhoto source={userPhoto}/>
                 </ContainerUserImg>
-                <ContainerUserName>{props != null ? props.name : "test"}</ContainerUserName>
+                <ContainerUserName>{user != null ? user?.name : "test"}</ContainerUserName>
             </ContainerUser>
             
             <ContainerText>
@@ -347,18 +355,15 @@ const Criar_postagem = ({route}) => {
     
             <ContainerBtnPublicar>
                 <BtnPublicar onPress={()=> {
-                    setPopup(<HealthProblem/>)
-                    onShowPopup()}}>
+                    setPopup(<HealthProblem/>)}}>
                     <Lorem>Problemas</Lorem>
                 </BtnPublicar> 
                 <BtnPublicar onPress={()=>{
-                    setPopup(<Characteristics/>)
-                    onShowPopup()}}>
+                    setPopup(<Characteristics/>)}}>
                     <Lorem>Caracteristicas</Lorem>
                 </BtnPublicar>
                 <BtnPublicar onPress={()=>{
-                    setPopup(<Location/>)
-                    onShowPopup()}}>
+                    setPopup(<Location/>)}}>
                     <Lorem>localização</Lorem>
                 </BtnPublicar> 
                 <BtnPublicar onPress={createPost}>  
@@ -366,11 +371,11 @@ const Criar_postagem = ({route}) => {
                 </BtnPublicar>
             </ContainerBtnPublicar>
 
-	    {/*            <Popup 
+            <Popup 
                 title="Problemas de Saúde"
                 content={popup}
                 ref={(target) => PopupRef = target}
-                onTouchOutside = {onClosePopup}/> */}
+                onTouchOutside = {onClosePopup}/>
         </Container>
     );
 }
