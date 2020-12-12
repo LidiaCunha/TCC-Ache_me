@@ -1,98 +1,104 @@
-import React, {Component} from 'react';
+import React, {Component, useEffect, useState} from 'react';
 import { View, Text, StyleSheet, TouchableWithoutFeedback, Animated, Image } from 'react-native';
 import { AntDesign, Entypo, FontAwesome, MaterialIcons} from '@expo/vector-icons';
 import feature from '../../assets/foto.png';
 import Criar_postagem from '../../pages/criar_postagem';
 // import location from '../../assets/location.png'
+import {Popup} from '../../components/popup';
+import HealthProblem from '../../pages/criar_postagem/healthProblem';
+import Characteristics from '../../pages/criar_postagem/features';
+import Location from '../../pages/criar_postagem/location';
 
-export default class FabButton extends Component {
-  animation = new Animated.Value(0);
+export default function FabButton(props) {
+  const animation = new Animated.Value(0);
 
-  toggleMenu = () => {
-    const toValue = this.open ? 0 : 1
-    
-    Animated.spring(this.animation, {
+  const [open, setOpen] = useState(false);
+
+
+  useEffect(()=>{
+    (()=>{
+      const toValue = open ? 1 : 0
+
+      Animated.spring(animation, {
         toValue,
         friction: 5,
-    }).start();
-    
-    this.open = !this.open;
+      }).start();
+
+    })();
+  },[open])
+
+  const featureStyle = {
+    transform: [
+      { scale: animation },
+      {
+        translateY: animation.interpolate({
+          inputRange: [0, 1],
+          outputRange: [0, -60]
+        })
+      }
+    ]
+  }
+  const healthStyle = {
+    transform: [
+      { scale: animation },
+      {
+        translateY: animation.interpolate({
+          inputRange: [0, 1],
+          outputRange: [0, -120]
+        })
+      }
+    ]
+  }
+  const locationStyle = {
+    transform: [
+      { scale: animation },
+      {
+        translateY: animation.interpolate({
+          inputRange: [0, 1],
+          outputRange: [0, -180]
+        })
+      }
+    ]
   }
 
-  render(){
-
-    const featureStyle = {
-      transform: [
-        { scale: this.animation},
-        {
-          translateY: this.animation.interpolate({
-            inputRange: [0, 1],
-            outputRange: [0, -60]
-          })
-        }
-      ]
-    }
-    const healthStyle = {
-      transform: [
-        { scale: this.animation},
-        {
-          translateY: this.animation.interpolate({
-            inputRange: [0, 1],
-            outputRange: [0, -120]
-          })
-        }
-      ]
-    }
-    const locationStyle = {
-      transform: [
-        { scale: this.animation},
-        {
-          translateY: this.animation.interpolate({
-            inputRange: [0, 1],
-            outputRange: [0, -180]
-          })
-        }
-      ]
-    }
-
-    const rotation = {
-      transform: [
-        {
-          rotate: this.animation.interpolate({
-            inputRange: [0, 1],
-            outputRange:["0deg", "90deg"]
-          })
-        }
-      ]
-    }
-
-    return(
-      <View style={[styles.container, this.props.style]}>
-        <TouchableWithoutFeedback onPress={()=>{window.alert('location')}}>
-          <Animated.View style={[styles.button, styles.submenu, locationStyle]}>
-            <Entypo name="location-pin" size={50} color="#fff"/>
-          </Animated.View>
-        </TouchableWithoutFeedback>
-        <TouchableWithoutFeedback onPress={()=>{window.alert('Health')}}>
-          <Animated.View style={[styles.button, styles.submenu, healthStyle]}>
-            <AntDesign name="heart" size={30} color="#fff"/>
-          </Animated.View>
-        </TouchableWithoutFeedback>
-        <TouchableWithoutFeedback onPress={()=>{window.alert('feature')}}>
-          <Animated.View style={[styles.button, styles.submenu, featureStyle]}>
-            <Image source={feature} style={{width: 35, height: 35}}/>
-          </Animated.View>
-        </TouchableWithoutFeedback>
-
-        <TouchableWithoutFeedback onPress={this.toggleMenu}>
-          <Animated.View style={[styles.button, styles.menu, rotation]}>
-            <MaterialIcons name="more-vert" size={35} color="#fff"/>
-          </Animated.View>
-        </TouchableWithoutFeedback>
-      </View>
-    )
+  const rotation = {
+    transform: [
+      {
+        rotate: animation.interpolate({
+          inputRange: [0, 1],
+          outputRange: ["0deg", "90deg"]
+        })
+      }
+    ]
   }
+
+  return (
+    <View style={[styles.container, props.style]}>
+      <TouchableWithoutFeedback onPress={() => { props.setLocalePU(true) }}>
+        <Animated.View style={[styles.button, styles.submenu, locationStyle]}>
+          <Entypo name="location-pin" size={50} color="#fff" />
+        </Animated.View>
+      </TouchableWithoutFeedback>
+      <TouchableWithoutFeedback onPress={() => { props.setProblemPU(true) }} >
+        <Animated.View style={[styles.button, styles.submenu, healthStyle]}>
+          <AntDesign name="heart" size={30} color="#fff" />
+        </Animated.View>
+      </TouchableWithoutFeedback>
+      <TouchableWithoutFeedback onPress={() => { props.setFeaturesPU(true) }}>
+        <Animated.View style={[styles.button, styles.submenu, featureStyle]}>
+          <Image source={feature} style={{ width: 35, height: 35 }} />
+        </Animated.View>
+      </TouchableWithoutFeedback>
+
+      <TouchableWithoutFeedback onPress={()=>setOpen(!open)}>
+        <Animated.View style={[styles.button, styles.menu, rotation]}>
+          <MaterialIcons name="more-vert" size={35} color="#fff" />
+        </Animated.View>
+      </TouchableWithoutFeedback>
+    </View>
+  )
 }
+
 
 const styles = StyleSheet.create({
   container:{

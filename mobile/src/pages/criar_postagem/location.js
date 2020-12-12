@@ -1,25 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import {StyleSheet, View, Text, Image, TextInput, TouchableOpacity, ScrollView} from 'react-native';
-import AsyncStorage from '@react-native-community/async-storage';
-import styled from "styled-components/native";
+import { useData } from '../../contexts/dataProvider';
 
-const Modal_localizacao = () => {
+const Modal_localizacao = ({displayNone}) => {
 
-    useEffect(()=> {
-        const getData = async () => {
-            try {
-              const jsonValue = await AsyncStorage.getItem('@location')
-              if (jsonValue != null) {
-                return setLocation(JSON.parse(jsonValue));
-              }
-            } catch(e) {
-              // error reading value
-            }
-        }
-
-        getData()
-    }, [])
-
+    const {addLocation} = useData();
 
     const [location, setLocation ] = useState({})
 
@@ -58,18 +43,6 @@ const Modal_localizacao = () => {
         const endereco = await fetch(url).then(res => res.json());
         await setForm(endereco)
     }
-
-    const storeData = async () => {
-        
-        try {
-          const jsonValue = JSON.stringify(location)
-          await AsyncStorage.setItem('@location', jsonValue)
-          console.log("success")
-        } catch (e) {
-          window.alert("erro!")
-        }
-    }
-
 
     return(
         <View style={styles.Container}>
@@ -133,7 +106,7 @@ const Modal_localizacao = () => {
                 <View style={styles.ContainerBtn}>
                     <TouchableOpacity 
                         style={styles.Btn}
-                        onPress={storeData}>
+                        onPress={ () => {addLocation({cep:location.cep , street:location.street , city :location.city , state: location.state , bairro: location.bairro , reference_point:location.reference_point }); displayNone(false)} }>
                         <Text style={styles.Card_text}>Salvar</Text>
                     </TouchableOpacity>
                 </View>
@@ -144,13 +117,16 @@ const Modal_localizacao = () => {
 
 const styles = StyleSheet.create({
     Container: {
-        height: 'auto',
+        height: '100%',
         width: '100%',
         display: 'flex',
+        backgroundColor:'#23232377',
         justifyContent: 'center',
         alignItems: 'center',
         alignContent: 'center',
         flexDirection: 'row',
+        position:"absolute",
+        zIndex:998
     },
     ContainerCard:{
         height: 'auto',
@@ -160,6 +136,8 @@ const styles = StyleSheet.create({
         padding: 10,
         paddingTop: 20,
         overflow: 'hidden',
+        position:"absolute",
+        zIndex:999
     },
     LoremLocal:{
         height: 'auto',
