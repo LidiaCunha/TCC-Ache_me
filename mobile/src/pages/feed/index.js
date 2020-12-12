@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState, useEffect} from 'react';
 import { View, Text, Image, ScrollView, StyleSheet} from 'react-native';
 import { Fontisto, FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons';
 
@@ -6,10 +6,41 @@ import Logo from '../../assets/logo.png';
 import FemaleMale from '../../assets/feed/female_and_male.png';
 import Cabelo from '../../assets/feed/cabelo.png';
 import Card from '../../assets/feed/card.png';
+import ModalDenuncia from "../listar_denuncias";
 import Calendar from '../../assets/feed/calendar.png';
 
-const Feed = () => {
+import { api } from '../../services/api'
+import Post from "../../components/Post";
+
+const Feed = ({navigation}) => {
+    const [posts, setPosts] = useState([]);
+    
+    const [showComplaint, setShowComplaint ] = useState(false); 
+
+
+
+    const getPosts = async( ) => {
+      const response = await api.get('/seen',{headers: { 
+          'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTYwMDk2MDU1MX0.MpwR-_xf4DxVJ5moCm0NWFnHSW08FGMJE-hfaRfqWxw'
+        }});
+      setPosts(response.data)
+    }
+  
+    function createPost() {
+        navigation.navigate('createpost');
+    }
+    
+    function MyPosts(){
+        navigation.navigate('MyPosts')
+    }
+
+    useEffect(() => {
+      getPosts()
+    }, [])
     return(
+        <>
+        {showComplaint && <ModalDenuncia  displayNone={setShowComplaint}  /> }
+        
         <ScrollView style={styles.container}>
         
             <View style={styles.header}>
@@ -80,19 +111,19 @@ const Feed = () => {
                 <Text style={styles.textSuasAcoes}>SUAS AÇÕES</Text>
         
                 <View style={[styles.layer2, { justifyContent: 'space-around' }]}>
-                    <View style={[styles.cardsSuasAcoes, {backgroundColor: '#f95e62'}]}>
+                    <View onTouchStart={createPost} style={[styles.cardsSuasAcoes, {backgroundColor: '#f95e62'}]}>
                         <FontAwesome name='share-alt' color='#fff' size={28} style={{marginBottom: 10}}/>
                         <Text style={styles.textCardSuasAcoes}>Fazer</Text>
                         <Text style={styles.textCardSuasAcoes}>publicações</Text>
                     </View>
         
-                    <View style={[styles.cardsSuasAcoes, {backgroundColor: '#f53b40'}]}>
+                    <View onTouchStart={()=> setShowComplaint(true) } style={[styles.cardsSuasAcoes, {backgroundColor: '#f53b40'}]}>
                         <MaterialCommunityIcons name='alert' color='#fff' size={28} style={{marginBottom: 10}}/>
                         <Text style={styles.textCardSuasAcoes}>Ver</Text>
                         <Text style={styles.textCardSuasAcoes}>denúncias</Text>
                     </View>
         
-                    <View style={[styles.cardsSuasAcoes, {backgroundColor: '#e33336'}]}>
+                    <View onTouchStart={MyPosts} style={[styles.cardsSuasAcoes, {backgroundColor: '#e33336'}]}>
                         <FontAwesome name='share' color='#fff' size={28} style={{marginBottom: 10}}/>
                         <Text style={styles.textCardSuasAcoes}>Ver minhas</Text>
                         <Text style={styles.textCardSuasAcoes}>publicações</Text>
@@ -100,11 +131,14 @@ const Feed = () => {
                 </View>
             </View>
         
-            <View style={styles.containerCarregarPostagem}>
-                <View style={styles.cardPostagem}></View>
-            </View>
+            {/* <View style={styles.containerCarregarPostagem}> */}
+                {posts !== undefined && posts.map !== undefined &&
+                    posts.map(post => <View style={styles.cardPostagem}><Post seen={post} /></View>)
+                }
+            {/* </View> */}
         
         </ScrollView>
+        </>
     );
 }
 
