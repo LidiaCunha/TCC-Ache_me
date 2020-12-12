@@ -34,7 +34,7 @@ const Menu = ({DisplayNone, openComplaint , navigation}) => {
         navigation.navigate('Dashboard')
     }
     const openProfile = () => {
-        navigation.navigate('profile', {id:user.user.id})
+        navigation.navigate('profile')
     }
 
     return(
