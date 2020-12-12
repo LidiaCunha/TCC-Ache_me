@@ -10,12 +10,13 @@ import {api} from "../../services/api";
 import defaultImage from "../../../src/assets/user.png";
 import * as ImagePicker from 'expo-image-picker';
 import ModalDenuncia from "../listar_denuncias";
+import { useAuth } from "../../contexts/auth";
 
 const Profile = ({route}) => {
-    const props = route.params;
+    const {user} = useAuth();
     const [key, setKey] = React.useState(0);
     const reload = React.useCallback(() => setKey((prevKey) => prevKey + 1), []);
-    return <Usuario reload={reload} key={key} props={props}/>;
+    return <Usuario reload={reload} key={key} props={user}/>;
 }
 
 const Usuario = ({reload, props}) => {  
