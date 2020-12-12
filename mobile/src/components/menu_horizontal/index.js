@@ -5,12 +5,10 @@ import { StyleSheet, Text, View, Image } from 'react-native';
 import Routes from '../../routes';
 
 // pages
-import Home from '../../pages/Dashboard';
-import Chat from '../../pages/chat';
-import Usuario from '../../pages/usuario';
-import Postagens from '../../pages/listagem_de_postagem';
-
-import ChatImg from '../../assets/menu/chat.png';
+import Chat from '../../routes/chat.routes';
+import Usuario from '../../routes/user.routes';
+import Postagens from '../../routes/posts.routes';
+import AppRoutes from '../../routes/app.routes'
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -20,7 +18,7 @@ const Menu_horizontal = () => {
         
             <Tab.Screen 
                 name="Home" 
-                component={Home} 
+                component={AppRoutes} 
                 options={{
                     tabBarLabel: "Home",
                     tabBarIcon: ({ color }) => (

@@ -3,14 +3,22 @@ import {View, ActivityIndicator} from 'react-native';
 
 import {useAuth} from '../contexts/auth';
 
-import AuthRoutes from './auth.routes.js';
+import AuthRoutes from './auth.routes';
 import AppRoutes from './app.routes';
+import TermsRoutes from './terms.routes'
+import ServiceTerms from '../pages/ServiceTerms/';
+
 
 const Routes = () => {
-  const {signed, user} = useAuth();
-  console.log(signed && user);
+  const {signed, isFirstTimeOnApp} = useAuth();
 
-  return signed ? <AppRoutes/> : <AuthRoutes/>;
+  if (signed){
+ 	if ( isFirstTimeOnApp === 'true' ){
+		return <ServiceTerms />
+	}
+	return <AppRoutes />
+  }
+  return <AuthRoutes/>;
 };
 
 export default Routes;

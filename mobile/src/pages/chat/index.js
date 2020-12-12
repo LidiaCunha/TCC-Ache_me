@@ -20,7 +20,7 @@ import AboutMessage from './dadosMensagem';
 import MessageBubble from './message';
 import ModalExcluir from './modalExcluir';
 
-function Chat({ route }) {
+function Chat({ route, navigation }) {
   // CONTEXTS
   const { user } = useAuth();
 
@@ -135,7 +135,7 @@ function Chat({ route }) {
   return (
     <Container>
     
-      <MenuVoltar>
+      <MenuVoltar onPress={()=> navigation.navigate('conversations')}>
         <Seta source={seta} />
       </MenuVoltar>
       <ContainerChat>

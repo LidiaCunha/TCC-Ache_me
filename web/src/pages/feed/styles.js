@@ -15,9 +15,19 @@ export const Menu = styled.div`
     background-color: #fff;
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: flex-start;
     padding: 20px;
     box-sizing: border-box;
+    padding-left: 60px;
+
+    >#foto{
+        margin-right: 25px;
+    }
+
+    >#usuario{
+        position: absolute;
+        right: 0;
+    }
 `
 
 export const ImagemUsuario = styled.div`
@@ -25,6 +35,7 @@ export const ImagemUsuario = styled.div`
     height: 70px;
     border-radius: 35px;
     background-color: #fff;
+    
 
     >img{
         width: 100%;
@@ -77,6 +88,10 @@ export const ContainerFiltros = styled.div`
     margin-right: 20px;
     padding: 10px;
 
+    >#filtrar{
+        align-self: flex-end;
+    }
+
     >p{
         font-size: 0.9em;
         color: #777;
@@ -99,15 +114,60 @@ export const ContainerPosts = styled.div`
 
 export const CriarPost = styled.div`
     width: 100%;
-    height: 100px;
+    height: 180px;
     background-color: #fff;
     margin-bottom: 20px;
+    padding: 20px;
+    box-sizing: border-box;
+
+    >p{
+        color: #1d1d1dcc;
+        font-family: Arial, Helvetica, sans-serif;
+        letter-spacing: 1.4px;
+        font-size: 1.1em;
+        text-align: center;
+
+        >span{
+            font-weight: bold;
+        }
+    }
+`
+
+export const Acoes = styled.div`
+    width: auto;
+    height: 70px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+
+    >#share{
+        background-color: #F95F62;
+    }
+    >#denuncia{
+        background-color: #F53B3F;
+    }
+    >#compartilhar{
+        background-color: #E33336;
+        margin-right: 40px;
+    }
+
+    >p{
+        color: #1d1d1dcc;
+        font-family: Arial, Helvetica, sans-serif;
+        letter-spacing: 1.4px;
+        font-size: 1.1em;
+        font-weight: bold;
+        margin-right: 15px;
+    }
 `
 
 export const Post = styled.div`
-    width: 80%;
+    width: 95%;
     height: auto;
+    box-sizing:border-box;
     min-height: 500px;
+    max-height: 800px;
     background-color: #fff;
     margin-bottom: 20px;
 `
@@ -180,7 +240,8 @@ export const ContainerInputs = styled.div`
     height: auto;
     column-gap: 15px;
     row-gap: 15px;
-    overflow: auto;
+    overflow-y: hidden;
+    overflow-x: auto;
     white-space: nowrap;
 
     ::-webkit-scrollbar {
@@ -288,11 +349,50 @@ export const Icone = styled.div`
     height: 50px;
     border-radius: 25px;
     background-color: #ef545e;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     >img{
-        width: 100%;
-        height: 100%;
-        border-radius: inherit;
+        width: 40px;
+        height: 40px;
+    }
+`
+
+export const IconeAcoes = styled.div`
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+    margin-right: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+    >img{
+        width: 18px;
+        height: 18px;
+    }
+`
+
+export const Botao = styled.div`
+    width: 200px;
+    height: 40px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ef545e;
+    padding: 15px;
+    box-sizing: border-box;
+    cursor: pointer;
+
+    >p{
+        color: white;
+        text-align: center;
+        font-family: Arial, Helvetica, sans-serif;
+        letter-spacing: 1.4px;
+        font-size: 1em;
     }
 `
 
@@ -390,6 +490,11 @@ export const RadioGroup = styled.form`
     margin-left: auto;
     column-gap: 20px;
     margin-top: -10px;
+
+    >#outro{
+        margin-top: 5px;
+        width: 100%;
+    }
 `;
 
 export const Linha = styled.div`
@@ -565,3 +670,13 @@ export const GridNumero = styled.div`
         letter-spacing: 1.4px;
     }
 `
+export const FilterButton = styled.input.attrs({
+    type: 'button',
+    value: 'Filtrar'
+})`
+    width:200px;
+    height:30px;
+    color:white;
+    background-color: #e2453f;
+    border-radius:2px;
+`;

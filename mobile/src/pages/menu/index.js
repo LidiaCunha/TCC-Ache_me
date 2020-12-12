@@ -4,7 +4,6 @@ import Key from '../../assets/menu/key.png';
 import Chat from '../../assets/menu/chat.png';
 import Sharing from '../../assets/menu/sharing.png';
 import Member from '../../assets/menu/group.png';
-import User from '../../assets/james.jpeg';
 import Sair from '../../assets/menu/logout.png';
 import Seta from '../../assets/setaVoltar.png';
 import defaltImage from '../../assets/user.png';
@@ -24,9 +23,9 @@ import {
 } from './styles';
 import { useAuth } from '../../contexts/auth';
 
-const Menu = ({DisplayNone, navigation}) => {
+const Menu = ({DisplayNone, openComplaint , navigation}) => {
 
-    const user = useAuth();
+    const {user, logout} = useAuth();
     
     const openPosts = () => {
         navigation.navigate('MyPosts')
@@ -35,7 +34,7 @@ const Menu = ({DisplayNone, navigation}) => {
         navigation.navigate('Dashboard')
     }
     const openProfile = () => {
-        navigation.navigate('profile', {id:user.user.id})
+        navigation.navigate('profile')
     }
 
     return(
@@ -46,7 +45,7 @@ const Menu = ({DisplayNone, navigation}) => {
         
             <ContainerPhoto>
                 <Photo source={user?.photo ? user?.photo : defaltImage}/>
-                <Name>{user.user.name}</Name>
+                <Name>{user?.user?.name}</Name>
             </ContainerPhoto>
         
             <ContainerItemMenu>
@@ -70,13 +69,13 @@ const Menu = ({DisplayNone, navigation}) => {
                     <Text>postagens</Text>
                 </ContainerItem>
 
-                <ContainerItem>
+                <ContainerItem onTouchStart={()=>{openComplaint();DisplayNone(false)}} >
                     <Icon source={Member}/>
                     <Text>denuncia</Text>
                 </ContainerItem>
             </ContainerItemMenu>
         
-            <Exit>
+            <Exit onTouchStart={() => logout()} >
                 <Icon source={Sair}/>
                 <Text>sair</Text> 
             </Exit>

@@ -1,8 +1,20 @@
 import React from "react";
 import styled from "styled-components";
 import Popup from "../../components/PopUp";
+import {api} from "../../services/api"
+import moment from 'moment';
 
 const ModalDenuncia = ({setShowDenunciations}) => {
+
+
+	const [myPosts, setMyPosts] = React.useState([]);
+
+	React.useEffect(( ) => {
+		(async()=>{
+			const res = await api.get('posts/my');
+			setMyPosts(res.data);
+		})();
+	},[]);
 
 return(
     <Popup>
@@ -12,78 +24,20 @@ return(
             </Container_btn_fechar>
     
             <Container_card_denuncia>
-                <Card_denuncia>
-                    <Btn_denuncia>1</Btn_denuncia>
-                    <Text_denuncia>Você possui denúncias na postagem do dia</Text_denuncia>
-                    <Data_denuncia>17 de novembro de 2020.</Data_denuncia>
-                </Card_denuncia>
-    
-                <Card_denuncia>
-                    <Btn_denuncia>3</Btn_denuncia>
-                    <Text_denuncia>Você possui denúncias na postagem do dia</Text_denuncia>
-                    <Data_denuncia>17 de novembro de 2020.</Data_denuncia>
-                </Card_denuncia>
-    
-                <Card_denuncia>
-                    <Btn_denuncia>4</Btn_denuncia>
-                    <Text_denuncia>Você possui denúncias na postagem do dia</Text_denuncia>
-                    <Data_denuncia>17 de novembro de 2020.</Data_denuncia>
-                </Card_denuncia>
-
-                <Card_denuncia>
-                    <Btn_denuncia>4</Btn_denuncia>
-                    <Text_denuncia>Você possui denúncias na postagem do dia</Text_denuncia>
-                    <Data_denuncia>17 de novembro de 2020.</Data_denuncia>
-                </Card_denuncia>
-
-                <Card_denuncia>
-                    <Btn_denuncia>4</Btn_denuncia>
-                    <Text_denuncia>Você possui denúncias na postagem do dia</Text_denuncia>
-                    <Data_denuncia>17 de novembro de 2020.</Data_denuncia>
-                </Card_denuncia>
-
-                <Card_denuncia>
-                    <Btn_denuncia>4</Btn_denuncia>
-                    <Text_denuncia>Você possui denúncias na postagem do dia</Text_denuncia>
-                    <Data_denuncia>17 de novembro de 2020.</Data_denuncia>
-                </Card_denuncia>
-
-                <Card_denuncia>
-                    <Btn_denuncia>4</Btn_denuncia>
-                    <Text_denuncia>Você possui denúncias na postagem do dia</Text_denuncia>
-                    <Data_denuncia>17 de novembro de 2020.</Data_denuncia>
-                </Card_denuncia>    
-
-                <Card_denuncia>
-                    <Btn_denuncia>4</Btn_denuncia>
-                    <Text_denuncia>Você possui denúncias na postagem do dia</Text_denuncia>
-                    <Data_denuncia>17 de novembro de 2020.</Data_denuncia>
-                </Card_denuncia>    
-
-                <Card_denuncia>
-                    <Btn_denuncia>4</Btn_denuncia>
-                    <Text_denuncia>Você possui denúncias na postagem do dia</Text_denuncia>
-                    <Data_denuncia>17 de novembro de 2020.</Data_denuncia>
-                </Card_denuncia>    
-
-                <Card_denuncia>
-                    <Btn_denuncia>4</Btn_denuncia>
-                    <Text_denuncia>Você possui denúncias na postagem do dia</Text_denuncia>
-                    <Data_denuncia>17 de novembro de 2020.</Data_denuncia>
-                </Card_denuncia>    
-
-                <Card_denuncia>
-                    <Btn_denuncia>4</Btn_denuncia>
-                    <Text_denuncia>Você possui denúncias na postagem do dia</Text_denuncia>
-                    <Data_denuncia>17 de novembro de 2020.</Data_denuncia>
-                </Card_denuncia>    
-
-                <Card_denuncia>
-                    <Btn_denuncia>4</Btn_denuncia>
-                    <Text_denuncia>Você possui denúncias na postagem do dia</Text_denuncia>
-                    <Data_denuncia>17 de novembro de 2020.</Data_denuncia>
-                </Card_denuncia>        
-            </Container_card_denuncia>
+		{	
+			myPosts.map && myPosts.map( post => {
+				
+				return (post.complaint !== null && post.complaint > 0) && (
+					<Card_denuncia>
+                    				<Btn_denuncia>{post.complaint}</Btn_denuncia>
+                    				<Text_denuncia>Você possui denúncias na postagem do dia</Text_denuncia>
+                    				<Data_denuncia>{moment(post.createdAt).format('LLL')}</Data_denuncia>
+               		 		</Card_denuncia>
+				);
+		
+			} )
+		}
+	    </Container_card_denuncia>
         </ContainerCard>
     </Popup>
 )}

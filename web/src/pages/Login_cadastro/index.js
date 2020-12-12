@@ -81,7 +81,8 @@ const FormRegister = (props) => {
         data.append("street", userRegister.street);
         data.append("number", userRegister.number);
         data.append("city", userRegister.city);
-        data.append("state", userRegister.state);
+	data.append("indication", indication );
+	data.append("state", userRegister.state);
         data.append("complement", userRegister.complement);
         data.append("photo", image);
 

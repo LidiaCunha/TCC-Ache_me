@@ -7,13 +7,13 @@ import Post from '../../components/Post';
 
 const style = StyleSheet.create({
   container: {
-    position:'absolute',
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    flexDirection:'row',
-    width: 100,
-//    bottom: 80,
+    // position:'absolute',
+    // display: 'flex',
+    // justifyContent: 'space-between',
+    // alignItems: 'center',
+    // flexDirection:'row',
+    // width: 100,
+    bottom: -50,
   },
 
   Text: { 
@@ -45,8 +45,8 @@ const Dashboard = ({ navigation }) => {
     navigation.navigate('profile', props);
   }
 
-  function createPost(props) {
-    navigation.navigate('createpost', props);
+  function createPost() {
+    navigation.navigate('createpost');
   }
 
   const openCreateSeen = () => {
@@ -71,14 +71,14 @@ const Dashboard = ({ navigation }) => {
 
   return (
     <>
-      <Container>
+      {/* <Container>
 
         {posts !== undefined && posts.map !== undefined &&
           posts.map(post => <Post seen={post} />)
         }
 
       </Container>
-    
+     */}
       <View style={style.container}>
         <Button title="Post" onPress={() => { createPost(userinfo) }} />
         <Button title="Chat" onPress={openConversations} />
