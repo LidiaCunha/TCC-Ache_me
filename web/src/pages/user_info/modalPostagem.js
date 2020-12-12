@@ -1,5 +1,6 @@
 import React,{useEffect, useState} from "react";
 import styled from 'styled-components';
+import cancel from "../../assets/cancel.png";
 // import { CardPosts, Aviso, Text_aviso, Name,Container_btn_fechar, Btn_fechar, Posts_Container, ContainerPosts, TextoData, TextoPost, Modal, FotoUsuario, TextoNome, AreaFotoNome, VerMais } from "./styles";
 import foto from "../../assets/Sobre/everson.jpeg";
 import Popup from "../../components/PopUp";
@@ -38,25 +39,45 @@ const ModalPostagem = ({setShowModalPost}) => {
         );
     }
 
-    function NoPosts(){
-        return (
-            <Aviso>
-                <Name>{users.name}</Name>
-                <Text_aviso>Você não possui nenhum post até o momento.</Text_aviso> 
-            </Aviso>
-        )
+    function ShowModal() {
+        if (posts.length != 0) {
+            return(
+                <Modal>
+                    <Container_btn_fechar onClick={()=>{setShowModalPost(false)}}>
+                        <Btn_fechar>X</Btn_fechar>
+                    </Container_btn_fechar>
+                    <Posts_Container>
+                        { posts?.map !== undefined && posts.map(post => <Item key={post} item={post}/>)}
+                    </Posts_Container>
+                </Modal>
+            )
+        }else{
+            return(
+                <ContainerCard style={{
+                    height: 'auto',
+                    width: 'auto',
+                    gridTemplateRows: 'auto auto',
+                }}>
+                    <Container_btn_fechar style={{justifyContent: 'flex-end'}} onClick={()=>{setShowModalPost(false)}}>
+                        <Btn_fechar>X</Btn_fechar>
+                    </Container_btn_fechar>
+
+                        <Aviso>
+                            <Name>{users.name}</Name>
+                            <Text_aviso>Você não possui nenhuma postagem até o momento.</Text_aviso>
+                            <Container_btn_fechar style={{justifyContent: 'center'}} onClick={()=>{setShowModalPost(false)}}>
+                                <Cancel src={cancel} alt={cancel}/>
+                            </Container_btn_fechar> 
+                        </Aviso>
+
+                </ContainerCard>
+            )
+        }
     }
 
     return (
         <Popup>
-            <Modal>
-                <Container_btn_fechar onClick={()=>{setShowModalPost(false)}}>
-                    <Btn_fechar>X</Btn_fechar>
-                </Container_btn_fechar>
-                <Posts_Container>
-                    { posts?.map !== undefined && posts.map(post => <Item key={post} item={post}/>)}
-                </Posts_Container>
-            </Modal>
+            <ShowModal/>
         </Popup>
     )
 }
@@ -118,13 +139,13 @@ export const Posts_Container = styled.div`
 `;
 
 export const Aviso = styled.div`
-    height: auto;
-    width: auto;
+    height: 100px;
+    width: 300px;
+    padding: 25px;
     align-self: center;
     display:flex;
     flex-direction: column;
     margin: auto;
-    background-color: green
 `;
 export const Name = styled.text`
     color: red;
@@ -140,6 +161,7 @@ export const Text_aviso = styled.text`
     font-family: arial;
     font-weight: bold;
     text-align: center;
+    margin-bottom: 10px;
 `;
 
 export const Container_btn_fechar = styled.div`
@@ -241,7 +263,7 @@ export const FotoUsuario = styled.div`
         width: 100%;
         border-radius: inherit;
     }
-`
+`;
 
 export const VerMais = styled.div`
     width: 90%;
@@ -270,4 +292,36 @@ export const VerMais = styled.div`
             color: #ef545e;
         }
     }
-`
+`;
+
+export const ContainerCard = styled.div`
+    display:grid;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    padding-bottom: 25px;
+
+    @media(max-width: 780px){
+        height: 350px;
+        width: 100%;
+        border-radius: 5px;
+    }
+    
+`;
+
+export const Cancel = styled.img`
+    height: 45px;
+    width: 45px;
+    background: #E64F4A;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    font-size: 18px;
+    font-family: arial;
+    font-weight: bold;
+    color: #fff;
+    box-sizing: border-box;
+    cursor:pointer;
+`;

@@ -2,12 +2,12 @@ import React, {Component, useEffect, useState} from 'react';
 import { View, Text, StyleSheet, TouchableWithoutFeedback, Animated, Image } from 'react-native';
 import { AntDesign, Entypo, FontAwesome, MaterialIcons} from '@expo/vector-icons';
 import feature from '../../assets/foto.png';
-import Criar_postagem from '../../pages/criar_postagem';
-// import location from '../../assets/location.png'
-import {Popup} from '../../components/popup';
-import HealthProblem from '../../pages/criar_postagem/healthProblem';
-import Characteristics from '../../pages/criar_postagem/features';
-import Location from '../../pages/criar_postagem/location';
+// import Criar_postagem from '../../pages/criar_postagem';
+// // import location from '../../assets/location.png'
+// import {Popup} from '../components/Popup';
+// import HealthProblem from '../../pages/criar_postagem/healthProblem';
+// import Characteristics from '../../pages/criar_postagem/features';
+// import Location from '../../pages/criar_postagem/location';
 
 export default function FabButton(props) {
   const animation = new Animated.Value(0);
@@ -76,12 +76,12 @@ export default function FabButton(props) {
     <View style={[styles.container, props.style]}>
       <TouchableWithoutFeedback onPress={() => { props.setLocalePU(true) }}>
         <Animated.View style={[styles.button, styles.submenu, locationStyle]}>
-          <Entypo name="location-pin" size={50} color="#fff" />
+          <Entypo name="location-pin" size={50} color="#000" />
         </Animated.View>
       </TouchableWithoutFeedback>
       <TouchableWithoutFeedback onPress={() => { props.setProblemPU(true) }} >
         <Animated.View style={[styles.button, styles.submenu, healthStyle]}>
-          <AntDesign name="heart" size={30} color="#fff" />
+          <AntDesign name="heart" size={30} color="#000" />
         </Animated.View>
       </TouchableWithoutFeedback>
       <TouchableWithoutFeedback onPress={() => { props.setFeaturesPU(true) }}>
@@ -92,7 +92,7 @@ export default function FabButton(props) {
 
       <TouchableWithoutFeedback onPress={()=>setOpen(!open)}>
         <Animated.View style={[styles.button, styles.menu, rotation]}>
-          <MaterialIcons name="more-vert" size={35} color="#fff" />
+          <MaterialIcons name="more-vert" size={35} color="#000" />
         </Animated.View>
       </TouchableWithoutFeedback>
     </View>

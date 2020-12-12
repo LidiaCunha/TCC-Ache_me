@@ -40,7 +40,7 @@ const AppRoutes = () => {
       <AppStack.Screen name="chat" component={Chat} options={{headerShown:false}}/>
       <AppStack.Screen name="seen" component={CreateSeen} />
       <AppStack.Screen name="find" component={CreateFind} />
-      <AppStack.Screen name="MyPosts" component={MyPosts} />
+      <AppStack.Screen name="MyPosts" component={MyPosts} options={{title: "Minhas Postagens"}}/>
       <AppStack.Screen name="lostedCard" component={LostedCard} />
       <AppStack.Screen name="termos" component={ServiceTerms} options={{title:"Termos de Serviço"}}/>
     </AppStack.Navigator>

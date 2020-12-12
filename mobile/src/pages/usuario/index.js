@@ -2,17 +2,26 @@ import React, {useState, useEffect} from "react";
 import camera from '../../assets/cameraCadastro.png';
 import addImage from '../../assets/image.png';
 import estrela from '../../assets/star.png';
+import grayStar from '../../assets/gray_star.png';
 import foto2 from '../../assets/fotoExemplo.jpg';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import { AntDesign, Entypo, FontAwesome, MaterialIcons} from '@expo/vector-icons';
 import { Photo, UnChanged, AreaUsuario, TextoEmail, NomeUsuario, BotaoSalvar, AreaInputs, ContainerInputs, AreaImagemMembros, InputInfos, Border, IconeFotoMembros, ImagemMembros, AreaEstrelas, TextoMenor, TextoMerito, IconeFoto, FotoCamera, AreaImagem, AreaMerito, Container, ContainerUsuario, ImagemUsuario, MenuVoltar, Seta, Estrelas, Botao, TextoBotao, AreaTexto, AreaMembros, Texto, Btn_denuncia } from "./styles";
 import { ScrollView } from "react-native";
 import {api} from "../../services/api";
 import defaultImage from "../../../src/assets/user.png";
 import * as ImagePicker from 'expo-image-picker';
-import ModalDenuncia from "../listar_denuncias";
 import { useAuth } from "../../contexts/auth";
+import {
+    Alert,
+    Modal,
+    StyleSheet,
+    Text,
+    TouchableHighlight,
+    View
+  } from "react-native";
 
-const Profile = ({route, navigation}) => {
+const Profile = ({navigation}) => {
     const {user} = useAuth();
     const [key, setKey] = React.useState(0);
     const reload = React.useCallback(() => setKey((prevKey) => prevKey + 1), []);
@@ -51,64 +60,68 @@ const Usuario = ({reload, props, navigation}) => {
     
     const [newImage, setNewImage] = useState(null);
 
-    const [showComplaint, setShowComplaint ] = useState(false); 
-
-    const getUser = async () => {
-
-        try {
-          const retorno = await api.get(`/user/${props.id}`);
-
-          const data = retorno.data;
-
-          const where_live = data.where_live;
-
-          const newForm = await {
-            name: data.name,
-            mail: data.mail,
-            CPF: data.cpf,
-            telephone: data.telephone,
-            cep: where_live.cep,
-            bairro: where_live.bairro,
-            street: where_live.street,
-            number: where_live.number,
-            city: where_live.city,
-            state: where_live.state,
-            merit: data.merit
-          }
-
-          setUser(newForm);
-
-          const res = await api.get('/users', {
-            headers: {
-              'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTYwMTM5MTE0Nn0.k5GTAvKniY9_34pNT6PBF7gvJUqMKWGn2iicYVj2SJI'
-            }
-          });
-  
-          const allUsers = res.data;
-  
-          const filtredUsers = allUsers.filter(member => member.indication === data.mail);
-  
-          setMembers(filtredUsers);  
-
-          setUsername(data.name);
-          
-          if (data.photo === "undefined"){
-            setImage(addImage);
-          }else{
-            setImage({uri:data.photo});
-          }
-
-        } catch (erro) {
-          if(erro.response){
-              return window.alert(erro.response.data.erro);
-          }
-
-          window.alert("Ops, algo deu errado, tente novamente.")
-        }
-    }
-
     useEffect(() => {
-       ( async ( ) => await getUser() )();
+
+        const getUser = async () => {
+
+            try {
+
+            const retorno = await api.get(`/user/${props?.id}`);
+
+            const data = retorno.data;
+
+            const where_live = data.where_live;
+
+            const newForm = await {
+                name: data.name,
+                mail: data.mail,
+                CPF: data.cpf,
+                telephone: data.telephone,
+                cep: where_live.cep,
+                bairro: where_live.bairro,
+                street: where_live.street,
+                number: where_live.number,
+                city: where_live.city,
+                state: where_live.state,
+                merit: data.merit
+            }
+
+            setUser(newForm);
+
+            const res = await api.get('/users', {
+                headers: {
+                'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTYwMTM5MTE0Nn0.k5GTAvKniY9_34pNT6PBF7gvJUqMKWGn2iicYVj2SJI'
+                }
+            });
+    
+            const allUsers = res.data;
+    
+            const filtredUsers = allUsers.filter(member => member.indication === data.mail);
+    
+            setMembers(filtredUsers);  
+
+            setUsername(data.name);
+            
+            if (data.photo === "undefined"){
+                setImage(addImage);
+            }else{
+                setImage({uri:data.photo});
+            }
+
+            } catch (erro) {
+            if(erro.response){
+                return window.alert(erro.response.data.erro);
+            }
+
+            window.alert("Ops, algo deu errado, tente novamente.")
+            }
+
+            const res = await api.get('/posts/my');
+        
+            setMyPosts(res.data);
+        }
+
+       getUser();
     },[]);
       
     const update = async () => {
@@ -188,6 +201,10 @@ const Usuario = ({reload, props, navigation}) => {
 
     const photoUpdate = async () => {
 
+    if (!newImage) {
+        return    
+    }
+
     const path = newImage.uri.split('/');
     const name = path[path.length - 1];
     const ext = name.split(".").pop();
@@ -250,21 +267,65 @@ const Usuario = ({reload, props, navigation}) => {
 
     const [myPosts, setMyPosts] = React.useState([]);
 
-    const Denunciation = async() => {
+    const Denunciation = async() =>{ 
 
-        const res = await api.get('/posts/my');
-
-        if (res.data) {
-            setMyPosts(res.data);
+        if (myPosts.length === 0) {
+            setModalVisible(true)
+        }else{
+            navigation.navigate('denunciations')
         }
-
-        return console.log(myPosts)
-        
-        // navigation.navigate('denunciations')
     }
+
+    const Stars = () => {
+        if (numberOfStarts().length != 0) {
+            return (
+                <>
+                    {
+                        numberOfStarts().map( () => <Estrelas source={estrela}></Estrelas> )
+                    }
+                </>
+            )
+        }else{
+            return (
+                <>
+                    <Estrelas source={grayStar}></Estrelas>
+                    <Estrelas source={grayStar}></Estrelas>
+                    <Estrelas source={grayStar}></Estrelas>
+                    <Estrelas source={grayStar}></Estrelas>
+                    <Estrelas source={grayStar}></Estrelas>
+                </>
+            )
+        }
+    }
+
+    const [modalVisible, setModalVisible] = useState(false);
 
     return(
         <Container>
+            <Modal
+                animationType="fade"
+                transparent={true}
+                visible={modalVisible}
+                onRequestClose={() => {
+                Alert.alert("Modal has been closed.");
+                }}>
+                <View style={styles.centeredView}>
+                    <View style={styles.modalView}>
+                        <Text style={styles.modalText}>{username}</Text>
+                        <Text style={styles.message}>Você não possui nenhuma denúncia até o memento.</Text>
+
+                        <TouchableHighlight
+                        style={{ ...styles.openButton, backgroundColor: "#EF5245" }}
+                        onPress={() => {
+                            setModalVisible(!modalVisible);
+                        }}
+                        >
+                            <AntDesign name="close" size={30} color="white" />
+                        </TouchableHighlight>
+                    </View>
+                </View>
+                
+            </Modal>
             <ScrollView>
                 <ContainerUsuario>
                     <AreaUsuario>
@@ -279,9 +340,7 @@ const Usuario = ({reload, props, navigation}) => {
                     </AreaUsuario>
                     <AreaMerito>
                         <AreaEstrelas>
-                            {
-                                numberOfStarts().map( () => <Estrelas source={estrela}></Estrelas> )
-                            }
+                            <Stars/>
                         </AreaEstrelas>
                         <TextoMerito>Seu mérito</TextoMerito>
                         <Btn_denuncia onPress={Denunciation} >Denúncias</Btn_denuncia>
@@ -305,7 +364,7 @@ const Usuario = ({reload, props, navigation}) => {
                                 </AreaImagemMembros>
                             );
 
-                        }) : "Indique o Ache.me" }
+                        }) : <TextoMenor>Indique o Ache.me</TextoMenor> }
                         
                         
                     </AreaMembros>
@@ -402,5 +461,61 @@ const Usuario = ({reload, props, navigation}) => {
         </Container>
     )
 }
+
+const styles = StyleSheet.create({
+    centeredView: {
+      flex: 1,
+      justifyContent: "center",
+      alignItems: "center",
+      marginTop: 50,
+      backgroundColor: '#000000AA'
+    },
+    modalView: {
+      width:'90%',
+      height: 'auto',
+      backgroundColor: "#1E1f21",
+      padding: 35,
+      alignItems: "center",
+      shadowColor: "#000",
+      shadowOffset: {
+        width: 0,
+        height: 2
+      },
+      shadowOpacity: 0.25,
+      shadowRadius: 3.84,
+      elevation: 5
+    },
+    openButton: {
+        width: 50,
+        height: 50,
+      backgroundColor: "#F194FF",
+      borderRadius: 50/2,
+      marginTop: 10,
+      padding: 10,
+      elevation: 2
+    },
+    textStyle: {
+      color: "white",
+      fontWeight: "bold",
+      textAlign: "center"
+    },
+    modalText: {
+        height: 'auto',
+        width: "100%",
+        fontSize: 18,
+        color: "#EF5245",
+        textAlign: "center",
+        padding: 5,
+    },
+    message: {
+        height: 'auto',
+        width: "100%",
+        fontSize: 16,
+        color: "#fff",
+        textAlign: "center",
+        padding: 5,
+    }
+  });
+  
 
 export default Profile;

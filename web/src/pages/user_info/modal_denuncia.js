@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Popup from "../../components/PopUp";
 import {getUsers} from "../../services/security";
+import cancel from "../../assets/cancel.png";
 import {api} from "../../services/api"
 import moment from 'moment';
 
@@ -29,34 +30,55 @@ const ModalDenuncia = ({setShowDenunciations}) => {
         );
     }
 
-    function NoDenun(){
-        return (
-            <Aviso>
-                <Name>{users.name}</Name>
-                <Text_aviso>Você não possui nenhuma denúncia até o momento.</Text_aviso> 
-            </Aviso>
-        )
+    function ShowModal() {
+        if (myPosts.length != 0) {
+            return(
+                <ContainerCard style={{
+                    height: 450,
+                    width: 700,
+                    gridTemplateRows: '55 395',
+                }}>
+                    <Container_btn_fechar style={{justifyContent: 'flex-end'}} onClick={()=>{setShowDenunciations(false)}}>
+                    <Btn_fechar>X</Btn_fechar>
+                    </Container_btn_fechar>
+            
+                    <Container_card_denuncia>
+                        {myPosts.map && myPosts.map( post => <Item key={post} item={post}/>)}
+                    </Container_card_denuncia>
+                </ContainerCard>
+            )
+        }else{
+            return(
+                <ContainerCard style={{
+                    height: 'auto',
+                    width: 'auto',
+                    gridTemplateRows: 'auto auto',
+                }}>
+                    <Container_btn_fechar style={{justifyContent: 'flex-end'}} onClick={()=>{setShowDenunciations(false)}}>
+                        <Btn_fechar>X</Btn_fechar>
+                    </Container_btn_fechar>
+
+                        <Aviso>
+                            <Name>{users.name}</Name>
+                            <Text_aviso>Você não possui nenhuma denúncia até o momento.</Text_aviso>
+                            <Container_btn_fechar style={{justifyContent: 'center'}} onClick={()=>{setShowDenunciations(false)}}>
+                                <Cancel src={cancel} alt={cancel}/>
+                            </Container_btn_fechar> 
+                        </Aviso>
+
+                </ContainerCard>
+            )
+        }
     }
 
 return(
     <Popup>
-        <ContainerCard>
-            <Container_btn_fechar onClick={()=>{setShowDenunciations(false)}}>
-                <Btn_fechar>X</Btn_fechar>
-            </Container_btn_fechar>
-    
-            <Container_card_denuncia>
-		        {myPosts.length != 0 ? myPosts.map && myPosts.map( post => <Item key={post} item={post}/>) : <NoDenun/>}
-	        </Container_card_denuncia>
-        </ContainerCard>
+        <ShowModal/>
     </Popup>
 )}
 
 export const ContainerCard = styled.div`
-    height: 450px;
-    width: 700px;
     display:grid;
-    grid-template-rows: 55px 395px;
     background: #fff;
     border-radius: 10px;
     overflow: hidden;
@@ -74,7 +96,6 @@ export const Container_btn_fechar = styled.div`
     height: auto;
     width: 100%;
     display: flex;
-    justify-content: flex-end;
     align-content: center;
     align-items: center;
     padding: 5px;
@@ -190,6 +211,7 @@ export const Data_denuncia = styled.p`
 export const Aviso = styled.div`
     height: 100px;
     width: 300px;
+    padding: 25px;
     align-self: center;
     display:flex;
     flex-direction: column;
@@ -209,6 +231,24 @@ export const Text_aviso = styled.text`
     font-family: arial;
     font-weight: bold;
     text-align: center;
+    margin-bottom: 10px;
+`;
+
+export const Cancel = styled.img`
+    height: 45px;
+    width: 45px;
+    background: #E64F4A;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    font-size: 18px;
+    font-family: arial;
+    font-weight: bold;
+    color: #fff;
+    box-sizing: border-box;
+    cursor:pointer;
 `;
 
 export default ModalDenuncia;
