@@ -19,12 +19,8 @@ const Listagem_de_postagem = ({navigation}) => {
 
     return(
         <Container>
-            
-            <ContainerBack>
-                <Back source={Seta}/>
-            </ContainerBack>
-
-            { posts !== undefined && posts.map !== undefined && 
+           
+	    { posts !== undefined && posts.map !== undefined && 
                 posts.map( post => <CardPost post={post} navigation={navigation} /> )
             }
             

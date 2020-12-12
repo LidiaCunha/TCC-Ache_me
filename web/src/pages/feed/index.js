@@ -14,6 +14,7 @@ import sair from "../../assets/opcao-de-sair.png";
 import {getUsers} from '../../services/security'
 import { api } from '../../services/api';
 import LostedPost from "../post";
+import CreatePost from "../../components/CreatePost";
 
 const Feed = () => {
     
@@ -47,6 +48,8 @@ const Feed = () => {
 
     const [posts, setPosts] = useState([]);
 
+    const [showCreatePost, setShowCreatePost] = useState(false);
+
 // HANDLERS
     const handlerRadio = (e) => {
         setRadio(e.target.id);
@@ -76,30 +79,12 @@ const Feed = () => {
 
 // EFFECTS 
     useEffect( () => {
-        (
-            async()=>{
-                const res = await api.get('/users');
-                
-                const allUsers = res.data;
-
-                const colaboradores = allUsers.map( (user) => {
-                    const membersOfthisUser = allUsers.filter( member => member.indication === user.mail )
-                    return membersOfthisUser.length && {...user, indications: membersOfthisUser };
-                })
-
-                setCollaborators(colaboradores);
-            }
-        )();
+        getAllUsers();
     },[]);
 
     useEffect( () => {
-        const getPosts = async( ) => {
-            const response = await api.get('/seen');
-            
-            setPosts(response.data)
-        }    
         getPosts()
-    }, [])
+    }, [setShowCreatePost])
 
 // FUNCTIONS
     const filter = async() => {
@@ -108,6 +93,25 @@ const Feed = () => {
         
         setPosts(res.data)
                
+    }
+
+    const getPosts = async( ) => {
+        const response = await api.get('/seen');
+        
+        setPosts(response.data)
+    }
+
+    const getAllUsers = async()=>{
+        const res = await api.get('/users');
+        
+        const allUsers = res.data;
+
+        const colaboradores = allUsers.map( (user) => {
+            const membersOfthisUser = allUsers.filter( member => member.indication === user.mail )
+            return membersOfthisUser.length && {...user, indications: membersOfthisUser };
+        })
+
+        setCollaborators(colaboradores);
     }
 
 // COMPONENTS
@@ -168,6 +172,7 @@ const Feed = () => {
 
     return (
         <Container>
+            {showCreatePost && <CreatePost showCreatePost={setShowCreatePost} user={{user}} />}
             <Menu>
                 <Icone id="foto"><img src={foto}/></Icone>
                 <Icone><img src={sair}/></Icone>
@@ -279,7 +284,7 @@ const Feed = () => {
                         <p>Aqui <span>{user.name}</span>, você pode compartilhar pessoas desaparecidas e buscá-las também fazendo assim com que a rede de apoio entre os membros Ache.me cresça.</p>
                         <Acoes>
                             <p>SUAS AÇÕES:</p>
-                            <IconeAcoes id="share"><img src={share}/></IconeAcoes>
+                            <IconeAcoes id="share" onClick={()=> setShowCreatePost(true)} ><img src={share}/></IconeAcoes>
                             <IconeAcoes id="denuncia"><img src={denuncia}/></IconeAcoes>
                             <IconeAcoes id="compartilhar"><img src={compartilhar}/></IconeAcoes>
                             <Botao><p>Minhas conversas</p></Botao>

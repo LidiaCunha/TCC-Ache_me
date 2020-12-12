@@ -2,37 +2,21 @@ import React, {useState, useEffect} from "react";
 import {StyleSheet, View, TouchableOpacity, Text, ScrollView, Image, TextInput} from "react-native";
 import Foto from "../../assets/foto.png";
 import Icon from 'react-native-vector-icons/Feather';
-import AsyncStorage from '@react-native-community/async-storage';
+import { useData } from "../../contexts/dataProvider";
 
-const ModalCaracteristicas = () => {
-    useEffect(()=> {
-        const getData = async () => {
-            try {
-              const jsonValue = await AsyncStorage.getItem('@features')
-              if (jsonValue != null) {
-                return setfeatures(JSON.parse(jsonValue));
-              }
-            } catch(e) {
-              console.log("erro!")
-            }
-        }
+const ModalCaracteristicas = ({displayNone}) => {
 
-        getData()
-    }, [])
+    const {addFeature, features, addFeatures} = useData();
 
-    const [features , setfeatures] = useState([]);
-
-    const [item, setItem] = useState({
-        feature:"",
-    });
+    const [text,setText] = useState("");
 
     const handlerfeatures = (e) => {
-        setfeatures([...features, e ]);
-        setItem({...item, feature:""});
+        addFeature(e);
+        setText("");
     };
 
-    const handlerItem = (e) => {
-        setItem({ ...item , feature : e});
+    const handleText = (e) => {
+        setText(e);
     };
 
     function Item({ item}){
@@ -49,17 +33,6 @@ const ModalCaracteristicas = () => {
         );
     }
 
-    const storeData = async () => {
-        
-        try {
-          const jsonValue = JSON.stringify(features)
-          await AsyncStorage.setItem('@features', jsonValue)
-          return window.alert("success")
-        } catch (e) {
-          window.alert("erro!")
-        }
-    }
-
     return (
         <View style={styles.ContainerModal}>
             <View style={styles.Modal}>
@@ -70,16 +43,16 @@ const ModalCaracteristicas = () => {
                     </TouchableOpacity>
                     <TextInput 
                         style={styles.TextoCaracteristicas} 
-                        placeholder="featureas De Saúde"
-                        onChangeText={handlerItem}
-                        value={item.feature}
+                        placeholder="precione next para adiconar"
                         returnKeyType = {"next"}
-                        onSubmitEditing={()=>{handlerfeatures(item.feature)}}/>
+                        onChangeText={handleText}
+                        value={text}
+                        onSubmitEditing={()=>{handlerfeatures(text)}}/>
                 </View>
                 <ScrollView style={styles.ContainerCaracteristicas} horizontal={true}>
-                    {features.map(feature => <Item key={feature} item={feature} />)}
+                    { features?.map !== undefined ? features.map(feature => <Item key={feature} item={feature} />):<></>}
                 </ScrollView>
-                <TouchableOpacity style={styles.Ok} onPress={storeData}><Text style={styles.TextoCards}>OK</Text></TouchableOpacity>
+                <TouchableOpacity style={styles.Ok} onPress={()=>displayNone(false)} ><Text style={styles.TextoCards}>OK</Text></TouchableOpacity>
             </View>
         </View>
     )
@@ -89,13 +62,16 @@ export default ModalCaracteristicas;
 
 const styles = StyleSheet.create({
     ContainerModal: {
-        height: 'auto',
+        height: '100%',
         width: '100%',
         display: 'flex',
+        backgroundColor:'#23232377',
         justifyContent: 'center',
         alignItems: 'center',
         alignContent: 'center',
         flexDirection: 'row',
+        position:"absolute",
+        zIndex:998
     },
     
     Modal: {
@@ -106,6 +82,8 @@ const styles = StyleSheet.create({
         padding: 10,
         paddingTop: 20,
         overflow: 'hidden',
+        position:"absolute",
+        zIndex:999
     },
 
     TextoModal: {

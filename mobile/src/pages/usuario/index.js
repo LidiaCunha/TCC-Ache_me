@@ -12,14 +12,19 @@ import * as ImagePicker from 'expo-image-picker';
 import ModalDenuncia from "../listar_denuncias";
 import { useAuth } from "../../contexts/auth";
 
-const Profile = ({navigation}) => {
+const Profile = ({route, navigation}) => {
     const {user} = useAuth();
     const [key, setKey] = React.useState(0);
     const reload = React.useCallback(() => setKey((prevKey) => prevKey + 1), []);
-    return <Usuario reload={reload} key={key} props={user} navigation={navigation}/>;
+    return <Usuario reload={reload} navigation={navigation} key={key} props={user}/>;
 }
 
 const Usuario = ({reload, props, navigation}) => {  
+
+    function createPost() {
+        navigation.navigate('createpost');
+      }
+    
 
     const [user, setUser] = useState({
         name: "",
@@ -39,6 +44,12 @@ const Usuario = ({reload, props, navigation}) => {
       });
     
     const [username, setUsername] = useState();
+
+    const [image, setImage] = useState(null);
+
+    const [members, setMembers] = useState([]);
+    
+    const [newImage, setNewImage] = useState(null);
 
     const [showComplaint, setShowComplaint ] = useState(false); 
 
@@ -66,6 +77,18 @@ const Usuario = ({reload, props, navigation}) => {
           }
 
           setUser(newForm);
+
+          const res = await api.get('/users', {
+            headers: {
+              'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTYwMTM5MTE0Nn0.k5GTAvKniY9_34pNT6PBF7gvJUqMKWGn2iicYVj2SJI'
+            }
+          });
+  
+          const allUsers = res.data;
+  
+          const filtredUsers = allUsers.filter(member => member.indication === data.mail);
+  
+          setMembers(filtredUsers);  
 
           setUsername(data.name);
           
@@ -145,10 +168,6 @@ const Usuario = ({reload, props, navigation}) => {
         setUser({ ...user , state : e});
     }
     
-    const [image, setImage] = useState(null);
-
-    const [newImage, setNewImage] = useState(null);
-
     const pickImage = async () => {
         let result = await ImagePicker.launchImageLibraryAsync({
           mediaTypes: ImagePicker.MediaTypeOptions.All,
@@ -206,9 +225,17 @@ const Usuario = ({reload, props, navigation}) => {
     }
     }
 
-    if (newImage) {
-        photoUpdate();
+    const getAllUsers = async()=>{
+        
     }
+
+    React.useEffect(()=>{
+        photoUpdate();
+    }, [newImage])
+
+    React.useEffect(()=>{
+        getAllUsers()
+    },[])
 
     const numberOfStarts = () => {
         let count = user.merit > 5 ? 5 : user.merit;
@@ -264,40 +291,24 @@ const Usuario = ({reload, props, navigation}) => {
                     <Texto>{props?.name}</Texto>
                     <TextoEmail>{props?.mail}</TextoEmail>
                 </AreaTexto>
-                <Botao><TextoBotao>Criar Postagem</TextoBotao></Botao>
+                <Botao onPress={createPost} ><TextoBotao>Criar Postagem</TextoBotao></Botao>
                     <AreaTexto><TextoMenor>MEMBROS INDICADOS</TextoMenor></AreaTexto>
                     <AreaMembros horizontal={true}>
-                    <AreaImagemMembros>
-                        <ImagemMembros source={foto2}></ImagemMembros>
-                        <IconeFotoMembros>
-                            <Icon name="add" size={25} color="white"/>
-                        </IconeFotoMembros>
-                    </AreaImagemMembros>
-                    <AreaImagemMembros>
-                        <ImagemMembros source={foto2}></ImagemMembros>
-                        <IconeFotoMembros>
-                            <Icon name="add" size={25} color="white"/>
-                        </IconeFotoMembros>
-                    </AreaImagemMembros>
-                    <AreaImagemMembros>
-                        <ImagemMembros source={foto2}></ImagemMembros>
-                        <IconeFotoMembros>
-                            <Icon name="add" size={25} color="white"/>
-                        </IconeFotoMembros>
-                    </AreaImagemMembros>
-                    <AreaImagemMembros>
-                        <ImagemMembros source={foto2}></ImagemMembros>
-                        <IconeFotoMembros>
-                            <Icon name="add" size={25} color="white"/>
-                        </IconeFotoMembros>
-                    </AreaImagemMembros>
-                    <AreaImagemMembros>
-                        <ImagemMembros source={foto2}></ImagemMembros>
-                        <IconeFotoMembros>
-                            <Icon name="add" size={25} color="white"/>
-                        </IconeFotoMembros>
-                    </AreaImagemMembros>
-                </AreaMembros>
+                        { members.length > 0 ? members.map( member => {
+
+                            return (
+                                <AreaImagemMembros>
+                                    <ImagemMembros source={member.photo !== 'undefined' ? {uri:member.photo} : defaultImage }></ImagemMembros>
+                                    <IconeFotoMembros>
+                                        <Icon name="add" size={25} color="white"/>
+                                    </IconeFotoMembros>
+                                </AreaImagemMembros>
+                            );
+
+                        }) : "Indique o Ache.me" }
+                        
+                        
+                    </AreaMembros>
                 <Border/>
                 <AreaTexto><TextoMenor>INFORMAÇÕES PESSOAIS</TextoMenor></AreaTexto>
                 <AreaTexto><TextoMenor>Nome</TextoMenor></AreaTexto>
