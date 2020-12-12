@@ -1,7 +1,7 @@
 import React from 'react';
 import { createMaterialBottomTabNavigator  } from '@react-navigation/material-bottom-tabs';
-import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons';
-import { StyleSheet, Text, View } from 'react-native';
+import { MaterialCommunityIcons, MaterialIcons, Entypo } from '@expo/vector-icons';
+import { StyleSheet, Text, View, Image } from 'react-native';
 import Routes from '../../routes';
 
 // pages
@@ -10,19 +10,13 @@ import Chat from '../../pages/chat';
 import Usuario from '../../pages/usuario';
 import Postagens from '../../pages/listagem_de_postagem';
 
-// testes
-import { useAuth } from '../../contexts/auth';
-
+import ChatImg from '../../assets/menu/chat.png';
 
 const Tab = createMaterialBottomTabNavigator();
 
 const Menu_horizontal = () => {
-    
-    const { user, logout } = useAuth();
-
-    
     return(
-        <Tab.Navigator initialRouteName="Home" activeColor="#fff" barStyle={{ backgroundColor: '#EF5245' }}>
+        <Tab.Navigator initialRouteName="Home" activeColor="#fff" barStyle={{ backgroundColor: '#292929' }}>
         
             <Tab.Screen 
                 name="Home" 
@@ -34,17 +28,6 @@ const Menu_horizontal = () => {
                     )
                 }} 
             />
-        
-            <Tab.Screen 
-                name="Chat" 
-                component={Chat} 
-                options={{
-                    tabBarLabel: "Chat",
-                    tabBarIcon: ({ color }) => (
-                        <MaterialCommunityIcons name="chat" color={ color } size={24}/>
-                    )
-                }} 
-            />
 
             <Tab.Screen 
                 name="Usuario" 
@@ -53,6 +36,17 @@ const Menu_horizontal = () => {
                     tabBarLabel: "Usuario",
                     tabBarIcon: ({ color }) => (
                         <MaterialIcons name="person" color={ color } size={28}/>
+                    )
+                }} 
+            />
+        
+            <Tab.Screen 
+                name="Chat" 
+                component={Chat} 
+                options={{
+                    tabBarLabel: "Chat",
+                    tabBarIcon: ({ color }) => (
+                        <Entypo name="chat" color={ color } size={23}/>
                     )
                 }} 
             />

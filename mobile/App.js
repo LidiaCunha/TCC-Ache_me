@@ -32,19 +32,21 @@ import { ConversationProvider } from './src/contexts/ConversationProvider';
 import { SocketProvider } from './src/contexts/socketProvider';
 
 import BostaDoMenu from './src/components/menu_horizontal';
-
+import Feed from './src/pages/feed';
 
 const App = () => { 
   return (
-   <NavigationContainer>
-     <AuthProvider> 
-       <SocketProvider>
-         <ConversationProvider>
-           <BostaDoMenu/>
-         </ConversationProvider>
-       </SocketProvider>
-     </AuthProvider>
-   </NavigationContainer>
+      <Feed/>
+      
+//   <NavigationContainer>
+//     <AuthProvider> 
+//       <SocketProvider>
+//         <ConversationProvider>
+//           <BostaDoMenu/>
+//         </ConversationProvider>
+//       </SocketProvider>
+//     </AuthProvider>
+//   </NavigationContainer>
  );
 }
 
