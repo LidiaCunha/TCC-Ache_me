@@ -40,7 +40,7 @@ const App = () => {
      <AuthProvider> 
        <SocketProvider>
          <ConversationProvider>
-           <BostaDoMenu/>
+           <Routes/>
          </ConversationProvider>
        </SocketProvider>
      </AuthProvider>

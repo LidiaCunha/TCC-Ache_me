@@ -2,8 +2,7 @@ import React, {Component} from 'react';
 import { View, Text, StyleSheet, TouchableWithoutFeedback, Animated, Image } from 'react-native';
 import { AntDesign, Entypo, FontAwesome, MaterialIcons} from '@expo/vector-icons';
 import feature from '../../assets/foto.png';
-import {OpenPopup} from '../../pages/criar_postagem';
-import HealthProblem from '../../pages/criar_postagem/healthProblem';
+import Criar_postagem from '../../pages/criar_postagem';
 // import location from '../../assets/location.png'
 
 export default class FabButton extends Component {
@@ -69,17 +68,17 @@ export default class FabButton extends Component {
 
     return(
       <View style={[styles.container, this.props.style]}>
-        <TouchableWithoutFeedback onPress={()=>{window.alert("test1")}}>
+        <TouchableWithoutFeedback onPress={()=>{window.alert('location')}}>
           <Animated.View style={[styles.button, styles.submenu, locationStyle]}>
             <Entypo name="location-pin" size={50} color="#fff"/>
           </Animated.View>
         </TouchableWithoutFeedback>
-        <TouchableWithoutFeedback onPress={()=>{window.alert("test2")}}>
+        <TouchableWithoutFeedback onPress={()=>{window.alert('Health')}}>
           <Animated.View style={[styles.button, styles.submenu, healthStyle]}>
             <AntDesign name="heart" size={30} color="#fff"/>
           </Animated.View>
         </TouchableWithoutFeedback>
-        <TouchableWithoutFeedback onPress={()=>{OpenPopup(<HealthProblem/>)}}>
+        <TouchableWithoutFeedback onPress={()=>{window.alert('feature')}}>
           <Animated.View style={[styles.button, styles.submenu, featureStyle]}>
             <Image source={feature} style={{width: 35, height: 35}}/>
           </Animated.View>
