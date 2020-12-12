@@ -167,9 +167,9 @@ export const Post = styled.div`
     height: auto;
     box-sizing:border-box;
     min-height: 500px;
-    max-height: 800px;
+    max-height: 1300px;
     background-color: #fff;
-    margin-bottom: 20px;
+    margin-bottom: 740px;
 `
 
 export const ContainerContrib = styled.div`
