@@ -30,12 +30,12 @@ export const ContainerTexto = styled.div`
     >h1{
         color: #1d1d1d;
         font-weight: bold;
-        font-size: 1.6em;
-        letter-spacing: 1.4;
+        font-size: 1.3em;
+        letter-spacing: 1.4px;
     }
     >p{
         color: #1d1d1d;
-        letter-spacing: 1.5px;
+        letter-spacing: 1.4px;
         font-size: 1.2em;
         font-weight: 200;
     }
@@ -97,16 +97,49 @@ export const Infos = styled.div`
     width: 100%;
     min-height: 300px;
     height: auto;
-    border-top-left-radius: 30px;
     background-color: white;
     z-index: 999;
     position: absolute;
+    overflow: auto;
+    ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+    }
+    ::-webkit-scrollbar-button {
+    width: 0px;
+    height: 0px;
+    }
+    ::-webkit-scrollbar-thumb {
+    background: #ef545e;
+    border: 0px none #ef545e;
+    border-radius: 50px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+    background: #ef545e;
+    }
+    ::-webkit-scrollbar-thumb:active {
+    background: #000000;
+    }
+    ::-webkit-scrollbar-track {
+    background: #666666;
+    border: 0px none #ef545e;
+    border-radius: 50px;
+    }
+    ::-webkit-scrollbar-track:hover {
+    background: #666666;
+    }
+    ::-webkit-scrollbar-track:active {
+    background: #333333;
+    }
+    ::-webkit-scrollbar-corner {
+    background: transparent;
+    }
 
     >p{
         color: #1d1d1d;
         font-weight: 300;
         font-size: 1.1em;
-        letter-spacing: 1.5px;
+        letter-spacing: 1.4px;
         width: 90%;
         text-align: justify;
         margin-left: auto;
@@ -116,8 +149,8 @@ export const Infos = styled.div`
     >h1{
         color: #1d1d1d;
         font-weight: bold;
-        font-size: 1.4em;
-        letter-spacing: 1.4;
+        font-size: 1.1em;
+        letter-spacing: 1.4px;
         width: 90%;
         margin-left: auto;
         margin-right: auto;
@@ -136,16 +169,16 @@ export const ContainerInfos = styled.div`
     padding: 5px;
 
     >img{
-        width: 25px;
-        height: 25px;
-        margin-right: 10px;
+        width: 15px;
+        height: 15px;
+        margin-right: 4.5px;
     }
     >p{
         color: #1d1d1d;
-        letter-spacing: 1.5px;
-        margin-right: 20px;
-        font-size: 1.2em;
-        font-weight: 200;
+        letter-spacing: 1.4px;
+        margin-right: 10px;
+        font-size: 0.89em;
+        font-weight: 500;
     }
 `
 
@@ -153,7 +186,7 @@ export const Linha = styled.div`
     width: 1.2px;
     height: 80%;
     background-color: #1d1d1d;
-    margin-right: 30px;
+    margin-right: 10px;
 `
 
 export const ContainerCardFiltros = styled.div`
@@ -184,7 +217,7 @@ export const ContainerCardFiltros = styled.div`
 
 export const CardFiltros = styled.div`
     width: auto;
-    min-height: 50px;
+    min-height: 30px;
     height: auto;
     padding: 15px;
     margin-bottom: 15px;
@@ -197,14 +230,14 @@ export const CardFiltros = styled.div`
         color: #fafafa;
         text-align: center;
         font-size: 1.2em;
-        letter-spacing: 1.5px;
+        letter-spacing: 1.4px;
         font-weight: bold;
     }
 `
 
 export const CardOpcoes = styled.div`
     width: 200px;
-    min-height: 30px;
+    min-height: 20px;
     height: auto;
     padding: 15px;
     margin-bottom: 15px;
@@ -219,7 +252,7 @@ export const CardOpcoes = styled.div`
         color: #fafafa;
         text-align: center;
         font-size: 1.2em;
-        letter-spacing: 1.5px;
+        letter-spacing: 1.4px;
         font-weight: bold;
     }
 
