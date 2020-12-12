@@ -12,7 +12,7 @@ export const Container = styled.div`
 `;
 
 export const Header = styled.div`
-    height: 800px;
+    height: 600px;
     width: 100%;
     display: flex;
     justify-content: center;

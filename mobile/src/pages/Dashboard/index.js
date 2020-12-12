@@ -5,7 +5,6 @@ import { api } from '../../services/api';
 import { Container, ContainerBack, Back } from '../listagem_de_postagem/styles';
 import Post from '../../components/Post';
 
-
 const style = StyleSheet.create({
   container: {
     position:'absolute',
@@ -13,7 +12,8 @@ const style = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     flexDirection:'row',
-    width:100
+    width: 100,
+//    bottom: 80,
   },
 
   Text: { 
@@ -32,7 +32,6 @@ const Dashboard = ({ navigation }) => {
       userinfo = user.user;
     }
   }
-
 
   function handlerLogout() {
     logout();
@@ -58,7 +57,6 @@ const Dashboard = ({ navigation }) => {
     navigation.navigate('find')
   }
 
-
   const [posts, setPosts] = useState([]);
 
   const getPosts = async( ) => {
@@ -82,12 +80,12 @@ const Dashboard = ({ navigation }) => {
       </Container>
     
       <View style={style.container}>
-        <Button title="AddPost" onPress={() => { createPost(userinfo) }} />
+        <Button title="Post" onPress={() => { createPost(userinfo) }} />
         <Button title="Chat" onPress={openConversations} />
-        <Button title="AddSeen" onPress={openCreateSeen} />
-        <Button title="AddFind" onPress={openCreateFind} />
-        <Button title="Profile" onPress={() => { openProfile(userinfo) }} />
-        <Button title="TERMOS" onPress={() => { navigation.navigate('termos') }} />
+        <Button title="Seen" onPress={openCreateSeen} />
+        <Button title="Find" onPress={openCreateFind} />
+        <Button title="User" onPress={() => { openProfile(userinfo) }} />
+        <Button title="Terms" onPress={() => { navigation.navigate('termos') }} />
         <Button title="Logout" onPress={handlerLogout} />
       </View>
 

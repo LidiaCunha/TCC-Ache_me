@@ -46,10 +46,9 @@ export const Data = styled.Text`
 export const ContainerImg = styled.Image`
     height: 240px;
     width: 100%;
-    background: chartreuse;
+    background: #EF5245;
     border-top-right-radius: 20px;
     border-bottom-left-radius: 20px;
-    
 `;
 export const ContainerBasicInfo = styled.View`
     height: 50px;

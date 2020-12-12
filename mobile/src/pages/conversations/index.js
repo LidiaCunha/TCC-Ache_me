@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {ScrollView, StyleSheet, Animated, TouchableOpacity} from 'react-native';
 import Swipeable from 'react-native-gesture-handler/Swipeable';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {api} from '../../services/api';
 import moment from 'moment';
 import MenuLateral from '../menu/index';
+import ModalDenuncia from '../listar_denuncias';
 // IMAGES
 import menu from '../../assets/menu.png';
 import lupa from '../../assets/lupa.png';
@@ -85,7 +86,7 @@ function Conversations({ navigation }) {
   }
 
   const [showSideMenu, setShowSideMenu] = useState(false);
-
+  const [ showComplaint, setShowComplaint ] = React.useState(false);
   const [contacts,setContacts] = React.useState([]);
   
   React.useEffect( ( ) => {
@@ -95,9 +96,14 @@ function Conversations({ navigation }) {
     })();
   },[]);
 
+  const openComplaint = () => {
+    setShowComplaint(true)
+  } 
+
   return (
     <>
-    { showSideMenu && <MenuLateral  navigation={navigation} DisplayNone={setShowSideMenu} /> }
+    { showComplaint  &&  <ModalDenuncia displayNone={setShowComplaint} />  }
+    { showSideMenu && <MenuLateral  navigation={navigation}  openComplaint={openComplaint} DisplayNone={setShowSideMenu} /> }
     <Container>
       
       <Menu navigation={navigation} />

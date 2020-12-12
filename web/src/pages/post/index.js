@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect, useState} from 'react';
 
 import { Container, ContainerUsuario, CardOpcoes, FotoDesaparecido, FotoUsuario, Infos, ContainerInfos, Linha, ContainerCardFiltros, CardFiltros, DivBotoesOpcoes, ContainerBotoes, BotoesOpcoes, ContainerTexto, InputNome } from './styles';
 import Foto from "../../assets/Sobre/iuri.jpeg";
@@ -10,65 +10,63 @@ import data from "../../assets/Post/calendario.png";
 import denunciar from "../../assets/Post/atencao.png";
 import encontrado from "../../assets/Post/gps.png";
 import visto from "../../assets/Post/visibility.png";
- 
+import photo from '../../assets/userTest.png';
+import moment from 'moment';
+import {api} from '../../services/api';
 
-function Post() {
+function Post({post}) {
+
+  const [Allpost, setAllPost] = useState([]);
+
+  useEffect(()=>{
+    (async()=>{
+        const res = await api.get(`/posts/${post.LostedThatWasSeen.id}`);
+
+        setAllPost(res.data)
+    })();
+  },[])
+
+  const genres = ['Masculino', 'Feminino' , 'Não Binario' , 'Não Binario' , 'Não Binario' , 'Não Binario'];
+  console.log(Allpost)
   return(
       <Container>
         <ContainerUsuario>
           <FotoUsuario>
-            <img src={Foto}></img>
+            <img src={post.LostedThatWasSeen.postCreator.photo !== 'undefined' ? post.LostedThatWasSeen.postCreator.photo : photo } />
           </FotoUsuario>
           <ContainerTexto>
-            <h1>Iuri Oliveira Carvalho Sampaio</h1>
-            <p>6 de nov. de 2020</p>
+            <h1>{post.LostedThatWasSeen.postCreator.name}</h1>
+            <p>{moment(post.Seen.createdAt).format('LLL')}</p>
           </ContainerTexto>
         </ContainerUsuario>
         <FotoDesaparecido>
-          <img src={Desaparecido}></img>
+          <img src={post.LostedThatWasSeen.photo} />
         </FotoDesaparecido>
         <Infos>
           <ContainerInfos>
             <img src={horario}/>
-            <p>9:53</p>
+            <p>{moment(post.Seen.seen_at).format('HH:mm')}</p>
             <Linha/>
             <img src={data}/>
-            <p>6 de nov. de 2020</p>
+            <p>{moment(post.Seen.seen_at).format('LL')}</p>
             <Linha/>
             <img src={local}/>
-            <p>SP</p>
+            <p>{post.Seen.address.bairro}</p>
             <Linha/>
             <img src={genero}/>
-            <p>Masculino</p>
+            <p>{genres[post.LostedThatWasSeen.genre_id]}</p>
           </ContainerInfos>
-          <h1>TIMOTHEÉ CHALAMET</h1>
-          <InputNome placeholder="Digite o nome do desaparecido..."/>
-          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been 
-            the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type 
-            and scrambled it to make a type specimen book. 
-             It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release 
-             of Letraset sheets containing Lorem Ipsum passages, and more recently
-             with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-          <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et 
-          dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut 
-          aliquip ex ea commodo consequat. 
-          Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-          </p>
+          <h1>{post.LostedThatWasSeen.name}</h1>
+          {/* <InputNome placeholder="Digite o nome do desaparecido..."/> */}
+          <p>{post.LostedThatWasSeen.description}</p>
 
           <h1>CARACTERÍSTICAS FÍSICAS</h1>
           <ContainerCardFiltros>
-            <CardFiltros className="um"><p>KJDKSJDKDJDKJSKDJDKJFKF</p></CardFiltros>
-            <CardFiltros className="dois"><p>Alta</p></CardFiltros>
-            <CardFiltros className="tres"><p>Pele morena</p></CardFiltros>
-            <CardFiltros className="um"><p>Vesga</p></CardFiltros>
-            <CardFiltros className="dois"><p>Vitiligo</p></CardFiltros>
+            {Allpost?.features?.map( feature => <CardFiltros className="um"><p>{feature.feature}</p></CardFiltros> )}
           </ContainerCardFiltros>
           <h1>PROBLEMAS DE SAÚDE</h1>
           <ContainerCardFiltros>
-            <CardFiltros className="um"><p>Problema respiratório</p></CardFiltros>
-            <CardFiltros className="dois"><p>Tuberculose</p></CardFiltros>
-            <CardFiltros className="tres"><p>Escoliose</p></CardFiltros>
+            {Allpost?.HealthProblem?.map( problem => <CardFiltros className="um"><p>{problem.problem}</p></CardFiltros> )}
           </ContainerCardFiltros>
           <ContainerBotoes>
             <DivBotoesOpcoes className="botoes_ocultos">

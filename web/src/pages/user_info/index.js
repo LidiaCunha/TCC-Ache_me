@@ -1,42 +1,41 @@
-import React, { useState, useEffect, useRef } from 'react';
+ import React, { useState, useEffect, useRef } from 'react';
 
-import {
-  Text, 
-  Container, 
-  Header, 
-  Home, 
-  Main,
-  Section,
+ import {
+   Text, 
+   Container, 
+   Header, 
+   Home, 
+   Main,
+   Section,
     
-//  Info,
-  Button,
-  ButtonPost,
-  ButtonDenuncia,
+   Info,
+   Button,
+   ButtonPost,
+   ButtonDenuncia,
 
-  // Section 1 
-  BasicInfos, 
-  PhotoProfile, 
-  Merit,
-  Photo,
-  NewPhoto,
-  Login,
-  Name,
+   // Section 1 
+   BasicInfos, 
+   PhotoProfile, 
+   Merit,
+   Photo,
+   NewPhoto,
+   Login,
+   Name,
 
-  // Section 2
-  Title,
-  AdvancedInfos,
-  Profile,
-  ShareIndicated,
-  Input,
-  Share,
-  Indicated,
-  Members,
-  Member,
-  MemberName,
+//   // Section 2
+   Title,
+   AdvancedInfos,
+   Profile,
+   ShareIndicated,
+   Input,
+   Share,
+   Indicated,
+   Members,
+   Member,
+   MemberName,
     
-  //Everson
-  TitleMember,
-      
+//   //Everson
+   TitleMember,
       
 } from './styles';
 
@@ -54,14 +53,27 @@ import moment from 'moment';
 import {api} from "../../services/api";
 import {getUsers} from "../../services/security";
 
-const UserInfo = () => {
 
+
+
+const UserInfo = () => {
+  function MemberItem({member}) {
+      return( 
+        <Member>
+          <img src={ member.photo && member.photo !== 'undefined' ? member.photo : photo } alt="membro"/>
+          <MemberName>{member.name}  <span>{member.mail}</span></MemberName>
+        </Member>
+      );
+  };
   const [loading, setLoading] = useState(false);
+
+  const [members , setMembers] = useState([]);
 
   const [user, setUser] = useState({
     name: "",
     mail: "",
     CPF: "",
+    merit:"",
     telephone: "",
     password : "",
     newPassword : "",
@@ -79,135 +91,147 @@ const UserInfo = () => {
   useEffect(() => {
     const getUser = async () => {
 
-        try {
-          const retorno = await api.get(`/user/${users.id}`);
+      try {
+        const retorno = await api.get(`/user/${users.id}`);
 
-          const data = retorno.data;
-          
-          const where_live = data.where_live;
+        const data = retorno.data;
 
-          const newForm = await {
-            name: data.name,
-            mail: data.mail,
-            CPF: data.cpf,
-            telephone: data.telephone,
-            cep: where_live.cep,
-            bairro: where_live.bairro,
-            street: where_live.street,
-            number: where_live.number,
-            city: where_live.city,
-            state: where_live.state,
+        const where_live = data.where_live;
 
-          }
-
-          setUser(newForm);
-
-          if (data.photo === "undefined"){
-            setImage(addImage);
-          }else{
-            setImage(data.photo);
-          }
-
-        } catch (erro) {
-          if(erro.response){
-              return window.alert(erro.response.data.erro);
-          }
-
-          window.alert("Ops, algo deu errado, tente novamente.")
+        const newForm = {
+          name: data.name,
+          mail: data.mail,
+          CPF: data.cpf,
+          telephone: data.telephone,
+          cep: where_live.cep,
+          bairro: where_live.bairro,
+          street: where_live.street,
+          number: where_live.number,
+          city: where_live.city,
+          state: where_live.state,
+          merit: data.merit
         }
+
+        const res = await api.get('/users', {
+          headers: {
+            'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTYwMTM5MTE0Nn0.k5GTAvKniY9_34pNT6PBF7gvJUqMKWGn2iicYVj2SJI'
+          }
+        });
+
+        const allUsers = res.data;
+
+        const filtredUsers = allUsers.filter(member => member.indication === users.mail);
+
+        setMembers(filtredUsers);
+
+        setUser(newForm);
+
+        if (data.photo === "undefined") {
+          setImage(addImage);
+        } else {
+          setImage(data.photo);
+        }
+
+      } catch (erro) {
+        if (erro.response) {
+          return window.alert(erro.response.data.erro);
+        }
+
+        window.alert("Ops, algo deu errado, tente novamente.")
+      }
     }
 
    getUser();
-  },[]);
-  
+  },[ ])
+ 
+
   const update = async () => {
 
-    setLoading(true);
+     setLoading(true);
 
-    try {
-        const retorno = await api.put(`/editUsers/${users.id}`, user);
+     try {
+         const retorno = await api.put(`/editUsers/${users.id}`, user);
         
-        if (retorno.status === 201) {
-            setLoading(false);
+         if (retorno.status === 201) {
+             setLoading(false);
 
-            window.alert(retorno.data.sucess);
+             window.alert(retorno.data.sucess);
 
-            return document.location.reload();
-        };
+             return document.location.reload();
+         };
 
-    } catch (erro) {
+     } catch (erro) {
 
-      setLoading(false);
+       setLoading(false);
 
-        if(erro.response){
-            return window.alert(erro.response.data.erro);
-        }
+         if(erro.response){
+             return window.alert(erro.response.data.erro);
+         }
         
-        window.alert("Ops, algo deu errado, tente novamente mais tarde.");
-    }
+         window.alert("Ops, algo deu errado, tente novamente mais tarde.");
+     }
 
-  };
+   };
 
-  const handlerInput = (e) => {
-    setUser({...user, [e.target.id]: e.target.value});
-  };
+   const handlerInput = (e) => {
+     setUser({...user, [e.target.id]: e.target.value});
+   };
 
-  const imgRef = useRef();
+   const imgRef = useRef();
 
-  const [showModalPost, setShowModalPost] = useState(false);
+   const [showModalPost, setShowModalPost] = useState(false);
   
-  const [showCreatePost, setShowCreatePost] = useState(false);
+   const [showCreatePost, setShowCreatePost] = useState(false);
 
-  const [showDenunciations, setShowDenunciations] = useState(false);
+   const [showDenunciations, setShowDenunciations] = useState(false);
 
-  const [image, setImage] = useState(null);
+   const [image, setImage] = useState(null);
 
-  const [newImage, setNewImage] = useState(null);
+   const [newImage, setNewImage] = useState(null);
 
-  const [lastPost, setLastPost] = useState({});
+   const [lastPost, setLastPost] = useState({});
 
-  const photoUpdate = async () => {
+   const photoUpdate = async () => {
 
-    setLoading(true);
+     setLoading(true);
 
-    const data = new FormData();
+     const data = new FormData();
 
-    data.append("photo", newImage);
+     data.append("photo", newImage);
 
-    try {
-      const retorno = await api.put(`/editPhoto/${users.id}`, data, {
-        headers: {
-          "Content-type": `multipart/form-data`,
-        },
-      });
+     try {
+       const retorno = await api.put(`/editPhoto/${users.id}`, data, {
+         headers: {
+           "Content-type": `multipart/form-data`,
+         },
+       });
       
-      if (retorno.status === 201) {
-          setLoading(false);
+       if (retorno.status === 201) {
+           setLoading(false);
 
-          window.alert(retorno.data.sucess);
+           window.alert(retorno.data.sucess);
 
-          return document.location.reload();
-      };
+           return document.location.reload();
+       };
 
-    } catch (erro) {
-      setLoading(false);
+     } catch (erro) {
+       setLoading(false);
 
-      if(erro.response){
-          return window.alert(erro.response.data.erro);
-      }
-      
+       if(erro.response){
+           return window.alert(erro.response.data.erro);
+       }
       window.alert("Ops, algo deu errado, tente novamente mais tarde.");
     }
   }
-
+  
   useEffect(()=>{
     (async ( ) => {
       const res = await api.get('/posts/my/last');
       setLastPost(res.data)
     })();
-  },[])
+  },[ ])
   
-  const handlerImage = (e) => {
+const handlerImage = (e) => {
     if (e.target.files[0]) {
         imgRef.current.src = URL.createObjectURL(e.target.files[0])
         imgRef.current.style.height = "100%"
@@ -221,12 +245,9 @@ const UserInfo = () => {
     }
   };
 
-  const member = (
-    <Member>
-      <img src={photo} alt="membro"/>
-      <MemberName>Member Name <span>member@gmail.com</span></MemberName>
-    </Member>
-  );
+  const calcStarts = ( merit ) => {
+    return merit%5;
+  };
 
   return (
     <Container>
@@ -258,11 +279,11 @@ const UserInfo = () => {
               </Login>
             </PhotoProfile>
             <Merit>
-              <Text>Seu mérito: { !user.merit || user.merit == null ? "0 (indique pessoas para aumentar seu mérito)" : user.merit} </Text>
+              <Text>Seu mérito: { !user.merit || user.merit == null ? "0 (indique pessoas para aumentar seu mérito)" :  calcStarts(user.merit)} </Text>
               <Text>Data da última publicação: {moment(lastPost.createdAt).format('DD/MM/YYYY')}</Text>
               <Text>Hora da última publicação: {moment(lastPost.createdAt).format('HH:mm')}</Text>
               <ButtonDenuncia onClick={()=>{setShowDenunciations(true)}}>Denúncias</ButtonDenuncia>
-              <ButtonPost onClick={()=>{setShowModalPost(true)}} >Postagens</ButtonPost>
+              <ButtonPost onClick={()=>{setShowModalPost(true)}}>Postagens</ButtonPost>
             </Merit>
           </BasicInfos>
         </Section>
@@ -336,12 +357,8 @@ const UserInfo = () => {
               <Indicated>
                 <TitleMember>MEMBROS INDICADOS</TitleMember>
                 <Members>
-                  {member}
-                  {member}
-                  {member}
-                  {member}
-                  {member}
-                </Members>
+            			{ members && members.length > 0 ? members.map( user => <MemberItem member={user} /> ) : "Você ainda não indicou o app para ninguem" }
+	  	          </Members>
               </Indicated>
             </ShareIndicated>
           </AdvancedInfos>

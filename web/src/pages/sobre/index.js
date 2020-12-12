@@ -13,7 +13,7 @@ import {
     ContainerTextMenor,
     ContainerTextMaior,
     ContainerInfo, 
-    ContainerBtn, 
+    ContainerBtnValores, 
     ContainerCards, 
     Cards, 
     CardContent, 
@@ -96,9 +96,9 @@ import {
                         <p>Aqui você pode conhecer mais sobre a empresa, nossa equipe e propósitos.<br/>
                         Fazemos parte de iniciativas do bem e esperamos que você também faça.</p>
                     </ContainerTextMenor>
-                    <ContainerBtn>
-                        <Link to="valores" offset={-180} smooth={true} duration={500}>Conhecer Valores</Link>
-                    </ContainerBtn>
+                    <ContainerBtnValores>
+                        <Link style={{ color: '#E64F4A'}} to="valores" offset={-180} smooth={true} duration={500}>Conhecer Valores</Link>
+                    </ContainerBtnValores>
                     </ContainerMenuTexto>
                 </ContainerInfo>
             </Container>

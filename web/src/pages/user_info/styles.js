@@ -180,12 +180,8 @@ export const Merit = styled.div`
 
 @media(max-width: 780px){
     width: 100%;
-<<<<<<< HEAD
-    height: auto;
-=======
     height: 500px;
 
->>>>>>> 9a7b05df341183f253cf4fbf9dd2913f875b7eab
     padding: 15px 15px;
 }
 `;

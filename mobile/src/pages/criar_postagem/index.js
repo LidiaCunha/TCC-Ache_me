@@ -36,8 +36,7 @@ import RadioForm, {RadioButton, RadioButtonInput, RadioButtonLabel} from 'react-
 import defaltImage from '../../assets/image.png';
 import addImage from '../../assets/newImage.png';
 import * as ImagePicker from 'expo-image-picker';
-
-import {Popup} from '../../components/Popup/Popup';
+import {Popup} from '../../components/popup/Popup';
 import FabButton from '../../components/fabButton/FabButton';
 import HealthProblem from './healthProblem';
 import Characteristics from './features';
@@ -367,11 +366,11 @@ const Criar_postagem = ({route}) => {
                 </BtnPublicar>
             </ContainerBtnPublicar>
 
-            <Popup 
+	    {/*            <Popup 
                 title="Problemas de Saúde"
                 content={popup}
                 ref={(target) => PopupRef = target}
-                onTouchOutside = {onClosePopup}/>
+                onTouchOutside = {onClosePopup}/> */}
         </Container>
     );
 }

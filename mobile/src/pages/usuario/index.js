@@ -9,6 +9,7 @@ import { ScrollView } from "react-native";
 import {api} from "../../services/api";
 import defaultImage from "../../../src/assets/user.png";
 import * as ImagePicker from 'expo-image-picker';
+import ModalDenuncia from "../listar_denuncias";
 
 const Profile = ({route}) => {
     const props = route.params;
@@ -33,9 +34,12 @@ const Usuario = ({reload, props}) => {
         number: "",
         city:"",
         state:"",
+        merit:0
       });
     
     const [username, setUsername] = useState();
+
+    const [showComplaint, setShowComplaint ] = useState(false); 
 
     const getUser = async () => {
 
@@ -57,6 +61,7 @@ const Usuario = ({reload, props}) => {
             number: where_live.number,
             city: where_live.city,
             state: where_live.state,
+            merit: data.merit
           }
 
           setUser(newForm);
@@ -204,7 +209,20 @@ const Usuario = ({reload, props}) => {
         photoUpdate();
     }
 
+    const numberOfStarts = () => {
+        let count = user.merit > 5 ? 5 : user.merit;
+        const arr = []
+        while(count > 0){
+            arr.push('n')
+
+            count--;
+        }
+        return arr;
+    }
+
     return(
+        <>
+        {showComplaint && <ModalDenuncia  displayNone={setShowComplaint}  /> }
         <Container>
             <ScrollView>
                 <ContainerUsuario>
@@ -220,16 +238,16 @@ const Usuario = ({reload, props}) => {
                     </AreaUsuario>
                     <AreaMerito>
                         <AreaEstrelas>
-                            <Estrelas source={estrela}></Estrelas>
-                            <Estrelas source={estrela}></Estrelas>
-                            <Estrelas source={estrela}></Estrelas>
+                            {
+                                numberOfStarts().map( () => <Estrelas source={estrela}></Estrelas> )
+                            }
                         </AreaEstrelas>
                         <TextoMerito>Seu mérito</TextoMerito>
-                        <Btn_denuncia>Denúncias</Btn_denuncia>
+                        <Btn_denuncia onPress={()=> setShowComplaint(true) } >Denúncias</Btn_denuncia>
                     </AreaMerito>
                 </ContainerUsuario>
                 <AreaTexto>
-                    <Texto>{props.name}</Texto>
+                    <Texto>{props?.name}</Texto>
                     <TextoEmail>{props?.mail}</TextoEmail>
                 </AreaTexto>
                 <Botao><TextoBotao>Criar Postagem</TextoBotao></Botao>
@@ -357,6 +375,7 @@ const Usuario = ({reload, props}) => {
                 <BotaoSalvar onPress={update}><TextoBotao>Salvar</TextoBotao></BotaoSalvar>
             </ScrollView>
         </Container>
+        </>
     )
 }
 
