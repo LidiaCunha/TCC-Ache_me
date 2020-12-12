@@ -1,20 +1,42 @@
 import React from "react";
 import styled from "styled-components";
 import Popup from "../../components/PopUp";
+import {getUsers} from "../../services/security";
 import {api} from "../../services/api"
 import moment from 'moment';
 
 const ModalDenuncia = ({setShowDenunciations}) => {
 
-
-	const [myPosts, setMyPosts] = React.useState([]);
+    const [myPosts, setMyPosts] = React.useState([]);
+    
+    const users = getUsers();
 
 	React.useEffect(( ) => {
 		(async()=>{
 			const res = await api.get('posts/my');
 			setMyPosts(res.data);
 		})();
-	},[]);
+    },[]);
+    
+    function Item({ post}){
+
+        return (post.complaint !== null && post.complaint > 0) && (
+            <Card_denuncia>
+                <Btn_denuncia>{post.complaint}</Btn_denuncia>
+                <Text_denuncia>Você possui denúncias na postagem do dia</Text_denuncia>
+                <Data_denuncia>{moment(post.createdAt).format('LLL')}</Data_denuncia>
+            </Card_denuncia>
+        );
+    }
+
+    function NoDenun(){
+        return (
+            <Aviso>
+                <Name>{users.name}</Name>
+                <Text_aviso>Você não possui nenhuma denúncia até o momento.</Text_aviso> 
+            </Aviso>
+        )
+    }
 
 return(
     <Popup>
@@ -24,20 +46,8 @@ return(
             </Container_btn_fechar>
     
             <Container_card_denuncia>
-		{	
-			myPosts.map && myPosts.map( post => {
-				
-				return (post.complaint !== null && post.complaint > 0) && (
-					<Card_denuncia>
-                    				<Btn_denuncia>{post.complaint}</Btn_denuncia>
-                    				<Text_denuncia>Você possui denúncias na postagem do dia</Text_denuncia>
-                    				<Data_denuncia>{moment(post.createdAt).format('LLL')}</Data_denuncia>
-               		 		</Card_denuncia>
-				);
-		
-			} )
-		}
-	    </Container_card_denuncia>
+		        {myPosts.length != 0 ? myPosts.map && myPosts.map( post => <Item key={post} item={post}/>) : <NoDenun/>}
+	        </Container_card_denuncia>
         </ContainerCard>
     </Popup>
 )}
@@ -97,6 +107,7 @@ export const Container_card_denuncia = styled.div`
     grid-template-columns: auto auto auto auto;
     padding: 20px;
     overflow:auto;
+    justify-content: center;
 
     @media(max-width: 780px){
         padding: 15px;
@@ -146,7 +157,7 @@ export const Btn_denuncia = styled.p`
     font-family: arial;
     font-weight: bold;
     color: #fff;
-    paddin-top: 5px;
+    padding-top: 5px;
     box-sizing: border-box;
     margin-bottom: 20px;
 `;
@@ -173,6 +184,30 @@ export const Data_denuncia = styled.p`
     font-family: arial;
     font-weight: bold;
     color: #292929;
+    text-align: center;
+`;
+
+export const Aviso = styled.div`
+    height: 100px;
+    width: 300px;
+    align-self: center;
+    display:flex;
+    flex-direction: column;
+    margin: auto;
+`;
+export const Name = styled.text`
+    color: red;
+    font-size: 18px;
+    font-family: arial;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 10px;
+`;
+
+export const Text_aviso = styled.text`
+    font-size: 16px;
+    font-family: arial;
+    font-weight: bold;
     text-align: center;
 `;
 

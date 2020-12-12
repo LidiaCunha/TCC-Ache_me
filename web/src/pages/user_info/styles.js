@@ -517,7 +517,16 @@ export const MemberName = styled.h1`
 export const Modal = styled.div`
     width: 1000px;
     height: 500px;
-    overflow-y: scroll;
+    border-radius: 20px;
+    background-color: #efefef;
+    display: grid;
+    grid-template-rows: 15% 85%;
+    padding: 10px;    
+`;
+
+export const Posts_Container = styled.div`
+
+    overflow-y: auto;
     overflow-x: hidden;
     background-color: #efefef;
     display: grid;
@@ -557,6 +566,34 @@ export const Modal = styled.div`
     ::-webkit-scrollbar-corner {
     background: transparent;
     }
+`;
+
+export const Container_btn_fechar = styled.div`
+    height: auto;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-content: center;
+    align-items: center;
+    padding: 5px;
+    box-sizing: border-box;
+`;
+
+export const Btn_fechar = styled.p`
+    height: 45px;
+    width: 45px;
+    background: #E64F4A;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    font-size: 18px;
+    font-family: arial;
+    font-weight: bold;
+    color: #fff;
+    box-sizing: border-box;
+    cursor:pointer;
 `;
 
 export const ContainerPosts = styled.div`

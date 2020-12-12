@@ -12,14 +12,14 @@ import * as ImagePicker from 'expo-image-picker';
 import ModalDenuncia from "../listar_denuncias";
 import { useAuth } from "../../contexts/auth";
 
-const Profile = ({route}) => {
+const Profile = ({navigation}) => {
     const {user} = useAuth();
     const [key, setKey] = React.useState(0);
     const reload = React.useCallback(() => setKey((prevKey) => prevKey + 1), []);
-    return <Usuario reload={reload} key={key} props={user}/>;
+    return <Usuario reload={reload} key={key} props={user} navigation={navigation}/>;
 }
 
-const Usuario = ({reload, props}) => {  
+const Usuario = ({reload, props, navigation}) => {  
 
     const [user, setUser] = useState({
         name: "",
@@ -221,9 +221,22 @@ const Usuario = ({reload, props}) => {
         return arr;
     }
 
+    const [myPosts, setMyPosts] = React.useState([]);
+
+    const Denunciation = async() => {
+
+        const res = await api.get('/posts/my');
+
+        if (res.data) {
+            setMyPosts(res.data);
+        }
+
+        return console.log(myPosts)
+        
+        // navigation.navigate('denunciations')
+    }
+
     return(
-        <>
-        {showComplaint && <ModalDenuncia  displayNone={setShowComplaint}  /> }
         <Container>
             <ScrollView>
                 <ContainerUsuario>
@@ -244,7 +257,7 @@ const Usuario = ({reload, props}) => {
                             }
                         </AreaEstrelas>
                         <TextoMerito>Seu mérito</TextoMerito>
-                        <Btn_denuncia onPress={()=> setShowComplaint(true) } >Denúncias</Btn_denuncia>
+                        <Btn_denuncia onPress={Denunciation} >Denúncias</Btn_denuncia>
                     </AreaMerito>
                 </ContainerUsuario>
                 <AreaTexto>
@@ -376,7 +389,6 @@ const Usuario = ({reload, props}) => {
                 <BotaoSalvar onPress={update}><TextoBotao>Salvar</TextoBotao></BotaoSalvar>
             </ScrollView>
         </Container>
-        </>
     )
 }
 

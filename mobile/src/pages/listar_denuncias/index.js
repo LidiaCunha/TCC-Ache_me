@@ -13,34 +13,28 @@ const ModalDenuncia = ({displayNone}) => {
 			const res = await api.get('posts/my');
 			setMyPosts(res.data);
 		})();
-	},[]);
+    },[]);
+
+    function Item({ post}){
+
+        return (post.complaint !== null && post.complaint > 0) && (
+            <Card_denuncia>
+                <Btn_denuncia>{post.complaint}</Btn_denuncia>
+                <Text_denuncia>Você possui denúncias na postagem do dia</Text_denuncia>
+                <Data_denuncia>{moment(post.createdAt).format('LLL')}</Data_denuncia>
+            </Card_denuncia>
+        );
+    }
     
     return(
         <Container>
-        
-            <ContainerBack onTouchStart={()=> displayNone(false)}>
-                <Back source={Seta} />
-            </ContainerBack>
         
             <TextAviso>Todas as postagens serão imediatamente excluídas assim que alcançado o limite de 
             <Red> 5 denúncias.</Red>
             </TextAviso>
         
             <Container_card_denuncia>
-
-                {
-                    myPosts.map && myPosts.map(post => {
-
-                        return (post.complaint !== null && post.complaint > 0) && (
-                            <Card_denuncia>
-                                <Btn_denuncia>{post.complaint}</Btn_denuncia>
-                                <Text_denuncia>Você possui denúncias na postagem do dia</Text_denuncia>
-                                <Data_denuncia>{moment(post.createdAt).format('LLL')}</Data_denuncia>
-                            </Card_denuncia>
-                        );
-
-                    })
-                }
+                {myPosts.map && myPosts.map(post => <Item key={post} item={post}/>)}
         </Container_card_denuncia>
         
             <Space/>
