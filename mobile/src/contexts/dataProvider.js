@@ -46,7 +46,9 @@ function DataProvider({children}) {
         problems, 
         location,
         addFeatures,
-        addProblems
+        addProblems,
+        setProblems,
+        setFeatures,
     }
 
     return (

@@ -10,18 +10,17 @@ import Termos from './src/pages/ServiceTerms/index'
 
 const App = () => { 
   return (
-    <Termos/>
-    // <NavigationContainer>
-    //   <AuthProvider> 
-    //     <DataProvider>
-    //       <SocketProvider>
-    //         <ConversationProvider>
-    //           <BottomRoutes />
-    //         </ConversationProvider>
-    //       </SocketProvider>
-    //     </DataProvider>
-    //   </AuthProvider>
-    // </NavigationContainer>
+    <NavigationContainer>
+      <AuthProvider> 
+        <DataProvider>
+          <SocketProvider>
+            <ConversationProvider>
+              <Routes/>
+            </ConversationProvider>
+          </SocketProvider>
+        </DataProvider>
+      </AuthProvider>
+    </NavigationContainer>
  );
 }
 

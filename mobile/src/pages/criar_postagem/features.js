@@ -6,7 +6,7 @@ import { useData } from "../../contexts/dataProvider";
 
 const ModalCaracteristicas = ({displayNone}) => {
 
-    const {addFeature, features, addFeatures} = useData();
+    const {addFeature, features, setFeatures} = useData();
 
     const [text,setText] = useState("");
 
@@ -22,7 +22,7 @@ const ModalCaracteristicas = ({displayNone}) => {
     function Item({ item}){
 
         const deleteItem = () => {
-            setfeatures( features.filter(( feature ) => feature !== item ) );
+            setFeatures( features.filter(( feature ) => feature !== item ) );
         };
 
         return (
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
         height: '100%',
         width: '100%',
         display: 'flex',
-        backgroundColor:'#23232377',
+        backgroundColor:'#000000AA',
         justifyContent: 'center',
         alignItems: 'center',
         alignContent: 'center',

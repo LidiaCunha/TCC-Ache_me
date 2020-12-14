@@ -24,7 +24,7 @@ import {
 
 const Feed = ({navigation}) => {
 
-    const {user} = useAuth();
+    const {user, logout} = useAuth();
 
     const [posts, setPosts] = useState([]);
 
@@ -56,28 +56,30 @@ const Feed = ({navigation}) => {
 
     const Denunciation = async() =>{ 
 
-        if (myPosts.length === 0) {
+        if (myPosts.complaint != undefined) {
+            navigation.navigate('denunciations')
+            
+        }else{
             setModalVisible(true)
             setMessage("denúncia")
-        }else{
-            navigation.navigate('denunciations')
         }
     }
 
     const MyPosts = async() =>{ 
 
-        if (myPosts.length === 0) {
-            setModalVisible(true)
-            setMessage("postagem")
+        if (myPosts.length != 0) {
+            navigation.navigate('MyPosts')
 
         }else{
-            navigation.navigate('MyPosts')
+            setModalVisible(true)
+            setMessage("postagem")
         }
     }
 
     return(
-        <>
-        <Modal
+        <View style={styles.container}>
+
+            <Modal
                 animationType="fade"
                 transparent={true}
                 visible={modalVisible}
@@ -102,11 +104,10 @@ const Feed = ({navigation}) => {
                 
             </Modal>
         
-        <View style={styles.container}>
-        
             <View style={styles.header}>
                 <Text style={styles.Acheme}>Ache.me</Text>
                 <Image source={Logo} style={styles.Logo}/>
+                <Text onPress={logout}>logout</Text>
             </View>
 
             <ScrollView style={styles.content}>
@@ -200,7 +201,6 @@ const Feed = ({navigation}) => {
                 {/* </View> */}
             </ScrollView>
         </View>
-        </>
     );
 }
 
