@@ -66,7 +66,7 @@ export const InputName = styled.TextInput`
     padding: 5px;
     color: #fff;
     border-radius: 5px;
-    border: solid rgba(255,255,255,.5) 2px;
+    border: solid #555555 2px;
     font-size: 20px; 
     line-height: 20px;  
 `;
@@ -78,7 +78,7 @@ export const Description = styled.TextInput`
     padding: 5px;
     color: #fff;
     border-radius: 5px;
-    border: solid rgba(255,255,255,.5) 2px;
+    border: solid #555555 2px;
     font-size: 20px; 
     line-height: 20px;  
 
@@ -99,7 +99,7 @@ export const ContainerImg = styled.View`
     min-height: 50px;
     width: 80%;
     border-radius: 5px;
-    border: 2px solid rgba(255,255,255,.5);
+    border: 2px solid #555555;
     display: flex;
     flex-direction: column;
 `;
@@ -189,7 +189,7 @@ export const Center = styled.View`
 export const Lorem = styled.Text`
     width: auto;
     height: auto;
-    font-size: 14px;
+    font-size: 16px;
     /* font-family: Arial, Helvetica, sans-serif; */
     color: #fff;
     margin-bottom: 5px;  
@@ -200,7 +200,7 @@ export const InputDate = styled.TextInput`
     width: 170px;
     border: 2px;
     border-style: solid;
-    border-color: rgba(299,299,299,.5);
+    border-color: #555555;
     border-radius: 5px;
     padding-left: 10px;
     color: #fff;
@@ -211,7 +211,7 @@ export const InputTime = styled.TextInput`
     width: 40px;
     border: 2px;
     border-style: solid;
-    border-color: rgba(299,299,299,.5);
+    border-color: #555555;
     border-radius: 5px;
     padding-left: 9px;
     color: #fff;
@@ -222,7 +222,7 @@ export const InputGenre = styled.TextInput`
     width: 140px;
     border: 2px;
     border-style: solid;
-    border-color: rgba(299,299,299,.5);
+    border-color: #555555;
     border-radius: 5px;
     padding-left: 10px;
     margin-right: 10px;
@@ -241,9 +241,10 @@ export const LoremTime = styled.Text`
 `;
 
 export const ContainerBtnPublicar = styled.View`
-    height: 200px;
+    height: auto;
     width: 100%;
-    padding-right: 15px; 
+    padding-right: 15px;
+    padding-bottom: 10px;
     display: flex;
     justify-content: center;
     align-items: flex-end;

@@ -53,9 +53,6 @@ import moment from 'moment';
 import {api} from "../../services/api";
 import {getUsers} from "../../services/security";
 
-
-
-
 const UserInfo = () => {
   function MemberItem({member}) {
       return( 
@@ -252,7 +249,7 @@ const handlerImage = (e) => {
   return (
     <Container>
       { showCreatePost && <CreatePost showCreatePost={setShowCreatePost} user={{user,image}} /> }
-      { showModalPost && <ModalPostagem /> }
+      { showModalPost && <ModalPostagem setShowModalPost={setShowModalPost}/> }
       { loading && <Spinner/>}
       { showDenunciations && <Denunciations setShowDenunciations={setShowDenunciations}/>}
       <Header>

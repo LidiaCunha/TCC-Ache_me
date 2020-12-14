@@ -180,3 +180,44 @@ export const BtnSendImg = styled.View`
     justify-content: center;
     align-items: center;
 `;
+
+export const Comments = styled.View`
+    height: auto;
+    width: 100%;
+    background-color:#fff;
+    display:flex;
+    flex:1;
+`;
+
+export const CommentText = styled.Text`
+    color:#fff;
+    padding:8px;
+`;
+
+export const CommentArea = styled.View`
+    display:flex;
+    flex-direction:column;
+    justify-content:space-evenly;
+    height:auto;
+    background-color:#292929;
+    min-height:80px;
+`;
+
+export const Creator = styled.View`
+    display:flex;
+    flex-direction:row;
+    padding:7px;
+`;
+
+export const UserName = styled.Text`
+    color:#fff;
+    height:20px;
+    align-self:center;
+    margin-left:8px;
+    width:80%;
+`;
+
+export const Photo = styled.Image`
+    width:35px;
+    height:35px;
+`;

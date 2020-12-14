@@ -1,52 +1,39 @@
 import React, {useState, useEffect} from 'react';
 import {StyleSheet, View, Text, Image, TextInput, TouchableOpacity, ScrollView} from 'react-native';
-import AsyncStorage from '@react-native-community/async-storage';
-import styled from "styled-components/native";
+import { useData } from '../../contexts/dataProvider';
 
-const Modal_localizacao = () => {
+const Modal_localizacao = ({displayNone}) => {
 
-    useEffect(()=> {
-        const getData = async () => {
-            try {
-              const jsonValue = await AsyncStorage.getItem('@location')
-              if (jsonValue != null) {
-                return setLocation(JSON.parse(jsonValue));
-              }
-            } catch(e) {
-              // error reading value
-            }
-        }
+    const {addLocation, location} = useData();
 
-        getData()
-    }, [])
-
-
-    const [location, setLocation ] = useState({})
+    // const [location, setLocation ] = useState({})
 
     function handlerCep(e) {
-        setLocation({ ...location , cep : e.nativeEvent.text.replace(/[^0-9]/g,'').replace(/(.{5})(.{3})/,'$1-$2').replace(/(.{9})(.*)/,'$1') });
+        addLocation({ ...location , cep : e.nativeEvent.text.replace(/[^0-9]/g,'').replace(/(.{5})(.{3})/,'$1-$2').replace(/(.{9})(.*)/,'$1') });
     }
     function handlerStreet(e) {
-        setLocation({ ...location , street : e});
+        addLocation({ ...location , street : e});
     }
     function handlerNeighborhood(e) {
-        setLocation({ ...location , bairro : e});
+        addLocation({ ...location , bairro : e});
     }
     function handlerState(e) {
-        setLocation({ ...location , state : e});
+        addLocation({ ...location , state : e});
     }
     function handlerCity(e) {
-        setLocation({ ...location , city : e});
+        addLocation({ ...location , city : e});
     }
     function handlerRefPoint(e) {
-        setLocation({ ...location , reference_point : e});
+        addLocation({ ...location , reference_point : e});
     }
 
     const autoCompleteByCep = async( e ) => {
         const cep = location.cep;
 
+        console.log(cep)
+
         const setForm = async(data) =>{
-            setLocation({...location, 
+            addLocation({...location, 
                 'street': data.logradouro,
                 'bairro' : data.bairro,
                 'city' : data.cidade,
@@ -54,22 +41,15 @@ const Modal_localizacao = () => {
             });
         }
 
-        const url = `https://api.postmon.com.br/v1/cep/${cep}`;
-        const endereco = await fetch(url).then(res => res.json());
-        await setForm(endereco)
-    }
-
-    const storeData = async () => {
-        
         try {
-          const jsonValue = JSON.stringify(location)
-          await AsyncStorage.setItem('@location', jsonValue)
-          console.log("success")
-        } catch (e) {
-          window.alert("erro!")
-        }
+            const url = `https://api.postmon.com.br/v1/cep/${cep}`;
+            const endereco = await fetch(url).then(res => res.json());
+            console.log(endereco)
+            await setForm(endereco)
+        } catch (error) {
+            window.alert("Erro ao encontrar cep.")   
+        }        
     }
-
 
     return(
         <View style={styles.Container}>
@@ -133,8 +113,8 @@ const Modal_localizacao = () => {
                 <View style={styles.ContainerBtn}>
                     <TouchableOpacity 
                         style={styles.Btn}
-                        onPress={storeData}>
-                        <Text style={styles.Card_text}>Salvar</Text>
+                        onPress={ () => {addLocation({cep:location.cep , street:location.street , city :location.city , state: location.state , bairro: location.bairro , reference_point:location.reference_point }); displayNone(false)} }>
+                        <Text style={styles.Card_text}>OK</Text>
                     </TouchableOpacity>
                 </View>
             </View>
@@ -144,13 +124,16 @@ const Modal_localizacao = () => {
 
 const styles = StyleSheet.create({
     Container: {
-        height: 'auto',
+        height: '100%',
         width: '100%',
         display: 'flex',
+        backgroundColor:'#000000AA',
         justifyContent: 'center',
         alignItems: 'center',
         alignContent: 'center',
         flexDirection: 'row',
+        position:"absolute",
+        zIndex:998
     },
     ContainerCard:{
         height: 'auto',
@@ -160,6 +143,8 @@ const styles = StyleSheet.create({
         padding: 10,
         paddingTop: 20,
         overflow: 'hidden',
+        position:"absolute",
+        zIndex:999
     },
     LoremLocal:{
         height: 'auto',

@@ -4,6 +4,7 @@ import { useAuth } from '../../contexts/auth';
 import { api } from '../../services/api';
 import { Container, ContainerBack, Back } from '../listagem_de_postagem/styles';
 import Post from '../../components/Post';
+import Feed from '../feed';
 
 const style = StyleSheet.create({
   container: {
@@ -45,9 +46,6 @@ const Dashboard = ({ navigation }) => {
     navigation.navigate('profile', props);
   }
 
-  function createPost() {
-    navigation.navigate('createpost');
-  }
 
   const openCreateSeen = () => {
     navigation.navigate('seen', { postId: 1 })
@@ -57,39 +55,12 @@ const Dashboard = ({ navigation }) => {
     navigation.navigate('find')
   }
 
-  const [posts, setPosts] = useState([]);
 
-  const getPosts = async( ) => {
-    const response = await api.get('/seen');
-    
-    setPosts(response.data)
-  }
-
-  useEffect(() => {
-    getPosts()
-  }, [])
 
   return (
-    <>
-      {/* <Container>
-
-        {posts !== undefined && posts.map !== undefined &&
-          posts.map(post => <Post seen={post} />)
-        }
-
+      <Container>
+        <Feed navigation={navigation} />  
       </Container>
-     */}
-      <View style={style.container}>
-        <Button title="Post" onPress={() => { createPost(userinfo) }} />
-        <Button title="Chat" onPress={openConversations} />
-        <Button title="Seen" onPress={openCreateSeen} />
-        <Button title="Find" onPress={openCreateFind} />
-        <Button title="User" onPress={() => { openProfile(userinfo) }} />
-        <Button title="Terms" onPress={() => { navigation.navigate('termos') }} />
-        <Button title="Logout" onPress={handlerLogout} />
-      </View>
-
-    </>
   );
 }
 

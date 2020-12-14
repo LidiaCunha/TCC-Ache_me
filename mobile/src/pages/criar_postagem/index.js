@@ -33,82 +33,32 @@ import {
 } from './styles';
 
 import RadioForm, {RadioButton, RadioButtonInput, RadioButtonLabel} from 'react-native-simple-radio-button';
-import defaltImage from '../../assets/image.png';
+import userPhoto from '../../assets/image.png';
 import addImage from '../../assets/newImage.png';
 import * as ImagePicker from 'expo-image-picker';
 import {Popup} from '../../components/popup';
+
 import FabButton from '../../components/fabButton/FabButton';
 import HealthProblem from './healthProblem';
 import Characteristics from './features';
 import Location from './location';
 import {api} from '../../services/api';
 import { useAuth } from '../../contexts/auth';
-import AsyncStorage from '@react-native-community/async-storage';
-
-
+import { useData } from '../../contexts/dataProvider';
 
 const Criar_postagem = () => {
 
-    const { user} = useAuth();
+    const { features , problems, location } = useData();
 
-    const [problems, setProblems] = useState()
-    const [features, setFeatures] = useState()
-    const [location, setLocation] = useState()
-
-    const getProblems = async () => {
-        try {
-            const jsonValue = await AsyncStorage.getItem('@health_problems')
-            if (jsonValue.length != 2) {
-                setProblems(JSON.parse(jsonValue));
-            }else{
-                setProblems(null)
-            }
-
-        } catch(e) {
-            window.alert("erro!")
-        }
-    }
-
-    const getFeatures = async () => {
-        try {
-            const jsonValue = await AsyncStorage.getItem('@features')
-            if (jsonValue.length != 2) {
-                setFeatures(JSON.parse(jsonValue));
-            }else{
-                setFeatures(null)
-            }
-        } catch(e) {
-            window.alert("erro!")
-        }
-    }
-
-    const getLocation = async () => {
-        try {
-            const jsonValue = await AsyncStorage.getItem('@location')
-            if (jsonValue.length != 2) {
-                setLocation(JSON.parse(jsonValue));
-            }else{
-                setLocation(null)
-            }
-        } catch(e) {
-            window.alert("erro!")
-        }
-    }
+    const { user } = useAuth();
 
     var radio_props = [
         {label: 'Masculino', value: 'Masculino' },
         {label: 'Feminino', value: 'Feminino' },
         {label: 'Outro', value: 'LGBT' }
-    ];
+    ]; 
 
-    var userPhoto = defaltImage;
-
-    if (user != null) {
-        if (user?.photo != 'undefined') {
-            console.log(user?.photo)
-            userPhoto = {uri: user?.photo};
-        }   
-    }
+// STATES
 
     const [ post , setPost ] = useState({
         "name": "",
@@ -116,8 +66,18 @@ const Criar_postagem = () => {
         "borned_at": "",
         "description": "",   
     });
+
     const [seen, setSeen] = useState({}); 
 
+    const [postImage, setPostImage] = useState(null);
+
+    const [showPopUpFeatures, setShowPopUpFeatures ] = useState(false);
+
+    const [showPopUpProblems, setShowPopUpProblems ] = useState(false);
+
+    const [showPopupLocale, setShowPopupLocale] = useState(false);
+
+// HANDLERS
 
     function handlerName(e) {
         setPost({ ...post , name : e});
@@ -138,7 +98,7 @@ const Criar_postagem = () => {
         setPost({ ...post , birthDate : e.nativeEvent.text.replace(/[^0-9]/g,'').replace(/(.{2})(.{2})(.{4})/,'$1/$2/$3').replace(/(.{10})(.*)/,'$1')});
     }
 
-    const [postImage, setPostImage] = useState(null);
+// FUNCTIONS
 
     const pickImage = async () => {
         let result = await ImagePicker.launchImageLibraryAsync({
@@ -160,14 +120,12 @@ const Criar_postagem = () => {
 
     const createPost = async() => {
 
-        await getProblems()
-        await getFeatures()
-        await getLocation()
-
+        // const res = await api.post('/genre',{genre:post.name_of_genre});
+        // console.log(res)
         if (!postImage) {
             return window.alert("imagem obrigatoria!!!")
         }
-
+        
         const data = new FormData();
 
         data.append("name", post.name);
@@ -191,7 +149,6 @@ const Criar_postagem = () => {
                     "Content-type": `multipart/form-data`,
                 }
             });
-
             if (postCreated.status === 201) {
 
                 console.log(postCreated.data.id)
@@ -209,7 +166,6 @@ const Criar_postagem = () => {
                 };
                 
                 const seenCreated = await api.post(`/seen/${postCreated.data.id}`,data);
-    
                 if (seenCreated.status === 201){
 
                     console.log("seenCreated")
@@ -235,23 +191,29 @@ const Criar_postagem = () => {
             
             window.alert("Ops, algo deu errado, tente novamente mais tarde.");            
         }
-    }
+    };
 
-    let PopupRef = React.createRef()
-    const onShowPopup = () => {
-        PopupRef.show()
-    } 
-    const onClosePopup = () => {
-        PopupRef.close()
-    }
-    const [popup, setPopup] = useState()
+// EFFECTS
 
     useEffect(()=>{
-        onShowPopup()
-    },[popup])
+        setTimeout(()=>{
+            if (user != null) {
+                if (user?.photo != 'undefined') {
+                    console.log(user?.photo)
+                    userPhoto = {uri: user?.photo};
+                }   
+            }        
+        },2000);
+    },[]);
 
     return(
+    <>
+        {showPopUpFeatures && <Characteristics displayNone={setShowPopUpFeatures} />}
+        {showPopUpProblems && <HealthProblem displayNone={setShowPopUpProblems} />}
+        {showPopupLocale && <Location displayNone={setShowPopupLocale} />}
+
         <Container>
+
             <ContainerUser>
                 <ContainerUserImg>
                     <UserPhoto source={userPhoto}/>
@@ -294,7 +256,7 @@ const Criar_postagem = () => {
             </ContainerSeletedImg>
             
             <ContainerFilter> 
-                <FabButton style={{bottom: 100, right: 60}}/>
+                <FabButton setProblemPU={setShowPopUpProblems} setFeaturesPU={setShowPopUpFeatures} setLocalePU={setShowPopupLocale} style={{bottom: 100, right: 60}}/>
                 <Title> Filtros </Title> 
                 
                 <ContainerDateTime>
@@ -336,7 +298,8 @@ const Criar_postagem = () => {
                             labelHorizontal={true}
                             buttonColor={'#999'}
                             selectedButtonColor={'#E33336'}
-                            labelStyle={{fontSize: 15, color: '#999'}}
+                            labelStyle={{fontSize: 15, color: '#999', marginRight:10}}
+                            selectedLabelColor={'#E33336'}
                             animation={true}
                             onPress={(value) => setPost({...post , name_of_genre : value})}/>
                     </ContainerDate>
@@ -354,29 +317,14 @@ const Criar_postagem = () => {
             </ContainerFilter>    
     
             <ContainerBtnPublicar>
-                <BtnPublicar onPress={()=> {
-                    setPopup(<HealthProblem/>)}}>
-                    <Lorem>Problemas</Lorem>
-                </BtnPublicar> 
-                <BtnPublicar onPress={()=>{
-                    setPopup(<Characteristics/>)}}>
-                    <Lorem>Caracteristicas</Lorem>
-                </BtnPublicar>
-                <BtnPublicar onPress={()=>{
-                    setPopup(<Location/>)}}>
-                    <Lorem>localização</Lorem>
-                </BtnPublicar> 
                 <BtnPublicar onPress={createPost}>  
                     <Lorem>Publicar</Lorem>
                 </BtnPublicar>
             </ContainerBtnPublicar>
 
-            <Popup 
-                title="Problemas de Saúde"
-                content={popup}
-                ref={(target) => PopupRef = target}
-                onTouchOutside = {onClosePopup}/>
+
         </Container>
+    </>
     );
 }
 

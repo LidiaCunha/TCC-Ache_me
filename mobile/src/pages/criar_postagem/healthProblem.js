@@ -1,42 +1,26 @@
 import {StyleSheet, View, Text, Image, TextInput, TouchableOpacity, ScrollView} from 'react-native';
 
-import AsyncStorage from '@react-native-community/async-storage';
 import Icon from 'react-native-vector-icons/Feather';
 
 import React, {useEffect, useState} from 'react'
+import { useData } from '../../contexts/dataProvider';
 
-const HealthProblem = () => {
-    useEffect(()=> {
-        const getData = async () => {
-            try {
-              const jsonValue = await AsyncStorage.getItem('@health_problems')
-              if (jsonValue != null) {
-                return setProblems(JSON.parse(jsonValue));
-              }
-            } catch(e) {
-              // error reading value
-            }
-        }
+const HealthProblem = ({displayNone}) => {
 
-        getData()
-    }, [])
-
-    const [problems , setProblems] = useState([]);
-
-    const [item, setItem] = useState({
-        problem:"",
-    });
+    const {problems, addProblem, setProblems} = useData();
+    
+    const [item, setItem] = useState("");
 
     const handlerProblems = (e) => {
-        setProblems([...problems, e ]);
-        setItem({...item, problem:""});
+        addProblem(e);
+        setItem("");
     };
 
     const handlerItem = (e) => {
-        setItem({ ...item , problem : e});
+        setItem(e);
     };
 
-    function Item({ item}){
+    function Item({ item }){
 
         const deleteItem = () => {
             setProblems( problems.filter(( problem ) => problem !== item ) );
@@ -50,17 +34,6 @@ const HealthProblem = () => {
         );
     }
 
-    const storeData = async () => {
-        
-        try {
-          const jsonValue = JSON.stringify(problems)
-          await AsyncStorage.setItem('@health_problems', jsonValue)
-          window.alert("success")
-        } catch (e) {
-          window.alert("erro!")
-        }
-    }
-
     return(
         <View style={styles.Container}>
             <View style={styles.ContainerCard}>
@@ -69,17 +42,17 @@ const HealthProblem = () => {
                     <Image style={styles.ContainerImgInput}/>
                     <TextInput 
                         style={styles.Input} 
-                        placeholder="Problemas De Saúde"
-                        onChangeText={handlerItem}
-                        value={item.problem}
+                        placeholder="precione next para adiconar"
                         returnKeyType = {"next"}
-                        onSubmitEditing={()=>{handlerProblems(item.problem)}}/>
+                        onChangeText={handlerItem}
+                        value={item}
+                        onSubmitEditing={()=>{handlerProblems(item)}}/>
                 </View>
                 <ScrollView style={styles.ContainerCars} horizontal={true}>
-                    {problems.map(problem => <Item key={problem} item={problem} />)}
+                    {problems.map!== undefined && problems.map(problem => <Item key={problem} item={problem} />)}
                 </ScrollView>
                 <View style={styles.ContainerBtn}>
-                    <TouchableOpacity  style={styles.Btn} onPress={storeData}><Text style={styles.Card_text}>ok</Text></TouchableOpacity >
+                    <TouchableOpacity  style={styles.Btn} onPress={()=>displayNone(false)} ><Text style={styles.Card_text}>ok</Text></TouchableOpacity >
                 </View>
             </View>
         </View>
@@ -88,13 +61,16 @@ const HealthProblem = () => {
 
 const styles = StyleSheet.create({
     Container: {
-        height: 'auto',
+        height: '100%',
         width: '100%',
         display: 'flex',
+        backgroundColor:'#000000AA',
         justifyContent: 'center',
         alignItems: 'center',
         alignContent: 'center',
         flexDirection: 'row',
+        position:"absolute",
+        zIndex:998    
     },
     ContainerCard:{
         height: 300,
@@ -104,6 +80,8 @@ const styles = StyleSheet.create({
         padding: 10,
         paddingTop: 20,
         overflow: 'hidden',
+        position:"absolute",
+        zIndex:999    
     },
     Title:{
         height: 'auto',
