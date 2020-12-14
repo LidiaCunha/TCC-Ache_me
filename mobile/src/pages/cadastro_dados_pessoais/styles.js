@@ -5,14 +5,8 @@ export const Container = styled.ImageBackground`
     justify-content: flex-start;
 `
 
-export const BotaoVoltar = styled.Image`
-    height: 30px;
-    width: 30px;
-`
-
-export const ContainerCadastro = styled.View`
+export const ContainerCadastro = styled.ScrollView`
     flex: auto;
-    align-items: center;
     align-self: center;
     width: 90%;
     padding: 10px;
@@ -41,6 +35,7 @@ export const Botao = styled.TouchableOpacity`
     padding: 15px;
     border-radius: 5px;
     margin-top: 15px;
+    margin-bottom: 15px;
 `
 
 export const Texto = styled.Text`

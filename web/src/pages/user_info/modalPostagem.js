@@ -23,22 +23,6 @@ const ModalPostagem = ({setShowModalPost}) => {
         )();
     } , [ ]);
 
-    function Item({post}){
-        return (
-            <ContainerPosts id={post.id % 2 === 0 ? 'par' : 'impar'}>
-                <TextoData>{ moment(post.createdAt).format('LLL') }</TextoData>
-                <CardPosts>
-                    <AreaFotoNome>
-                        <FotoUsuario><img src={post.photo} /></FotoUsuario>
-                        <TextoNome>{post.name}</TextoNome>
-                    </AreaFotoNome>
-                    <TextoPost>{post.description}</TextoPost>
-                    <VerMais><p>Ver Mais</p></VerMais>
-                </CardPosts>
-            </ContainerPosts>
-        );
-    }
-
     function ShowModal() {
         if (posts.length != 0) {
             return(
@@ -47,7 +31,22 @@ const ModalPostagem = ({setShowModalPost}) => {
                         <Btn_fechar>X</Btn_fechar>
                     </Container_btn_fechar>
                     <Posts_Container>
-                        { posts?.map !== undefined && posts.map(post => <Item key={post} item={post}/>)}
+                    { posts?.map !== undefined && posts.map(post => {
+                        return (
+                            <ContainerPosts id={post.id % 2 === 0 ? 'par' : 'impar'}>
+                                <TextoData>{ moment(post.createdAt).format('LLL') }</TextoData>
+                                <CardPosts>
+                                    <AreaFotoNome>
+                                        <FotoUsuario><img src={post.photo} /></FotoUsuario>
+                                        <TextoNome>{post.name}</TextoNome>
+                                    </AreaFotoNome>
+                                    <TextoPost>{post.description}</TextoPost>
+                                    <VerMais><p>Ver Mais</p></VerMais>
+                                </CardPosts>
+                            </ContainerPosts>
+                        );
+
+                    })}
                     </Posts_Container>
                 </Modal>
             )

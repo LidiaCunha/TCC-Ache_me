@@ -14,7 +14,7 @@ const App = () => {
         <DataProvider>
           <SocketProvider>
             <ConversationProvider>
-              <BottomRoutes />
+              <Routes/>
             </ConversationProvider>
           </SocketProvider>
         </DataProvider>

@@ -3,7 +3,7 @@ import React, {useState} from 'react';
 import { Animated,StyleSheet , Dimensions, Keyboard, UIManager } from 'react-native';
 
 // Style
-import {Container, BotaoVoltar, ContainerCadastro, IconeCadastro, Input, Botao, Texto} from './styles';
+import {Container, ContainerCadastro, IconeCadastro, Input, Botao, Texto} from './styles';
 import planoDeFundo from "../../assets/planoDeFundo.jpg";
 import Icone from "../../assets/iconeDadosPessoais.png";
 import { ViewContainer } from "../login/styles";
@@ -144,7 +144,7 @@ const CadastroPessoal = ({navigation}) => {
 
     return(
         <Container source={planoDeFundo}>
-            <ViewContainer>
+            <ContainerCadastro>
                 <Animated.View  style={[styles.conteinerForm, {transform: [{translateY:shift.shift}]}]}>
                     <IconeCadastro source={Icone}/>
                     <Input id="name" placeholder="Insira seu nome" onTouchStart={(e) => setInputHeigth(e.nativeEvent.pageY + e.nativeEvent.locationY)} value={basicInfo.name} onChange={handlerName} returnKeyType="next"  ></Input>
@@ -155,7 +155,7 @@ const CadastroPessoal = ({navigation}) => {
                     <Input id="password" placeholder="Senha" secureTextEntry={true} autoCorrect={false} value={basicInfo.password} onChange={handlerPassword}returnKeyType="done" onTouchStart={(e) => setInputHeigth(e.nativeEvent.pageY + e.nativeEvent.locationY)}></Input>
                     <Botao onPress={sendToAddress}><Texto>Próximo</Texto></Botao>
                 </Animated.View>
-            </ViewContainer>
+            </ContainerCadastro>
         </Container>
     )
 }

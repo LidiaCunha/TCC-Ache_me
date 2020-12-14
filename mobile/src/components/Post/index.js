@@ -108,7 +108,7 @@ function Post({seen}) {
             </ContainerCharacter>
 
             <Comment> 
-                <PersonImage source={user.photo}/>
+                <PersonImage source={user?.photo}/>
                 <Input/>
                 <BtnSend> 
                     <BtnSendImg > 
