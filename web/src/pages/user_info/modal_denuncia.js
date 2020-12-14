@@ -18,20 +18,10 @@ const ModalDenuncia = ({setShowDenunciations}) => {
 			setMyPosts(res.data);
 		})();
     },[]);
-    
-    function Item({ post}){
-
-        return (post.complaint !== null && post.complaint > 0) && (
-            <Card_denuncia>
-                <Btn_denuncia>{post.complaint}</Btn_denuncia>
-                <Text_denuncia>Você possui denúncias na postagem do dia</Text_denuncia>
-                <Data_denuncia>{moment(post.createdAt).format('LLL')}</Data_denuncia>
-            </Card_denuncia>
-        );
-    }
 
     function ShowModal() {
-        if (myPosts.length != 0) {
+
+        if (myPosts.complaint != undefined) {
             return(
                 <ContainerCard style={{
                     height: 450,
@@ -43,7 +33,19 @@ const ModalDenuncia = ({setShowDenunciations}) => {
                     </Container_btn_fechar>
             
                     <Container_card_denuncia>
-                        {myPosts.map && myPosts.map( post => <Item key={post} item={post}/>)}
+                    {	
+                        myPosts.map && myPosts.map( post => {
+
+                            return (post.complaint !== null && post.complaint > 0) && (
+                                <Card_denuncia>
+                                                <Btn_denuncia>{post.complaint}</Btn_denuncia>
+                                                <Text_denuncia>Você possui denúncias na postagem do dia</Text_denuncia>
+                                                <Data_denuncia>{moment(post.createdAt).format('LLL')}</Data_denuncia>
+                                        </Card_denuncia>
+                            );
+
+                        } )
+                    }
                     </Container_card_denuncia>
                 </ContainerCard>
             )

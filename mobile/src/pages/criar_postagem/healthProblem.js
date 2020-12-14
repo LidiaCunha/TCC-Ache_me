@@ -7,7 +7,7 @@ import { useData } from '../../contexts/dataProvider';
 
 const HealthProblem = ({displayNone}) => {
 
-    const {problems, addProblem} = useData();
+    const {problems, addProblem, setProblems} = useData();
     
     const [item, setItem] = useState("");
 
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
         height: '100%',
         width: '100%',
         display: 'flex',
-        backgroundColor:'#23232377',
+        backgroundColor:'#000000AA',
         justifyContent: 'center',
         alignItems: 'center',
         alignContent: 'center',

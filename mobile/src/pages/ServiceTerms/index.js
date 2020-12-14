@@ -47,9 +47,9 @@ function ServiceTerms ( ) {
 
                     <Texto>6. Ao fazer uso deste aplicativo, você concorda com a coleta dos referidos dados, para finalidade de execução do aplicativo e de seus recursos de facilitação de identificação de pessoa desaparecida, responsabilizando pelo uso de dados de terceiros se realizado por você. Outros dados solicitados pelo aplicativo bem como aqueles inerentes ao uso do aparelho e de seu sistema operacional poderão ser coletados. A Ache.me poderá compartilhar referidos dados com as autoridades, com as famílias dos desaparecidos e demais interessados para fim de realização da finalidade da Ache.me.</Texto>
 
-            <RadioForm radio_props={radio_props} formHorizontal={true} labelHorizontal={true} buttonColor={'#999'} selectedButtonColor={'#E33336'} labelStyle={{fontSize: 15,marginLeft: 5, color: '#999'}} animation={true} onPress={(value) => setTerm( value )}/>
+            <RadioForm radio_props={radio_props} formHorizontal={true} labelHorizontal={true} buttonColor={'#999'} selectedButtonColor={'#E33336'} labelStyle={{fontSize: 15,marginLeft: 5, marginRight: 15, color: '#999'}} animation={true} onPress={(value) => setTerm( value )}/>
 
-            <Button title="enviar"  onPress={ handleAceptTerms } />
+            <Button onPress={ handleAceptTerms }><SubTitle>ENVIAR</SubTitle></Button>
         </Container>
     );
 }

@@ -2,6 +2,8 @@ import React, {Component, useEffect, useState} from 'react';
 import { View, Text, StyleSheet, TouchableWithoutFeedback, Animated, Image } from 'react-native';
 import { AntDesign, Entypo, FontAwesome, MaterialIcons} from '@expo/vector-icons';
 import feature from '../../assets/foto.png';
+import health from '../../assets/cardiograma.png';
+import location from '../../assets/location-black.png';
 // import Criar_postagem from '../../pages/criar_postagem';
 // // import location from '../../assets/location.png'
 // import {Popup} from '../components/Popup';
@@ -76,12 +78,12 @@ export default function FabButton(props) {
     <View style={[styles.container, props.style]}>
       <TouchableWithoutFeedback onPress={() => { props.setLocalePU(true) }}>
         <Animated.View style={[styles.button, styles.submenu, locationStyle]}>
-          <Entypo name="location-pin" size={50} color="#000" />
+          <Image source={location} style={{ width: 35, height: 35 }} />
         </Animated.View>
       </TouchableWithoutFeedback>
       <TouchableWithoutFeedback onPress={() => { props.setProblemPU(true) }} >
         <Animated.View style={[styles.button, styles.submenu, healthStyle]}>
-          <AntDesign name="heart" size={30} color="#000" />
+          <Image source={health} style={{ width: 35, height: 35 }} />
         </Animated.View>
       </TouchableWithoutFeedback>
       <TouchableWithoutFeedback onPress={() => { props.setFeaturesPU(true) }}>

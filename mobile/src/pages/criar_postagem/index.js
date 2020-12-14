@@ -118,8 +118,8 @@ const Criar_postagem = () => {
 
     const createPost = async() => {
 
-        const res = await api.post('/genre',{genre:post.name_of_genre});
-        console.log(res)
+        // const res = await api.post('/genre',{genre:post.name_of_genre});
+        // console.log(res)
         if (!postImage) {
             return window.alert("imagem obrigatoria!!!")
         }
@@ -142,14 +142,12 @@ const Criar_postagem = () => {
         });
         
         try{
-            console.log(data)
             var postCreated = await api.post('/posts', data, {
                 headers: {
                     "Content-type": `multipart/form-data`,
                 }
             });
-            console.log(postCreated)
-            if (postCreated) {
+            if (postCreated.status === 201) {
 
                 console.log(postCreated.data.id)
 
@@ -166,8 +164,7 @@ const Criar_postagem = () => {
                 };
                 
                 const seenCreated = await api.post(`/seen/${postCreated.data.id}`,data);
-                console.log(seenCreated)
-                if (seenCreated){
+                if (seenCreated.status === 201){
 
                     console.log("seenCreated")
     
@@ -299,7 +296,8 @@ const Criar_postagem = () => {
                             labelHorizontal={true}
                             buttonColor={'#999'}
                             selectedButtonColor={'#E33336'}
-                            labelStyle={{fontSize: 15, color: '#999'}}
+                            labelStyle={{fontSize: 15, color: '#999', marginRight:10}}
+                            selectedLabelColor={'#E33336'}
                             animation={true}
                             onPress={(value) => setPost({...post , name_of_genre : value})}/>
                     </ContainerDate>

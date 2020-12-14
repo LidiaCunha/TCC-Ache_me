@@ -166,7 +166,6 @@ function Post({seen}) {
                         );
                     })
                 }
-                    
             </Comments>
         </>
     );

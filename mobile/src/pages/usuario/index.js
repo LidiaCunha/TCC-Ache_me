@@ -269,10 +269,11 @@ const Usuario = ({reload, props, navigation}) => {
 
     const Denunciation = async() =>{ 
 
-        if (myPosts.length === 0) {
-            setModalVisible(true)
-        }else{
+        if (myPosts.complaint != undefined) {
             navigation.navigate('denunciations')
+            
+        }else{
+            setModalVisible(true)
         }
     }
 
