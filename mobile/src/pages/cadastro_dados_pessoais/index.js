@@ -116,6 +116,31 @@ const CadastroPessoal = ({navigation}) => {
         setBasicInfo({...basicInfo ,password: e.nativeEvent.text});
     }
 
+    const addMeritToIndication = async() => {
+        try {
+            if (basicInfo.indication){
+                const res = await api.get('/users',{headers: { 
+                    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTYwMTM5MTE0Nn0.k5GTAvKniY9_34pNT6PBF7gvJUqMKWGn2iicYVj2SJI'
+                  }});
+                
+                const existUser = res.data.find( user => user.mail === indication ? user : false );
+                
+                if (existUser) {
+                    const newMerit = existUser.merit + 1;
+
+                    await api.put(`/users/${existUser.id}`, {field:'merit',contentOfField:newMerit},{headers: { 
+                        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTYwMTM5MTE0Nn0.k5GTAvKniY9_34pNT6PBF7gvJUqMKWGn2iicYVj2SJI'
+                      }});
+
+                    console.log("MERITO "+newMerit+" ADICIONADO AO USUARIO "+existUser.name);
+                }
+            
+            }
+        } catch (error) {
+            console.log(error)    
+        }
+    }
+
 
     return(
         <Container source={planoDeFundo}>
@@ -126,7 +151,7 @@ const CadastroPessoal = ({navigation}) => {
                     <Input id="CPF" placeholder="Insira seu cpf" value={basicInfo.CPF} onChange={handlerCpf} returnKeyType="next" maxLength={14} keyboardType="numeric" onTouchStart={(e) => setInputHeigth(e.nativeEvent.pageY + e.nativeEvent.locationY)}></Input>
                     <Input id="mail" placeholder="Insira seu email" value={basicInfo.mail} onChange={handlerMail}keyboardType="email-address" returnKeyType="next" onTouchStart={(e) => setInputHeigth(e.nativeEvent.pageY + e.nativeEvent.locationY)} ></Input>
                     <Input id="telephone" placeholder="Insira seu telefone" value={basicInfo.telephone} onChange={handlerTelephone}keyboardType="number-pad"onTouchStart={(e) => setInputHeigth(e.nativeEvent.pageY + e.nativeEvent.locationY)} returnKeyType="next" maxLength={20}></Input>
-                    <Input id="indication" placeholder="Usuário que te indicou o app" onChange={handlerIndication} value={basicInfo.indication} returnKeyType="next" onTouchStart={(e) => setInputHeigth(e.nativeEvent.pageY + e.nativeEvent.locationY)}></Input>
+                    <Input id="indication" placeholder="Usuário que te indicou o app" onBlur={addMeritToIndication} onChange={handlerIndication} value={basicInfo.indication} returnKeyType="next" onTouchStart={(e) => setInputHeigth(e.nativeEvent.pageY + e.nativeEvent.locationY)}></Input>
                     <Input id="password" placeholder="Senha" secureTextEntry={true} autoCorrect={false} value={basicInfo.password} onChange={handlerPassword}returnKeyType="done" onTouchStart={(e) => setInputHeigth(e.nativeEvent.pageY + e.nativeEvent.locationY)}></Input>
                     <Botao onPress={sendToAddress}><Texto>Próximo</Texto></Botao>
                 </Animated.View>

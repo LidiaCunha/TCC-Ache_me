@@ -1,10 +1,7 @@
 import AsyncStorage from '@react-native-community/async-storage';
 import React from 'react';
 
-const PREFIX = 'acheme'
-
 function useLocalStorage( key , initialValue ) {
-  const addKeyToPrefix = `${PREFIX}-${key}`;
   const Storage = {
     getItem : async( prefix ) =>{
       const res = await AsyncStorage.getItem( prefix );
@@ -23,8 +20,7 @@ function useLocalStorage( key , initialValue ) {
     }
   };
   const [ value, setValue ] = React.useState(() => {
-    // VENDO SE JA EXISTEM DADOS NA CHAVE QUE FOI ENTREGADA
-    const alreadyExists = Storage.getItem(addKeyToPrefix); 
+    const alreadyExists = Storage.getItem(key); 
     
     if ( alreadyExists )
       return alreadyExists;
@@ -33,10 +29,8 @@ function useLocalStorage( key , initialValue ) {
   })
 
   React.useEffect(() => {
-    // TODA VEZ QUE MUDAR VALOR A SER COLOCADO NO LOCALSTORAGE OU SUA 
-    // CHAVE SERÁ ADICIONADO UM NOVO ITEM NO LOCALSTORAGE
-    Storage.setItem(addKeyToPrefix , value)
-  },[ addKeyToPrefix, value ] )
+    Storage.setItem(key , value)
+  },[ key, value ] )
 
   return [value ,setValue];
 }

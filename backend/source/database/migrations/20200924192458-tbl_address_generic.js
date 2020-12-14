@@ -8,7 +8,7 @@ module.exports = {
 			bairro    :  { type: Sequelize.STRING , allowNull: false },
 			street    :  { type: Sequelize.STRING , allowNull: true },
       reference_point  :  { type: Sequelize.STRING , allowNull: false },
-      complement:  { type: Sequelize.STRING , allowNull: false },
+      complement:  { type: Sequelize.STRING , allowNull: true },
       created_at:  { type: Sequelize.DATE , allownull: false },
       updated_at:  { type: Sequelize.DATE , allownull: false },
       // FOREIGN KEYS

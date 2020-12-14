@@ -8,6 +8,7 @@ const Seen = require('../../models/Seen');
 const Address = require('../../models/Address');
 const States = require('../../models/States');
 const City = require('../../models/City');
+const WhoSaw = require('../../models/WhoSaw')
 
 const { Op } = require('sequelize')
 const moment = require('moment');

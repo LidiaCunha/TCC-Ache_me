@@ -14,9 +14,9 @@ export const signOut = () => {
 }
 
 export const getUsers = () => {
-    const {users} = JSON.parse(localStorage.getItem(TOKEN_USER));
+    const {user} = JSON.parse(localStorage.getItem(TOKEN_USER));
 
-    return users;
+    return user;
 }
 
 export const isSignedIn = () => {

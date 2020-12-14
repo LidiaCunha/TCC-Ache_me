@@ -8,6 +8,7 @@ import { ViewContainer, Container, BotaoVoltar, ContainerInfos, Texto, Container
 import planoDeFundo from "../../assets/planoDeFundo.jpg";
 // import Foto from "../../assets/fotoExemplo.jpg";
 import Camera from "../../assets/cameraCadastro.png"
+import defaultImage from "../../assets/user.png"
 import * as ImagePicker from 'expo-image-picker';
 import Constants from 'expo-constants';
 
@@ -36,7 +37,7 @@ const CadastroFotoPerfil = ({route, navigation}) => {
         console.log(result);
     
         if (!result.cancelled) {
-          setImage(result.uri);
+          setImage(result);
         }
       };
 
@@ -53,8 +54,22 @@ const CadastroFotoPerfil = ({route, navigation}) => {
 
     const register = async (e) => {
         e.preventDefault();
-        
+
         const data = new FormData();
+
+        if (image){
+            
+            const nameImage = image.uri.split('/').pop();
+            const ext = nameImage.split(".").pop();
+
+            const imageToSend = {
+                uri: image.uri,
+                type:image.type+"/"+ext,
+                name : nameImage
+            }
+        
+            data.append("photo", imageToSend)
+        }
 
         data.append("name", props.name);
         data.append("mail", props.mail);
@@ -68,7 +83,7 @@ const CadastroFotoPerfil = ({route, navigation}) => {
         data.append("city", props.city);
         data.append("state", props.state);
         data.append("complement", props.complement);
-        data.append("photo", image);
+        
 
         try {
             const retorno = await api.post("/newUser", data, {
@@ -97,7 +112,7 @@ const CadastroFotoPerfil = ({route, navigation}) => {
                 <ContainerInfos>
                     <Texto>Escolha uma foto para o seu perfil.</Texto>
                     <ContainerFoto>
-                        <FotoImagem source={{ uri: image }}/>
+                        <FotoImagem source={image ? { uri: image} : defaultImage}/>
                         <IconeFoto onPressOut={mudarTextoBotao} onPress={pickImage}>
                             <FotoCamera source={Camera}/>
                         </IconeFoto>

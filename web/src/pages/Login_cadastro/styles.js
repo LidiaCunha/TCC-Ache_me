@@ -9,7 +9,7 @@ export const Container = styled.div`
     background: rgba(0,0,0,0.4);
     overflow: hidden;
     position: relative;
-    
+     
     > img{
       height: 100%;
       width: 100%;
@@ -31,11 +31,9 @@ export const ContainerInfo = styled.form`
     background: rgba(0,0,0,.4);
     position: absolute;
     top: 0px;
-    
 
     @media (max-width: 780px){
       overflow-y: auto;
-
     }
 `;
 
@@ -183,7 +181,7 @@ export const LoginConfigInput = styled.div`
 
 export const CadastroContainerMenu = styled.div`
     height: 120px;
-    width: 100%;
+    width: 100vw;
     display: flex;
     justify-content: space-between;
     align-content: center;
@@ -209,8 +207,8 @@ export const CadastroContainerMenu = styled.div`
 `;
 
 export const CadastroContainerText = styled.div`
-    height: 100%;
-    width: 100%;
+    height: 100vh;
+    width: 100vw;
     display: flex;
     justify-content: center;
     align-content: center;
@@ -240,15 +238,15 @@ export const CadastroContainerText = styled.div`
 
 export const CadastroConfigInput = styled.div`
     height: 60vh;
-    width: 100%;
+    width: 92vw;
     display: flex;
     justify-content: center;
-    align-content: center;
     align-items: center;
     padding-top: 7vh;
     box-sizing: border-box;
+    margin: 0 auto;
     
-
+   
     @media (max-width: 780px){
       height: auto;
       min-height: 50px;
@@ -279,6 +277,7 @@ export const ContainerInput = styled.div`
     display: flex;
     flex-direction: column;
     padding-left: 10px;
+       
 
 > label{
     color: #fff;
@@ -309,7 +308,6 @@ export const ContainerInput = styled.div`
   > label{
     font-size: 3vw;
   }
-
   > input{
     height: 7vh;
     width: 70vw;
@@ -317,10 +315,7 @@ export const ContainerInput = styled.div`
     font-size: 3vw;
     }
   }
-
 `;
-
-
 export const Footer = styled.div`
     height: 10vh;
     width: 100%;

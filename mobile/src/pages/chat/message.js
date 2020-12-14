@@ -1,105 +1,54 @@
-// Import react
 import React from 'react'
-
-// Import react-native components
-import {
-  StyleSheet,
-  View,
-  Text,
-  Image
-} from 'react-native'
-
-// Import react-native-svg
-// from 'https://github.com/react-native-community/react-native-svg'
+import { StyleSheet,TouchableOpacity,Text,Image} from 'react-native'
 import Svg, { Path } from 'react-native-svg'
-
-// Import react-native-size-matters
-// from 'https://github.com/nirsky/react-native-size-matters'
 import { moderateScale } from 'react-native-size-matters'
-
-// Props info list
-// 1. mine (bool) => renders blue bubble on right
-// 2. text (string) => renders text message
-// 3. image (image file) => renders image inside bubble
-
-// Declare component 
-class MessageBubble extends React.Component {
-  render(){
+const MessageBubble = (props) => {
     return (
-      <View style={[
-          styles.message,
-          this.props.mine ? styles.mine : styles.not_mine
-        ]}
-      >
-        <View
-          style={[
-            styles.cloud,
-            {
-              backgroundColor: this.props.mine ? '#EDEDED' : '#f37e74'
-            }
-          ]}
-        >
-          {
-            this.props.image
-            ?
+      <TouchableOpacity style={[ styles.message, props.mine ? styles.mine : styles.not_mine ]} >
+        <TouchableOpacity style={[ styles.cloud, { backgroundColor: props.mine ? '#EDEDED' : '#f37e74'} ]} >
+        {
+          props.image &&
               <Image
-                style={{ width: 300, height: 300, alignSelf: this.props.mine ? 'flex-start' : 'flex-end' }}
+                style={{ width: 300, height: 300, alignSelf: props.mine ? 'flex-start' : 'flex-end' }}
                 borderRadius={10}
                 marginTop={6}
                 marginBottom={6}
-                source={this.props.image}
+                source={{uri:props.image}}
                 width={500}
                 height={500}
-              />
-            :
-              null
-          }
+              />          
+        }
           {
-            this.props.text 
-            ?
-              <Text
-                style={[
-                  styles.text,
-                  {
-                    color: this.props.mine ? 'black' : 'white'
-                  }
-                ]}
-              >
-                {this.props.text}
-              </Text>
-            :
-              null
+            props.text ?
+              <Text style={[ styles.text, {color: props.mine ? 'black' : 'white'} ]} >
+                {props.text}
+              </Text>  : <Text></Text>
           }
-          <View
-            style={[
-              styles.arrow_container,
-              this.props.mine ? styles.arrow_left_container : styles.arrow_right_container
-            ]}
-          >
+          <TouchableOpacity style={[ styles.arrow_container, props.mine ? styles.arrow_left_container : styles.arrow_right_container ]}>
             <Svg
-              style={this.props.mine ? styles.arrow_left : styles.arrow_right}
+              style={props.mine ? styles.arrow_left : styles.arrow_right}
               width={moderateScale(15.5, 0.6)}
               height={moderateScale(17.5, 0.6)}
-              viewBox="32.484 17.5 15.515 17.5"
-              enable-background="new 32.485 17.5 15.515 17.5"
+              TouchableOpacityBox="32.484 17.5 15.515 17.5"
+              enableBackground="new 32.485 17.5 15.515 17.5"
             >
               <Path
-                  d={ this.props.mine 
+                  d={ props.mine 
                       ? 
                       "M38.484,17.5c0,8.75,1,13.5-6,17.5C51.484,35,52.484,17.5,38.484,17.5z"
                       : 
                       "M48,35c-7-4-6-8.75-6-17.5C28,17.5,29,35,48,35z"
                   }
-                  fill={this.props.mine ? '#EDEDED' : '#f37e74'}
+                  fill={props.mine ? '#EDEDED' : '#f37e74'}
                   x="0"
                   y="0"
               />
             </Svg>
-          </View>
-        </View>
-      </View>
+          </TouchableOpacity>
+        </TouchableOpacity>
+      </TouchableOpacity>
     )
-  }
+  
 }
 
 export default MessageBubble

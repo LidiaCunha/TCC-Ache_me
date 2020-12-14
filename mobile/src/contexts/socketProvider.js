@@ -11,18 +11,22 @@ export function useSocket() {
 
 export function SocketProvider({ children }) {
   const { user, signed } = useAuth();
+
   const [socket, setSocket] = useState();
+  
   const id = signed ? user.id : -1;
-    useEffect(() => {
+  
+  useEffect( ( ) => {
       const newSocket = io(
-        'http://localhost:5000',
+        'https://acheme.herokuapp.com:5000',
         {query:{ id }}
       )
-      //console.log(newSocket)
+      
       setSocket(newSocket)
 
       return () => newSocket.close()
-    }, [id]) 
+  }, [id]) 
+  
   return (
       <SocketContext.Provider value={socket}>
         {children}

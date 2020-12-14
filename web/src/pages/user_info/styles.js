@@ -8,6 +8,7 @@ export const Container = styled.div`
     background-color: #efefef;
 
 @media(max-width: 780px){
+    width: 100%;
     overflow-x: hidden;
 }
 `;
@@ -53,23 +54,25 @@ export const Button = styled.div`
     overflow: hidden;
     cursor: pointer;
     text-align: center;
+    float: left;
 `;
 
 // ========= HEADER =========
 
 export const Header = styled.div`
     width: 100vw;
-    height: 6vh;
+    height: 7.5vh;
     padding: 4px;
     box-sizing: border-box;
     background-color: #fff;
     position: fixed;
-    z-index: 999;
+    z-index: 888;
     top: 0;
     overflow: hidden;
     
 @media(max-width: 780px){
-    height: 10vh;
+    height: 50px;
+    width: 100%;
 }
 `;
 
@@ -83,7 +86,7 @@ export const Home = styled.div`
     border-radius: 50%;
     background-color:#E64F4A;
     cursor: pointer;
-margin-left: 190px;
+    margin-left: 190px;
     
     :hover{
         background-color: #e6352f;
@@ -105,6 +108,7 @@ export const Main = styled.div`
     box-sizing:border-box;
 
 @media(max-width: 780px){
+    width: 100%;
     grid-template-rows: 18%;
 }
 `;
@@ -159,7 +163,7 @@ export const PhotoProfile = styled.div`
     grid-template-columns: 100%;
     border-right: solid 2px transparent;
     width: 100%;
-    height: auto;
+    height: 600px;
     display: flex;
     justify-content: center;
     align-content: center;
@@ -176,24 +180,82 @@ export const Merit = styled.div`
 
 @media(max-width: 780px){
     width: 100%;
-    height: auto;
+    height: 500px;
 
     padding: 15px 15px;
 }
 `;
 
+export const ButtonPost = styled.div`
+    width: 125px;
+    height: 38px;
+    border-radius: 5px;
+    background: #fff ;
+    color: #E64F4A;
+    outline: none;
+    padding: 10px;
+    // margin: auto;
+    float: left;
+    margin-left: 50px;
+    box-sizing: border-box;
+    font-size: 0.8em;
+    font-family: arial;
+    font-weight: bold;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    cursor: pointer;
+    text-align: center;
+    border: 1px solid #E64F4A;
+
+`
+
+export const ButtonDenuncia = styled.div`
+    width: 125px;
+    height: 38px;
+    border-radius: 5px;
+    background: red;
+    color: #fff;
+    outline: none;
+    padding: 10px;
+    // margin: auto;
+    float: left;
+    margin-left: 200px;
+    box-sizing: border-box;
+    font-size: 0.8em;
+    font-family: arial;
+    font-weight: bold;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    cursor: pointer;
+    text-align: center;
+    border-color: 5px solid #E64F4A;
+
+`
+
 export const Photo = styled.div`
     width: 120px;
     height: 120px;
-    background-color: #E64F4A;
+    background-color: #aaaaaa;
     margin: 0px 20px;
     border-radius: 50%;
     border: 1px solid #caced4;
+    padding: 2px;
+    box-sizing: border-box;
 
     >img {
         width: 100%;
         height: 100%;
         border-radius: 50%;
+    }
+
+    >input {
+        width: 100%;
+    }
+
+    >label {
+      width: 100%;
     }
 `;
 
@@ -214,7 +276,7 @@ export const NewPhoto = styled.div`
     }
 
     >img {
-      width: 100%;
+        width: 100%;
     }
 `;
 
@@ -253,6 +315,7 @@ export const Title = styled.p`
     padding: 5px 0px;
     border-bottom: solid 2px #dddddd;
     margin-top: 20px;
+    font-weight: bold;
 
 @media(max-width: 780px){
     width: 90vw;
@@ -273,7 +336,7 @@ export const AdvancedInfos = styled.div`
     width: 100%;
     margin-bottom: 10px;
     margin-top: 20px;
-display: flex;
+    display: flex;
     justify-content: center;
     align-content: center;
     align-items: center;
@@ -296,8 +359,8 @@ export const Profile = styled.div`
     'password password'
     'new-password confirm-password'
     'telephone cpf'
-    'cep cep'
-    'street neighborhood'
+    'cep neighborhood'
+    'street number'
     'city state'
     '... button';
 
@@ -335,6 +398,20 @@ export const Input = styled.div`
     }
     >input:hover{
         background-color: #f6f6f6;
+    }
+
+    >.uneditable{
+        width: 100%;
+        height: 30px;
+        outline: none;
+        border: solid 2px #eaeaea;
+        border-radius: 5px;
+        padding-left: 10px;
+        font:14px Arial, Helvetica, sans-serif;
+        color: #555555;
+        line-height: 30px;
+        background-color: #f6f6f6;
+        cursor: default;
     }
 `;
 
@@ -436,3 +513,187 @@ export const MemberName = styled.h1`
         font-weight: normal;
     }
 `;
+
+export const Modal = styled.div`
+    width: 1000px;
+    height: 500px;
+    border-radius: 20px;
+    background-color: #efefef;
+    display: grid;
+    grid-template-rows: 15% 85%;
+    padding: 10px;    
+`;
+
+export const Posts_Container = styled.div`
+
+    overflow-y: auto;
+    overflow-x: hidden;
+    background-color: #efefef;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    padding: 10px;
+
+    ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+    }
+    ::-webkit-scrollbar-button {
+    width: 0px;
+    height: 0px;
+    }
+    ::-webkit-scrollbar-thumb {
+    background: #ef545e;
+    border: 0px none #ef545e;
+    border-radius: 50px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+    background: #ef545e;
+    }
+    ::-webkit-scrollbar-thumb:active {
+    background: #000000;
+    }
+    ::-webkit-scrollbar-track {
+    background: #666666;
+    border: 0px none #ef545e;
+    border-radius: 50px;
+    }
+    ::-webkit-scrollbar-track:hover {
+    background: #666666;
+    }
+    ::-webkit-scrollbar-track:active {
+    background: #333333;
+    }
+    ::-webkit-scrollbar-corner {
+    background: transparent;
+    }
+`;
+
+export const Container_btn_fechar = styled.div`
+    height: auto;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-content: center;
+    align-items: center;
+    padding: 5px;
+    box-sizing: border-box;
+`;
+
+export const Btn_fechar = styled.p`
+    height: 45px;
+    width: 45px;
+    background: #E64F4A;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    font-size: 18px;
+    font-family: arial;
+    font-weight: bold;
+    color: #fff;
+    box-sizing: border-box;
+    cursor:pointer;
+`;
+
+export const ContainerPosts = styled.div`
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+`;   
+
+export const CardPosts = styled.div`
+    width: 350px;
+    height: 350px;
+    border: solid 2px #777;
+    border-radius: 20px;
+    margin-bottom: 15px;
+    padding: 10px;
+`;
+
+export const AreaFotoNome = styled.div`
+    width: 100%;
+    height: 30%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 15px;
+`
+
+export const TextoData = styled.h1`
+    color: #1d1d1d;
+    font-size: 1.2em;
+    text-align: left;
+    letter-spacing: 1.4px;
+    display: flex;
+    align-self: flex-start;
+    margin-left: 80px;
+    margin-right: auto; 
+    margin-bottom: 10px;
+    font-family: "Arial";
+`;
+
+export const TextoPost = styled.p`
+    color: #1d1d1d;
+    font-size: 1.1em;
+    text-align: left;
+    letter-spacing: 1.4px;
+    margin-bottom: 15px;
+    font-family: "Arial";
+`;
+
+
+export const TextoNome = styled.h1`
+    color: #1d1d1d;
+    font-weight: bold;
+    font-size: 1.18em;
+    letter-spacing: 1.4;
+    word-wrap: break-word;
+    font-family: "Arial";
+`
+
+export const FotoUsuario = styled.div`
+    width: 80px;
+    height: 80px;
+    border-radius: 40px;
+    margin-right: 10px;
+
+    >img{
+        height: 100%;
+        width: 100%;
+        border-radius: inherit;
+    }
+`
+
+export const VerMais = styled.div`
+    width: 90%;
+    height: 50px;
+    background-color: #ef545e;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+
+    >p{
+        color: white;
+        letter-spacing: 1.4px;
+        font-size: 1.1em;
+        font-family: "Arial";
+    }
+
+    :hover{
+        background-color: black;
+        cursor: pointer;
+
+        >p{
+            color: #ef545e;
+        }
+    }
+`

@@ -22,6 +22,7 @@ const Card_Email = ({setShowCheckEmail, props}) => {
                     <p>Você recebera um pedido de confirmação no
                     seu e-mail para autorizar a navegação na
                     Ache.me, aceite e faça parte de reecontros.</p>
+
                 </ContainerInformacoes>
 
                 <BtnOk>

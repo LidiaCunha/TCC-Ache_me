@@ -168,13 +168,13 @@ export const ContainerTextMaior = styled.div`
 export const ContainerTextMenor = styled.div`
     height: auto;
     width: auto;
-    font-size: 0.9em;
+    font-size: 1.3em;
     font-family: arial;
     margin-bottom: 80px;
     padding-left: 5vw;
     padding-top: 3vh;
     box-sizing: border-box;
-    color: rgba(255,255,255,.6);
+    color: white;
 
 @media(max-width: 780px){
     font-size: 1.6vw;
@@ -189,7 +189,7 @@ export const ContainerTextMenor = styled.div`
 
 `;
 
-export const ContainerBtn = styled.button`
+export const ContainerBtnValores = styled.button`
     min-height: 6vh;
     height: auto;
     width: auto;
@@ -216,6 +216,7 @@ export const ContainerBtn = styled.button`
         height: 0;
         width: 0;
         background: transparent;
+        color: #E64F4A;
     }
 
     @media(max-width: 780px){

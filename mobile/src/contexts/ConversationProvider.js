@@ -1,9 +1,6 @@
 import React from 'react';
-import useLocalStorage from '../hooks/useLocalStorage';
-//import { useCtts } from './ContactsProvider';
 import { useSocket } from './socketProvider';
-import { useAuth } from './auth';
-import { api } from '../services/api';
+import { api } from '../services/api'
 
 const ConversationsContext = React.createContext();
 
@@ -12,109 +9,40 @@ export const useConversarion = () => {
 }
 
 export const ConversationProvider = ({children}) => {
-    const { user } = useAuth();
     const socket = useSocket();
-    const [ conversations , setConversations ] = useLocalStorage( 'conversarions' , [] );
-    const [selectedConversationIndex , setSelectedConversationIndex ] = React.useState(0)
-    
-    function createConversation( recipient ){
-        setConversations( ( prevCvs ) => {
-            return [ ...prevCvs, { recipient , messages:[] } ];
-        })
-    }
-    function sendMessage( recipient, text){
-
-        socket.emit('envia-msg', { recipient, text})
-
-        addMessageToConversation({recipient, text, sender:user})
-    }
-    const addMessageToConversation = React.useCallback(({ recipient, text, sender }) => {
-        setConversations(prevConversations => {
-          console.log(prevConversations)
-          //let madeChange = false
-          const newMessage = { sender, text }
-
-          // const newConversations = prevConversations?.map(conversation => {
-          //   madeChange = true
-              
-          //   return {
-          //     ...conversation,
-          //     messages: [...conversation.messages, newMessage]
-          //   }
-          // })
-  
-          // if (madeChange) {
-          //   return newConversations
-          // } else {
-            const n = [
-               ...prevConversations,
-             { recipient ,newMessage }
-            ]
-            return n
-          //}
-        })
-    }, [setConversations])
-
-    React.useEffect(()=>{
-        if( socket == null) return;
-
-        socket.on('recebe-msg', addMessageToConversation);
-
-        return ( ) => socket.off('recebe-msg');
-    },[ socket , addMessageToConversation ]);  
-    
-    var output = {};
-    if(conversations ==='undefined'){    
-      const formatedConversations = conversations.map( (conversation, index ) => {
-
-        const recipient =  {id: recipient};
-            
-          const messages = conversation.messages.map( (message) => { 
-            const res = api.get(`/users/${message.sender}`);
-
-            const name = ( contact && contact.name) || message.sender;
-              
-            const fromMe = id === message.sender;
-              
-            return { sender: message.sender, fromMe, text:message.text};
-          });
-        
-        const selected = index === selectedConversationIndex;
-        
-        return {...conversation, messages , selected , recipients};
-      })
  
-      output = {
-        conversations : formatedConversations,
-        selectedConversation:formatedConversations[selectedConversationIndex],
-        selectedConversationIndex: setSelectedConversationIndex,
-        createConversation,
-        sendMessage
-      }
-    }else{
+    async function sendMessage( recipient, message , image ){
+      socket.emit('envia-msg', { recipient: recipient.id, text:message, image});
       
-      output = {
-        selectedConversationIndex: setSelectedConversationIndex,
-        createConversation,
-        sendMessage
+      if(image){
+        const nameImage = image.uri.split('/').pop();
+        const ext = nameImage.split(".").pop();
+
+        var imageToSend = {
+            uri: image.uri,
+            type: image.type + "/" + ext,
+  //          type:"jpeg/"+ext,
+            name: nameImage
+        }
       }
+      
+      const data = new FormData();
+
+      data.append( "message" , message.msg );
+      imageToSend && data.append( "photo" , imageToSend );
+      
+      const res = await api.post(`/message/to/${recipient.id}` , data, {
+        headers: {
+            "Content-type": `multipart/form-data`,
+        }
+      });
+      
+      return res.status == 201 ? true : false;
     }
+    
     return (
-        <ConversationsContext.Provider value={output}>
+        <ConversationsContext.Provider value={sendMessage}>
             {children}
         </ConversationsContext.Provider>
     );
-
-
-}
-
-const arrayEquality = (a,b) =>{
-    if( a.length !== b.length ) return false
-
-    a.sort();
-    b.sort();
-
-    return a.every( ( el , index ) => {
-        return el === b[index]
-    } )
 }
