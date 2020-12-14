@@ -6,13 +6,15 @@ import { AuthProvider } from './src/contexts/auth';
 import { ConversationProvider } from './src/contexts/ConversationProvider';
 import { SocketProvider } from './src/contexts/socketProvider';
 
+import Card from './src/components/menu_horizontal';
+
 const App = () => { 
-  return (
+  return (      
    <NavigationContainer>
      <AuthProvider> 
        <SocketProvider>
          <ConversationProvider>
-           <Routes/>
+           <Card/>
          </ConversationProvider>
        </SocketProvider>
      </AuthProvider>

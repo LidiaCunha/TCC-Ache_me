@@ -64,4 +64,31 @@ const Menu_horizontal = () => {
     );
 }
 
-export default Menu_horizontal;
+const Menu = () => {
+    return(
+        <View style={styles.container}>
+            <Menu_horizontal/>
+            <View style={styles.bordamenu}/>
+        </View>
+        
+    );
+} 
+
+const styles = StyleSheet.create({
+    container: {
+        height: '100%',
+        width: '100%',
+    },
+    
+    bordamenu: {
+        height: 2,
+        width: '100%',
+        backgroundColor: '#fff',
+        position: 'absolute',
+        bottom: 53,
+    },
+    
+    
+});
+
+export default Menu;

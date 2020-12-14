@@ -26,49 +26,49 @@ const Feed = () => {
                 <ScrollView style={styles.itensContainerImg, styles.layer2} horizontal={true}>
                     <View style={styles.cardFiltros}>
                         <View style={ styles.containerImgFiltro }>
-                            <Fontisto name="map-marker-alt" color="#000" size={24}/>
+                            <Fontisto name="map-marker-alt" color="#000" size={28}/>
                         </View>
                         <Text style={styles.textFiltro}>localização</Text>
                     </View>
         
                     <View style={styles.cardFiltros}>
                         <View style={ styles.containerImgFiltro }>
-                            <FontAwesome name="heartbeat" color="#000" size={24}/>
+                            <FontAwesome name="heartbeat" color="#000" size={28}/>
                         </View>
                         <Text style={styles.textFiltro}>saúde</Text>
                     </View>
         
                     <View style={styles.cardFiltros}>
                         <View style={ styles.containerImgFiltro }>
-                            <Image source={ FemaleMale } style={{height: 24, width: 24}}/>
+                            <Image source={ FemaleMale } style={{height: 28, width: 28}}/>
                         </View>
                         <Text style={styles.textFiltro}>gênero</Text>
                     </View>
         
                     <View style={styles.cardFiltros}>
                         <View style={ styles.containerImgFiltro }>
-                            <Image source={ Card } style={{height: 26, width: 26}}/>
+                            <Image source={ Card } style={{height: 28, width: 28}}/>
                         </View>
                         <Text style={styles.textFiltro}>data</Text>
                     </View>
         
                     <View style={styles.cardFiltros}>
                         <View style={ styles.containerImgFiltro }>
-                            <Image source={ Calendar } style={{height: 24, width: 24}}/>
+                            <Image source={ Calendar } style={{height: 26, width: 26}}/>
                         </View>
                         <Text style={styles.textFiltro}>nascimento</Text>
                     </View>
         
                     <View style={styles.cardFiltros}>
                         <View style={ styles.containerImgFiltro }>
-                            <MaterialCommunityIcons name="clock" color="#000" size={28}/>
+                            <MaterialCommunityIcons name="clock" color="#000" size={34}/>
                         </View>
                         <Text style={styles.textFiltro}>horário</Text>
                     </View>
         
                     <View style={styles.cardFiltros}>
                         <View style={ styles.containerImgFiltro }>
-                            <Image source={ Cabelo } style={{height: 24, width: 24}}/>
+                            <Image source={ Cabelo } style={{height: 32, width: 32}}/>
                         </View>
                         <Text style={styles.textFiltro}>características</Text>
                     </View>
@@ -265,11 +265,10 @@ const styles = StyleSheet.create({
     cardPostagem: {
         height: 'auto',
         width: '100%',
-        borderWidth: 1,
-        borderColor: '#6e6f71',
-        borderStyle: 'solid',
         marginBottom: 20
-    }
+    },
+    
+    
 });
 
 export default Feed;

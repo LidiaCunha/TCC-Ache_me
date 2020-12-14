@@ -70,9 +70,9 @@ export const BasicInfos = styled.Text`
     align-items: center;
     align-content: center;
     padding-left: 5px;
-    padding-right: 5px;
+    padding-right: 8px;
     padding-top: 5px;
-    font-size: 12px;
+    font-size: 13px;
     color: #fff;
     border-style: solid;
     border-color: rgba(255,255,255,.5);
