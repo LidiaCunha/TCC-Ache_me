@@ -196,7 +196,7 @@ const Feed = ({navigation}) => {
             
                 {/* <View style={styles.containerCarregarPostagem}> */}
                     {posts !== undefined && posts.map !== undefined &&
-                        posts.map(post => <View style={styles.cardPostagem}><Post seen={post} /></View>)
+                        posts.map(post => <View style={styles.cardPostagem}><Post seen={post} navigation={navigation} /></View>)
                     }
                 {/* </View> */}
             </ScrollView>
