@@ -22,7 +22,7 @@
    Login,
    Name,
 
-//   // Section 2
+  // Section 2
    Title,
    AdvancedInfos,
    Profile,
@@ -33,9 +33,8 @@
    Members,
    Member,
    MemberName,
-    
-//   //Everson
    TitleMember,
+   ContainerBtnMerit,
       
 } from './styles';
 
@@ -279,8 +278,10 @@ const handlerImage = (e) => {
               <Text>Seu mérito: { !user.merit || user.merit == null ? "0 (indique pessoas para aumentar seu mérito)" :  calcStarts(user.merit)} </Text>
               <Text>Data da última publicação: {moment(lastPost.createdAt).format('DD/MM/YYYY')}</Text>
               <Text>Hora da última publicação: {moment(lastPost.createdAt).format('HH:mm')}</Text>
-              <ButtonDenuncia onClick={()=>{setShowDenunciations(true)}}>Denúncias</ButtonDenuncia>
-              <ButtonPost onClick={()=>{setShowModalPost(true)}}>Postagens</ButtonPost>
+              <ContainerBtnMerit>
+                  <ButtonDenuncia onClick={()=>{setShowDenunciations(true)}}>Denúncias</ButtonDenuncia>
+                  <ButtonPost onClick={()=>{setShowModalPost(true)}}>Postagens</ButtonPost>
+              </ContainerBtnMerit>
             </Merit>
           </BasicInfos>
         </Section>

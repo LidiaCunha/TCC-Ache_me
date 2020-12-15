@@ -8,7 +8,7 @@ import Routes from '../../routes';
 import Chat from '../../routes/chat.routes';
 import Usuario from '../../routes/user.routes';
 import Postagens from '../../routes/posts.routes';
-import AppRoutes from '../../routes/app.routes'
+import AppRoutes from '../../routes/app.routes';
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -56,6 +56,17 @@ const Menu_horizontal = () => {
                     tabBarLabel: "Postagens",
                     tabBarIcon: ({ color }) => (
                         <MaterialIcons name="list" color={ color } size={30}/>
+                    )
+                }} 
+            />
+
+            <Tab.Screen 
+                name="Sair" 
+                component={Postagens} 
+                options={{
+                    tabBarLabel: "Sair",
+                    tabBarIcon: ({ color }) => (
+                        <MaterialCommunityIcons name="logout" color={ color } size={25}/>
                     )
                 }} 
             />

@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     },
     
     title: {
-        color: '#E33336',
+        color: '#EF5245',
         fontSize: 20,
         fontWeight: 'bold',
         textTransform: 'uppercase',

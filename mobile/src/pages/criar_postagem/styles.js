@@ -190,14 +190,13 @@ export const Lorem = styled.Text`
     width: auto;
     height: auto;
     font-size: 16px;
-    /* font-family: Arial, Helvetica, sans-serif; */
     color: #fff;
     margin-bottom: 5px;  
 `;
 
 export const InputDate = styled.TextInput`
     height: 40px;
-    width: 170px;
+    width: 70%;
     border: 2px;
     border-style: solid;
     border-color: #555555;

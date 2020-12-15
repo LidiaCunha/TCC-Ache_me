@@ -107,7 +107,6 @@ const Feed = ({navigation}) => {
             <View style={styles.header}>
                 <Text style={styles.Acheme}>Ache.me</Text>
                 <Image source={Logo} style={styles.Logo}/>
-                <Text onPress={logout}>logout</Text>
             </View>
 
             <ScrollView style={styles.content}>

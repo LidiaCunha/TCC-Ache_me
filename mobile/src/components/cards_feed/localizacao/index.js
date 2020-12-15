@@ -13,26 +13,26 @@ const Data = () => {
       
                 <View style={styles.conteudo}>
                     <Text style={styles.textInput}>CEP (Opcional)</Text>
-                    <TextInput style={styles.input} placeholder="xxxxx-xxx" placeholderTextColor="#fff"/>
+                    <TextInput style={styles.input} placeholder="Insira seu CEP" placeholderTextColor="rgba(255,255,255, 0.5)"/>
       
                     <Text style={styles.textInput}>Rua</Text>
-                    <TextInput style={styles.input} placeholder="rua" placeholderTextColor="#fff"/>
+                    <TextInput style={styles.input} placeholder="Insira sua rua" placeholderTextColor="rgba(255,255,255, 0.5)"/>
       
                     <Text style={styles.textInput}>Bairro</Text>
-                    <TextInput style={styles.input} placeholder="bairro" placeholderTextColor="#fff"/>
+                    <TextInput style={styles.input} placeholder="Insira seu bairro" placeholderTextColor="rgba(255,255,255, 0.5)"/>
       
                     <Text style={styles.textInput}>Cidade</Text>
-                    <TextInput style={styles.input} placeholder="cidade" placeholderTextColor="#fff"/>
+                    <TextInput style={styles.input} placeholder="Insira sua cidade" placeholderTextColor="rgba(255,255,255, 0.5)"/>
                         
                     <View style={styles.ContainerEstadoNumero}>
                         <View style={styles.ContainerColumn}>
-                            <Text style={[styles.textInput, {paddingLeft: 10}]}>Estado</Text>
-                            <TextInput style={styles.input} placeholder="estado" placeholderTextColor="#fff"/>  
+                            <Text style={[styles.textInput, {paddingLeft: 10, marginBottom: 15, marginTop: 20}]}>Estado</Text>
+                            <TextInput style={styles.input} placeholder="Insira seu estado" placeholderTextColor="rgba(255,255,255, 0.5)"/>  
                         </View>    
     
                         <View style={styles.ContainerColumn}>
-                            <Text style={[styles.textInput, {paddingLeft: 10}]}>Número</Text>
-                            <TextInput style={styles.input} placeholder="número" placeholderTextColor="#fff"/>  
+                            <Text style={[styles.textInput, {paddingLeft: 10}]}>Número (Opcional)</Text>
+                            <TextInput style={styles.input} placeholder="Insira seu número" placeholderTextColor="rgba(255,255,255, 0.5)"/>  
                         </View>   
                         
                        
@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
     },
     
     title: {
-        color: '#E33336',
+        color: '#EF5245',
         fontSize: 20,
         fontWeight: 'bold',
         textTransform: 'uppercase',

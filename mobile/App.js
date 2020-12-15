@@ -8,15 +8,19 @@ import DataProvider from './src/contexts/dataProvider';
 import BottomRoutes from './src/components/menu_horizontal';
 import Termos from './src/pages/ServiceTerms/index'
 
+import Card from './src/pages/card_desaparecido'
+
 const App = () => { 
 
   return (
+//      <Card/>
+      
     <NavigationContainer>
       <AuthProvider> 
         <DataProvider>
           <SocketProvider>
             <ConversationProvider>
-              <Routes/>
+              <BottomRoutes/>
             </ConversationProvider>
           </SocketProvider>
         </DataProvider>

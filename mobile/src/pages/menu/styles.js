@@ -9,7 +9,6 @@ export const Container = styled.ScrollView`
     border-right-width: 2px;
     border-style: solid;
     border-color: #fff;
-    margin-top: 29px;
     position: absolute;
     z-index:999;
 `;
@@ -65,7 +64,7 @@ export const ContainerItemMenu = styled.View`
     border-color: #EF5245;
     margin-left: 25px;
     padding-bottom: 20px;
-    margin-bottom: 65px;
+    margin-bottom: 35px;
 `;
 
 

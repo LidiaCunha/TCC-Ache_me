@@ -373,7 +373,6 @@ const Usuario = ({reload, props, navigation}) => {
                 <AreaTexto><TextoMenor>INFORMAÇÕES PESSOAIS</TextoMenor></AreaTexto>
                 <AreaTexto><TextoMenor>Nome</TextoMenor></AreaTexto>
                 <InputInfos 
-                    placeholder="name" 
                     autoCorrect={false}
                     keyboardType="default" 
                     value={user.name} 

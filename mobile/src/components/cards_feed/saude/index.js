@@ -8,7 +8,7 @@ const Data = () => {
             <View style={styles.contianerCard}>
                 
                 <View style={styles.header}>
-                    <Text style={styles.title}>saúde</Text>
+                    <Text style={styles.title}>problemas de saúde</Text>
                 </View>
       
       
@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
     },
     
     title: {
-        color: '#E33336',
+        color: '#EF5245',
         fontSize: 20,
         fontWeight: 'bold',
         textTransform: 'uppercase',

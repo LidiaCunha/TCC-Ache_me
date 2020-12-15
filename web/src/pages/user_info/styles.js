@@ -159,17 +159,17 @@ export const PhotoProfile = styled.div`
     grid-template-columns: 40% 60%;
     border-right: solid 2px #dddddd;
 
-@media(max-width: 780px){
-    grid-template-columns: 100%;
-    border-right: solid 2px transparent;
-    width: 100%;
-    height: 600px;
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    align-items: center;
-    flex-direction: column;
-}
+    @media(max-width: 780px){
+        grid-template-columns: 100%;
+        border-right: solid 2px transparent;
+        width: 100%;
+        height: 600px;
+        display: flex;
+        justify-content: center;
+        align-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
 `;
 
 export const Merit = styled.div`
@@ -178,56 +178,63 @@ export const Merit = styled.div`
     height: 100%;
     padding: 15px 30px;
 
-@media(max-width: 780px){
-    width: 100%;
-    height: 500px;
+    @media(max-width: 780px){
+        width: 100%;
+        height: 500px;
+        padding: 15px 15px;
+        margin-bottom: 20;
+    }
+`;
 
-    padding: 15px 15px;
-}
+export const ContainerBtnMerit = styled.div`
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+
+    @media(max-width: 780px){
+        flex-direction: column;
+        height: 120px;
+    }
 `;
 
 export const ButtonPost = styled.div`
     width: 125px;
     height: 38px;
     border-radius: 5px;
-    background: #fff ;
+    background: #fff;
     color: #E64F4A;
     outline: none;
     padding: 10px;
-    // margin: auto;
-    float: left;
-    margin-left: 50px;
+    margin-left: 100px;
     box-sizing: border-box;
     font-size: 0.8em;
     font-family: arial;
     font-weight: bold;
-    position: relative;
-    z-index: 1;
-    overflow: hidden;
     cursor: pointer;
     text-align: center;
     border: 1px solid #E64F4A;
 
-`
+    @media(max-width: 780px){
+        margin-left: 0;
+        margin-top: 20px;
+    }
+`;
 
 export const ButtonDenuncia = styled.div`
     width: 125px;
     height: 38px;
     border-radius: 5px;
-    background: red;
+    background: #E64F4A;
     color: #fff;
     outline: none;
     padding: 10px;
-    // margin: auto;
-    float: left;
-    margin-left: 200px;
     box-sizing: border-box;
     font-size: 0.8em;
     font-family: arial;
     font-weight: bold;
-    position: relative;
-    z-index: 1;
-    overflow: hidden;
     cursor: pointer;
     text-align: center;
     border-color: 5px solid #E64F4A;
