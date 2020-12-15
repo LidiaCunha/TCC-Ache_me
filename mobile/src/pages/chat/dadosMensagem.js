@@ -3,10 +3,10 @@ import { ContainerDadosMensagem, MenuVoltarDados, Seta, Data, Texto, Border } fr
 import seta from '../../assets/setaVoltar.png';
 import moment from 'moment';
 
-const DadosMensagem = ({time}) => {
+const DadosMensagem = ({time, showAboutMessageTime}) => {
     return(
         <ContainerDadosMensagem>
-            <MenuVoltarDados>
+            <MenuVoltarDados onPress={() => showAboutMessageTime(0)}>
                 <Seta source={seta}/>
             </MenuVoltarDados>
             <Texto>Data da mensagem</Texto>
