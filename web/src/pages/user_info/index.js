@@ -48,7 +48,7 @@ import Spinner from "../../components/Spinner";
 import ModalPostagem from "./modalPostagem";
 import CreatePost from "../../components/CreatePost";
 import Denunciations from "./modal_denuncia";
-
+import {useHistory} from "react-router-dom";
 import moment from 'moment';
 import {api} from "../../services/api";
 import {getUsers} from "../../services/security";
@@ -62,6 +62,7 @@ const UserInfo = () => {
         </Member>
       );
   };
+
   const [loading, setLoading] = useState(false);
 
   const [members , setMembers] = useState([]);
@@ -246,6 +247,8 @@ const handlerImage = (e) => {
     return merit%5;
   };
 
+  const route = useHistory()
+
   return (
     <Container>
       { showCreatePost && <CreatePost showCreatePost={setShowCreatePost} user={{user,image}} /> }
@@ -253,7 +256,7 @@ const handlerImage = (e) => {
       { loading && <Spinner/>}
       { showDenunciations && <Denunciations setShowDenunciations={setShowDenunciations}/>}
       <Header>
-        <Home>
+        <Home onClick={() => { ( () => route.push('/feed'))()  } } >
           <img src={home} alt="return home"/>
         </Home>
       </Header>
