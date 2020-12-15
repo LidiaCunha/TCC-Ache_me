@@ -43,7 +43,7 @@ import { FontAwesome } from '@expo/vector-icons';
 import { api } from '../../services/api';
 
 
-function Post({seen}) {
+function Post({seen, navigation}) {
 
     const {user} = useAuth();
 
@@ -67,17 +67,17 @@ function Post({seen}) {
         })();
     },[]);
 
-    useEffect(()=>{
-        (async()=>{
-            const coment = await api.get(`/posts/${post.id}/comments`);
+    // useEffect(()=>{
+    //     (async()=>{
+    //         const coment = await api.get(`/posts/${post.id}/comments`);
 
-            coment.data.map(async comentario => {
-                const creator = await api.get(`/user/${comentario.id_user}`)
-                setComments([...comments,{...comentario,creator:{...creator.data}} ])
-            });
+    //         coment.data.map(async comentario => {
+    //             const creator = await api.get(`/user/${comentario.id_user}`)
+    //             setComments([...comments,{...comentario,creator:{...creator.data}} ])
+    //         });
 
-        })();
-    },[])
+    //     })();
+    // },[])
     
     return (
         <>
@@ -137,7 +137,7 @@ function Post({seen}) {
                 </ContainerCharacter>
 
                 <Comment>
-                    <PersonImage source={ user.photo !== 'undefined' ? {uri:user?.photo} : defaultImage} style={{backgroundColor: 'white'}} />
+                    <PersonImage source={ user?.photo && user.photo !== 'undefined' ? {uri:user?.photo} : defaultImage} style={{backgroundColor: 'white'}} />
                     <Input onChangeText={handleComment} value={comment} />
                     <BtnSend onTouchStart={createComment} >
                         <BtnSendImg >
@@ -146,11 +146,11 @@ function Post({seen}) {
                     </BtnSend>
                 </Comment>
 
-                <Btn_Options style={{ bottom: 150, right: 50 }} />
+                <Btn_Options style={{ bottom: 150, right: 50 }} post={{post , creator:seen.LostedThatWasSeen.postCreator }} navigation={navigation} />
 
 
             </Container>
-            <Comments>
+            {/* <Comments>
 
                 {
                     comments.map( coment => {
@@ -166,7 +166,7 @@ function Post({seen}) {
                         );
                     })
                 }
-            </Comments>
+            </Comments> */}
         </>
     );
 }

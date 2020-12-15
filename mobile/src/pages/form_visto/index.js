@@ -1,11 +1,13 @@
-import React,{useState} from "react";
+import React,{useEffect, useState} from "react";
 import seta from "../../assets/setaVoltar.png"
 import { AreaForm, TextoEmail, InputHorario, BotaoSalvar, AreaInputs, ContainerInputs, AreaInputHorario, InputInfos, Border, IconeFotoMembros, ImagemMembros, AreaEstrelas, TextoMenor, TextoMerito, IconeFoto, FotoCamera, AreaImagem, AreaMerito, Container, ContainerUsuario, ImagemUsuario, MenuVoltar, Seta, Estrelas, Botao, TextoBotao, AreaTexto, AreaMembros, Texto } from "./styles";
 import RadioForm, {RadioButton, RadioButtonInput, RadioButtonLabel} from 'react-native-simple-radio-button';
 import {api} from '../../services/api';
 import { Alert } from "react-native";
 
-const Visto = ({postId, navigation}) => {
+const Visto = (props) => {
+
+    const [post, setPost] = useState({});
 
     const [date, setDate] = useState("");
 
@@ -86,7 +88,7 @@ const Visto = ({postId, navigation}) => {
             seen_at_hours: `${hour}:${minutes}`
         };
         
-        const seenCreated = await api.post(`/seen/${postId ? postId : 1}` , data );
+        const seenCreated = await api.post(`/seen/${post.post.id}` , data );
         
         if (seenCreated.status === 201){
             navigation.navigate('Dashboard');
@@ -95,14 +97,16 @@ const Visto = ({postId, navigation}) => {
         }
     };
 
+    useEffect(()=>{setPost(props.route.params.post)},[])
+
     return(
         <Container>
-            <MenuVoltar>
+            <MenuVoltar onPress={() => navigation.navigate('Dashboard')}>
                 <Seta source={seta}/>
             </MenuVoltar>
-            <AreaTexto><Texto>Você viu essa pessoa?</Texto></AreaTexto>
+            <AreaTexto><Texto>Você viu i {post?.post?.name}?</Texto></AreaTexto>
             <AreaTexto><TextoEmail>As respostas desse formulário serão enviadas
-                para <TextoMerito>Oliver Sykes</TextoMerito> em seu chat.
+                para <TextoMerito>{post?.creator?.name}</TextoMerito> em seu chat.
             </TextoEmail></AreaTexto>
             <AreaForm>
                 <ContainerInputs>

@@ -7,7 +7,9 @@ import * as ImagePicker from 'expo-image-picker';
 import { api } from "../../services/api";
 import { Alert } from "react-native";
 
-const Encontrado = ({ postId , navigation }) => {
+const Encontrado = (props) => {
+
+    const [post, setPost] = useState({});
 
     const [date, setDate] = useState("");
 
@@ -29,33 +31,15 @@ const Encontrado = ({ postId , navigation }) => {
 
     const [image, setImage] = useState(null);
 
-    const handlerDate = (e) => {
-        setDate(e.nativeEvent.text.replace(/[^0-9]/g,'').replace(/(.{2})(.{2})(.{4})/, '$1/$2/$3').replace(/(.{10})(.*)/,'$1'));
-    };
-    const handlerMinutes = (e) =>{
-        setMinutes(e.nativeEvent.text.replace(/(.{2})(.*)/,'$1'));
-    };
-    const handlerHour = (e) => {
-        setHour(e.nativeEvent.text.replace(/(.{2})(.*)/,'$1'));
-    };
-    const handlerCep =(e)=>{
-        setCep(e.nativeEvent.text.replace(/[^0-9]/g,'').replace(/(.{5})(.{3})/,'$1-$2').replace(/(.{9})(.*)/,'$1'));
-    };
-    const handlerStreet = (e) => {
-        setStreet(e.nativeEvent.text);
-    }
-    const handlerCity = (e) => {
-        setCity(e.nativeEvent.text);
-    }
-    const handlerState = (e) => {
-        setState(e.nativeEvent.text);
-    }
-    const handlerBairro = (e) => {
-        setBairro(e.nativeEvent.text);
-    }
-    const handlerNumber = (e) => {
-        setNumber(e.nativeEvent.text);
-    }
+    const handlerDate = (e) => setDate(e.nativeEvent.text.replace(/[^0-9]/g,'').replace(/(.{2})(.{2})(.{4})/, '$1/$2/$3').replace(/(.{10})(.*)/,'$1'));
+    const handlerMinutes = (e) => setMinutes(e.nativeEvent.text.replace(/(.{2})(.*)/,'$1'));
+    const handlerHour = (e) => setHour(e.nativeEvent.text.replace(/(.{2})(.*)/,'$1'));
+    const handlerCep = (e) => setCep(e.nativeEvent.text.replace(/[^0-9]/g,'').replace(/(.{5})(.{3})/,'$1-$2').replace(/(.{9})(.*)/,'$1'));
+    const handlerStreet = (e) => setStreet(e.nativeEvent.text);
+    const handlerCity = (e) => setCity(e.nativeEvent.text);
+    const handlerState = (e) => setState(e.nativeEvent.text);
+    const handlerBairro = (e) => setBairro(e.nativeEvent.text);
+    const handlerNumber = (e) => setNumber(e.nativeEvent.text);
 
     const autoCompleteByCep = async( e ) => {
 
@@ -70,7 +54,7 @@ const Encontrado = ({ postId , navigation }) => {
         const endereco = await fetch(url).then(res => res.json());
         
         setForm(endereco)
-    }
+    };
 
     const pickImage = async () => {
         let result = await ImagePicker.launchImageLibraryAsync({
@@ -106,7 +90,7 @@ const Encontrado = ({ postId , navigation }) => {
         data.append('complement',number)
         data.append('photo',image)
 
-        const res = await api.post(`/found/${postId ? postId : 1 }`, data, {
+        const res = await api.post(`/found/${post.post.id}`, data, {
             headers:{
                 "Content-type": `multipart/form-data`,
             }   
@@ -118,16 +102,18 @@ const Encontrado = ({ postId , navigation }) => {
             Alert.alert("ERRO AO CRIAR ENCRONTRADO")
         }
 
-    }
+    };
+
+    useEffect(() => setPost(props.route.params.post) , [] );
 
     return(
         <Container>
             <MenuVoltar>
                 <Seta source={seta}/>
             </MenuVoltar>
-            <AreaTexto><Texto>Você encontrou essa pessoa?</Texto></AreaTexto>
+            <AreaTexto><Texto>Você encontrou i {post?.post?.name}?</Texto></AreaTexto>
             <AreaTexto><TextoEmail>As respostas desse formulário serão enviadas
-                para <TextoMerito>Oliver Sykes</TextoMerito> em seu chat.
+                para <TextoMerito>{post?.creator?.name}</TextoMerito> em seu chat.
             </TextoEmail></AreaTexto>
             <AreaForm>
                 <ContainerInputs>

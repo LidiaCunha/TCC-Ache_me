@@ -11,14 +11,17 @@ import compartilhar from "../../assets/opcao-de-compartilhamento.png";
 import placa from "../../assets/placa.png";
 import pegadas from "../../assets/pegadas.png";
 import sair from "../../assets/opcao-de-sair.png";
-import {getUsers} from '../../services/security'
+import {getUsers, signOut} from '../../services/security'
 import { api } from '../../services/api';
 import LostedPost from "../post";
 import CreatePost from "../../components/CreatePost";
+import { useHistory } from 'react-router-dom';
 
 const Feed = () => {
     
     const user = getUsers();
+
+    const route = useHistory();
 
 // STATES
     const [item, setItem] = useState({
@@ -174,9 +177,9 @@ const Feed = () => {
         <Container>
             {showCreatePost && <CreatePost showCreatePost={setShowCreatePost} user={{user}} />}
             <Menu>
-                <Icone id="foto"><img src={foto}/></Icone>
-                <Icone><img src={sair}/></Icone>
-                <ImagemUsuario id="usuario">
+                <Icone id="foto"  onClick={()=>route.push('/user_info')} ><img src={foto}/></Icone>
+                <Icone  onClick={()=>signOut()} ><img src={sair}/></Icone>
+                <ImagemUsuario   onClick={()=>route.push('/user_info')}  id="usuario">
                     <img src={user.photo === 'undefined' ? photo : user.photo } />
                 </ImagemUsuario>
             </Menu>

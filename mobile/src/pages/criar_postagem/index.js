@@ -120,8 +120,8 @@ const Criar_postagem = () => {
 
     const createPost = async() => {
 
-        // const res = await api.post('/genre',{genre:post.name_of_genre});
-        // console.log(res)
+        await api.post('/genre',{genre:post.name_of_genre});
+        
         if (!postImage) {
             return window.alert("imagem obrigatoria!!!")
         }
@@ -142,17 +142,17 @@ const Criar_postagem = () => {
             uri: postImage.uri,
             type: postImage.type+"/"+ext,
         });
-        
+        console.log("aqui")
         try{
+            console.log("tentando criar a postagem")
             var postCreated = await api.post('/posts', data, {
                 headers: {
                     "Content-type": `multipart/form-data`,
                 }
             });
-            if (postCreated.status === 201) {
+            if (postCreated && postCreated.status === 201) {
 
-                console.log(postCreated.data.id)
-
+                console.log("o post foi criado")
                 const data = {
                     street:location.street, 
                     bairro: location.bairro, 
@@ -166,7 +166,8 @@ const Criar_postagem = () => {
                 };
                 
                 const seenCreated = await api.post(`/seen/${postCreated.data.id}`,data);
-                if (seenCreated.status === 201){
+
+                if (seenCreated&&seenCreated.status === 201){
 
                     console.log("seenCreated")
     
@@ -182,7 +183,11 @@ const Criar_postagem = () => {
                     });
     
                     window.alert("Post criado com sucesso!");
+                }else{
+                    window.alert("erro ao criar o visto")
                 }
+            }else{
+                window.alert("erro ao criar a postagem")
             }
         } catch (erro) {
             if(erro.response){
