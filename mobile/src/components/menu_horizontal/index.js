@@ -59,17 +59,6 @@ const Menu_horizontal = () => {
                     )
                 }} 
             />
-
-            <Tab.Screen 
-                name="Sair" 
-                component={Postagens} 
-                options={{
-                    tabBarLabel: "Sair",
-                    tabBarIcon: ({ color }) => (
-                        <MaterialCommunityIcons name="logout" color={ color } size={25}/>
-                    )
-                }} 
-            />
         
         </Tab.Navigator>
     );

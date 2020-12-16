@@ -13,10 +13,14 @@ import visto from "../../assets/Post/visibility.png";
 import photo from '../../assets/userTest.png';
 import moment from 'moment';
 import {api} from '../../services/api';
+import {useHistory} from 'react-router-dom';
+import { usePost } from '../../contexts/PostProvider';
 
 function Post({post}) {
 
   const [Allpost, setAllPost] = useState([]);
+
+  const route = useHistory();	
 
   useEffect(()=>{
     (async()=>{
@@ -27,7 +31,9 @@ function Post({post}) {
   },[])
 
   const genres = ['Masculino', 'Feminino' , 'Não Binario' , 'Não Binario' , 'Não Binario' , 'Não Binario'];
-  console.log(Allpost)
+  
+  const {setPost} = usePost();
+
   return(
       <Container>
         <ContainerUsuario>
@@ -70,9 +76,9 @@ function Post({post}) {
           </ContainerCardFiltros>
           <ContainerBotoes>
             <DivBotoesOpcoes className="botoes_ocultos">
-                <BotoesOpcoes><img src={encontrado}/></BotoesOpcoes>
-                <BotoesOpcoes><img src={denunciar}/></BotoesOpcoes>
-                <BotoesOpcoes><img src={visto}/></BotoesOpcoes>
+                <BotoesOpcoes onClick={ () => { setPost(post); route.push('/found')}  }  ><img src={encontrado}/></BotoesOpcoes>
+                <BotoesOpcoes ><img src={denunciar}/></BotoesOpcoes>
+                <BotoesOpcoes onClick = {()=>{ setPost(post); route.push('/seen') }} ><img src={visto}/></BotoesOpcoes>
             </DivBotoesOpcoes>
             <CardOpcoes className="botao_mostrar"><p>Mais opções</p></CardOpcoes>
           </ContainerBotoes>

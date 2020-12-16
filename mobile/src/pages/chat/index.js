@@ -184,7 +184,7 @@ function Chat({ route, navigation }) {
         </AreaMensagem>
         
         { showDeleteMessage && <ModalExcluir idToDelete={idToDelete} setShowDeleteMessage={setShowDeleteMessage} /> }
-        { AboutMessageTime !== 0 && <AboutMessage time={AboutMessageTime} /> }
+        { AboutMessageTime !== 0 && <AboutMessage time={AboutMessageTime} showAboutMessageTime={showAboutMessageTime} /> }
         
       </ContainerChat>
     </Container>

@@ -217,9 +217,11 @@ export const HoraMsg = styled.Text`
 `
 
 export const ContainerDadosMensagem = styled.View`
+    width: 100%;
+    height: 100%;
     flex: auto;
     justify-content: flex-start;
-    background-color: #0d0d0d;
+    background-color: #000;
     padding: 25px;
 `
 
@@ -229,6 +231,7 @@ export const MenuVoltarDados = styled.TouchableOpacity`
     align-items: flex-start;
     justify-content: flex-start;
     padding: 8px;
+    margin-bottom: 25px;
 `
 
 export const Data = styled.Text`
