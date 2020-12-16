@@ -196,7 +196,7 @@ function CreatePost({showCreatePost, user}) {
                         <Name>{user.user.name}</Name>
                     </Creator>
                 
-                    <ExitButton onClick={()=>showCreatePost(false)} />
+                    <ExitButton onClick={()=>showCreatePost(false)}>X</ExitButton>
                 </Header>
                 
                 <Body>
@@ -224,7 +224,7 @@ function CreatePost({showCreatePost, user}) {
                     
                     <Column>
                         <InputName value={name} onChange={handlerName} />
-                        <Label>Nome do desaparecido</Label>
+                        <Label style={{marginLeft: 10}}>Nome do desaparecido</Label>
                     </Column>
 
                     <Column>

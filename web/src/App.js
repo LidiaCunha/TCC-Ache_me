@@ -4,8 +4,6 @@ import Post from "./pages/feed/index";
 
 import Routes from "./routes";
 
-import Post2 from './components/CreatePost/index.js';
-
 function App() {  
   return (
     <>

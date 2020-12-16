@@ -3,6 +3,13 @@ import { View, Text, ScrollView, StyleSheet} from 'react-native';
 import RadioForm, {RadioButton, RadioButtonInput, RadioButtonLabel} from 'react-native-simple-radio-button';
 
 const Genero = () => { 
+    
+    var radio_props = [
+        {label: 'Masculino', value: 'Masculino' },
+        {label: 'Feminino', value: 'Feminino' },
+        {label: 'Outro', value: 'LGBT' }
+    ];
+    
   return (
       <View style={styles.container}>
             <View style={styles.contianerCard}>
@@ -13,7 +20,17 @@ const Genero = () => {
       
       
                 <View style={styles.conteudo}>
-        
+                    <RadioForm
+                        radio_props={radio_props}
+                        formHorizontal={true}
+                        labelHorizontal={true}
+                        buttonColor={'#999'}
+                        selectedButtonColor={'#E33336'}
+                        labelStyle={{fontSize: 15, color: '#999', marginRight:10}}
+                        selectedLabelColor={'#E33336'}
+                        animation={true}
+                        onPress={(value) => setPost({...post , name_of_genre : value})}
+                        />
                 </View>
       
       

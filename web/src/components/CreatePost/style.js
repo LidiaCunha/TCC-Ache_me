@@ -12,7 +12,7 @@ export const ContainerModal = styled.div`
 `;
 export const Container = styled.div`
     background-color: #fff;
-    width: 74vw;
+    width: 60vw;
     height: 90vh;
     margin-top:5vh;
     z-index:1000;
@@ -53,6 +53,12 @@ export const Container = styled.div`
     ::-webkit-scrollbar-corner {
     background: transparent;
     }
+
+@media(max-width: 780px){
+    width: 100vw;
+    height: 100vh;
+    margin-top:5vh;
+}
 `;
 export const Header = styled.div`
     width:100%;
@@ -61,6 +67,11 @@ export const Header = styled.div`
     padding:5px;    
     flex-direction: row;
     justify-content:space-between;
+
+@media(max-width: 780px){
+    width: 100vw;
+    height: auto;
+}
 `;
 export const Creator = styled.div`
     width:40%;
@@ -69,6 +80,11 @@ export const Creator = styled.div`
     flex-direction: row;
     align-items:center;
     margin-top:5px;
+
+@media(max-width: 780px){
+    width: auto;
+    height: auto;
+}
 `;
 export const Photo = styled.img`
     border-radius:25px;
@@ -78,9 +94,10 @@ export const Photo = styled.img`
     margin-right:5px;
 `;
 export const Name = styled.span`
-    font-weight: 700;
+    font-weight: bold;
     font-size : 18px;
-    margin-left:5px; 
+    margin-left: 5px; 
+    font-family: arial;
 `;
 export const ExitButton = styled.div`
     border-radius:50px;
@@ -89,10 +106,25 @@ export const ExitButton = styled.div`
     background-color:#ef5245;
     margin:15px;
     margin-top:10px;
+    transition: 0.5s;
+    color: #fff;
+    font-size: 1.5em;
+    font-family: arial;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+
     :hover {
+        transition: 0.5s;
         cursor:pointer;
         background-color:#1e1e1e;
     }
+
+@media(max-width: 780px){
+    margin-right: 20px;
+}
 `;
 export const Body = styled.div`
     width:100%;
@@ -109,6 +141,10 @@ export const Line = styled.div`
     align-items:center;
     flex-direction:row;
     justify-content:space-around;
+
+@media(max-width: 780px){
+    flex-direction: column;
+}
 `;
 
 export const Linha = styled.div`
@@ -136,6 +172,7 @@ export const InputName = styled.input.attrs(() => ({
     background-color:transparent;
     padding: 16px 0;
     border-bottom: solid 1px white;
+    margin-left: 10px;
     ~ label {
         position: absolute;
         top: 16px;
@@ -155,6 +192,10 @@ export const InputName = styled.input.attrs(() => ({
     }
     font-size:1.5rem;
     border-bottom: solid 1px #ef5245;
+
+    @media(max-width: 780px){
+        width: 95%;
+    }
 `;
 export const InputBorned = styled.input.attrs(() => ({
     type: "date"
@@ -179,6 +220,7 @@ export const Label = styled.label`
     margin-left: auto;
     margin-right: auto;
     letter-spacing: 1.1px;
+    text-align: center;
 `;
 
 export const LabelGenero = styled.label`
@@ -304,6 +346,13 @@ export const RadioGroup = styled.form`
     flex-direction:row;
     justify-content:space-between;
     align-items:center;
+
+    @media(max-width: 780px){
+        flex-direction: column;
+        min-width:10px;    
+        width: 100vw;
+        height: 90px;
+    }
 `;
 export const Column = styled.div`
     width:auto;
@@ -325,12 +374,17 @@ export const ContainerRadio = styled.div`
     position: relative;
     border: solid 0.5px #000;
     border-radius:5px;
+
+    @media(max-width: 780px){
+        margin: 10px 0px;
+        padding: 8px;
+    }
 `;
 export const LostedPhoto = styled.img`
     max-height: 800px;
     max-width: 800px;
     border-radius: 15px;
-    margin :20px;
+    margin: 20px;
     margin-bottom:20px;
     margin-top: 70px;
     box-sizing:border-box;
@@ -350,14 +404,17 @@ export const ConteinerPhoto = styled.div`
     justify-content:center;
     flex-direction: row;
     z-index: 889;
+    transition: 0.5s;
+
     :hover{
         > label {
             background-color:#1e1e1e;
+            transition: 0.5s;
         }
     }
     > label {
         opacity:1;
-        width:55px;
+        width:50px;
         height:50px;
         margin:1em;
         border-radius:50%;
@@ -367,38 +424,42 @@ export const ConteinerPhoto = styled.div`
         background-color:#ef5245;
         box-sizing: border-box;
         > img {
-            width:30px;
+            width: 30px;
             height: 30px;
             cursor:pointer;
-            margin-left:13px;
+            margin-left:10px;
             margin-right:auto;
         }
+    }
+
+    @media(max-width: 780px){
+        width: 20em;
     }
 `;
 export const ButtonPhoto = styled.input.attrs(()=> ({
     type:"file",
 }))`
-    opacity:0;
-    cursor:pointer;
-    width:100%;
-    height:100%;
+    opacity: 0;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
 `;
 export const TextArea = styled.textarea.attrs(() => ({
     placeholder: "Digite detalhes sobre o desaparecido para ajudar em sua identificação"
 }))`
-    width:65em;
-    margin:2.5em;
-    padding:0.5em;
-    font-size:1.1rem;
-    height:100px;
+    width: 63em;
+    margin: 2.5em;
+    padding: 0.5em;
+    font-size: 1.1rem;
+    height: 100px;
     outline: none;
-    overflow-y:auto;
-    -moz-appearance:none;
-    -webkit-appearance:none;
-    appearance:none;
-    resize:none;
-    border:1px solid #1e1e1e;
-    border-radius:5px;
+    overflow-y: auto;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    resize: none;
+    border: 1px solid #1e1e1e;
+    border-radius: 5px;
     ::-webkit-scrollbar {
     width: 8px;
     height: 8px;
@@ -432,6 +493,10 @@ export const TextArea = styled.textarea.attrs(() => ({
     ::-webkit-scrollbar-corner {
     background: transparent;
     }
+
+    @media(max-width: 780px){
+        width: 20em;
+    }
 `;
 export const ConteinerInput = styled.div`
     width  : 60em;
@@ -443,19 +508,29 @@ export const ConteinerInput = styled.div`
     justify-content : space-between;
     flex-direction : row;
     > span {
-        width:30px;
-        height:30px;
-        margin:1em;
-        border-radius:50%;
+        width: 37px;
+        height: 37px;
+        margin: 1em;
+        border-radius: 50%;
         background-color:#ef5245;
         padding: 5px;
         display: flex;
         justify-content: center;
         align-items: center;
+        box-sizing: border-box;
 
         >img{
             width: 100%;
             height: 100%;
+        }
+    }
+
+    @media(max-width: 780px){
+        width: 20em;
+
+        >span {
+            width: 33px;
+            height: 30px; 
         }
     }
 `;
@@ -532,7 +607,7 @@ export const ConteinerFeatures = styled.div`
     margin:10px;
     display:flex;
     flex-direction: row;
-    justify-content:space-around;
+    justify-content: space-around;
     align-items:center;
     overflow-x: auto;
 
@@ -579,12 +654,12 @@ export const LabelLocation = styled.span`
 
 export const InputEndereco = styled.input.attrs(()=>({
     type: 'text',
-    placeholder: "Precione enter para adiconar o endereço"
+    placeholder: "insira os dados"
 }))`
     padding: 5px;
     -moz-appearance:none;
     -webkit-appearance:none;
-    width: 500px;
+    width: 350px;
     height: 20px;
     outline: none;
     border: solid 2px #eaeaea;
@@ -593,8 +668,15 @@ export const InputEndereco = styled.input.attrs(()=>({
     font:14px Arial, Helvetica, sans-serif;
     color: #555555;
     line-height: 20px;
+    transition: 0.5s;
 
     :hover{
         background-color: #f6f6f6;
+        transition: 0.3s;
+    }
+
+    @media(max-width: 780px){
+        padding-left: 20px;
+        text-align: center;
     }
 `

@@ -8,24 +8,24 @@ import DataProvider from './src/contexts/dataProvider';
 import BottomRoutes from './src/components/menu_horizontal';
 import Termos from './src/pages/ServiceTerms/index'
 
-import Card from './src/pages/card_desaparecido'
+import Card from './src/components/cards_feed/genero';
 
 const App = () => { 
 
   return (
-//      <Card/>
+      <Card/>
       
-    <NavigationContainer>
-      <AuthProvider> 
-        <DataProvider>
-          <SocketProvider>
-            <ConversationProvider>
-              <BottomRoutes/>
-            </ConversationProvider>
-          </SocketProvider>
-        </DataProvider>
-      </AuthProvider>
-    </NavigationContainer>
+//    <NavigationContainer>
+//      <AuthProvider> 
+//        <DataProvider>
+//          <SocketProvider>
+//            <ConversationProvider>
+//              <BottomRoutes/>
+//            </ConversationProvider>
+//          </SocketProvider>
+//        </DataProvider>
+//      </AuthProvider>
+//    </NavigationContainer>
  );
 }
 
