@@ -3,8 +3,11 @@ import {Container, ContainerDuplo, LostedPhoto, ConteinerPhoto, ButtonPhoto, Con
 import camera from "../../assets/camera.png";
 import { api } from "../../services/api";
 import { useHistory } from "react-router-dom";
+import { usePost } from "../../contexts/PostProvider";
 
-const FormEncontrado = ({postId}) => {
+const FormEncontrado = () => {
+
+    const {post} = usePost();
 
     const [photo, setPhoto] = useState(null);
     
@@ -63,7 +66,7 @@ const FormEncontrado = ({postId}) => {
         data.append('complement',values.number)
         data.append('photo',photo)
 
-        const res = await api.post(`/found/${postId ? postId : 1 }`, data, {
+        const res = await api.post(`/found/${post?.LostedThatWasSeen?.id}`, data, {
             headers:{
                 "Content-type": `multipart/form-data`,
             }   
@@ -71,7 +74,7 @@ const FormEncontrado = ({postId}) => {
 
         if ( res.status === 201 ) {
             window.alert("encontrado criado com sucesso!!")
-            history.push('/user-info')
+            history.push('/feed')
         } else {
             window.alert("ERRO AO CRIAR ENCRONTRADO")
         }
@@ -79,8 +82,8 @@ const FormEncontrado = ({postId}) => {
 
     return(
         <Container>
-            <Titulo>Você encontrou essa pessoa?</Titulo>
-            <Texto>As respostas desse formulário serão enviadas para o <span>James</span> em seu chat.</Texto>
+            <Titulo>Você encontrou {post?.LostedThatWasSeen?.name}?</Titulo>
+            <Texto>As respostas desse formulário serão enviadas para o <span>{post?.LostedThatWasSeen?.postCreator?.name}</span> em seu chat.</Texto>
             <ContainerInputs>
                 <ContainerDuplo>
                     <Texto>Data</Texto>

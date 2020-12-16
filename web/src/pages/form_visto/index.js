@@ -1,10 +1,13 @@
 import React, {useState} from "react";
 import {useHistory} from "react-router-dom";
+import { usePost } from "../../contexts/PostProvider";
 import { api } from "../../services/api";
 import {Container, ContainerDuplo, RadioGenre, RadioGroup, RadioStyled, ContainerRadio, ContainerInputs, Texto, Titulo, ButtonSalvar, ContainerBotao} from './styles';
 
-const FormVisto = ({ postId }) => {
+const FormVisto = ( ) => {
 
+    const {post} = usePost();
+console.log(post)
     const history = useHistory();
 
     const [radio, setRadio] = useState("");
@@ -57,20 +60,21 @@ const FormVisto = ({ postId }) => {
             seen_at_hours : values.time
         }
 
-        const res = await api.post(`/seen/${ postId ? postId : 1 }` , data );
+        const res = await api.post(`/seen/${post?.LostedThatWasSeen?.id}` , data );
 
         if ( res.status === 201 ){
             window.alert("Visto criado com sucesso!");
-            history.push('/user-info');
+            history.push('/feed');
         }else{
             window.alert("ERRO AO CRIAR O VISTO!");
         }
     };
 
+
     return(
         <Container>
-            <Titulo>Você viu essa pessoa?</Titulo>
-            <Texto>As respostas desse formulário serão enviadas para o <span>James</span> em seu chat.</Texto>
+            <Titulo>Você viu {post?.LostedThatWasSeen?.name}?</Titulo>
+            <Texto>As respostas desse formulário serão enviadas para o <span>{post?.LostedThatWasSeen?.postCreator?.name}</span> em seu chat.</Texto>
             <ContainerInputs>
                 <ContainerDuplo>
                     <Texto>Data</Texto>

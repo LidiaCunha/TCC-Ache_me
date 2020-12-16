@@ -14,6 +14,7 @@ import sair from "../../assets/opcao-de-sair.png";
 import {getUsers, signOut} from '../../services/security'
 import { api } from '../../services/api';
 import LostedPost from "../post";
+import Complaints from '../user_info/modal_denuncia.js';
 import CreatePost from "../../components/CreatePost";
 import { useHistory } from 'react-router-dom';
 
@@ -52,6 +53,8 @@ const Feed = () => {
     const [posts, setPosts] = useState([]);
 
     const [showCreatePost, setShowCreatePost] = useState(false);
+
+    const [showComplaint, setShowComplaint] = useState(false);
 
 // HANDLERS
     const handlerRadio = (e) => {
@@ -176,6 +179,7 @@ const Feed = () => {
     return (
         <Container>
             {showCreatePost && <CreatePost showCreatePost={setShowCreatePost} user={{user}} />}
+	    {showComplaint && <Complaints setShowDenunciations={setShowComplaint} /> }
             <Menu>
                 <Icone id="foto"  onClick={()=>route.push('/user_info')} ><img src={foto}/></Icone>
                 <Icone  onClick={()=>signOut()} ><img src={sair}/></Icone>
@@ -288,7 +292,7 @@ const Feed = () => {
                         <Acoes>
                             <p>SUAS AÇÕES:</p>
                             <IconeAcoes id="share" onClick={()=> setShowCreatePost(true)} ><img src={share}/></IconeAcoes>
-                            <IconeAcoes id="denuncia"><img src={denuncia}/></IconeAcoes>
+                            <IconeAcoes id="denuncia" onClick={()=> setShowComplaint(true)}  ><img src={denuncia}/></IconeAcoes>
                             <IconeAcoes id="compartilhar"><img src={compartilhar}/></IconeAcoes>
                             <Botao><p>Minhas conversas</p></Botao>
                         </Acoes>
@@ -297,7 +301,7 @@ const Feed = () => {
                 </ContainerPosts>
 
                 <ContainerContrib>
-                    { collaborators.map( member => member && member.name ? <Member member={member} /> : '' )}
+                    { collaborators.map( member => member && member.merit ? <Member member={member} /> : '' )}
                 </ContainerContrib>
             </GridContainers>
         </Container>
