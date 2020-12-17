@@ -7,7 +7,7 @@ import {Container, ContainerDuplo, RadioGenre, RadioGroup, RadioStyled, Containe
 const FormVisto = ( ) => {
 
     const {post} = usePost();
-console.log(post)
+
     const history = useHistory();
 
     const [radio, setRadio] = useState("");
@@ -49,6 +49,32 @@ console.log(post)
 
     const createSeen = async( ) => {
 
+        async function sendMessage( recipient, message , image ){
+            if(image){
+              const nameImage = image.uri.split('/').pop();
+              const ext = nameImage.split(".").pop();
+      
+              var imageToSend = {
+                  uri: image.uri,
+                  type: image.type + "/" + ext,
+                  name: nameImage
+              }
+            }
+            
+            const data = new FormData();
+      
+            data.append( "message" , message.msg );
+            imageToSend && data.append( "photo" , imageToSend );
+            
+            const res = await api.post(`/message/to/${recipient.id}` , data, {
+              headers: {
+                  "Content-type": `multipart/form-data`,
+              }
+            });
+            
+            return res.status == 201 ? true : false;
+        }
+
         const data = {
             street:values.street, 
             bairro:values.bairro, 
@@ -63,7 +89,14 @@ console.log(post)
         const res = await api.post(`/seen/${post?.LostedThatWasSeen?.id}` , data );
 
         if ( res.status === 201 ){
+            
+            sendMessage( post?.LostedThatWasSeen?.postCreator,
+                         `Eu vi e ${post?.LostedThatWasSeen?.name} no bairro ${data.bairro} localizado na cidade de ${data.city}
+                          e no dia ${data.seen_at_date}`
+                        );
+
             window.alert("Visto criado com sucesso!");
+            
             history.push('/feed');
         }else{
             window.alert("ERRO AO CRIAR O VISTO!");
