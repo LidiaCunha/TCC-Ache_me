@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import {AreaTextos,Container,FilterButton, IconeAcoes, ContainerFiltros, GridContainers, ImagemUsuario, Menu, ContainerPosts,ContainerContrib,CriarPost,Post, Texto, ContainerInputs, ContainerDuplo, Icone, RadioGenre, RadioGroup, RadioStyled, ContainerRadio,ContainerItem, LabelItem, ButtonExcluir, Linha, Contribuidor, LinhaMerito, AreaGrid, GridFotos, GridNumero, Flex, Acoes, Botao} from './styles';
+import {AreaTextos,Container,FilterButton, IconeAcoes, ContainerFiltros, GridContainers, ImagemUsuario, Menu, ContainerPosts,ContainerContrib,CriarPost,Post, Texto, ContainerInputs, ContainerDuplo, Icone, RadioGenre, RadioGroup, RadioStyled, ContainerRadio,ContainerItem, LabelItem, ButtonExcluir, Linha, Contribuidor, LinhaMerito, AreaGrid, GridFotos, GridNumero, Flex, Acoes, Botao, PostList} from './styles';
 import home from "../../assets/user_info/home.png";
 import camera from "../../assets/camera.png";
 import estrela from "../../assets/star.png";
@@ -297,7 +297,9 @@ const Feed = () => {
                             <Botao><p>Minhas conversas</p></Botao>
                         </Acoes>
                     </CriarPost>
-                    { posts.map( post => <Post> <LostedPost post={post} /> </Post> ) }
+                    <PostList>
+                        { posts.map( post => <Post> <LostedPost post={post} /> </Post> ) }
+                    </PostList>
                 </ContainerPosts>
 
                 <ContainerContrib>

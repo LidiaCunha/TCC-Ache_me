@@ -5,14 +5,13 @@ export const Container = styled.div`
     height: auto;
     max-height: 100%;
     position: relative;
-    background-color: #fff; 
     margin-left: auto;
     margin-right: auto;
 `
 
 export const ContainerUsuario = styled.div`
     width: 100%;
-    height: 180px;
+    height: 150px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -26,18 +25,21 @@ export const ContainerTexto = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
+    font-family: arial;
+
 
     >h1{
         color: #1d1d1d;
         font-weight: bold;
         font-size: 1.3em;
         letter-spacing: 1.4px;
+        font-family: arial;
     }
     >p{
         color: #1d1d1d;
         letter-spacing: 1.4px;
         font-size: 1.2em;
-        font-weight: 200;
+        font-family: arial;
     }
 `
 
@@ -61,8 +63,8 @@ export const InputNome = styled.input`
 `
 
 export const FotoUsuario = styled.div`
-    width: 120px;
-    height: 120px;
+    width: 80px;
+    height: 80px;
     border-radius: 60px;
     margin-right: 20px;
 
@@ -100,7 +102,9 @@ export const Infos = styled.div`
     background-color: white;
     z-index: 999;
     position: absolute;
-    overflow: auto;
+    overflow: hidden;
+    overflow-Y: auto;
+
     ::-webkit-scrollbar {
     width: 8px;
     height: 8px;
@@ -145,6 +149,9 @@ export const Infos = styled.div`
         margin-left: auto;
         margin-right: auto;
         margin-bottom: 25px;
+        height: auto;
+        word-break: break-all;
+        font-family: arial;
     }
     >h1{
         color: #1d1d1d;
@@ -155,6 +162,7 @@ export const Infos = styled.div`
         margin-left: auto;
         margin-right: auto;
         margin-bottom: 10px;
+        font-family: arial;
     }
 `
 
@@ -176,9 +184,8 @@ export const ContainerInfos = styled.div`
     >p{
         color: #1d1d1d;
         letter-spacing: 1.4px;
-        margin-right: 10px;
-        font-size: 0.89em;
-        font-weight: 500;
+        font-size: 0.85em;
+        font-family: arial;
     }
 `
 
@@ -186,14 +193,15 @@ export const Linha = styled.div`
     width: 1.2px;
     height: 80%;
     background-color: #1d1d1d;
-    margin-right: 10px;
+    margin-right: 8px;
+    margin-left: 8px;
 `
 
 export const ContainerCardFiltros = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     width: 90%;
-    min-height: 100px;
+    min-height: 30px;
     height: auto;
     justify-content: center;
     margin-left: auto;
@@ -272,7 +280,7 @@ export const ContainerBotoes = styled.div`
     min-height: 80px;
     height: auto;
     position: absolute;
-    right: 0px;
+    right: 40px;
 
     /* >.botoes_ocultos{
         opacity: 0;

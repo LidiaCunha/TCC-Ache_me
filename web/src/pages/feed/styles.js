@@ -47,15 +47,17 @@ export const ImagemUsuario = styled.div`
 export const AreaTextos = styled.div`
     width: 100%;
     height: 70px;
-    display: grid;
-    align-items: flex-end;
-    grid-template-columns: 300px 300px;
-    grid-gap: 700px;
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    align-items: center;
+    
 
     >p{
         font: Arial;
         color: #1d1d1d;
         font-size: 1.1em;
+        font-weight: bold;
         letter-spacing: 1.4px;
         text-align: center;
         margin-left: auto;
@@ -63,7 +65,7 @@ export const AreaTextos = styled.div`
     }
 
     >#contribuintes{
-        margin-left: 15.6px;
+        margin-left: 750px;
     }
 `
 
@@ -78,13 +80,13 @@ export const GridContainers = styled.div`
 `
 
 export const ContainerFiltros = styled.div`
-    width: 300px;
+    width: 20vw;
     height: 1100px;
     background-color: #fff;
     display: flex;
     justify-content: flex-start;
     flex-direction: column;
-    margin-left: 85px;
+    margin-left: 65px;
     margin-right: 20px;
     padding: 10px;
 
@@ -102,7 +104,7 @@ export const ContainerFiltros = styled.div`
 `
 
 export const ContainerPosts = styled.div`
-    width: 550px;
+    width: 45vw;
     height: auto;
     min-height: 300px;
     display: flex;
@@ -131,6 +133,12 @@ export const CriarPost = styled.div`
             font-weight: bold;
         }
     }
+`
+
+export const PostList = styled.div`
+    width: 600px;
+    min-height: 100%;
+    height: auto;
 `
 
 export const Acoes = styled.div`
@@ -169,11 +177,11 @@ export const Post = styled.div`
     min-height: 500px;
     max-height: 1300px;
     background-color: #fff;
-    margin-bottom: 740px;
+    margin-bottom: 600px;
 `
 
 export const ContainerContrib = styled.div`
-    width: 300px;
+    width: 20vw;
     min-height: 500px;
     height: auto;
     overflow: auto;
@@ -360,9 +368,9 @@ export const Icone = styled.div`
 `
 
 export const IconeAcoes = styled.div`
-    width: 30px;
-    height: 30px;
-    border-radius: 15px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
     margin-right: 10px;
     display: flex;
     justify-content: center;
