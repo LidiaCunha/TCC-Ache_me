@@ -20,7 +20,7 @@ module.exports = {
         onUpdate: "CASCADE",
         onDelete: "CASCADE", 
       },
-      message   : { type: Sequelize.STRING , allowNull: false },
+      message   : { type: Sequelize.STRING , allowNull: true },
       photo      : { type: Sequelize.STRING , allowNull: true },
       created_at: { type: Sequelize.DATE , allownull: false },
       updated_at: { type: Sequelize.DATE , allownull: false },

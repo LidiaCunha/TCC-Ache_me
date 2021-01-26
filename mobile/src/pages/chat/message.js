@@ -7,26 +7,22 @@ const MessageBubble = (props) => {
       <TouchableOpacity style={[ styles.message, props.mine ? styles.mine : styles.not_mine ]} >
         <TouchableOpacity style={[ styles.cloud, { backgroundColor: props.mine ? '#EDEDED' : '#f37e74'} ]} >
         {
-          props.image ?
+          props.image &&
               <Image
                 style={{ width: 300, height: 300, alignSelf: props.mine ? 'flex-start' : 'flex-end' }}
                 borderRadius={10}
                 marginTop={6}
                 marginBottom={6}
-                source={props.image}
+                source={{uri:props.image}}
                 width={500}
                 height={500}
-              />
-          :
-              null
-          }
+              />          
+        }
           {
             props.text ?
               <Text style={[ styles.text, {color: props.mine ? 'black' : 'white'} ]} >
                 {props.text}
-              </Text>
-            :
-              null
+              </Text>  : <Text></Text>
           }
           <TouchableOpacity style={[ styles.arrow_container, props.mine ? styles.arrow_left_container : styles.arrow_right_container ]}>
             <Svg
@@ -34,7 +30,7 @@ const MessageBubble = (props) => {
               width={moderateScale(15.5, 0.6)}
               height={moderateScale(17.5, 0.6)}
               TouchableOpacityBox="32.484 17.5 15.515 17.5"
-              enable-background="new 32.485 17.5 15.515 17.5"
+              enableBackground="new 32.485 17.5 15.515 17.5"
             >
               <Path
                   d={ props.mine 

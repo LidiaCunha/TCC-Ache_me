@@ -70,10 +70,9 @@ module.exports = {
         
         const address = await Address.create({cep,bairro,street,reference_point,complement, state_id, city_id })
         
-        const [dateFormatted,n] = moment(seen_at_date,'ddd, DD MM YYYY').format().split("T"); 
-        const [m,hourFormatted] = moment(seen_at_hours,'ddd, H:mm:ss Z').format().split("T");
-        
-        const view = await Seen.create({seen_at:`${dateFormatted}T${hourFormatted}`,losted_id:PostId,address_id:address.dataValues.id});  
+        const dateFormatted = moment(seen_at_date+seen_at_hours,'ddd, D MMM YYYY H:mm:ss Z').format(); 
+
+        const view = await Seen.create({seen_at:dateFormatted,losted_id:PostId,address_id:address.dataValues.id});  
         
         const who_saw = await WhoSaw.create({id_user_who_saw: CreatorId,id_losted_seen:view.dataValues.id ,confirm:false})
 

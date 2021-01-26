@@ -40,7 +40,6 @@ export const ContainerHeader = styled.div`
     width: 100%;
     position: absolute;
     top: 0px;
-    background: rgba(0,0,0,.6);
 `;
 
 export const ContainerMenu = styled.div`
@@ -107,7 +106,6 @@ export const ContainerItensMenu = styled.nav`
 `;
 
 // ======= sessão 2 =========
-
 export const ContainerApoio = styled.div`
     min-height: 50px;
     height: auto;
@@ -154,7 +152,6 @@ export const ContianerCardsApoio = styled.div`
         width: 100vw;
     }
 `;
-
 
 export const Conjunto = styled.div`
     height: auto;
@@ -219,10 +216,10 @@ export const CardApoio = styled.div`
         
 
         > h3{
-width: 100%;
+            width: 100%;
             font-size: 4vw;
             margin-bottom: 10px;
-text-align: center;
+            text-align: center;
         }
         > p{
             font-size: 3vw;
@@ -253,7 +250,6 @@ export const ContainerImgApoio = styled.div`
 `;
 
 // ======= sessão 3 =========
-
 export const ContainerFotos = styled.div`
     height: 550px;
     width: 100%;
@@ -276,8 +272,8 @@ export const CardDesaparecidos = styled.div`
     width: 345px;
     margin-right: 5px;
     position: relative;
-overflow: hidden;
-border-radius: 10px;
+    overflow: hidden;
+    border-radius: 10px;
     > img{
       height: 100%;
       width: 100%;
@@ -342,8 +338,8 @@ export const Porcentagem = styled.div`
     right: 35px; 
 }
 `;
-// ========== VIDEO ==============
 
+// ========== VIDEO ==============
 export const ContainerVideo = styled.div`
     height: 800px;
     width: 100%;
@@ -379,7 +375,6 @@ export const ContainerVideo = styled.div`
 `;
 
 // ========= FOOTER ==============
-
 export const Footer = styled.div`
     height: 130px;
     width: 100%;

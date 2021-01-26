@@ -31,11 +31,9 @@ export const ContainerInfo = styled.form`
     background: rgba(0,0,0,.4);
     position: absolute;
     top: 0px;
-    
 
     @media (max-width: 780px){
       overflow-y: auto;
-
     }
 `;
 
@@ -246,7 +244,8 @@ export const CadastroConfigInput = styled.div`
     align-items: center;
     padding-top: 7vh;
     box-sizing: border-box;
-
+    margin: 0 auto;
+    
    
     @media (max-width: 780px){
       height: auto;

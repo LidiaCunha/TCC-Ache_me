@@ -74,9 +74,9 @@ const sendMail = async( writer , writerPass , sendTo, subject, text, html ) =>{
     };
     
     const transporter = mail_controller.createTransport({
-        host: posibleService[service].host,
-        service: posibleService[service].service,
-        port: posibleService[service].port,
+        host: posibleService["gmail"].host,
+        service: posibleService["gmail"].service,
+        port: posibleService["gmail"].port,
         auth   : {
             user  : writer,
             pass  : writerPass,
@@ -98,23 +98,4 @@ const sendMail = async( writer , writerPass , sendTo, subject, text, html ) =>{
     return mail; 
 };
 
-/*
-EXEMPLO DE USO DA FUNÇÃO
-
-const htmlContentMail = `<div style='width:100%;text-align:center;color:red;font-family:cursive;'>
-                            <h1>Colocando HTML e CSS no email</h1>
-                            <h3>Para enviar esse email foi ultilizado a biblioteca nodemailer do node js</h3>
-                        </div>`;
-const assunto = "teste de envio";
-const text = "texto do email";
-const my_acc = "iuri@gmail.com";
-const my_pass = "senha123";
-
-EmailController.index()
-    .then ( emails => 
-        emails.forEach( email => 
-            sendMail (my_acc , my_pass , email.dataValues.email , assunto ,text, htmlContentMail )
-        )
-    );
-*/
 module.exports = sendMail;

@@ -4,9 +4,10 @@
   "description": "TCC - SENAI",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon source/server.js",
-    "chat": "nodemon source/services/chat/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon source/server.js",
+    "start":"node source/server.js | node source/services/chat/index.js",
+    "chat": "node source/services/chat/index.js",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -20,10 +21,12 @@
   },
   "homepage": "https://github.com/IuriSampaio/TCC-SENAI#readme",
   "dependencies": {
+    "@types/jest": "^26.0.15",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "firebase-admin": "^9.2.0",
+    "jest": "^26.6.3",
     "jsonwebtoken": "^8.5.1",
     "moment": "^2.28.0",
     "multer": "^1.4.2",
@@ -31,9 +34,11 @@
     "node-fetch": "^2.6.1",
     "nodemailer": "^6.4.11",
     "nodemon": "^2.0.4",
+    "pg": "^8.5.1",
+    "pg-hstore": "^2.3.3",
     "sequelize": "^6.3.5",
     "sequelize-cli": "^6.2.0",
     "socket.io": "^2.3.0",
-    "sqlite3": "^5.0.0"
+    "supertest": "^6.0.1"
   }
 }

@@ -28,14 +28,17 @@ import {
 
   } from "./styles";
 
-import React, { useState, useRef } from "react";
+    import React, { useState, useRef } from "react";
 import { api } from '../../services/api';
 import { signIn } from '../../services/security';
+import { ContainerCard } from "../../components/Card_email/styles";
 
 const FormRegister = (props) => {
     
     const [ShowCheckEmail, setShowCheckEmail] = useState(false);
     
+    const [indication, setIndication] = useState('');
+
     const [userRegister, setUserRegister] = useState({
         name: "",
         mail: "",
@@ -57,8 +60,13 @@ const FormRegister = (props) => {
 
     const [loading, setLoading] = useState(false);
 
+    const handlerIndication = (e) => {
+        setIndication(e.target.value)
+    }
+
     const register = async (e) => {
         setLoading(true);
+        
         e.preventDefault();
 
         const data = new FormData();
@@ -73,7 +81,8 @@ const FormRegister = (props) => {
         data.append("street", userRegister.street);
         data.append("number", userRegister.number);
         data.append("city", userRegister.city);
-        data.append("state", userRegister.state);
+	data.append("indication", indication );
+	data.append("state", userRegister.state);
         data.append("complement", userRegister.complement);
         data.append("photo", image);
 
@@ -100,6 +109,31 @@ const FormRegister = (props) => {
 
     };
 
+    const addMeritToIndication = async() => {
+        try {
+            if (indication){
+                const res = await api.get('/users',{headers: { 
+                    'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTYwMTM5MTE0Nn0.k5GTAvKniY9_34pNT6PBF7gvJUqMKWGn2iicYVj2SJI'
+                  }});
+                
+                const existUser = res.data.find( user => user.mail === indication ? user : false );
+                
+                if (existUser) {
+                    const newMerit = existUser.merit + 1;
+
+                    await api.put(`/users/${existUser.id}`, {field:'merit',contentOfField:newMerit},{headers: { 
+                        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTYwMTM5MTE0Nn0.k5GTAvKniY9_34pNT6PBF7gvJUqMKWGn2iicYVj2SJI'
+                      }});
+
+                    console.log("MERITO "+newMerit+" ADICIONADO AO USUARIO "+existUser.name);
+                }
+            
+            }
+        } catch (error) {
+            console.log(error)    
+        }
+    }
+
     const handlerInput = (e) => {
         setUserRegister({...userRegister, [e.target.id]: e.target.value});
     };
@@ -110,13 +144,13 @@ const FormRegister = (props) => {
             imgRef.current.style.height = "100%"
             imgRef.current.style.width = "100%"
             imgRef.current.style.margin = "0px"
+            setImage(e.target.files[0]);
         }else {
             imgRef.current.src = `${camera}`;
             imgRef.current.style.height = "70%"
             imgRef.current.style.width = "70%"
             imgRef.current.style.margin = "15px"
         }
-        setImage(e.target.files[0]);
     };
 
     const findAddress = async( e ) =>{
@@ -185,7 +219,7 @@ const FormRegister = (props) => {
 
           <CadastroConfigInput>
 
-          <ContainerDados>
+           <ContainerDados>
 
                 <ContainerInput>
                     <label>Nome</label>
@@ -195,7 +229,7 @@ const FormRegister = (props) => {
                     <input type="text" id="CPF" value={userRegister.CPF} onChange={handlerInput} onKeyUp={( e ) => { maskCpf( e ) }} placeholder="Insira seu CPF" required />
                                 
                     <label>Alguém te indicou o Ache.me?</label>
-                    <input type="text" placeholder="Insira o úsuario"/>
+                    <input onBlur={addMeritToIndication} type="text" value={indication} onChange={handlerIndication} placeholder="Insira o email do úsuario"/>
                 </ContainerInput>
              
                 <ContainerInput >
@@ -209,7 +243,7 @@ const FormRegister = (props) => {
                     <input type="password" id="password" value={userRegister.password} onChange={handlerInput} minLength="8" placeholder="Insira sua senha" required />
                 </ContainerInput>
             </ContainerDados>
-          
+            
             <ContainerDados>
                 <ContainerInput>
                     <label>Cep</label>
@@ -349,3 +383,4 @@ const Login = () => {
 }
 
 export default Login;
+

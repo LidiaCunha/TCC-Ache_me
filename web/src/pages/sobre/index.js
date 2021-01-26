@@ -13,7 +13,7 @@ import {
     ContainerTextMenor,
     ContainerTextMaior,
     ContainerInfo, 
-    ContainerBtn, 
+    ContainerBtnValores, 
     ContainerCards, 
     Cards, 
     CardContent, 
@@ -60,7 +60,7 @@ import {
   import erick from "../../assets/Sobre/erick.jpeg";
   import everson from "../../assets/Sobre/everson.jpeg";
   import iuri from "../../assets/Sobre/iuri.jpeg";
-  import Button from "../../components/button/index";
+//   import Button from "../../components/button/index";
 
   const SobreEmpresa = (props) => {
       
@@ -93,12 +93,12 @@ import {
                         <h2 name="inicio">Nós somos como você, preocupados<br/>com o próximo.</h2>
                     </ContainerTextMaior>
                     <ContainerTextMenor>
-                        <h2>Aqui você pode conhecer mais sobre a empresa, nossa equipe e propósitos.<br/>
-                        Fazemos parte de iniciativas do bem e esperamos que você também faça.</h2>
+                        <p>Aqui você pode conhecer mais sobre a empresa, nossa equipe e propósitos.<br/>
+                        Fazemos parte de iniciativas do bem e esperamos que você também faça.</p>
                     </ContainerTextMenor>
-                    <ContainerBtn>
-                        <Link to="valores" offset={-180} smooth={true} duration={500}>Conhecer Valores</Link>
-                    </ContainerBtn>
+                    <ContainerBtnValores>
+                        <Link style={{ color: '#E64F4A'}} to="valores" offset={-180} smooth={true} duration={500}>Conhecer Valores</Link>
+                    </ContainerBtnValores>
                     </ContainerMenuTexto>
                 </ContainerInfo>
             </Container>

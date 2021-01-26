@@ -29,16 +29,19 @@ const Multer = multer({
 });
 
 routes.post('/newUser', Multer.single("photo"), imageUpload, validMail );
-routes.get('/validMail/' , Users.store)
+routes.get('/validMail/' , Users.store);
 routes.post('/users', Users.login);
 
 routes.use(middleware);
 
-
+routes.get('/user/', Users.findByName)
+routes.get('/user/:userId', Users.searchForId);
 routes.get('/users', Users.index);
+routes.put('/editUsers/:userId', Users.update);
+routes.put('/editPhoto/:userId', Multer.single("photo"), imageUpload, Users.photoUpdate);
 routes.put('/users/:userId', Users.updateFieldOfUsers);
 routes.put('/users/wherelive/:userId', Users.updateFieldFromWhereUserLive);
-routes.delete('/users/:userId', Users.delete);
+routes.delete('/deleteUsers/:userId', Users.delete);
 
 routes.post('/city', Citys.store);
 routes.get('/city', Citys.index);
@@ -49,9 +52,11 @@ routes.get('/state', States.index);
 routes.delete('/state/:stateId', States.delete);
 
 routes.get('/posts', LostedPost.index);
+routes.get('/posts/my', LostedPost.takeMyPosts);
 routes.get('/post/filterby/', filters.filterByGenre , filters.filterByFeatures , filters.filterByAge , filters.filterByDate , filters.filterByHour , filters.filterByLocale , filters.filterByProblems );
 routes.get('/posts/:PostId', LostedPost.show);
-routes.post('/posts', Multer.single("photo"), imageUpload , LostedPost.store);
+routes.get('/posts/my/last',LostedPost.takeLastOfThisUser);
+routes.post('/posts', Multer.single("photo"), imageUpload, LostedPost.store);
 routes.delete('/posts/:idPost', LostedPost.delete);
 routes.put('/posts/:idPost', Multer.single("photo") , imageUpload , LostedPost.update);
 
@@ -90,5 +95,7 @@ routes.get('/found',Found.index);
 
 routes.post('/message/to/:recipient', Multer.single("photo") , imageUpload , Messages.send);
 routes.get('/messages/between/:id/:id2', Messages.seeAllBetween);
+routes.get('/messages/conversations', Messages.conversations);
+routes.delete('/messages/:id', Messages.delete);
 
 module.exports = routes;

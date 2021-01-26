@@ -15,7 +15,7 @@ export const GlobalStyles = createGlobalStyle`
             padding: auto;
             box-sizing: border-box;
             overflow-x: hidden;
-            
+            background-color: #fff;
         }
     }
 
@@ -24,5 +24,4 @@ export const GlobalStyles = createGlobalStyle`
             width: 100%;
         }
     }
-
 `

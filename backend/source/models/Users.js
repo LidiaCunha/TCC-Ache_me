@@ -1,7 +1,6 @@
 const { Model , DataTypes } = require("sequelize");
 
 class Users extends Model {
-    // constructor da classe user
     static init( sequelize ){
 		super.init({
 			name       : DataTypes.STRING,
@@ -17,8 +16,7 @@ class Users extends Model {
 		})
     }
 
-    /* RELACIONAMENTOS SÂO DECLARADOS AQUI */
-	static associete( MODELS ){
+    static associete( MODELS ){
 		this.belongsTo( MODELS.WhereLive , {foreignKey:"where_live_id"} );
 		this.hasMany( MODELS.LostedPost , {foreignKey:"id_user"});
 		this.hasMany( MODELS.Message, {foreignKey: "sender" });
